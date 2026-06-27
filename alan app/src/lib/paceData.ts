@@ -85,6 +85,19 @@ export interface TrackData {
   segments: TrackRun[]
 }
 
+export interface CircuitPrediction {
+  circuit: string
+  race: string
+  basedOn: string[]
+  teams: PredictionEntry[]
+}
+
+export async function loadCircuitPrediction(circuitId: string): Promise<CircuitPrediction> {
+  const res = await fetch(`/predictions/${circuitId}.json`)
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  return res.json() as Promise<CircuitPrediction>
+}
+
 export async function loadTrackData(prefix: string): Promise<TrackData> {
   const res = await fetch(`/pace/track_data/${prefix}_track.json`)
   if (!res.ok) throw new Error(`HTTP ${res.status}`)

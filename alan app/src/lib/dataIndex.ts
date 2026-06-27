@@ -40,7 +40,7 @@ export const CIRCUITS: CircuitConfig[] = [
   { id: 'canadian',           name: 'Canadian GP',             flag: '🇨🇦', raceDate: '2026-05-24', hasData: true,  sessions: sprintSessions },
   { id: 'monaco',             name: 'Monaco GP',               flag: '🇲🇨', raceDate: '2026-06-07', hasData: true,  sessions: stdSessions    },
   { id: 'barcelona_catalunya',name: 'Barcelona-Catalunya GP',  flag: '🇪🇸', raceDate: '2026-06-14', hasData: false, sessions: stdSessions    },
-  { id: 'austrian',           name: 'Austrian GP',             flag: '🇦🇹', raceDate: '2026-06-28', hasData: false, sessions: stdSessions    },
+  { id: 'austrian',           name: 'Austrian GP',             flag: '🇦🇹', raceDate: '2026-06-28', hasData: false, hasPrediction: true, sessions: stdSessions    },
   { id: 'british',            name: 'British GP',              flag: '🇬🇧', raceDate: '2026-07-05', hasData: false, sessions: sprintSessions },
   { id: 'belgian',            name: 'Belgian GP',              flag: '🇧🇪', raceDate: '2026-07-19', hasData: false, sessions: stdSessions    },
   { id: 'hungarian',          name: 'Hungarian GP',            flag: '🇭🇺', raceDate: '2026-07-26', hasData: false, sessions: stdSessions    },

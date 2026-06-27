@@ -1218,3 +1218,111 @@
   color: #445;
   letter-spacing: 0.3px;
 }
+
+/* ── Prediction mode layout ────────────────────────────────────────────── */
+
+.static-track-wrap.prediction-mode {
+  max-width: 1200px;
+  max-height: 720px;
+  border-color: #c8860040;
+}
+
+.pred-mode-chip {
+  margin-left: auto;
+  background: #c8860020;
+  border: 1px solid #c88600;
+  color: #c88600;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.pred-mode-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.pred-mode-track {
+  flex: 0 0 45%;
+  background: #080c10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #1e2a38;
+  padding: 8px;
+}
+
+.pred-mode-sidebar {
+  flex: 1;
+  overflow-y: auto;
+  background: #0d1117;
+  padding: 12px 14px;
+}
+
+/* ── Prediction panel ──────────────────────────────────────────────────── */
+
+.pred-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pred-panel-meta {
+  font-size: 10px;
+  color: #556;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+
+.pred-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #445;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #1e2a38;
+  margin-bottom: 2px;
+}
+
+.pred-panel-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 6px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: border-color 0.12s;
+}
+.pred-panel-row:hover { border-color: #1e2a38; background: #111820; }
+
+.pred-panel-col-pos  { width: 20px; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.pred-panel-col-team { flex: 1; display: flex; align-items: center; gap: 6px; font-size: 12px; color: #ccd; white-space: nowrap; min-width: 0; }
+.pred-panel-col-bar  { width: 60px; height: 6px; background: #111820; border-radius: 3px; overflow: hidden; flex-shrink: 0; position: relative; }
+.pred-panel-bar      { position: absolute; left: 0; top: 0; height: 100%; border-radius: 3px; }
+.pred-panel-col-num  { width: 48px; text-align: right; flex-shrink: 0; }
+.pred-panel-col-cat  { width: 40px; text-align: right; flex-shrink: 0; }
+
+.pred-panel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pred-panel-legend {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #1e2a38;
+  font-size: 11px;
+  color: #556;
+}

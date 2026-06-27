@@ -51,6 +51,7 @@ export interface CircuitConfig {
   flag: string
   raceDate: string    // ISO YYYY-MM-DD race Sunday
   hasData: boolean
+  hasPrediction?: boolean
   sessions: CircuitSession[]
 }
 

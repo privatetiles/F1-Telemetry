@@ -1,0 +1,18 @@
+{
+  "circuit": "austrian",
+  "race": "2025 Austrian GP",
+  "basedOn": ["AUS", "BAR", "CAN", "CHN", "JPN", "MIA", "MON"],
+  "teams": [
+    { "team": "Mercedes",        "overall":  0.000, "slow":  0.000, "fast":  0.000, "straight":  0.000, "inputRaces": 7, "note": "" },
+    { "team": "Ferrari",         "overall": -0.232, "slow": -0.387, "fast": -0.416, "straight":  0.158, "inputRaces": 7, "note": "" },
+    { "team": "McLaren",         "overall": -0.614, "slow": -0.572, "fast": -0.925, "straight": -0.330, "inputRaces": 6, "note": "6/7 races" },
+    { "team": "Red Bull Racing", "overall": -0.792, "slow": -0.724, "fast": -1.462, "straight": -0.170, "inputRaces": 7, "note": "" },
+    { "team": "Alpine",          "overall": -1.786, "slow": -2.516, "fast": -2.612, "straight":  0.007, "inputRaces": 7, "note": "" },
+    { "team": "Audi",            "overall": -1.861, "slow": -1.816, "fast": -2.696, "straight": -1.038, "inputRaces": 7, "note": "" },
+    { "team": "Haas F1 Team",    "overall": -2.204, "slow": -2.419, "fast": -3.339, "straight": -0.737, "inputRaces": 7, "note": "" },
+    { "team": "Racing Bulls",    "overall": -2.229, "slow": -2.091, "fast": -3.294, "straight": -1.281, "inputRaces": 7, "note": "" },
+    { "team": "Williams",        "overall": -2.320, "slow": -2.480, "fast": -3.450, "straight": -0.927, "inputRaces": 7, "note": "" },
+    { "team": "Cadillac",        "overall": -4.485, "slow": -4.876, "fast": -6.136, "straight": -2.251, "inputRaces": 7, "note": "" },
+    { "team": "Aston Martin",    "overall": -4.822, "slow": -4.761, "fast": -5.587, "straight": -4.090, "inputRaces": 7, "note": "" }
+  ]
+}
