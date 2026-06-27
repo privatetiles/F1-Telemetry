@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850">
+<style>
+text{font-family:Arial, Helvetica, sans-serif; fill:#17202a}
+.title{font-size:28px; font-weight:700}
+.subtitle{font-size:14px; fill:#53606a}
+.axis{stroke:#1f2933; stroke-width:1.4}
+.grid{stroke:#d9e2ec; stroke-width:1}
+.tick{font-size:12px; fill:#52606d}
+.label{font-size:12px; font-weight:600}
+.legend{font-size:13px}
+.quadrant{font-size:13px; fill:#6b7280; font-weight:700}
+</style>
+<rect x="0" y="0" width="1200" height="850" fill="#ffffff"/>
+<text x="90" y="38" class="title">2026 F1 Sector Dual-Axis Profiles</text>
+<text x="90" y="60" class="subtitle">X-axis: speed score. Y-axis: stop-start score. Trial scoring, original profile files unchanged.</text>
+<line x1="90.0" y1="70" x2="90.0" y2="760" class="grid"/>
+<line x1="90" y1="760.0" x2="940" y2="760.0" class="grid"/>
+<text x="90.0" y="784" text-anchor="middle" class="tick">0</text>
+<text x="74" y="764.0" text-anchor="end" class="tick">0</text>
+<line x1="260.0" y1="70" x2="260.0" y2="760" class="grid"/>
+<line x1="90" y1="622.0" x2="940" y2="622.0" class="grid"/>
+<text x="260.0" y="784" text-anchor="middle" class="tick">20</text>
+<text x="74" y="626.0" text-anchor="end" class="tick">20</text>
+<line x1="430.0" y1="70" x2="430.0" y2="760" class="grid"/>
+<line x1="90" y1="484.0" x2="940" y2="484.0" class="grid"/>
+<text x="430.0" y="784" text-anchor="middle" class="tick">40</text>
+<text x="74" y="488.0" text-anchor="end" class="tick">40</text>
+<line x1="600.0" y1="70" x2="600.0" y2="760" class="grid"/>
+<line x1="90" y1="346.0" x2="940" y2="346.0" class="grid"/>
+<text x="600.0" y="784" text-anchor="middle" class="tick">60</text>
+<text x="74" y="350.0" text-anchor="end" class="tick">60</text>
+<line x1="770.0" y1="70" x2="770.0" y2="760" class="grid"/>
+<line x1="90" y1="208.0" x2="940" y2="208.0" class="grid"/>
+<text x="770.0" y="784" text-anchor="middle" class="tick">80</text>
+<text x="74" y="212.0" text-anchor="end" class="tick">80</text>
+<line x1="940.0" y1="70" x2="940.0" y2="760" class="grid"/>
+<line x1="90" y1="70.0" x2="940" y2="70.0" class="grid"/>
+<text x="940.0" y="784" text-anchor="middle" class="tick">100</text>
+<text x="74" y="74.0" text-anchor="end" class="tick">100</text>
+<line x1="373.3" y1="70" x2="373.3" y2="760" stroke="#9fb3c8" stroke-width="1.2" stroke-dasharray="6 6"/>
+<line x1="90" y1="530.0" x2="940" y2="530.0" stroke="#9fb3c8" stroke-width="1.2" stroke-dasharray="6 6"/>
+<line x1="656.7" y1="70" x2="656.7" y2="760" stroke="#9fb3c8" stroke-width="1.2" stroke-dasharray="6 6"/>
+<line x1="90" y1="300.0" x2="940" y2="300.0" stroke="#9fb3c8" stroke-width="1.2" stroke-dasharray="6 6"/>
+<line x1="90" y1="760" x2="940" y2="760" class="axis"/>
+<line x1="90" y1="70" x2="90" y2="760" class="axis"/>
+<text x="515.0" y="822" text-anchor="middle" font-size="16" font-weight="700">Speed Score</text>
+<text x="28" y="415.0" text-anchor="middle" transform="rotate(-90 28 415.0)" font-size="16" font-weight="700">Stop-Start Score</text>
+<text x="231.1" y="132.1" text-anchor="middle" class="quadrant">low speed / stop-start</text>
+<text x="798.0" y="132.1" text-anchor="middle" class="quadrant">high speed / stop-start</text>
+<text x="231.1" y="704.8" text-anchor="middle" class="quadrant">low speed / flowing</text>
+<text x="798.0" y="704.8" text-anchor="middle" class="quadrant">high speed / flowing</text>
+<circle cx="512.3" cy="474.0" r="7" fill="#1f77b4" stroke="#ffffff" stroke-width="2"/>
+<text x="522.3" y="465.0" class="label">Australia S1</text>
+<text x="522.3" y="480.0" class="tick">speed 49.7, stop 41.5</text>
+<circle cx="924.5" cy="632.7" r="7" fill="#1f77b4" stroke="#ffffff" stroke-width="2"/>
+<text x="934.5" y="623.7" class="label">Australia S2</text>
+<text x="934.5" y="638.7" class="tick">speed 98.2, stop 18.4</text>
+<circle cx="498.2" cy="506.1" r="7" fill="#1f77b4" stroke="#ffffff" stroke-width="2"/>
+<text x="508.2" y="497.1" class="label">Australia S3</text>
+<text x="508.2" y="512.1" class="tick">speed 48.0, stop 36.8</text>
+<circle cx="735.6" cy="528.6" r="7" fill="#17becf" stroke="#ffffff" stroke-width="2"/>
+<text x="745.6" y="519.6" class="label">Barcelona S1</text>
+<text x="745.6" y="534.6" class="tick">speed 76.0, stop 33.5</text>
+<circle cx="464.4" cy="462.5" r="7" fill="#17becf" stroke="#ffffff" stroke-width="2"/>
+<text x="474.4" y="453.5" class="label">Barcelona S2</text>
+<text x="474.4" y="468.5" class="tick">speed 44.0, stop 43.1</text>
+<circle cx="407.0" cy="554.5" r="7" fill="#17becf" stroke="#ffffff" stroke-width="2"/>
+<text x="417.0" y="545.5" class="label">Barcelona S3</text>
+<text x="417.0" y="560.5" class="tick">speed 37.3, stop 29.8</text>
+<circle cx="313.2" cy="400.2" r="7" fill="#d62728" stroke="#ffffff" stroke-width="2"/>
+<text x="323.2" y="391.2" class="label">Canadian S1</text>
+<text x="323.2" y="406.2" class="tick">speed 26.3, stop 52.2</text>
+<circle cx="477.4" cy="434.4" r="7" fill="#d62728" stroke="#ffffff" stroke-width="2"/>
+<text x="487.4" y="425.4" class="label">Canadian S2</text>
+<text x="487.4" y="440.4" class="tick">speed 45.6, stop 47.2</text>
+<circle cx="496.7" cy="409.2" r="7" fill="#d62728" stroke="#ffffff" stroke-width="2"/>
+<text x="506.7" y="400.2" class="label">Canadian S3</text>
+<text x="506.7" y="415.2" class="tick">speed 47.9, stop 50.8</text>
+<circle cx="418.0" cy="494.6" r="7" fill="#2ca02c" stroke="#ffffff" stroke-width="2"/>
+<text x="428.0" y="485.6" class="label">China S1</text>
+<text x="428.0" y="500.6" class="tick">speed 38.6, stop 38.5</text>
+<circle cx="402.1" cy="450.7" r="7" fill="#2ca02c" stroke="#ffffff" stroke-width="2"/>
+<text x="412.1" y="441.7" class="label">China S2</text>
+<text x="412.1" y="456.7" class="tick">speed 36.7, stop 44.8</text>
+<circle cx="450.3" cy="427.7" r="7" fill="#2ca02c" stroke="#ffffff" stroke-width="2"/>
+<text x="460.3" y="418.7" class="label">China S3</text>
+<text x="460.3" y="433.7" class="tick">speed 42.4, stop 48.2</text>
+<circle cx="648.7" cy="602.4" r="7" fill="#9467bd" stroke="#ffffff" stroke-width="2"/>
+<text x="658.7" y="593.4" class="label">Japan S1</text>
+<text x="658.7" y="608.4" class="tick">speed 65.7, stop 22.8</text>
+<circle cx="545.0" cy="485.4" r="7" fill="#9467bd" stroke="#ffffff" stroke-width="2"/>
+<text x="555.0" y="476.4" class="label">Japan S2</text>
+<text x="555.0" y="491.4" class="tick">speed 53.5, stop 39.8</text>
+<circle cx="493.9" cy="423.1" r="7" fill="#9467bd" stroke="#ffffff" stroke-width="2"/>
+<text x="503.9" y="414.1" class="label">Japan S3</text>
+<text x="503.9" y="429.1" class="tick">speed 47.5, stop 48.8</text>
+<circle cx="471.4" cy="490.6" r="7" fill="#ff7f0e" stroke="#ffffff" stroke-width="2"/>
+<text x="481.4" y="481.6" class="label">Miami S1</text>
+<text x="481.4" y="496.6" class="tick">speed 44.9, stop 39.0</text>
+<circle cx="362.9" cy="474.6" r="7" fill="#ff7f0e" stroke="#ffffff" stroke-width="2"/>
+<text x="372.9" y="465.6" class="label">Miami S2</text>
+<text x="372.9" y="480.6" class="tick">speed 32.1, stop 41.4</text>
+<circle cx="540.7" cy="485.8" r="7" fill="#ff7f0e" stroke="#ffffff" stroke-width="2"/>
+<text x="550.7" y="476.8" class="label">Miami S3</text>
+<text x="550.7" y="491.8" class="tick">speed 53.0, stop 39.7</text>
+<circle cx="398.8" cy="329.9" r="7" fill="#8c564b" stroke="#ffffff" stroke-width="2"/>
+<text x="408.8" y="320.9" class="label">Monaco S1</text>
+<text x="408.8" y="335.9" class="tick">speed 36.3, stop 62.3</text>
+<circle cx="132.5" cy="379.1" r="7" fill="#8c564b" stroke="#ffffff" stroke-width="2"/>
+<text x="142.5" y="370.1" class="label">Monaco S2</text>
+<text x="142.5" y="385.1" class="tick">speed 5.0, stop 55.2</text>
+<circle cx="189.0" cy="384.0" r="7" fill="#8c564b" stroke="#ffffff" stroke-width="2"/>
+<text x="199.0" y="375.0" class="label">Monaco S3</text>
+<text x="199.0" y="390.0" class="tick">speed 11.6, stop 54.5</text>
+<text x="985" y="85" font-size="16" font-weight="700">Grand Prix</text>
+<circle cx="993" cy="109" r="7" fill="#1f77b4"/>
+<text x="1009" y="113" class="legend">Australia</text>
+<circle cx="993" cy="137" r="7" fill="#d62728"/>
+<text x="1009" y="141" class="legend">Canadian</text>
+<circle cx="993" cy="165" r="7" fill="#2ca02c"/>
+<text x="1009" y="169" class="legend">China</text>
+<circle cx="993" cy="193" r="7" fill="#9467bd"/>
+<text x="1009" y="197" class="legend">Japan</text>
+<circle cx="993" cy="221" r="7" fill="#ff7f0e"/>
+<text x="1009" y="225" class="legend">Miami</text>
+<circle cx="993" cy="249" r="7" fill="#8c564b"/>
+<text x="1009" y="253" class="legend">Monaco</text>
+<circle cx="993" cy="277" r="7" fill="#17becf"/>
+<text x="1009" y="281" class="legend">Barcelona</text>
+<text x="985" y="295" font-size="16" font-weight="700">Band Guide</text>
+<text x="985" y="321" class="legend">Speed: low / medium / high</text>
+<text x="985" y="343" class="legend">Stop-start: flowing / balanced / stop-start</text>
+<text x="985" y="377" class="subtitle">Dashed lines show trial cutoffs:</text>
+<text x="985" y="399" class="subtitle">33.3 and 66.7</text>
+</svg>

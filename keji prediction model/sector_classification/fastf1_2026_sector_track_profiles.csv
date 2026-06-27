@@ -1,0 +1,22 @@
+year,grand_prix,sector,driver_sector_count,session_count,source_sessions,official_duration_seconds,coverage_pct,avg_speed_kph,min_speed_kph,p10_speed_kph,max_speed_kph,avg_throttle_pct,low_speed_pct,medium_speed_pct,high_speed_pct,brake_pct,full_throttle_pct,traction_pct,drs_pct,speed_loss_per_second,sector_type
+2026,Australia Grand Prix,1,20,1,qualifying,28.887,98.855,217.995,42.0,130.035,310.0,67.486,13.277,31.285,55.438,15.895,54.859,4.005,0.0,12.363,mixed_high_medium
+2026,Australia Grand Prix,2,20,1,qualifying,17.658,99.014,285.409,177.0,228.23,331.0,91.027,0.0,7.272,92.728,3.783,87.498,0.0,0.0,4.884,high_speed_power
+2026,Australia Grand Prix,3,20,1,qualifying,34.858,99.627,216.462,62.0,121.51,319.0,70.12,16.015,27.676,56.309,14.105,53.122,5.023,0.0,11.135,mixed_high_medium
+2026,Barcelona Grand Prix,1,22,1,qualifying,22.191,99.14,261.337,134.0,170.109,344.0,81.0,0.889,24.902,74.21,10.343,63.177,1.175,0.0,10.296,power_braking
+2026,Barcelona Grand Prix,2,22,1,qualifying,30.812,99.408,206.166,93.0,132.873,312.0,67.487,13.35,38.841,47.81,18.231,52.584,5.616,0.0,12.815,mixed_high_medium
+2026,Barcelona Grand Prix,3,22,1,qualifying,23.187,98.815,195.879,100.0,120.85,296.0,64.502,25.945,31.188,42.868,17.726,45.294,7.09,0.0,8.952,low_speed_traction
+2026,Canadian Grand Prix,1,42,2,qualifying;sprint_qualifying,21.115,99.195,182.499,67.0,93.59,310.0,59.058,26.765,38.575,34.659,25.277,45.925,7.258,0.0,14.975,low_speed_traction
+2026,Canadian Grand Prix,2,42,2,qualifying;sprint_qualifying,23.549,99.207,211.945,92.0,124.943,299.0,71.407,18.695,30.58,50.725,18.047,57.386,4.577,0.0,13.596,power_braking
+2026,Canadian Grand Prix,3,42,2,qualifying;sprint_qualifying,29.557,99.421,226.008,56.0,94.702,335.0,73.971,19.497,21.591,58.912,16.746,66.53,5.967,0.0,14.209,power_braking
+2026,China Grand Prix,1,43,2,qualifying;sprint_qualifying,24.496,99.311,205.418,85.0,103.851,343.0,60.281,33.844,20.94,45.216,26.481,49.764,3.974,0.0,10.382,low_speed_traction
+2026,China Grand Prix,2,43,2,qualifying;sprint_qualifying,28.239,99.483,197.255,68.0,112.933,293.0,65.719,22.226,34.217,43.557,21.828,49.584,6.126,0.0,12.971,mixed
+2026,China Grand Prix,3,43,2,qualifying;sprint_qualifying,40.949,99.51,214.346,62.0,98.058,341.0,71.515,26.058,22.496,51.446,23.066,58.837,5.232,0.0,13.207,power_braking
+2026,Japan Grand Prix,1,22,1,qualifying,32.541,99.631,239.605,153.0,182.1,333.0,75.761,0.0,43.495,56.505,14.271,54.245,0.752,0.0,7.386,mixed_high_medium
+2026,Japan Grand Prix,2,22,1,qualifying,40.233,99.548,225.259,67.0,130.941,336.0,72.139,11.44,28.592,59.967,24.668,62.661,4.58,0.0,10.811,power_braking
+2026,Japan Grand Prix,3,22,1,qualifying,17.693,99.187,220.672,88.0,111.532,336.0,77.938,22.752,22.661,54.587,28.985,68.831,7.572,0.0,12.468,power_braking
+2026,Miami Grand Prix,1,42,2,qualifying;sprint_qualifying,30.942,99.454,209.901,82.0,125.4,318.0,63.828,17.99,31.502,50.508,18.818,43.177,4.363,0.0,11.984,mixed_high_medium
+2026,Miami Grand Prix,2,42,2,qualifying;sprint_qualifying,34.161,99.488,195.785,58.0,90.45,345.0,58.099,47.098,11.617,41.285,20.156,45.679,5.937,0.0,11.563,low_speed_traction
+2026,Miami Grand Prix,3,42,2,qualifying;sprint_qualifying,25.611,99.381,238.075,29.0,88.298,345.0,78.351,20.609,12.838,66.554,13.234,71.719,4.127,0.0,10.831,power_braking
+2026,Monaco Grand Prix,1,22,1,qualifying,19.356,99.336,193.828,103.0,132.127,280.0,57.36,16.754,48.42,34.826,27.333,44.139,8.409,0.0,18.251,medium_speed_cornering
+2026,Monaco Grand Prix,2,22,1,qualifying,34.77,99.541,143.78,41.0,68.55,291.0,47.588,57.482,22.528,19.989,29.405,31.627,9.575,0.0,15.511,low_speed_traction
+2026,Monaco Grand Prix,3,22,1,qualifying,19.56,99.192,155.496,54.0,76.945,274.0,53.896,47.063,28.151,24.786,28.449,36.65,12.306,0.0,15.383,low_speed_traction

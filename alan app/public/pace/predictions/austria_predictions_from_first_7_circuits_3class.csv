@@ -1,0 +1,12 @@
+prediction_target_event,prediction_target_race,team,input_events_used,input_event_list,predicted_overall_delta_pct_vs_mercedes,predicted_slow_corners_delta_pct,predicted_fast_corners_delta_pct,predicted_straights_delta_pct,input_time_weight_seconds,note
+fastf1_2025_austrian_grand_prix,Austria GP,Mercedes,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",0.000,0.000,0.000,0.000,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,Ferrari,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-0.232,-0.387,-0.416,0.158,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,McLaren,6,"Australia GP, Barcelona GP, Canada GP, Japan GP, Miami GP, Monaco GP",-0.614,-0.572,-0.925,-0.330,514.821378,Fewer than 7 input races available in source data
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Racing,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-0.792,-0.724,-1.462,-0.170,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,Alpine,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-1.786,-2.516,-2.612,0.007,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,Racing Bulls,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-2.229,-2.091,-3.294,-1.281,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,Williams,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-2.320,-2.480,-3.450,-0.927,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,Haas F1 Team,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-2.204,-2.419,-3.339,-0.737,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,Audi,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-1.861,-1.816,-2.696,-1.038,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,Aston Martin,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-4.822,-4.761,-5.587,-4.090,612.019750,
+fastf1_2025_austrian_grand_prix,Austria GP,Cadillac,7,"Australia GP, Barcelona GP, Canada GP, China GP, Japan GP, Miami GP, Monaco GP",-4.485,-4.876,-6.136,-2.251,612.019750,

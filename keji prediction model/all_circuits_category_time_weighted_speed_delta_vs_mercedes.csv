@@ -1,0 +1,254 @@
+event,circuit,team,category,weighted_speed_delta_vs_mercedes_pct,time_weight_seconds,segment_count,segments
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Mercedes,Slow corners,0.000,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Mercedes,Medium-speed corners,0.000,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Mercedes,Fast corners,0.000,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Mercedes,Straights,0.000,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Ferrari,Slow corners,-0.137,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Ferrari,Medium-speed corners,-1.483,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Ferrari,Fast corners,-1.138,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Ferrari,Straights,0.082,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,McLaren,Slow corners,0.136,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,McLaren,Medium-speed corners,-0.082,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,McLaren,Fast corners,-0.402,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,McLaren,Straights,-0.635,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Red Bull Racing,Slow corners,-0.209,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Red Bull Racing,Medium-speed corners,-2.514,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Red Bull Racing,Fast corners,-3.634,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Red Bull Racing,Straights,-1.675,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Haas F1 Team,Slow corners,-3.401,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Haas F1 Team,Medium-speed corners,-3.732,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Haas F1 Team,Fast corners,-2.763,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Haas F1 Team,Straights,-1.106,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Racing Bulls,Slow corners,-3.037,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Racing Bulls,Medium-speed corners,-3.772,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Racing Bulls,Fast corners,-3.508,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Racing Bulls,Straights,-0.321,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Audi,Slow corners,-0.317,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Audi,Medium-speed corners,-1.973,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Audi,Fast corners,-1.331,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Audi,Straights,-1.548,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Alpine,Slow corners,-3.006,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Alpine,Medium-speed corners,-3.410,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Alpine,Fast corners,-2.151,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Alpine,Straights,-0.400,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Williams,Slow corners,-1.759,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Williams,Medium-speed corners,-4.215,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Williams,Fast corners,-3.401,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Williams,Straights,-1.339,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Cadillac,Slow corners,-6.345,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Cadillac,Medium-speed corners,-8.510,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Cadillac,Fast corners,-8.123,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Cadillac,Straights,-3.315,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Aston Martin,Slow corners,-1.418,22.514525,3,"seg_02, seg_04, seg_10"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Aston Martin,Medium-speed corners,-3.784,9.990965,1,seg_09
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Aston Martin,Fast corners,-5.086,16.063568,2,"seg_05, seg_07"
+fastf1_2026_australia_grand_prix,Albert Park Circuit,Aston Martin,Straights,-5.043,35.513325,5,"seg_01, seg_03, seg_06, seg_08, seg_11"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Ferrari,Slow corners,3.074,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Ferrari,Medium-speed corners,2.908,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Ferrari,Fast corners,0.054,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Ferrari,Straights,-0.422,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Mercedes,Slow corners,0.000,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Mercedes,Medium-speed corners,0.000,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Mercedes,Fast corners,0.000,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Mercedes,Straights,0.000,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,McLaren,Slow corners,2.057,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,McLaren,Medium-speed corners,0.591,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,McLaren,Fast corners,-1.274,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,McLaren,Straights,-0.619,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Red Bull Racing,Slow corners,1.358,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Red Bull Racing,Medium-speed corners,1.286,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Red Bull Racing,Fast corners,0.060,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Red Bull Racing,Straights,-0.089,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Alpine,Slow corners,-0.725,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Alpine,Medium-speed corners,-0.626,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Alpine,Fast corners,-1.836,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Alpine,Straights,-1.511,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Racing Bulls,Slow corners,-2.134,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Racing Bulls,Medium-speed corners,-2.388,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Racing Bulls,Fast corners,-2.752,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Racing Bulls,Straights,-1.203,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Audi,Slow corners,-1.989,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Audi,Medium-speed corners,-2.315,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Audi,Fast corners,-2.601,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Audi,Straights,-0.938,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Williams,Slow corners,0.348,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Williams,Medium-speed corners,-1.438,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Williams,Fast corners,-3.212,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Williams,Straights,-1.638,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Haas F1 Team,Slow corners,-1.694,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Haas F1 Team,Medium-speed corners,-2.889,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Haas F1 Team,Fast corners,-3.472,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Haas F1 Team,Straights,-1.574,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Cadillac,Slow corners,-4.030,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Cadillac,Medium-speed corners,-6.548,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Cadillac,Fast corners,-6.018,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Cadillac,Straights,-2.384,12.641989,2,"seg_01, seg_07"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Aston Martin,Slow corners,-5.198,27.691866,3,"seg_02, seg_05, seg_08"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Aston Martin,Medium-speed corners,-5.106,21.943951,2,"seg_04, seg_06"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Aston Martin,Fast corners,-7.881,20.024375,2,"seg_03, seg_09"
+fastf1_2026_barcelona_grand_prix,Circuit de Barcelona-Catalunya,Aston Martin,Straights,-5.017,12.641989,2,"seg_01, seg_07"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Mercedes,Slow corners,0.000,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Mercedes,Fast corners,0.000,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Mercedes,Straights,0.000,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Ferrari,Slow corners,-1.481,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Ferrari,Fast corners,-2.135,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Ferrari,Straights,2.173,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Red Bull Racing,Slow corners,-1.910,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Red Bull Racing,Fast corners,1.425,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Red Bull Racing,Straights,2.415,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Alpine,Slow corners,-3.919,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Alpine,Fast corners,0.481,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Alpine,Straights,1.831,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Racing Bulls,Slow corners,-3.033,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Racing Bulls,Fast corners,0.165,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Racing Bulls,Straights,0.740,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Williams,Slow corners,-4.235,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Williams,Fast corners,-2.349,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Williams,Straights,-0.262,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Haas F1 Team,Slow corners,-3.330,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Haas F1 Team,Fast corners,-2.421,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Haas F1 Team,Straights,0.400,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,McLaren,Slow corners,-3.064,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,McLaren,Fast corners,-1.075,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,McLaren,Straights,1.082,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Audi,Slow corners,-2.364,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Audi,Fast corners,-0.426,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Audi,Straights,-0.662,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Aston Martin,Slow corners,-7.949,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Aston Martin,Fast corners,-4.449,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Aston Martin,Straights,-3.199,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Cadillac,Slow corners,-6.287,45.773032,5,"seg_02, seg_04, seg_06, seg_08, seg_10"
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Cadillac,Fast corners,-4.662,4.707362,1,seg_03
+fastf1_2026_canadian_grand_prix,Circuit Gilles-Villeneuve,Cadillac,Straights,-0.907,25.716590,5,"seg_01, seg_05, seg_07, seg_09, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Mercedes,Slow corners,0.000,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Mercedes,Medium-speed corners,0.000,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Mercedes,Fast corners,0.000,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Mercedes,Straights,0.000,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,McLaren,Slow corners,4.343,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,McLaren,Medium-speed corners,-0.796,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,McLaren,Fast corners,-1.937,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,McLaren,Straights,-1.138,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Ferrari,Slow corners,-2.456,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Ferrari,Medium-speed corners,-0.280,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Ferrari,Fast corners,-1.026,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Ferrari,Straights,0.179,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Alpine,Slow corners,-2.070,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Alpine,Medium-speed corners,-4.467,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Alpine,Fast corners,-1.344,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Alpine,Straights,0.404,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Red Bull Racing,Slow corners,-2.581,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Red Bull Racing,Medium-speed corners,-2.652,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Red Bull Racing,Fast corners,-0.998,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Red Bull Racing,Straights,0.209,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Racing Bulls,Slow corners,-0.502,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Racing Bulls,Medium-speed corners,-4.931,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Racing Bulls,Fast corners,-2.002,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Racing Bulls,Straights,-2.876,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Haas F1 Team,Slow corners,0.386,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Haas F1 Team,Medium-speed corners,-4.525,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Haas F1 Team,Fast corners,-2.407,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Haas F1 Team,Straights,-0.763,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Audi,Slow corners,-1.195,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Audi,Medium-speed corners,-2.958,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Audi,Fast corners,-2.339,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Audi,Straights,0.375,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Williams,Slow corners,-1.772,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Williams,Medium-speed corners,-4.457,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Williams,Fast corners,-1.739,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Williams,Straights,-0.698,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Cadillac,Slow corners,-6.221,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Cadillac,Medium-speed corners,-6.806,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Cadillac,Fast corners,-2.400,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Cadillac,Straights,-3.304,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Aston Martin,Slow corners,-4.251,15.901289,2,"seg_07, seg_11"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Aston Martin,Medium-speed corners,-5.926,27.744110,3,"seg_03, seg_05, seg_09"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Aston Martin,Fast corners,-5.900,22.149687,3,"seg_02, seg_04, seg_08"
+fastf1_2026_japan_grand_prix,Suzuka Circuit,Aston Martin,Straights,-4.167,32.442238,4,"seg_01, seg_06, seg_10, seg_12"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Mercedes,Slow corners,0.000,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Mercedes,Medium-speed corners,0.000,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Mercedes,Fast corners,0.000,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Mercedes,Straights,0.000,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,McLaren,Slow corners,0.309,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,McLaren,Medium-speed corners,0.407,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,McLaren,Fast corners,-0.225,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,McLaren,Straights,-0.166,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Red Bull Racing,Slow corners,0.802,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Red Bull Racing,Medium-speed corners,-1.135,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Red Bull Racing,Fast corners,-0.332,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Red Bull Racing,Straights,-2.181,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Ferrari,Slow corners,1.654,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Ferrari,Medium-speed corners,1.466,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Ferrari,Fast corners,-1.309,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Ferrari,Straights,-0.813,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Alpine,Slow corners,-1.976,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Alpine,Medium-speed corners,-1.999,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Alpine,Fast corners,-3.073,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Alpine,Straights,0.326,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Williams,Slow corners,-1.197,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Williams,Medium-speed corners,-1.282,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Williams,Fast corners,-3.093,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Williams,Straights,-1.429,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Haas F1 Team,Slow corners,-1.043,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Haas F1 Team,Medium-speed corners,-1.966,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Haas F1 Team,Fast corners,-2.615,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Haas F1 Team,Straights,-1.219,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Audi,Slow corners,1.562,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Audi,Medium-speed corners,1.100,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Audi,Fast corners,-3.040,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Audi,Straights,-3.209,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Racing Bulls,Slow corners,-0.157,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Racing Bulls,Medium-speed corners,-2.056,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Racing Bulls,Fast corners,-3.925,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Racing Bulls,Straights,-3.873,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Aston Martin,Slow corners,-1.693,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Aston Martin,Medium-speed corners,-0.724,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Aston Martin,Fast corners,-3.231,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Aston Martin,Straights,-3.233,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Cadillac,Slow corners,-3.648,35.342862,3,"seg_02, seg_06, seg_08"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Cadillac,Medium-speed corners,-2.889,6.568738,1,seg_04
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Cadillac,Fast corners,-5.818,20.330403,2,"seg_03, seg_09"
+fastf1_2026_miami_grand_prix,Miami International Autodrome,Cadillac,Straights,-2.780,32.184280,3,"seg_01, seg_05, seg_07"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Mercedes,Slow corners,0.000,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Mercedes,Medium-speed corners,0.000,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Mercedes,Fast corners,0.000,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Mercedes,Straights,0.000,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Ferrari,Slow corners,-0.607,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Ferrari,Medium-speed corners,-0.814,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Ferrari,Fast corners,0.507,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Ferrari,Straights,0.055,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Alpine,Slow corners,-3.155,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Alpine,Medium-speed corners,-5.121,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Alpine,Fast corners,-3.602,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Alpine,Straights,-0.785,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Red Bull Racing,Slow corners,0.649,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Red Bull Racing,Medium-speed corners,0.990,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Red Bull Racing,Fast corners,-0.732,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Red Bull Racing,Straights,0.169,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,McLaren,Slow corners,-2.488,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,McLaren,Medium-speed corners,-3.650,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,McLaren,Fast corners,-3.195,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,McLaren,Straights,-0.378,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Racing Bulls,Slow corners,-2.933,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Racing Bulls,Medium-speed corners,-5.413,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Racing Bulls,Fast corners,-4.923,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Racing Bulls,Straights,-0.878,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Williams,Slow corners,-2.984,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Williams,Medium-speed corners,-4.923,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Williams,Fast corners,-6.059,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Williams,Straights,-0.593,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Haas F1 Team,Slow corners,-3.728,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Haas F1 Team,Medium-speed corners,-6.337,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Haas F1 Team,Fast corners,-4.035,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Haas F1 Team,Straights,-0.101,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Aston Martin,Slow corners,-6.227,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Aston Martin,Medium-speed corners,-8.104,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Aston Martin,Fast corners,-8.239,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Aston Martin,Straights,-3.116,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Audi,Slow corners,-3.981,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Audi,Medium-speed corners,-5.486,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Audi,Fast corners,-6.394,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Audi,Straights,-0.992,17.180585,4,"seg_01, seg_03, seg_06, seg_10"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Cadillac,Slow corners,-4.100,43.865822,4,"seg_02, seg_05, seg_07, seg_09"
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Cadillac,Medium-speed corners,-7.925,9.646917,1,seg_04
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Cadillac,Fast corners,-8.990,8.882894,1,seg_08
+fastf1_2026_monaco_grand_prix,Circuit de Monaco,Cadillac,Straights,-2.879,17.180585,4,"seg_01, seg_03, seg_06, seg_10"

@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<style>
+text{font-family:Arial, Helvetica, sans-serif; fill:#17202a}
+.title{font-size:28px; font-weight:700}
+.subtitle{font-size:14px; fill:#53606a}
+.axis{stroke:#1f2933; stroke-width:1.4}
+.grid{stroke:#d9e2ec; stroke-width:1}
+.tick{font-size:12px; fill:#52606d}
+.label{font-size:12px; font-weight:700}
+.team-label{font-size:11px; fill:#394b59}
+.legend{font-size:13px}
+.quadrant{font-size:13px; fill:#6b7280; font-weight:700}
+</style>
+<rect x="0" y="0" width="1400" height="900" fill="#ffffff"/>
+<text x="90" y="38" class="title">2026 F1 Sector Dual-Axis Profiles + Fastest Teams</text>
+<text x="90" y="60" class="subtitle">Point position: FastF1 sector character. Point annotation: fastest OpenF1 team median in that race sector.</text>
+<line x1="90.0" y1="80" x2="90.0" y2="810" class="grid"/>
+<line x1="90" y1="810.0" x2="1010" y2="810.0" class="grid"/>
+<text x="90.0" y="834" text-anchor="middle" class="tick">0</text>
+<text x="74" y="814.0" text-anchor="end" class="tick">0</text>
+<line x1="274.0" y1="80" x2="274.0" y2="810" class="grid"/>
+<line x1="90" y1="664.0" x2="1010" y2="664.0" class="grid"/>
+<text x="274.0" y="834" text-anchor="middle" class="tick">20</text>
+<text x="74" y="668.0" text-anchor="end" class="tick">20</text>
+<line x1="458.0" y1="80" x2="458.0" y2="810" class="grid"/>
+<line x1="90" y1="518.0" x2="1010" y2="518.0" class="grid"/>
+<text x="458.0" y="834" text-anchor="middle" class="tick">40</text>
+<text x="74" y="522.0" text-anchor="end" class="tick">40</text>
+<line x1="642.0" y1="80" x2="642.0" y2="810" class="grid"/>
+<line x1="90" y1="372.0" x2="1010" y2="372.0" class="grid"/>
+<text x="642.0" y="834" text-anchor="middle" class="tick">60</text>
+<text x="74" y="376.0" text-anchor="end" class="tick">60</text>
+<line x1="826.0" y1="80" x2="826.0" y2="810" class="grid"/>
+<line x1="90" y1="226.0" x2="1010" y2="226.0" class="grid"/>
+<text x="826.0" y="834" text-anchor="middle" class="tick">80</text>
+<text x="74" y="230.0" text-anchor="end" class="tick">80</text>
+<line x1="1010.0" y1="80" x2="1010.0" y2="810" class="grid"/>
+<line x1="90" y1="80.0" x2="1010" y2="80.0" class="grid"/>
+<text x="1010.0" y="834" text-anchor="middle" class="tick">100</text>
+<text x="74" y="84.0" text-anchor="end" class="tick">100</text>
+<line x1="396.7" y1="80" x2="396.7" y2="810" stroke="#9fb3c8" stroke-width="1.2" stroke-dasharray="6 6"/>
+<line x1="90" y1="566.7" x2="1010" y2="566.7" stroke="#9fb3c8" stroke-width="1.2" stroke-dasharray="6 6"/>
+<line x1="703.3" y1="80" x2="703.3" y2="810" stroke="#9fb3c8" stroke-width="1.2" stroke-dasharray="6 6"/>
+<line x1="90" y1="323.3" x2="1010" y2="323.3" stroke="#9fb3c8" stroke-width="1.2" stroke-dasharray="6 6"/>
+<line x1="90" y1="810" x2="1010" y2="810" class="axis"/>
+<line x1="90" y1="80" x2="90" y2="810" class="axis"/>
+<text x="550.0" y="872" text-anchor="middle" font-size="16" font-weight="700">Speed Score</text>
+<text x="28" y="445.0" text-anchor="middle" transform="rotate(-90 28 445.0)" font-size="16" font-weight="700">Stop-Start Score</text>
+<text x="242.7" y="145.7" text-anchor="middle" class="quadrant">low speed / stop-start</text>
+<text x="856.4" y="145.7" text-anchor="middle" class="quadrant">high speed / stop-start</text>
+<text x="242.7" y="751.6" text-anchor="middle" class="quadrant">low speed / flowing</text>
+<text x="856.4" y="751.6" text-anchor="middle" class="quadrant">high speed / flowing</text>
+<circle cx="547.1" cy="507.4" r="7" fill="#1f77b4" stroke="#ffffff" stroke-width="2"/>
+<text x="557.1" y="489.4" class="label">Australia S1</text>
+<text x="557.1" y="503.4" class="team-label">Mercedes 29.207s</text>
+<circle cx="993.3" cy="675.4" r="7" fill="#1f77b4" stroke="#ffffff" stroke-width="2"/>
+<text x="1003.3" y="663.4" class="label">Australia S2</text>
+<text x="1003.3" y="677.4" class="team-label">Ferrari 17.756s</text>
+<circle cx="531.9" cy="541.4" r="7" fill="#1f77b4" stroke="#ffffff" stroke-width="2"/>
+<text x="541.9" y="549.4" class="label">Australia S3</text>
+<text x="541.9" y="563.4" class="team-label">Mercedes 36.102s</text>
+<circle cx="331.5" cy="429.3" r="7" fill="#d62728" stroke="#ffffff" stroke-width="2"/>
+<text x="341.5" y="411.3" class="label">Canadian S1</text>
+<text x="341.5" y="425.3" class="team-label">Mercedes 21.512s</text>
+<circle cx="509.3" cy="465.5" r="7" fill="#d62728" stroke="#ffffff" stroke-width="2"/>
+<text x="519.3" y="455.5" class="label">Canadian S2</text>
+<text x="519.3" y="469.5" class="team-label">Mercedes 23.906s</text>
+<circle cx="530.2" cy="438.9" r="7" fill="#d62728" stroke="#ffffff" stroke-width="2"/>
+<text x="540.2" y="446.9" class="label">Canadian S3</text>
+<text x="540.2" y="460.9" class="team-label">Mercedes 29.885s</text>
+<circle cx="445.0" cy="529.2" r="7" fill="#2ca02c" stroke="#ffffff" stroke-width="2"/>
+<text x="455.0" y="517.2" class="label">China S1</text>
+<text x="455.0" y="531.2" class="team-label">Mercedes 25.506s</text>
+<circle cx="427.8" cy="482.8" r="7" fill="#2ca02c" stroke="#ffffff" stroke-width="2"/>
+<text x="437.8" y="464.8" class="label">China S2</text>
+<text x="437.8" y="478.8" class="team-label">Mercedes 29.189s</text>
+<circle cx="480.0" cy="458.4" r="7" fill="#2ca02c" stroke="#ffffff" stroke-width="2"/>
+<text x="490.0" y="446.4" class="label">China S3</text>
+<text x="490.0" y="460.4" class="team-label">Mercedes 41.834s</text>
+<circle cx="694.8" cy="643.3" r="7" fill="#9467bd" stroke="#ffffff" stroke-width="2"/>
+<text x="704.8" y="631.3" class="label">Japan S1</text>
+<text x="704.8" y="645.3" class="team-label">Mercedes 34.040s</text>
+<circle cx="582.4" cy="519.5" r="7" fill="#9467bd" stroke="#ffffff" stroke-width="2"/>
+<text x="592.4" y="507.5" class="label">Japan S2</text>
+<text x="592.4" y="521.5" class="team-label">Ferrari 41.620s</text>
+<circle cx="527.2" cy="453.6" r="7" fill="#9467bd" stroke="#ffffff" stroke-width="2"/>
+<text x="537.2" y="461.6" class="label">Japan S3</text>
+<text x="537.2" y="475.6" class="team-label">Mercedes 17.938s</text>
+<circle cx="502.8" cy="525.0" r="7" fill="#ff7f0e" stroke="#ffffff" stroke-width="2"/>
+<text x="512.8" y="513.0" class="label">Miami S1</text>
+<text x="512.8" y="527.0" class="team-label">McLaren 32.206s</text>
+<circle cx="385.4" cy="508.0" r="7" fill="#ff7f0e" stroke="#ffffff" stroke-width="2"/>
+<text x="395.4" y="496.0" class="label">Miami S2</text>
+<text x="395.4" y="510.0" class="team-label">Mercedes 34.850s</text>
+<circle cx="577.8" cy="519.9" r="7" fill="#ff7f0e" stroke="#ffffff" stroke-width="2"/>
+<text x="587.8" y="507.9" class="label">Miami S3</text>
+<text x="587.8" y="521.9" class="team-label">McLaren 25.611s</text>
+<text x="1055" y="95" font-size="16" font-weight="700">Grand Prix</text>
+<circle cx="1063" cy="119" r="7" fill="#1f77b4"/>
+<text x="1079" y="123" class="legend">Australia</text>
+<circle cx="1063" cy="147" r="7" fill="#d62728"/>
+<text x="1079" y="151" class="legend">Canadian</text>
+<circle cx="1063" cy="175" r="7" fill="#2ca02c"/>
+<text x="1079" y="179" class="legend">China</text>
+<circle cx="1063" cy="203" r="7" fill="#9467bd"/>
+<text x="1079" y="207" class="legend">Japan</text>
+<circle cx="1063" cy="231" r="7" fill="#ff7f0e"/>
+<text x="1079" y="235" class="legend">Miami</text>
+<circle cx="1063" cy="259" r="7" fill="#8c564b"/>
+<text x="1079" y="263" class="legend">Monaco</text>
+<circle cx="1063" cy="287" r="7" fill="#17becf"/>
+<text x="1079" y="291" class="legend">Barcelona</text>
+<text x="1055" y="290" font-size="16" font-weight="700">Fastest Teams</text>
+<text x="1055" y="314" class="legend">Australia S1: Mercedes 29.207s</text>
+<text x="1055" y="334" class="legend">Australia S2: Ferrari 17.756s</text>
+<text x="1055" y="354" class="legend">Australia S3: Mercedes 36.102s</text>
+<text x="1055" y="374" class="legend">Canadian S1: Mercedes 21.512s</text>
+<text x="1055" y="394" class="legend">Canadian S2: Mercedes 23.906s</text>
+<text x="1055" y="414" class="legend">Canadian S3: Mercedes 29.885s</text>
+<text x="1055" y="434" class="legend">China S1: Mercedes 25.506s</text>
+<text x="1055" y="454" class="legend">China S2: Mercedes 29.189s</text>
+<text x="1055" y="474" class="legend">China S3: Mercedes 41.834s</text>
+<text x="1055" y="494" class="legend">Japan S1: Mercedes 34.040s</text>
+<text x="1055" y="514" class="legend">Japan S2: Ferrari 41.620s</text>
+<text x="1055" y="534" class="legend">Japan S3: Mercedes 17.938s</text>
+<text x="1055" y="554" class="legend">Miami S1: McLaren 32.206s</text>
+<text x="1055" y="574" class="legend">Miami S2: Mercedes 34.850s</text>
+<text x="1055" y="594" class="legend">Miami S3: McLaren 25.611s</text>
+<text x="1055" y="808" class="subtitle">Team pace source:</text>
+<text x="1055" y="828" class="subtitle">OpenF1 clean race/sprint race sector medians.</text>
+<text x="1055" y="850" class="subtitle">Point position source:</text>
+<text x="1055" y="870" class="subtitle">FastF1 qualifying/sprint qualifying telemetry.</text>
+</svg>

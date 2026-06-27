@@ -1,0 +1,44 @@
+# ── Large raw data (too big for GitHub; download locally via FastF1) ──────────
+Keji all data/
+keji prediction model/fastf1_all_7_races_data/
+
+# ── Build artifacts & archives ────────────────────────────────────────────────
+F1_Project.zip
+*.zip
+alan app/dist/
+alan app/dist-ssr/
+alan app/.tsbuildinfo
+
+# ── Node.js ───────────────────────────────────────────────────────────────────
+alan app/node_modules/
+alan app/node_modules.nosync/
+*.local
+
+# ── Google Drive / iCloud sync junk ──────────────────────────────────────────
+F1 Website Thing With Keji/
+.tmp.driveupload/
+.tmp.drivedownload/
+*.driveupload
+*.drivedownload
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+Icon
+**/Icon
+
+# ── Editor ────────────────────────────────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sw?
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.xlsx
