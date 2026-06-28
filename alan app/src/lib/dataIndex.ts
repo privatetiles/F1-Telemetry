@@ -57,6 +57,11 @@ export const CIRCUITS: CircuitConfig[] = [
   { id: 'abu_dhabi',          name: 'Abu Dhabi GP',            flag: '🇦🇪', raceDate: '2026-12-06', hasData: false, sessions: stdSessions    },
 ]
 
+const FOLDER_OVERRIDES: Record<string, string> = {
+  barcelona_catalunya: 'barcelona',
+}
+
 export function telemetryUrl(circuitId: string, sessionType: SessionType, driver: string): string {
-  return `/data/FastF1%20Data/fastf1_2026_${circuitId}_grand_prix/${sessionType}/telemetry_fastest_laps/${driver}_fastest_lap_telemetry.csv`
+  const folder = FOLDER_OVERRIDES[circuitId] ?? circuitId
+  return `/data/FastF1%20Data/fastf1_2026_${folder}_grand_prix/${sessionType}/telemetry_fastest_laps/${driver}_fastest_lap_telemetry.csv`
 }
