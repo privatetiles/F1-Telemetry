@@ -122,6 +122,9 @@
   border-style: dashed;
 }
 .pill.locked:hover { border-color: #667; color: #bbb; opacity: 0.8; }
+.pill.predicted { border-color: #c88600; color: #f0c040; }
+.pill.predicted:hover { border-color: #f0c040; }
+.pill.predicted.active { background: #c88600; border-color: #f0c040; color: #fff; }
 
 .countdown-bar {
   display: flex;

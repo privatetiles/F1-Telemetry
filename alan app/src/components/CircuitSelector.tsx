@@ -54,7 +54,7 @@ export default function CircuitSelector({
             return (
               <button
                 key={c.id}
-                className={`pill ${active ? 'active' : ''} ${locked ? 'locked' : ''}`}
+                className={`pill ${active ? 'active' : ''} ${locked ? 'locked' : ''} ${c.hasPrediction ? 'predicted' : ''}`}
                 title={locked ? `Predicted — race ${countdownLabel(c.raceDate) || 'TBC'}` : undefined}
                 onClick={() => {
                   onCircuitChange(c)
