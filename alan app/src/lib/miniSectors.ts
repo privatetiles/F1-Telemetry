@@ -103,6 +103,126 @@ export function computeMiniSectors(
   })
 }
 
+// ── Segment-based mini sectors (three-class track data) ─────────────────────
+
+interface TrackSegment {
+  category: string
+  points: { x: number; y: number }[]
+}
+
+function matchSegmentsToDistances(
+  segments: TrackSegment[],
+  refTelemetry: TelemetryPoint[]
+): Array<{ distStart: number; category: string }> {
+  const result: Array<{ distStart: number; category: string }> = []
+  let searchStart = 0
+
+  for (const seg of segments) {
+    const { x: sx, y: sy } = seg.points[0]
+    let bestIdx = searchStart
+    let bestDist2 = Infinity
+    let lastImprovedIdx = searchStart
+
+    for (let j = searchStart; j < refTelemetry.length; j++) {
+      const dx = refTelemetry[j].x - sx
+      const dy = refTelemetry[j].y - sy
+      const d2 = dx * dx + dy * dy
+      if (d2 < bestDist2) { bestDist2 = d2; bestIdx = j; lastImprovedIdx = j }
+      // Stop once 500 m past the last improvement — avoids looping back on similar-looking sections
+      if (refTelemetry[j].distance - refTelemetry[lastImprovedIdx].distance > 500) break
+    }
+
+    result.push({ distStart: refTelemetry[bestIdx].distance, category: seg.category })
+    searchStart = Math.min(bestIdx + 3, refTelemetry.length - 1)
+  }
+
+  return result
+}
+
+export function computeMiniSectorsFromSegments(
+  driverTelemetry: Record<string, TelemetryPoint[]>,
+  segments: TrackSegment[]
+): ProcessedMiniSector[] {
+  const drivers = Object.keys(driverTelemetry)
+  if (drivers.length === 0) return []
+  if (segments.length === 0) return computeMiniSectors(driverTelemetry)
+
+  const refDriver = drivers.reduce((best, d) => {
+    const dDist = driverTelemetry[d].at(-1)?.distance ?? 0
+    const bDist = driverTelemetry[best].at(-1)?.distance ?? 0
+    return dDist > bDist ? d : best
+  })
+  const refData = driverTelemetry[refDriver]
+  const refTotalDist = refData[refData.length - 1].distance
+
+  const boundaries = matchSegmentsToDistances(segments, refData)
+  if (boundaries.length < 2) return computeMiniSectors(driverTelemetry)
+
+  const numSectors = boundaries.length
+
+  return boundaries.map((b, i) => {
+    const distStart = b.distStart
+    const distEnd = i < numSectors - 1 ? boundaries[i + 1].distStart : refTotalDist
+
+    const sectorRows = refData.filter(p => p.distance >= distStart && p.distance < distEnd)
+    const bridgePoint = i < numSectors - 1 ? refData.find(p => p.distance >= distEnd) : null
+    const sectorPoints = [
+      ...sectorRows.map(p => ({ x: p.x, y: p.y })),
+      ...(bridgePoint ? [{ x: bridgePoint.x, y: bridgePoint.y }] : []),
+    ]
+
+    const relStart = sectorRows.length > 0 ? sectorRows[0].relDist : distStart / refTotalDist
+    const relEnd   = bridgePoint?.relDist ?? refData[refData.length - 1].relDist
+
+    const driverStats: Record<string, MiniSectorStats> = {}
+    let fastestTime = Infinity
+
+    for (const driver of drivers) {
+      const tel = driverTelemetry[driver]
+      const DATA_END_TOLERANCE = 20
+      if (tel[tel.length - 1].distance < distEnd - DATA_END_TOLERANCE) continue
+
+      const rows = tel.filter(p => p.distance >= distStart && p.distance < distEnd)
+      if (rows.length < 2) continue
+
+      const timeAtStart = interpolateTimeByDist(tel, distStart)
+      const timeAtEnd   = interpolateTimeByDist(tel, distEnd)
+      const timeSpent   = timeAtEnd - timeAtStart
+      if (timeSpent <= 0) continue
+
+      const speeds      = rows.map(r => r.speed)
+      const brakeCount  = rows.filter(r => r.brake).length
+      const avgThrottle = rows.reduce((s, r) => s + r.throttle, 0) / rows.length
+
+      driverStats[driver] = {
+        driver, timeSpent,
+        avgSpeed:     speeds.reduce((a, b) => a + b, 0) / speeds.length,
+        minSpeed:     Math.min(...speeds),
+        entrySpeed:   rows[0].speed,
+        exitSpeed:    rows[rows.length - 1].speed,
+        brakePercent: (brakeCount / rows.length) * 100,
+        avgThrottle,
+        deltaVsFastest: 0,
+      }
+
+      if (timeSpent < fastestTime) fastestTime = timeSpent
+    }
+
+    for (const stats of Object.values(driverStats)) {
+      stats.deltaVsFastest = stats.timeSpent - fastestTime
+    }
+
+    const refStats = driverStats[refDriver]
+    return {
+      idx: i, relStart, relEnd, points: sectorPoints, driverStats, fastestTime,
+      avgSpeedRef:    refStats?.avgSpeed    ?? 0,
+      avgThrottleRef: refStats?.avgThrottle ?? 0,
+      avgBrakeRef:    refStats?.brakePercent ?? 0,
+      category:       b.category,
+    }
+  })
+}
+
 // Binary-search interpolation by cumulative distance (metres)
 function interpolateTimeByDist(telemetry: TelemetryPoint[], targetDist: number): number {
   if (telemetry.length === 0) return 0

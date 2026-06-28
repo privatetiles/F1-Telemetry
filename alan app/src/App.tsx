@@ -2,7 +2,9 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import type { CircuitConfig, CircuitSession, TelemetryPoint, ColorMode } from './types'
 import { CIRCUITS, telemetryUrl } from './lib/dataIndex'
 import { loadAllDriverTelemetry, loadTelemetryFromFile } from './lib/csvLoader'
-import { computeMiniSectors } from './lib/miniSectors'
+import { computeMiniSectors, computeMiniSectorsFromSegments } from './lib/miniSectors'
+import { loadTrackData, CIRCUIT_TRACK_PREFIX } from './lib/paceData'
+import type { TrackData } from './lib/paceData'
 import { buildDriverSpeedProfiles, getEffectiveLayout, type ProfileData } from './lib/lapPredictor'
 import CircuitSelector from './components/CircuitSelector'
 import TrackMap from './components/TrackMap'
@@ -32,12 +34,21 @@ export default function App() {
   const dragCounter = useRef(0)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  const [trackData, setTrackData] = useState<TrackData | null>(null)
+
   // Driver speed profiles — built in background (backup data, not shown in UI)
   const [driverProfiles, setDriverProfiles] = useState<ProfileData | null>(null)
 
   useEffect(() => {
     buildDriverSpeedProfiles().then((p) => setDriverProfiles(p))
   }, [])
+
+  useEffect(() => {
+    setTrackData(null)
+    const prefix = CIRCUIT_TRACK_PREFIX[circuit.id]
+    if (!prefix) return
+    loadTrackData(prefix).then(setTrackData).catch(() => {})
+  }, [circuit.id])
 
   const processFiles = useCallback(async (files: File[]) => {
     const csvFiles = files.filter((f) => f.name.toLowerCase().endsWith('.csv'))
@@ -174,8 +185,10 @@ export default function App() {
   }, [mergedTelemetry])
 
   const miniSectors = useMemo(
-    () => computeMiniSectors(mergedTelemetry),
-    [mergedTelemetry]
+    () => trackData
+      ? computeMiniSectorsFromSegments(mergedTelemetry, trackData.segments)
+      : computeMiniSectors(mergedTelemetry),
+    [mergedTelemetry, trackData]
   )
 
   const handleProgressChange = useCallback((p: number | ((prev: number) => number)) => {

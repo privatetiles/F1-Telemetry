@@ -35,6 +35,7 @@ export interface ProcessedMiniSector {
   avgSpeedRef: number      // avg speed of reference driver
   avgThrottleRef: number   // avg throttle 0-100, reference driver
   avgBrakeRef: number      // brake application %, reference driver
+  category?: string        // 'Slow corners' | 'Fast corners' | 'Straights' when loaded from track data
 }
 
 export type SessionType = 'qualifying' | 'race' | 'sprint_qualifying' | 'sprint_race'

@@ -2,6 +2,18 @@ import type { ProcessedMiniSector, ColorMode } from '../types'
 import { characteristicColor, deltaToColor } from '../lib/miniSectors'
 import { driverColor } from '../lib/teamColors'
 
+const CATEGORY_COLORS: Record<string, string> = {
+  'Slow corners': '#e74c3c',
+  'Fast corners': '#27ae60',
+  'Straights':    '#8899aa',
+}
+
+const CATEGORY_LABELS: Record<string, string> = {
+  'Slow corners': 'Slow',
+  'Fast corners': 'Fast',
+  'Straights':    'Str',
+}
+
 interface Props {
   miniSectors: ProcessedMiniSector[]
   activeDrivers: Set<string>
@@ -44,6 +56,7 @@ export default function MiniSectorTimeline({
   const focusDriver = highlightedDriver
 
   const fastestPerSector = miniSectors.map(fastestInSector)
+  const hasCategoryData = miniSectors[0]?.category != null
 
   return (
     <div className="mini-sector-timeline">
@@ -54,7 +67,7 @@ export default function MiniSectorTimeline({
             className={`pill small ${colorMode === 'speed' ? 'active' : ''}`}
             onClick={() => onColorModeChange('speed')}
           >
-            Speed
+            {hasCategoryData ? 'Track Type' : 'Speed'}
           </button>
           <button
             className={`pill small ${colorMode === 'delta' ? 'active' : ''}`}
@@ -68,19 +81,18 @@ export default function MiniSectorTimeline({
       {/* Sector color bar */}
       <div className="sector-bar">
         {miniSectors.map((ms, i) => {
-          const color =
-            colorMode === 'speed'
-              ? characteristicColor(ms.avgThrottleRef, ms.avgBrakeRef)
-              : focusDriver && ms.driverStats[focusDriver]
-              ? deltaToColor(ms.driverStats[focusDriver].deltaVsFastest, maxDelta)
-              : '#333'
+          const color = colorMode === 'speed'
+            ? (ms.category ? (CATEGORY_COLORS[ms.category] ?? '#667') : characteristicColor(ms.avgThrottleRef, ms.avgBrakeRef))
+            : focusDriver && ms.driverStats[focusDriver]
+            ? deltaToColor(ms.driverStats[focusDriver].deltaVsFastest, maxDelta)
+            : '#333'
 
           return (
             <div
               key={i}
               className={`sector-cell ${i === currentSectorIdx ? 'current' : ''}`}
               style={{ background: color }}
-              title={`S${i + 1}: ${ms.avgSpeedRef.toFixed(0)} km/h`}
+              title={ms.category ? `${ms.category}: ${ms.avgSpeedRef.toFixed(0)} km/h` : `S${i + 1}: ${ms.avgSpeedRef.toFixed(0)} km/h`}
             />
           )
         })}
@@ -159,9 +171,11 @@ export default function MiniSectorTimeline({
         const best = fastestPerSector[currentSectorIdx]
         if (!best) return null
         const ms = miniSectors[currentSectorIdx]
+        const catLabel = ms.category ? CATEGORY_LABELS[ms.category] ?? ms.category : `S${currentSectorIdx + 1}`
+        const catColor = ms.category ? CATEGORY_COLORS[ms.category] : undefined
         return (
           <div className="sector-detail">
-            <span>Sector {currentSectorIdx + 1}</span>
+            <span style={catColor ? { color: catColor, fontWeight: 600 } : undefined}>{catLabel}</span>
             <span style={{ color: driverColor(best.driver), fontWeight: 700 }}>{best.driver}</span>
             <span>Fastest: {best.time.toFixed(3)}s</span>
             <span>Avg speed: {ms.driverStats[best.driver]?.avgSpeed.toFixed(0)} km/h</span>
@@ -171,15 +185,20 @@ export default function MiniSectorTimeline({
       })()}
 
       {/* Sector detail — Solo / hover mode */}
-      {focusDriver && miniSectors[currentSectorIdx] && miniSectors[currentSectorIdx].driverStats[focusDriver] && (
-        <div className="sector-detail">
-          <span>Sector {currentSectorIdx + 1}</span>
-          <span>Avg speed: {miniSectors[currentSectorIdx].driverStats[focusDriver].avgSpeed.toFixed(0)} km/h</span>
-          <span>Min speed: {miniSectors[currentSectorIdx].driverStats[focusDriver].minSpeed.toFixed(0)} km/h</span>
-          <span>Time: {miniSectors[currentSectorIdx].driverStats[focusDriver].timeSpent.toFixed(3)}s</span>
-          <span>Delta: {miniSectors[currentSectorIdx].driverStats[focusDriver].deltaVsFastest >= 0 ? '+' : ''}{miniSectors[currentSectorIdx].driverStats[focusDriver].deltaVsFastest.toFixed(3)}s</span>
-        </div>
-      )}
+      {focusDriver && miniSectors[currentSectorIdx] && miniSectors[currentSectorIdx].driverStats[focusDriver] && (() => {
+        const ms = miniSectors[currentSectorIdx]
+        const catLabel = ms.category ? CATEGORY_LABELS[ms.category] ?? ms.category : `S${currentSectorIdx + 1}`
+        const catColor = ms.category ? CATEGORY_COLORS[ms.category] : undefined
+        return (
+          <div className="sector-detail">
+            <span style={catColor ? { color: catColor, fontWeight: 600 } : undefined}>{catLabel}</span>
+            <span>Avg speed: {ms.driverStats[focusDriver].avgSpeed.toFixed(0)} km/h</span>
+            <span>Min speed: {ms.driverStats[focusDriver].minSpeed.toFixed(0)} km/h</span>
+            <span>Time: {ms.driverStats[focusDriver].timeSpent.toFixed(3)}s</span>
+            <span>Delta: {ms.driverStats[focusDriver].deltaVsFastest >= 0 ? '+' : ''}{ms.driverStats[focusDriver].deltaVsFastest.toFixed(3)}s</span>
+          </div>
+        )
+      })()}
     </div>
   )
 }
