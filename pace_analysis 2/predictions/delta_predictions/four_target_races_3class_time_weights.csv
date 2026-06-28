@@ -1,0 +1,13 @@
+prediction_target_event,prediction_target_race,circuit,reference_fastest_race_lap_driver,category,time_weight_seconds,time_share_pct,distance_m,distance_share_pct
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,PIA,Slow corners,17.701000,26.060,709.158,16.512
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,PIA,Fast corners,16.627000,24.479,1008.883,23.490
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,PIA,Straights,33.596000,49.461,2576.850,59.998
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,ANT,Slow corners,30.346000,28.939,1355.784,19.532
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,ANT,Fast corners,22.670000,21.619,1415.393,20.391
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,ANT,Straights,51.845000,49.442,4170.061,60.077
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,RUS,Slow corners,42.970000,54.112,1891.300,43.438
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,RUS,Fast corners,14.561000,18.337,876.759,20.137
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,RUS,Straights,21.878000,27.551,1586.004,36.426
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,PIA,Slow corners,34.788000,38.940,1553.217,26.693
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,PIA,Fast corners,20.353000,22.782,1536.944,26.413
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,PIA,Straights,34.196000,38.278,2728.764,46.895

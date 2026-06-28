@@ -1,0 +1,29 @@
+target_race,model,predicted_qualifying_time,predicted_qualifying_seconds,basis,adjustment_pct,adjustment_seconds,anchor_2025_pole,anchor_2025_seconds,anchor_2025_driver,anchor_2025_team
+Austria GP,primary_median_pct,1:05.486,65.486,2025 target pole * median 2026/2025 same-circuit pole ratio,2.368,1.515,1:03.971,63.971,NOR,McLaren
+Austria GP,mean_pct,1:05.779,65.779,2025 target pole * mean 2026/2025 same-circuit pole ratio,2.826,1.808,1:03.971,63.971,NOR,McLaren
+Austria GP,trimmed_mean_pct,1:05.718,65.718,2025 target pole * trimmed-mean 2026/2025 same-circuit pole ratio,2.732,1.747,1:03.971,63.971,NOR,McLaren
+Austria GP,median_absolute_delta,1:05.766,65.766,2025 target pole + median same-circuit pole delta,2.806,1.795,1:03.971,63.971,NOR,McLaren
+Austria GP,mean_absolute_delta,1:06.134,66.134,2025 target pole + mean same-circuit pole delta,3.382,2.163,1:03.971,63.971,NOR,McLaren
+Austria GP,trimmed_mean_absolute_delta,1:06.031,66.031,2025 target pole + trimmed-mean same-circuit pole delta,3.220,2.060,1:03.971,63.971,NOR,McLaren
+Austria GP,linear_regression,1:06.868,66.868,least-squares 2026 pole seconds = alpha + beta * 2025 pole seconds,4.529,2.897,1:03.971,63.971,NOR,McLaren
+Belgium GP / Spa-Francorchamps,primary_median_pct,1:42.943,102.943,2025 target pole * median 2026/2025 same-circuit pole ratio,2.368,2.381,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,mean_pct,1:43.404,103.404,2025 target pole * mean 2026/2025 same-circuit pole ratio,2.826,2.842,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,trimmed_mean_pct,1:43.309,103.309,2025 target pole * trimmed-mean 2026/2025 same-circuit pole ratio,2.732,2.747,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,median_absolute_delta,1:42.357,102.357,2025 target pole + median same-circuit pole delta,1.785,1.795,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,mean_absolute_delta,1:42.725,102.725,2025 target pole + mean same-circuit pole delta,2.151,2.163,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,trimmed_mean_absolute_delta,1:42.622,102.622,2025 target pole + trimmed-mean same-circuit pole delta,2.048,2.060,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,linear_regression,1:41.643,101.643,least-squares 2026 pole seconds = alpha + beta * 2025 pole seconds,1.075,1.081,1:40.562,100.562,NOR,McLaren
+Hungary GP / Hungaroring,primary_median_pct,1:16.663,76.663,2025 target pole * median 2026/2025 same-circuit pole ratio,2.368,1.773,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,mean_pct,1:17.007,77.007,2025 target pole * mean 2026/2025 same-circuit pole ratio,2.826,2.117,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,trimmed_mean_pct,1:16.936,76.936,2025 target pole * trimmed-mean 2026/2025 same-circuit pole ratio,2.732,2.046,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,median_absolute_delta,1:16.685,76.685,2025 target pole + median same-circuit pole delta,2.397,1.795,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,mean_absolute_delta,1:17.053,77.053,2025 target pole + mean same-circuit pole delta,2.889,2.163,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,trimmed_mean_absolute_delta,1:16.950,76.950,2025 target pole + trimmed-mean same-circuit pole delta,2.750,2.060,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,linear_regression,1:17.245,77.245,least-squares 2026 pole seconds = alpha + beta * 2025 pole seconds,3.145,2.355,1:14.890,74.890,NOR,McLaren
+British GP / Silverstone,primary_median_pct,1:26.902,86.902,2025 target pole * median 2026/2025 same-circuit pole ratio,2.368,2.010,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,mean_pct,1:27.291,87.291,2025 target pole * mean 2026/2025 same-circuit pole ratio,2.826,2.399,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,trimmed_mean_pct,1:27.211,87.211,2025 target pole * trimmed-mean 2026/2025 same-circuit pole ratio,2.732,2.319,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,median_absolute_delta,1:26.687,86.687,2025 target pole + median same-circuit pole delta,2.114,1.795,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,mean_absolute_delta,1:27.055,87.055,2025 target pole + mean same-circuit pole delta,2.548,2.163,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,trimmed_mean_absolute_delta,1:26.952,86.952,2025 target pole + trimmed-mean same-circuit pole delta,2.426,2.060,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,linear_regression,1:26.751,86.751,least-squares 2026 pole seconds = alpha + beta * 2025 pole seconds,2.190,1.859,1:24.892,84.892,VER,Red Bull Racing

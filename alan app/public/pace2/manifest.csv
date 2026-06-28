@@ -1,0 +1,19 @@
+item_type,event,path
+telemetry_map,Austria GP,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/telemetry_maps/08_austria_2025_telemetry_map.png
+telemetry_map,Belgium GP / Spa-Francorchamps,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/telemetry_maps/09_spa_francorchamps_2025_telemetry_map_100m.png
+telemetry_map,British GP / Silverstone,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/telemetry_maps/10_silverstone_2025_telemetry_map_100m.png
+telemetry_map,Hungary GP / Hungaroring,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/telemetry_maps/11_hungaroring_2025_telemetry_map_100m.png
+three_class_map,Austria GP,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/three_class_maps/08_austria_2025_3class_map.png
+three_class_map,Belgium GP / Spa-Francorchamps,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/three_class_maps/09_spa_francorchamps_2025_3class_map.png
+three_class_map,British GP / Silverstone,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/three_class_maps/10_silverstone_2025_3class_map.png
+three_class_map,Hungary GP / Hungaroring,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/three_class_maps/11_hungaroring_2025_3class_map.png
+qualifying_time_predictions_csv,All four target races,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/four_race_2026_qualifying_time_predictions.csv
+qualifying_time_model_variants_csv,All four target races,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/four_race_2026_qualifying_time_model_variants.csv
+qualifying_time_model_comparison_csv,Existing 2026 comparison races,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/qualifying_time_model_comparison_events.csv
+delta_predictions_csv,All four target races,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/delta_predictions/four_race_2026_delta_predictions_from_new_maps.csv
+delta_prediction_inputs_csv,Existing 2026 class inputs,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/delta_predictions/team_category_delta_inputs_from_2026.csv
+delta_prediction_target_weights_csv,All four target races,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/delta_predictions/four_target_races_3class_time_weights.csv
+segment_definitions_csv,All four target races,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/segment_definitions/four_target_races_3class_segment_definitions.csv
+driver_qualifying_predictions_csv,All four target races,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/driver_qualifying_predictions/four_race_2026_driver_qualifying_predictions.csv
+driver_qualifying_inputs_csv,Existing 2026 qualifying,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/driver_qualifying_predictions/driver_qualifying_model_inputs.csv
+driver_qualifying_source_laps_csv,Existing 2026 qualifying,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/driver_qualifying_predictions/driver_qualifying_best_laps_2026_sources.csv

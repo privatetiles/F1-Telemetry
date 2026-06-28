@@ -1,0 +1,8 @@
+target_race,model,predicted_qualifying_time,predicted_qualifying_seconds,basis,adjustment_pct,adjustment_seconds,anchor_2025_pole,anchor_2025_seconds,anchor_2025_driver,anchor_2025_team
+British GP / Silverstone,primary_median_pct,1:26.902,86.902,2025 target pole * median 2026/2025 same-circuit pole ratio,2.368,2.010,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,mean_pct,1:27.291,87.291,2025 target pole * mean 2026/2025 same-circuit pole ratio,2.826,2.399,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,trimmed_mean_pct,1:27.211,87.211,2025 target pole * trimmed-mean 2026/2025 same-circuit pole ratio,2.732,2.319,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,median_absolute_delta,1:26.687,86.687,2025 target pole + median same-circuit pole delta,2.114,1.795,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,mean_absolute_delta,1:27.055,87.055,2025 target pole + mean same-circuit pole delta,2.548,2.163,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,trimmed_mean_absolute_delta,1:26.952,86.952,2025 target pole + trimmed-mean same-circuit pole delta,2.426,2.060,1:24.892,84.892,VER,Red Bull Racing
+British GP / Silverstone,linear_regression,1:26.751,86.751,least-squares 2026 pole seconds = alpha + beta * 2025 pole seconds,2.190,1.859,1:24.892,84.892,VER,Red Bull Racing

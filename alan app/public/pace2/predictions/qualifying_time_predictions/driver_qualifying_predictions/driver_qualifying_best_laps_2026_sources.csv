@@ -1,0 +1,152 @@
+source_event,source_event_label,driver,driver_number,team,best_lap_time,best_lap_seconds,gap_to_event_pole_seconds,offset_to_team_best_seconds
+fastf1_2026_australia_grand_prix,Australia Gp,RUS,63,Mercedes,1:18.518,78.518,0.000,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,ANT,12,Mercedes,1:18.811,78.811,0.293,0.293
+fastf1_2026_australia_grand_prix,Australia Gp,HAD,6,Red Bull Racing,1:19.303,79.303,0.785,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,LEC,16,Ferrari,1:19.327,79.327,0.809,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,PIA,81,McLaren,1:19.380,79.380,0.862,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,NOR,1,McLaren,1:19.475,79.475,0.957,0.095
+fastf1_2026_australia_grand_prix,Australia Gp,HAM,44,Ferrari,1:19.478,79.478,0.960,0.151
+fastf1_2026_australia_grand_prix,Australia Gp,LIN,41,Racing Bulls,1:19.971,79.971,1.453,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,LAW,30,Racing Bulls,1:19.994,79.994,1.476,0.023
+fastf1_2026_australia_grand_prix,Australia Gp,BOR,5,Audi,1:20.221,80.221,1.703,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,HUL,27,Audi,1:20.303,80.303,1.785,0.082
+fastf1_2026_australia_grand_prix,Australia Gp,BEA,87,Haas F1 Team,1:20.311,80.311,1.793,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,OCO,31,Haas F1 Team,1:20.491,80.491,1.973,0.180
+fastf1_2026_australia_grand_prix,Australia Gp,GAS,10,Alpine,1:20.501,80.501,1.983,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,ALB,23,Williams,1:20.941,80.941,2.423,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,COL,43,Alpine,1:21.200,81.200,2.682,0.699
+fastf1_2026_australia_grand_prix,Australia Gp,ALO,14,Aston Martin,1:21.969,81.969,3.451,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,PER,11,Cadillac,1:22.605,82.605,4.087,0.000
+fastf1_2026_australia_grand_prix,Australia Gp,BOT,77,Cadillac,1:23.244,83.244,4.726,0.639
+fastf1_2026_china_grand_prix,China Gp,ANT,12,Mercedes,1:32.064,92.064,0.000,0.000
+fastf1_2026_china_grand_prix,China Gp,RUS,63,Mercedes,1:32.286,92.286,0.222,0.222
+fastf1_2026_china_grand_prix,China Gp,HAM,44,Ferrari,1:32.415,92.415,0.351,0.000
+fastf1_2026_china_grand_prix,China Gp,LEC,16,Ferrari,1:32.428,92.428,0.364,0.013
+fastf1_2026_china_grand_prix,China Gp,PIA,81,McLaren,1:32.550,92.550,0.486,0.000
+fastf1_2026_china_grand_prix,China Gp,NOR,1,McLaren,1:32.608,92.608,0.544,0.058
+fastf1_2026_china_grand_prix,China Gp,GAS,10,Alpine,1:32.873,92.873,0.809,0.000
+fastf1_2026_china_grand_prix,China Gp,VER,3,Red Bull Racing,1:33.002,93.002,0.938,0.000
+fastf1_2026_china_grand_prix,China Gp,HAD,6,Red Bull Racing,1:33.121,93.121,1.057,0.119
+fastf1_2026_china_grand_prix,China Gp,BEA,87,Haas F1 Team,1:33.197,93.197,1.133,0.000
+fastf1_2026_china_grand_prix,China Gp,HUL,27,Audi,1:33.354,93.354,1.290,0.000
+fastf1_2026_china_grand_prix,China Gp,COL,43,Alpine,1:33.357,93.357,1.293,0.484
+fastf1_2026_china_grand_prix,China Gp,OCO,31,Haas F1 Team,1:33.538,93.538,1.474,0.341
+fastf1_2026_china_grand_prix,China Gp,BOR,5,Audi,1:33.549,93.549,1.485,0.195
+fastf1_2026_china_grand_prix,China Gp,LAW,30,Racing Bulls,1:33.765,93.765,1.701,0.000
+fastf1_2026_china_grand_prix,China Gp,LIN,41,Racing Bulls,1:33.784,93.784,1.720,0.019
+fastf1_2026_china_grand_prix,China Gp,SAI,55,Williams,1:34.317,94.317,2.253,0.000
+fastf1_2026_china_grand_prix,China Gp,ALB,23,Williams,1:34.772,94.772,2.708,0.455
+fastf1_2026_china_grand_prix,China Gp,ALO,14,Aston Martin,1:35.203,95.203,3.139,0.000
+fastf1_2026_china_grand_prix,China Gp,BOT,77,Cadillac,1:35.436,95.436,3.372,0.000
+fastf1_2026_china_grand_prix,China Gp,STR,18,Aston Martin,1:35.995,95.995,3.931,0.792
+fastf1_2026_china_grand_prix,China Gp,PER,11,Cadillac,1:36.906,96.906,4.842,1.470
+fastf1_2026_japan_grand_prix,Japan Gp,ANT,12,Mercedes,1:28.778,88.778,0.000,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,RUS,63,Mercedes,1:29.076,89.076,0.298,0.298
+fastf1_2026_japan_grand_prix,Japan Gp,PIA,81,McLaren,1:29.132,89.132,0.354,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,LEC,16,Ferrari,1:29.303,89.303,0.525,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,NOR,1,McLaren,1:29.409,89.409,0.631,0.277
+fastf1_2026_japan_grand_prix,Japan Gp,HAM,44,Ferrari,1:29.567,89.567,0.789,0.264
+fastf1_2026_japan_grand_prix,Japan Gp,GAS,10,Alpine,1:29.691,89.691,0.913,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,HAD,6,Red Bull Racing,1:29.978,89.978,1.200,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,BOR,5,Audi,1:29.990,89.990,1.212,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,LIN,41,Racing Bulls,1:30.109,90.109,1.331,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,VER,3,Red Bull Racing,1:30.262,90.262,1.484,0.284
+fastf1_2026_japan_grand_prix,Japan Gp,OCO,31,Haas F1 Team,1:30.309,90.309,1.531,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,HUL,27,Audi,1:30.358,90.358,1.580,0.368
+fastf1_2026_japan_grand_prix,Japan Gp,LAW,30,Racing Bulls,1:30.495,90.495,1.717,0.386
+fastf1_2026_japan_grand_prix,Japan Gp,COL,43,Alpine,1:30.627,90.627,1.849,0.936
+fastf1_2026_japan_grand_prix,Japan Gp,SAI,55,Williams,1:30.927,90.927,2.149,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,ALB,23,Williams,1:31.088,91.088,2.310,0.161
+fastf1_2026_japan_grand_prix,Japan Gp,BEA,87,Haas F1 Team,1:31.090,91.090,2.312,0.781
+fastf1_2026_japan_grand_prix,Japan Gp,PER,11,Cadillac,1:32.206,92.206,3.428,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,BOT,77,Cadillac,1:32.330,92.330,3.552,0.124
+fastf1_2026_japan_grand_prix,Japan Gp,ALO,14,Aston Martin,1:32.646,92.646,3.868,0.000
+fastf1_2026_japan_grand_prix,Japan Gp,STR,18,Aston Martin,1:32.920,92.920,4.142,0.274
+fastf1_2026_miami_grand_prix,Miami Gp,ANT,12,Mercedes,1:27.798,87.798,0.000,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,VER,3,Red Bull Racing,1:27.964,87.964,0.166,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,LEC,16,Ferrari,1:28.143,88.143,0.345,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,NOR,1,McLaren,1:28.183,88.183,0.385,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,RUS,63,Mercedes,1:28.197,88.197,0.399,0.399
+fastf1_2026_miami_grand_prix,Miami Gp,HAM,44,Ferrari,1:28.319,88.319,0.521,0.176
+fastf1_2026_miami_grand_prix,Miami Gp,PIA,81,McLaren,1:28.332,88.332,0.534,0.149
+fastf1_2026_miami_grand_prix,Miami Gp,COL,43,Alpine,1:28.762,88.762,0.964,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,HAD,6,Red Bull Racing,1:28.789,88.789,0.991,0.825
+fastf1_2026_miami_grand_prix,Miami Gp,GAS,10,Alpine,1:28.810,88.810,1.012,0.048
+fastf1_2026_miami_grand_prix,Miami Gp,BEA,87,Haas F1 Team,1:29.340,89.340,1.542,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,HUL,27,Audi,1:29.439,89.439,1.641,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,LAW,30,Racing Bulls,1:29.499,89.499,1.701,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,SAI,55,Williams,1:29.540,89.540,1.742,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,ALB,23,Williams,1:29.720,89.720,1.922,0.180
+fastf1_2026_miami_grand_prix,Miami Gp,OCO,31,Haas F1 Team,1:29.772,89.772,1.974,0.432
+fastf1_2026_miami_grand_prix,Miami Gp,LIN,41,Racing Bulls,1:30.133,90.133,2.335,0.634
+fastf1_2026_miami_grand_prix,Miami Gp,ALO,14,Aston Martin,1:31.098,91.098,3.300,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,STR,18,Aston Martin,1:31.164,91.164,3.366,0.066
+fastf1_2026_miami_grand_prix,Miami Gp,BOT,77,Cadillac,1:31.629,91.629,3.831,0.000
+fastf1_2026_miami_grand_prix,Miami Gp,PER,11,Cadillac,1:31.967,91.967,4.169,0.338
+fastf1_2026_miami_grand_prix,Miami Gp,BOR,5,Audi,1:33.737,93.737,5.939,4.298
+fastf1_2026_monaco_grand_prix,Monaco Gp,ANT,12,Mercedes,1:12.051,72.051,0.000,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,VER,3,Red Bull Racing,1:12.094,72.094,0.043,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,HAM,44,Ferrari,1:12.279,72.279,0.228,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,LEC,16,Ferrari,1:12.351,72.351,0.300,0.072
+fastf1_2026_monaco_grand_prix,Monaco Gp,HAD,6,Red Bull Racing,1:12.434,72.434,0.383,0.340
+fastf1_2026_monaco_grand_prix,Monaco Gp,RUS,63,Mercedes,1:12.445,72.445,0.394,0.394
+fastf1_2026_monaco_grand_prix,Monaco Gp,PIA,81,McLaren,1:12.624,72.624,0.573,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,NOR,1,McLaren,1:12.765,72.765,0.714,0.141
+fastf1_2026_monaco_grand_prix,Monaco Gp,GAS,10,Alpine,1:13.226,73.226,1.175,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,LAW,30,Racing Bulls,1:13.412,73.412,1.361,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,ALB,23,Williams,1:13.787,73.787,1.736,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,SAI,55,Williams,1:13.815,73.815,1.764,0.028
+fastf1_2026_monaco_grand_prix,Monaco Gp,HUL,27,Audi,1:13.902,73.902,1.851,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,COL,43,Alpine,1:13.995,73.995,1.944,0.769
+fastf1_2026_monaco_grand_prix,Monaco Gp,LIN,41,Racing Bulls,1:14.248,74.248,2.197,0.836
+fastf1_2026_monaco_grand_prix,Monaco Gp,BOR,5,Audi,1:14.683,74.683,2.632,0.781
+fastf1_2026_monaco_grand_prix,Monaco Gp,OCO,31,Haas F1 Team,1:14.722,74.722,2.671,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,PER,11,Cadillac,1:14.747,74.747,2.696,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,BEA,87,Haas F1 Team,1:14.814,74.814,2.763,0.092
+fastf1_2026_monaco_grand_prix,Monaco Gp,BOT,77,Cadillac,1:15.283,75.283,3.232,0.536
+fastf1_2026_monaco_grand_prix,Monaco Gp,ALO,14,Aston Martin,1:15.349,75.349,3.298,0.000
+fastf1_2026_monaco_grand_prix,Monaco Gp,STR,18,Aston Martin,1:16.061,76.061,4.010,0.712
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,RUS,63,Mercedes,1:14.679,74.679,0.000,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,HAM,44,Ferrari,1:14.743,74.743,0.064,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,ANT,12,Mercedes,1:14.998,74.998,0.319,0.319
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,NOR,1,McLaren,1:15.001,75.001,0.322,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,VER,3,Red Bull Racing,1:15.021,75.021,0.342,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,HAD,6,Red Bull Racing,1:15.077,75.077,0.398,0.056
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,PIA,81,McLaren,1:15.090,75.090,0.411,0.089
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,LEC,16,Ferrari,1:15.281,75.281,0.602,0.538
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,LAW,30,Racing Bulls,1:15.585,75.585,0.906,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,HUL,27,Audi,1:15.768,75.768,1.089,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,LIN,41,Racing Bulls,1:15.840,75.840,1.161,0.255
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,BOR,5,Audi,1:16.001,76.001,1.322,0.233
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,COL,43,Alpine,1:16.191,76.191,1.512,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,GAS,10,Alpine,1:16.261,76.261,1.582,0.070
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,BEA,87,Haas F1 Team,1:16.389,76.389,1.710,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,SAI,55,Williams,1:16.881,76.881,2.202,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,OCO,31,Haas F1 Team,1:17.073,77.073,2.394,0.684
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,ALB,23,Williams,1:17.424,77.424,2.745,0.543
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,PER,11,Cadillac,1:17.545,77.545,2.866,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,BOT,77,Cadillac,1:17.757,77.757,3.078,0.212
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,STR,18,Aston Martin,1:18.758,78.758,4.079,0.000
+fastf1_2026_barcelona_grand_prix,Barcelona Gp,ALO,14,Aston Martin,1:18.815,78.815,4.136,0.057
+fastf1_2026_canadian_grand_prix,Canadian Gp,RUS,63,Mercedes,1:12.578,72.578,0.000,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,ANT,12,Mercedes,1:12.646,72.646,0.068,0.068
+fastf1_2026_canadian_grand_prix,Canadian Gp,NOR,1,McLaren,1:12.729,72.729,0.151,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,PIA,81,McLaren,1:12.781,72.781,0.203,0.052
+fastf1_2026_canadian_grand_prix,Canadian Gp,HAM,44,Ferrari,1:12.868,72.868,0.290,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,VER,3,Red Bull Racing,1:12.907,72.907,0.329,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,HAD,6,Red Bull Racing,1:12.935,72.935,0.357,0.028
+fastf1_2026_canadian_grand_prix,Canadian Gp,LEC,16,Ferrari,1:12.976,72.976,0.398,0.108
+fastf1_2026_canadian_grand_prix,Canadian Gp,LIN,41,Racing Bulls,1:13.280,73.280,0.702,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,COL,43,Alpine,1:13.697,73.697,1.119,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,HUL,27,Audi,1:13.886,73.886,1.308,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,LAW,30,Racing Bulls,1:13.897,73.897,1.319,0.617
+fastf1_2026_canadian_grand_prix,Canadian Gp,BOR,5,Audi,1:14.071,74.071,1.493,0.185
+fastf1_2026_canadian_grand_prix,Canadian Gp,GAS,10,Alpine,1:14.187,74.187,1.609,0.490
+fastf1_2026_canadian_grand_prix,Canadian Gp,SAI,55,Williams,1:14.273,74.273,1.695,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,BEA,87,Haas F1 Team,1:14.416,74.416,1.838,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,OCO,31,Haas F1 Team,1:14.845,74.845,2.267,0.429
+fastf1_2026_canadian_grand_prix,Canadian Gp,ALB,23,Williams,1:14.851,74.851,2.273,0.578
+fastf1_2026_canadian_grand_prix,Canadian Gp,ALO,14,Aston Martin,1:15.196,75.196,2.618,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,PER,11,Cadillac,1:15.429,75.429,2.851,0.000
+fastf1_2026_canadian_grand_prix,Canadian Gp,STR,18,Aston Martin,1:16.195,76.195,3.617,0.999
+fastf1_2026_canadian_grand_prix,Canadian Gp,BOT,77,Cadillac,1:16.272,76.272,3.694,0.843

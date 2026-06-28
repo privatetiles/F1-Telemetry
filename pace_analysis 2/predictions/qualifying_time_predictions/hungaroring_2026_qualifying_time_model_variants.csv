@@ -1,0 +1,8 @@
+target_race,model,predicted_qualifying_time,predicted_qualifying_seconds,basis,adjustment_pct,adjustment_seconds,anchor_2025_pole,anchor_2025_seconds,anchor_2025_driver,anchor_2025_team
+Hungary GP / Hungaroring,primary_median_pct,1:16.663,76.663,2025 target pole * median 2026/2025 same-circuit pole ratio,2.368,1.773,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,mean_pct,1:17.007,77.007,2025 target pole * mean 2026/2025 same-circuit pole ratio,2.826,2.117,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,trimmed_mean_pct,1:16.936,76.936,2025 target pole * trimmed-mean 2026/2025 same-circuit pole ratio,2.732,2.046,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,median_absolute_delta,1:16.685,76.685,2025 target pole + median same-circuit pole delta,2.397,1.795,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,mean_absolute_delta,1:17.053,77.053,2025 target pole + mean same-circuit pole delta,2.889,2.163,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,trimmed_mean_absolute_delta,1:16.950,76.950,2025 target pole + trimmed-mean same-circuit pole delta,2.750,2.060,1:14.890,74.890,NOR,McLaren
+Hungary GP / Hungaroring,linear_regression,1:17.245,77.245,least-squares 2026 pole seconds = alpha + beta * 2025 pole seconds,3.145,2.355,1:14.890,74.890,NOR,McLaren

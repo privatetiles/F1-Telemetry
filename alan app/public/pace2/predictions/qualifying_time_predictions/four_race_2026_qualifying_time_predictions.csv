@@ -1,0 +1,5 @@
+target_race,anchor_2025_event,anchor_2025_pole,anchor_2025_seconds,anchor_2025_driver,anchor_2025_team,predicted_2026_qualifying_time,predicted_2026_qualifying_seconds,primary_adjustment_pct,primary_adjustment_seconds,model_low_time,model_high_time,model_low_seconds,model_high_seconds,comparison_events_used
+Austria GP,fastf1_2025_austrian_grand_prix,1:03.971,63.971,NOR,McLaren,1:05.486,65.486,2.368,1.515,1:05.486,1:06.868,65.486,66.868,7
+Belgium GP / Spa-Francorchamps,fastf1_2025_belgian_grand_prix,1:40.562,100.562,NOR,McLaren,1:42.943,102.943,2.368,2.381,1:41.643,1:43.404,101.643,103.404,7
+Hungary GP / Hungaroring,fastf1_2025_hungarian_grand_prix,1:14.890,74.890,NOR,McLaren,1:16.663,76.663,2.368,1.773,1:16.663,1:17.245,76.663,77.245,7
+British GP / Silverstone,fastf1_2025_british_grand_prix,1:24.892,84.892,VER,Red Bull Racing,1:26.902,86.902,2.368,2.010,1:26.687,1:27.291,86.687,87.291,7

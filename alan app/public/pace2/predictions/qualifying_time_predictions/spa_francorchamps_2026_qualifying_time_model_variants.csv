@@ -1,0 +1,8 @@
+target_race,model,predicted_qualifying_time,predicted_qualifying_seconds,basis,adjustment_pct,adjustment_seconds,anchor_2025_pole,anchor_2025_seconds,anchor_2025_driver,anchor_2025_team
+Belgium GP / Spa-Francorchamps,primary_median_pct,1:42.943,102.943,2025 target pole * median 2026/2025 same-circuit pole ratio,2.368,2.381,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,mean_pct,1:43.404,103.404,2025 target pole * mean 2026/2025 same-circuit pole ratio,2.826,2.842,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,trimmed_mean_pct,1:43.309,103.309,2025 target pole * trimmed-mean 2026/2025 same-circuit pole ratio,2.732,2.747,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,median_absolute_delta,1:42.357,102.357,2025 target pole + median same-circuit pole delta,1.785,1.795,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,mean_absolute_delta,1:42.725,102.725,2025 target pole + mean same-circuit pole delta,2.151,2.163,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,trimmed_mean_absolute_delta,1:42.622,102.622,2025 target pole + trimmed-mean same-circuit pole delta,2.048,2.060,1:40.562,100.562,NOR,McLaren
+Belgium GP / Spa-Francorchamps,linear_regression,1:41.643,101.643,least-squares 2026 pole seconds = alpha + beta * 2025 pole seconds,1.075,1.081,1:40.562,100.562,NOR,McLaren

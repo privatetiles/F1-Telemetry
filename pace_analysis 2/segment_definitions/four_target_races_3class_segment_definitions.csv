@@ -1,0 +1,49 @@
+prediction_target_event,prediction_target_race,circuit,segment_id,category,start_distance_m,end_distance_m,source
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_01,Straights,0.000,325.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_02,Slow corners,325.000,525.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_03,Straights,525.000,1250.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_04,Slow corners,1250.000,1500.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_05,Straights,1500.000,2025.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_06,Slow corners,2025.000,2300.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_07,Straights,2300.000,2575.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_08,Fast corners,2575.000,3200.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_09,Straights,3200.000,3675.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_10,Fast corners,3675.000,4050.000,existing Austria 3-class segment CSV
+fastf1_2025_austrian_grand_prix,Austria GP,Red Bull Ring,seg_11,Straights,4050.000,4350.000,existing Austria 3-class segment CSV
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_01,Straights,0.000,375.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_02,Slow corners,375.000,525.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_03,Straights,525.000,2275.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_04,Slow corners,2275.000,2725.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_05,Straights,2725.000,2900.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_06,Slow corners,2900.000,3400.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_07,Straights,3400.000,3700.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_08,Fast corners,3700.000,4100.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_09,Straights,4100.000,4350.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_10,Fast corners,4350.000,5250.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_11,Straights,5250.000,6575.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_12,Slow corners,6575.000,6825.000,user-defined new 3-class map
+fastf1_2025_belgian_grand_prix,Belgium GP / Spa-Francorchamps,Spa-Francorchamps,seg_13,Fast corners,6825.000,,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_01,Straights,0.000,525.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_02,Slow corners,525.000,725.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_03,Straights,725.000,1050.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_04,Slow corners,1050.000,1400.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_05,Straights,1400.000,1775.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_06,Fast corners,1775.000,2300.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_07,Slow corners,2300.000,2850.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_08,Fast corners,2850.000,3200.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_09,Straights,3200.000,3425.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_10,Slow corners,3425.000,4225.000,user-defined new 3-class map
+fastf1_2025_hungarian_grand_prix,Hungary GP / Hungaroring,Hungaroring,seg_11,Straights,4225.000,,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_01,Straights,0.000,350.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_02,Fast corners,350.000,750.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_03,Slow corners,750.000,1325.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_04,Straights,1325.000,1825.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_05,Slow corners,1825.000,2325.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_06,Straights,2325.000,2950.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_07,Fast corners,2950.000,3175.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_08,Straights,3175.000,3500.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_09,Fast corners,3500.000,4125.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_10,Straights,4125.000,4875.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_11,Fast corners,4875.000,5150.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_12,Straights,5150.000,5350.000,user-defined new 3-class map
+fastf1_2025_british_grand_prix,British GP / Silverstone,Silverstone Circuit,seg_13,Slow corners,5350.000,,user-defined new 3-class map

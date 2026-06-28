@@ -10,6 +10,7 @@ import DriverPanel from './components/DriverPanel'
 import MiniSectorTimeline from './components/MiniSectorTimeline'
 import StaticTrackMap from './components/StaticTrackMap'
 import PaceAnalysisView from './components/PaceAnalysisView'
+import PaceAnalysis2View from './components/PaceAnalysis2View'
 import './App.css'
 
 export default function App() {
@@ -24,7 +25,7 @@ export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>('speed')
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [activeView, setActiveView] = useState<'telemetry' | 'pace'>('telemetry')
+  const [activeView, setActiveView] = useState<'telemetry' | 'pace' | 'pace2'>('telemetry')
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
   const [customBgUrl, setCustomBgUrl] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
@@ -224,10 +225,13 @@ export default function App() {
       <div className="tab-bar">
         <button className={`tab-btn ${activeView === 'telemetry' ? 'active' : ''}`} onClick={() => setActiveView('telemetry')}>Telemetry</button>
         <button className={`tab-btn ${activeView === 'pace' ? 'active' : ''}`} onClick={() => setActiveView('pace')}>Pace Analysis</button>
+        <button className={`tab-btn ${activeView === 'pace2' ? 'active' : ''}`} onClick={() => setActiveView('pace2')}>Predictions</button>
       </div>
 
       {activeView === 'pace' ? (
         <PaceAnalysisView />
+      ) : activeView === 'pace2' ? (
+        <PaceAnalysis2View />
       ) : (
       <>
       <CircuitSelector

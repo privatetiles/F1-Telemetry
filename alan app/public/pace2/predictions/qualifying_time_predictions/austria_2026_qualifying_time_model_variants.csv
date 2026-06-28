@@ -1,0 +1,8 @@
+target_race,model,predicted_qualifying_time,predicted_qualifying_seconds,basis,adjustment_pct,adjustment_seconds,anchor_2025_pole,anchor_2025_seconds,anchor_2025_driver,anchor_2025_team
+Austria GP,primary_median_pct,1:05.486,65.486,2025 target pole * median 2026/2025 same-circuit pole ratio,2.368,1.515,1:03.971,63.971,NOR,McLaren
+Austria GP,mean_pct,1:05.779,65.779,2025 target pole * mean 2026/2025 same-circuit pole ratio,2.826,1.808,1:03.971,63.971,NOR,McLaren
+Austria GP,trimmed_mean_pct,1:05.718,65.718,2025 target pole * trimmed-mean 2026/2025 same-circuit pole ratio,2.732,1.747,1:03.971,63.971,NOR,McLaren
+Austria GP,median_absolute_delta,1:05.766,65.766,2025 target pole + median same-circuit pole delta,2.806,1.795,1:03.971,63.971,NOR,McLaren
+Austria GP,mean_absolute_delta,1:06.134,66.134,2025 target pole + mean same-circuit pole delta,3.382,2.163,1:03.971,63.971,NOR,McLaren
+Austria GP,trimmed_mean_absolute_delta,1:06.031,66.031,2025 target pole + trimmed-mean same-circuit pole delta,3.220,2.060,1:03.971,63.971,NOR,McLaren
+Austria GP,linear_regression,1:06.868,66.868,least-squares 2026 pole seconds = alpha + beta * 2025 pole seconds,4.529,2.897,1:03.971,63.971,NOR,McLaren
