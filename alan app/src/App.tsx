@@ -32,7 +32,6 @@ export default function App() {
   const [customBgUrl, setCustomBgUrl] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
   const dragCounter = useRef(0)
-  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [trackData, setTrackData] = useState<TrackData | null>(null)
 
@@ -92,11 +91,6 @@ export default function App() {
     dragCounter.current = 0
     setIsDragging(false)
     processFiles(Array.from(e.dataTransfer.files))
-  }, [processFiles])
-
-  const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    processFiles(Array.from(e.target.files ?? []))
-    e.target.value = ''
   }, [processFiles])
 
   const handleCircuitChange = useCallback((c: CircuitConfig) => {
@@ -215,24 +209,12 @@ export default function App() {
         </div>
       )}
 
-      <input
-        ref={fileInputRef}
-        type="file"
-        multiple
-        accept=".csv,image/*"
-        style={{ display: 'none' }}
-        onChange={handleFileInput}
-      />
-
       <header className="app-header">
         <div className="logo">
           <span className="logo-f1">F1</span>
           <span className="logo-text">Telemetry Visualizer</span>
         </div>
         {loading && <span className="loading-badge">Loading…</span>}
-        <button className="upload-btn" onClick={() => fileInputRef.current?.click()} title="Load CSV telemetry or image files">
-          + Files
-        </button>
       </header>
 
       <div className="tab-bar">
