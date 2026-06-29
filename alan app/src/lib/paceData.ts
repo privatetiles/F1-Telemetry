@@ -71,7 +71,7 @@ export const CIRCUIT_TRACK_PREFIX: Record<string, string> = {
   'japan':               '05_japan_2026',
   'miami':               '06_miami_2026',
   'monaco':              '07_monaco_2026',
-  'austrian':            '08_austria_2025',
+  'austrian':            '09_austria_2026',
 }
 
 // Track geometry data
