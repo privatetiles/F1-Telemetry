@@ -593,6 +593,38 @@
 }
 .no-data-flag { font-size: 48px; }
 
+/* ── Ad slots ── */
+.ad-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ad-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #2a3040;
+  line-height: 1;
+}
+
+.ad-slot-panel {
+  padding: 8px 10px 10px;
+  border-top: 1px solid #131c28;
+  width: 100%;
+  background: #0a0e14;
+  flex-shrink: 0;
+}
+
+.ad-slot-panel .ad-box {
+  width: 100%;
+  height: 90px;
+  background: #0d1117;
+  border: 1px dashed #1a2232;
+  border-radius: 4px;
+}
+
 /* ── Data Lab ── */
 .data-lab {
   flex: 1;

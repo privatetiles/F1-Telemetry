@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import AdSlot from './components/AdSlot'
 import './LandingPage.css'
 
 interface Props {
@@ -134,6 +135,11 @@ export default function LandingPage({ onEnter }: Props) {
             <span className="land-stat-label">{s.label}</span>
           </div>
         ))}
+      </div>
+
+      {/* Ad */}
+      <div className="land-ad-row">
+        <AdSlot size="leaderboard" />
       </div>
 
       {/* Features */}
