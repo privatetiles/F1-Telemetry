@@ -1,0 +1,317 @@
+/* ── Landing page root ── */
+.landing {
+  min-height: 100vh;
+  background: #060a0f;
+  color: #e8eaf0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* ── Nav ── */
+.land-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid #1a2232;
+  position: sticky;
+  top: 0;
+  background: rgba(6, 10, 15, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+}
+
+.land-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.land-logo-f1 {
+  font-size: 22px;
+  font-weight: 900;
+  color: #e10600;
+  letter-spacing: -1px;
+}
+
+.land-logo-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #667;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.land-nav-btn {
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: 1px solid #e10600;
+  background: transparent;
+  color: #e10600;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.land-nav-btn:hover {
+  background: #e10600;
+  color: #fff;
+}
+
+/* ── Hero ── */
+.land-hero {
+  position: relative;
+  min-height: calc(100vh - 57px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 32px 100px;
+  overflow: hidden;
+}
+
+.land-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.land-hero-body {
+  position: relative;
+  max-width: 700px;
+  text-align: center;
+  z-index: 1;
+}
+
+.land-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e10600;
+  margin-bottom: 20px;
+}
+
+.land-headline {
+  font-size: clamp(42px, 7vw, 80px);
+  font-weight: 900;
+  line-height: 1.08;
+  color: #f0f2f8;
+  margin: 0 0 24px;
+  letter-spacing: -1.5px;
+}
+
+.land-sub {
+  font-size: clamp(14px, 1.6vw, 17px);
+  color: #8899aa;
+  line-height: 1.7;
+  margin: 0 0 36px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── CTA button ── */
+.land-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 8px;
+  border: none;
+  background: #e10600;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.12s;
+  box-shadow: 0 0 40px rgba(225, 6, 0, 0.3);
+}
+.land-cta:hover {
+  background: #c00400;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 48px rgba(225, 6, 0, 0.45);
+}
+.land-cta:active { transform: translateY(0); }
+
+.land-cta-sm {
+  padding: 11px 24px;
+  font-size: 14px;
+}
+
+.land-cta-arrow {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.land-hint {
+  font-size: 11px;
+  color: #445;
+  margin-top: 14px;
+  letter-spacing: 0.3px;
+}
+
+/* ── Sector deco bar ── */
+.land-sector-deco {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 6px;
+  gap: 2px;
+}
+
+.land-sector-cell {
+  flex: 1;
+  border-radius: 1px;
+  opacity: 0.7;
+}
+
+.land-sector-slow { background: #a78bfa; }
+.land-sector-fast { background: #f97316; }
+.land-sector-str  { background: #38bdf8; }
+
+/* ── Stats bar ── */
+.land-stats {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border-top: 1px solid #1a2232;
+  border-bottom: 1px solid #1a2232;
+  background: #080c12;
+}
+
+.land-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 48px;
+  border-right: 1px solid #1a2232;
+  gap: 4px;
+}
+.land-stat:last-child { border-right: none; }
+
+.land-stat-num {
+  font-size: 28px;
+  font-weight: 900;
+  color: #e10600;
+  font-family: monospace;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.land-stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #445;
+}
+
+/* ── Features ── */
+.land-features {
+  padding: 72px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.land-features-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #445;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.land-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.land-feature-card {
+  background: #0d1117;
+  border: 1px solid #1a2232;
+  border-radius: 10px;
+  padding: 28px 24px;
+  transition: border-color 0.15s;
+}
+.land-feature-card:hover {
+  border-color: #2a3a4a;
+}
+
+.land-feature-icon {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.land-feature-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #dde0ec;
+  margin: 0 0 10px;
+  letter-spacing: 0.1px;
+}
+
+.land-feature-body {
+  font-size: 13px;
+  color: #5a6880;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── CTA banner ── */
+.land-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 48px 32px;
+  border-top: 1px solid #1a2232;
+  border-bottom: 1px solid #1a2232;
+  background: #080c12;
+}
+
+.land-banner-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #aab0c0;
+}
+
+/* ── Footer ── */
+.land-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 32px;
+  font-size: 11px;
+  color: #334;
+  letter-spacing: 0.3px;
+}
+
+.land-footer-sep { color: #223; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .land-nav { padding: 14px 18px; }
+  .land-hero { padding: 60px 18px 80px; }
+  .land-stats { flex-wrap: wrap; }
+  .land-stat { padding: 16px 28px; }
+  .land-features { padding: 48px 18px; }
+  .land-banner { flex-direction: column; gap: 18px; text-align: center; }
+  .land-footer { flex-direction: column; gap: 4px; }
+}
