@@ -2,7 +2,8 @@ import Papa from 'papaparse'
 import type { TelemetryPoint } from '../types'
 
 interface RawTelemetryRow {
-  Time_seconds: string
+  Time_seconds?: string
+  Time?: string
   Speed: string
   nGear: string
   Throttle: string
@@ -14,6 +15,14 @@ interface RawTelemetryRow {
   RelativeDistance: string
 }
 
+// Parse pandas timedelta string: "0 days 00:00:00.037000" → seconds
+function parseTimedelta(s: string): number {
+  const m = s.match(/(\d+) days? (\d+):(\d+):(\d+)(?:\.(\d+))?/)
+  if (!m) return NaN
+  const frac = m[5] ? parseFloat('0.' + m[5]) : 0
+  return parseInt(m[1], 10) * 86400 + parseInt(m[2], 10) * 3600 + parseInt(m[3], 10) * 60 + parseInt(m[4], 10) + frac
+}
+
 function parseTelemetryText(text: string): Promise<TelemetryPoint[]> {
   return new Promise((resolve, reject) => {
     Papa.parse<RawTelemetryRow>(text, {
@@ -21,8 +30,11 @@ function parseTelemetryText(text: string): Promise<TelemetryPoint[]> {
       skipEmptyLines: true,
       complete(results) {
         const points: TelemetryPoint[] = results.data
-          .map((row) => ({
-            time: parseFloat(row.Time_seconds),
+          .map((row) => {
+            const ts = parseFloat(row.Time_seconds ?? '')
+            const time = isFinite(ts) ? ts : parseTimedelta(row.Time ?? '')
+            return {
+            time,
             speed: parseFloat(row.Speed),
             gear: parseInt(row.nGear, 10),
             throttle: parseFloat(row.Throttle),
@@ -32,7 +44,8 @@ function parseTelemetryText(text: string): Promise<TelemetryPoint[]> {
             y: parseFloat(row.Y),
             distance: parseFloat(row.Distance),
             relDist: parseFloat(row.RelativeDistance),
-          }))
+          }
+          })
           .filter(
             (p) =>
               isFinite(p.time) &&
