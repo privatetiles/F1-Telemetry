@@ -156,6 +156,11 @@ export default function LandingPage({ onEnter }: Props) {
         </div>
       </section>
 
+      {/* Ad — medium rectangle */}
+      <div className="land-ad-row land-ad-row-rect">
+        <AdSlot size="rectangle" />
+      </div>
+
       {/* CTA banner */}
       <section className="land-banner">
         <span className="land-banner-text">Ready to dig in?</span>

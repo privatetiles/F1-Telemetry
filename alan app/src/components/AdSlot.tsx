@@ -1,5 +1,5 @@
 interface Props {
-  size: 'panel' | 'leaderboard'
+  size: 'panel' | 'leaderboard' | 'rectangle'
 }
 
 export default function AdSlot({ size }: Props) {

@@ -216,34 +216,36 @@
   color: #445;
 }
 
-/* ── Ad row (landing) ── */
+/* ── Ad rows (landing) ── */
 .land-ad-row {
   display: flex;
   justify-content: center;
-  padding: 20px 32px;
+  align-items: center;
+  padding: 24px 32px;
   background: #080c12;
   border-bottom: 1px solid #1a2232;
 }
 
+/* Leaderboard — full-width strip */
 .land-ad-row .ad-slot-leaderboard {
   width: 100%;
   max-width: 728px;
-  gap: 5px;
+  gap: 6px;
 }
 
 .land-ad-row .ad-slot-leaderboard .ad-box {
   width: 100%;
   height: 90px;
-  background: #0d1117;
-  border: 1px dashed #1a2232;
-  border-radius: 4px;
 }
 
-.land-ad-row .ad-label {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #2a3040;
+/* Rectangle — centered block */
+.land-ad-row-rect {
+  padding: 32px 32px;
+}
+
+.land-ad-row-rect .ad-slot-rectangle .ad-box {
+  width: 300px;
+  height: 250px;
 }
 
 /* ── Features ── */
