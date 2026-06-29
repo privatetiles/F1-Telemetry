@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://f1vis.app/sitemap.xml
