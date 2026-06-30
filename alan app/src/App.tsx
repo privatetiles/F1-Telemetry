@@ -13,6 +13,14 @@ import MiniSectorTimeline from './components/MiniSectorTimeline'
 import StaticTrackMap from './components/StaticTrackMap'
 import PaceAnalysisView from './components/PaceAnalysisView'
 import PaceAnalysis2View from './components/PaceAnalysis2View'
+import Sidebar from './components/Sidebar'
+import type { AppView } from './components/Sidebar'
+import StandingsPage from './components/StandingsPage'
+import CalendarPage from './components/CalendarPage'
+import ResultsPage from './components/ResultsPage'
+import DriversPage from './components/DriversPage'
+import TeamsPage from './components/TeamsPage'
+import CircuitsPage from './components/CircuitsPage'
 import './App.css'
 
 export default function App() {
@@ -27,10 +35,11 @@ export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>('speed')
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [activeView, setActiveView] = useState<'telemetry' | 'pace' | 'pace2'>('telemetry')
+  const [activeView, setActiveView] = useState<AppView>('telemetry')
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
   const [customBgUrl, setCustomBgUrl] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const [pendingResultRound, setPendingResultRound] = useState<number | undefined>(undefined)
   const dragCounter = useRef(0)
 
   const [trackData, setTrackData] = useState<TrackData | null>(null)
@@ -214,75 +223,87 @@ export default function App() {
           <span className="logo-f1">F1</span>
           <span className="logo-text">Telemetry Visualizer</span>
         </div>
-        {loading && <span className="loading-badge">Loading…</span>}
+        {loading && activeView === 'telemetry' && <span className="loading-badge">Loading…</span>}
       </header>
 
-      <div className="tab-bar">
-        <button className={`tab-btn ${activeView === 'telemetry' ? 'active' : ''}`} onClick={() => setActiveView('telemetry')}>Telemetry</button>
-        <button className={`tab-btn ${activeView === 'pace' ? 'active' : ''}`} onClick={() => setActiveView('pace')}>Pace Analysis</button>
-        <button className={`tab-btn ${activeView === 'pace2' ? 'active' : ''}`} onClick={() => setActiveView('pace2')}>Predictions</button>
-      </div>
+      <div className="app-body">
+        <Sidebar active={activeView} onNav={setActiveView} />
 
-      {activeView === 'pace' ? (
-        <PaceAnalysisView />
-      ) : activeView === 'pace2' ? (
-        <PaceAnalysis2View />
-      ) : (
-      <>
-      <CircuitSelector
-        selectedCircuit={circuit}
-        selectedSession={session}
-        onCircuitChange={handleCircuitChange}
-        onSessionChange={(s) => { setSession(s) }}
-      />
-
-      <div className="main-layout">
-        {hasDisplayData ? (
-          <>
-            <DriverPanel
-              drivers={circuit.hasData ? session.drivers : Object.keys(mergedTelemetry)}
-              activeDrivers={activeDrivers}
-              dnfDrivers={dnfDrivers}
-              onSelect={selectDriver}
-              lapTimes={lapTimes}
-              highlightedDriver={effectiveHighlight}
-              onHighlight={setHighlightedDriver}
-              soloMode={soloMode}
-              onSoloToggle={handleSoloToggle}
-            />
-
-            <div className="center-pane">
-              <TrackMap
-                circuitId={circuit.id}
-                driverTelemetry={mergedTelemetry}
-                activeDrivers={activeDrivers}
-                highlightedDriver={effectiveHighlight}
-                soloMode={soloMode}
-                progress={progress}
-                onProgressChange={handleProgressChange}
-                playing={playing}
-                onPlayPause={() => setPlaying((p) => !p)}
-                bgImageUrl={customBgUrl ?? undefined}
+        <div className="app-content">
+          {activeView === 'standings' ? (
+            <StandingsPage />
+          ) : activeView === 'calendar' ? (
+            <CalendarPage onSelectRound={(r) => { setPendingResultRound(r); setActiveView('results') }} />
+          ) : activeView === 'results' ? (
+            <ResultsPage initialRound={pendingResultRound} />
+          ) : activeView === 'drivers' ? (
+            <DriversPage />
+          ) : activeView === 'teams' ? (
+            <TeamsPage />
+          ) : activeView === 'circuits' ? (
+            <CircuitsPage />
+          ) : activeView === 'pace' ? (
+            <PaceAnalysisView />
+          ) : activeView === 'pace2' ? (
+            <PaceAnalysis2View />
+          ) : (
+            <>
+              <CircuitSelector
+                selectedCircuit={circuit}
+                selectedSession={session}
+                onCircuitChange={handleCircuitChange}
+                onSessionChange={(s) => { setSession(s) }}
               />
 
-              <MiniSectorTimeline
-                miniSectors={miniSectors}
-                activeDrivers={activeDrivers}
-                highlightedDriver={effectiveHighlight}
-                colorMode={colorMode}
-                onColorModeChange={setColorMode}
-                progress={progress}
-              />
-            </div>
-          </>
-        ) : (
-          <div className="static-track-center">
-            <StaticTrackMap circuit={circuit} />
-          </div>
-        )}
+              <div className="main-layout">
+                {hasDisplayData ? (
+                  <>
+                    <DriverPanel
+                      drivers={circuit.hasData ? session.drivers : Object.keys(mergedTelemetry)}
+                      activeDrivers={activeDrivers}
+                      dnfDrivers={dnfDrivers}
+                      onSelect={selectDriver}
+                      lapTimes={lapTimes}
+                      highlightedDriver={effectiveHighlight}
+                      onHighlight={setHighlightedDriver}
+                      soloMode={soloMode}
+                      onSoloToggle={handleSoloToggle}
+                    />
+
+                    <div className="center-pane">
+                      <TrackMap
+                        circuitId={circuit.id}
+                        driverTelemetry={mergedTelemetry}
+                        activeDrivers={activeDrivers}
+                        highlightedDriver={effectiveHighlight}
+                        soloMode={soloMode}
+                        progress={progress}
+                        onProgressChange={handleProgressChange}
+                        playing={playing}
+                        onPlayPause={() => setPlaying((p) => !p)}
+                        bgImageUrl={customBgUrl ?? undefined}
+                      />
+
+                      <MiniSectorTimeline
+                        miniSectors={miniSectors}
+                        activeDrivers={activeDrivers}
+                        highlightedDriver={effectiveHighlight}
+                        colorMode={colorMode}
+                        onColorModeChange={setColorMode}
+                        progress={progress}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <div className="static-track-center">
+                    <StaticTrackMap circuit={circuit} />
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </div>
       </div>
-      </>
-      )}
     </div>
   )
 }
