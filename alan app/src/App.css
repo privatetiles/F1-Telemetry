@@ -1594,6 +1594,23 @@
 .pa2-map-wrap { background: #080c10; border-radius: 6px; overflow: hidden; }
 .pa2-map-img  { width: 100%; display: block; }
 
+/* ── Scroll arrow ── */
+.scroll-arrow {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  animation: bounce-down 1.4s ease-in-out infinite;
+  line-height: 1;
+  user-select: none;
+}
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); opacity: 0.25; }
+  50%       { transform: translateY(6px); opacity: 0.5; }
+}
+
 /* ══════════════════════════════════════════
    NEW PAGES — shared utilities
 ══════════════════════════════════════════ */
@@ -1687,7 +1704,7 @@
    RESULTS PAGE
 ══════════════════════════════════════════ */
 .results-page {
-  display: flex; flex: 1; overflow: hidden;
+  display: flex; flex: 1; overflow: hidden; position: relative;
 }
 .results-list {
   width: 200px; flex-shrink: 0; background: #080d13;

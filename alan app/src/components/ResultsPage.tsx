@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { fetchAllResults, fetchRaceResult, CONSTRUCTOR_TEAM } from '../lib/f1Api'
 import type { Race, RaceResult } from '../lib/f1Api'
 import { TEAM_COLORS } from '../lib/paceData'
@@ -34,6 +34,14 @@ export default function ResultsPage({ initialRound }: Props) {
   const [detail, setDetail]     = useState<Race | null>(null)
   const [loadingList, setLoadingList] = useState(true)
   const [loadingDetail, setLoadingDetail] = useState(false)
+  const [atBottom, setAtBottom] = useState(false)
+  const detailRef = useRef<HTMLDivElement>(null)
+
+  function handleDetailScroll() {
+    const el = detailRef.current
+    if (!el) return
+    setAtBottom(el.scrollTop + el.clientHeight >= el.scrollHeight - 20)
+  }
 
   useEffect(() => {
     fetchAllResults()
@@ -82,7 +90,7 @@ export default function ResultsPage({ initialRound }: Props) {
       </aside>
 
       {/* Results detail */}
-      <div className="results-detail">
+      <div className="results-detail" ref={detailRef} onScroll={handleDetailScroll}>
         {loadingDetail ? (
           <div className="page-loading">Loading results…</div>
         ) : !detail ? (
@@ -136,6 +144,10 @@ export default function ResultsPage({ initialRound }: Props) {
           </>
         )}
       </div>
+
+      {!atBottom && detail && (
+        <div className="scroll-arrow">&#8964;</div>
+      )}
     </div>
   )
 }
