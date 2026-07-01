@@ -1838,3 +1838,199 @@
 .cs-key   { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #334; }
 .cs-val   { font-size: 13px; font-weight: 700; color: #ccd; }
 .cs-sub   { font-size: 10px; color: #556; font-weight: 400; }
+
+/* ══════════════════════════════════════════
+   MOBILE (≤ 768px)
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* ── Header ── */
+  .app-header { padding: 8px 12px; }
+  .logo-text  { font-size: 11px; letter-spacing: 0.5px; }
+
+  /* ── Sidebar → bottom tab bar ── */
+  .app-body { flex-direction: column; }
+
+  .sidebar {
+    order: 2;
+    width: 100%;
+    height: 56px;
+    flex-direction: row;
+    border-right: none;
+    border-top: 1px solid #1a2330;
+    padding: 0 2px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-shrink: 0;
+    gap: 0;
+  }
+
+  .sidebar-btn {
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+    padding: 6px 4px;
+    min-width: 52px;
+    border-radius: 0;
+  }
+
+  .sidebar-icon  { font-size: 16px; }
+  .sidebar-label { font-size: 8px; letter-spacing: 0; }
+
+  .app-content { order: 1; }
+
+  /* ── Telemetry: vertical stack ── */
+  .main-layout {
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Driver panel: horizontal scroll strip */
+  .driver-panel {
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    border-right: none;
+    border-bottom: 1px solid #1e2a3a;
+    overflow: hidden;
+  }
+
+  .driver-list {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px;
+    flex: none;
+  }
+
+  .driver-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 8px;
+    min-width: 52px;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+  .driver-row.highlighted { background: #131c28; border-left-color: transparent; border-bottom-color: #e10600; }
+  .driver-row.dnf { border-top: none; border-left: none; }
+
+  .driver-pos  { display: none; }
+  .driver-time { display: none; }
+
+  /* Track map: fixed height so it's always visible */
+  .center-pane { flex: none; height: 300px; }
+  .track-map-container { min-height: 240px; }
+
+  /* Playback bar: compact */
+  .playback-bar { padding: 6px 10px; gap: 6px; }
+  .speed-btns   { display: none; }
+
+  /* Mini sector timeline: compact */
+  .mini-sector-timeline { padding: 6px 10px; }
+
+  /* HUD: smaller so it doesn't cover the track */
+  .hud-overlay { top: 6px; right: 6px; }
+  .inputs-hud  { padding: 6px 8px 5px; min-width: 100px; gap: 3px; }
+  .hud-pedal-track { height: 40px; }
+  .hud-gear { font-size: 15px; }
+
+  /* Circuit selector: compact */
+  .circuit-selector { padding: 5px 10px; gap: 6px; }
+  .selector-group label { min-width: 44px; font-size: 9px; }
+  .pill { padding: 3px 8px; font-size: 11px; }
+
+  /* Static track */
+  .static-track-center { padding: 10px; }
+  .static-track-wrap   { max-height: unset; }
+  .static-track-header { padding: 10px 14px; gap: 10px; }
+  .static-track-flag   { font-size: 24px; }
+  .static-track-name   { font-size: 14px; }
+
+  /* Prediction layout: stack vertically */
+  .pred-mode-body {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .pred-mode-track {
+    flex: 0 0 200px;
+    border-right: none;
+    border-bottom: 1px solid #1e2a38;
+  }
+  .pred-mode-sidebar { overflow-y: visible; }
+
+  /* ── Standings page ── */
+  .standings-page { padding: 14px 12px; }
+  .sc-driver { min-width: 120px; }
+  .sc-name   { display: none; }
+  .sc-team   { display: none; }
+  .sc-wins   { display: none; }
+  .sc-team-wide { min-width: 130px; }
+
+  /* ── Calendar page ── */
+  .calendar-page { padding: 14px 12px; }
+  .cal-circuit   { display: none; }
+
+  /* ── Results page: stack ── */
+  .results-page { flex-direction: column; }
+
+  .results-list {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #1a2330;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .results-list-title { display: none; }
+
+  .round-btn {
+    width: auto;
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 5px 8px;
+  }
+
+  .round-btn-name { overflow: visible; white-space: nowrap; }
+
+  .results-detail { padding: 14px 12px; }
+  .rc-team  { display: none; }
+  .rc-grid  { display: none; }
+  .rc-driver { min-width: 120px; }
+  .rc-name  { display: none; }
+
+  /* ── Drivers page ── */
+  .drivers-page { padding: 14px 12px; }
+  .drivers-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .driver-code  { font-size: 18px; }
+  .driver-num   { font-size: 18px; }
+
+  /* ── Teams page ── */
+  .teams-page  { padding: 14px 12px; }
+  .teams-grid  { grid-template-columns: 1fr; }
+
+  /* ── Circuits page ── */
+  .circuits-page  { padding: 14px 12px; }
+  .circuits-grid  { grid-template-columns: 1fr; }
+
+  /* ── Pace Analysis 2 ── */
+  .pa2-body { flex-direction: column; overflow-y: auto; }
+  .pa2-col-left {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid #1e2a38;
+    max-height: 300px;
+  }
+  .pa2-header { flex-wrap: wrap; padding: 10px 14px; gap: 8px; }
+  .pa2-race-pills { flex-wrap: wrap; }
+  .pa2-col-gap   { display: none; }
+  .pa2-col-delta { display: none; }
+}
