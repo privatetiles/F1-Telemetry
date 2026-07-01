@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchDriverStandings, CONSTRUCTOR_TEAM } from '../lib/f1Api'
+import { fetchDriverStandings } from '../lib/f1Api'
 import type { DriverStanding } from '../lib/f1Api'
 import { DRIVER_INFO } from '../lib/driverData'
 import { TEAM_COLORS } from '../lib/paceData'
