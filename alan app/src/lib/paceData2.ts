@@ -15,8 +15,8 @@ export interface Race2 {
 
 export const RACES2: Race2[] = [
   { label: 'Austria',  fullName: 'Austria GP',                       eventKey: 'fastf1_2025_austrian_grand_prix', imgPrefix: '08_austria_2025' },
-  { label: 'Belgium',  fullName: 'Belgium GP / Spa-Francorchamps',   eventKey: 'fastf1_2025_belgian_grand_prix',  imgPrefix: '09_spa_francorchamps_2025' },
   { label: 'Britain',  fullName: 'British GP / Silverstone',         eventKey: 'fastf1_2025_british_grand_prix',  imgPrefix: '10_silverstone_2025' },
+  { label: 'Belgium',  fullName: 'Belgium GP / Spa-Francorchamps',   eventKey: 'fastf1_2025_belgian_grand_prix',  imgPrefix: '09_spa_francorchamps_2025' },
   { label: 'Hungary',  fullName: 'Hungary GP / Hungaroring',         eventKey: 'fastf1_2025_hungarian_grand_prix', imgPrefix: '11_hungaroring_2025' },
 ]
 
