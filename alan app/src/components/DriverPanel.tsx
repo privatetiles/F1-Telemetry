@@ -1,5 +1,4 @@
 import { driverColor } from '../lib/teamColors'
-import AdSlot from './AdSlot'
 
 interface Props {
   drivers: string[]
@@ -84,7 +83,6 @@ export default function DriverPanel({
           )
         })}
       </div>
-      <AdSlot size="panel" />
     </div>
   )
 }

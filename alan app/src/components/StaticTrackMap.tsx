@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo } from 'react'
 import type { CircuitConfig } from '../types'
 import { loadTrackData, loadCircuitPrediction, CIRCUIT_TRACK_PREFIX, TEAM_COLORS } from '../lib/paceData'
 import type { TrackData, CircuitPrediction, PredictionEntry } from '../lib/paceData'
-import AdSlot from './AdSlot'
 
 const SVG_W = 900
 const SVG_H = 600
@@ -264,9 +263,6 @@ export default function StaticTrackMap({ circuit }: Props) {
 
       <div className="static-track-footer">
         <span className="static-track-await">Data incoming — full telemetry visualization will appear here</span>
-        <div className="static-track-ad">
-          <AdSlot size="rectangle" />
-        </div>
       </div>
     </div>
   )
