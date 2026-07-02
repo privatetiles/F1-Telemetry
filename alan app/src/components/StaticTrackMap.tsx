@@ -102,8 +102,11 @@ function OutlineTrack({ outline }: { outline: TrackOutline }) {
 // ── Prediction delta cell ─────────────────────────────────────────────────────
 
 function Delta({ v }: { v: number }) {
-  const color = v >= -0.1 ? '#e8eaf0' : v > -1 ? '#f0c040' : v > -2.5 ? '#ff8800' : '#cc3333'
-  const s = v >= 0 ? `+${v.toFixed(2)}` : v.toFixed(2)
+  // v is speed % delta (negative = slower than Mercedes)
+  // Display as gap: positive = slower (standard F1 convention)
+  const gap = -v
+  const color = gap <= 0.1 ? '#e8eaf0' : gap <= 1 ? '#f0c040' : gap <= 2.5 ? '#ff8800' : '#cc3333'
+  const s = gap <= 0 ? `-${Math.abs(gap).toFixed(2)}` : `+${gap.toFixed(2)}`
   return <span style={{ color, fontFamily: 'monospace', fontSize: 11 }}>{s}</span>
 }
 
@@ -159,7 +162,7 @@ function PredictionPanel({ prediction }: { prediction: CircuitPrediction }) {
         <span style={{ color: '#e74c3c' }}>● SLO</span>
         <span style={{ color: '#27ae60' }}>● FST</span>
         <span style={{ color: '#8899aa' }}>● STR</span>
-        <span style={{ color: '#556', fontSize: 10 }}>% speed delta vs Mercedes</span>
+        <span style={{ color: '#556', fontSize: 10 }}>+ = slower than Mercedes · − = faster</span>
       </div>
     </div>
   )
