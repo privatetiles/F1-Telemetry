@@ -21,6 +21,7 @@ import ResultsPage from './components/ResultsPage'
 import DriversPage from './components/DriversPage'
 import TeamsPage from './components/TeamsPage'
 import CircuitsPage from './components/CircuitsPage'
+import PrivacyPage from './components/PrivacyPage'
 import './App.css'
 
 export default function App() {
@@ -242,6 +243,8 @@ export default function App() {
             <TeamsPage />
           ) : activeView === 'circuits' ? (
             <CircuitsPage />
+          ) : activeView === 'privacy' ? (
+            <PrivacyPage />
           ) : activeView === 'pace' ? (
             <PaceAnalysisView />
           ) : activeView === 'pace2' ? (
