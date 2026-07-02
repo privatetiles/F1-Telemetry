@@ -9,12 +9,13 @@ import type { DriverPrediction, TeamDelta2, PolePrediction, Race2 } from '../lib
 
 function Delta({ v, dim }: { v: number; dim?: boolean }) {
   if (!isFinite(v)) return <span style={{ color: '#445', fontFamily: 'monospace', fontSize: 11 }}>—</span>
+  const gap = -v
   const color = dim ? '#445'
-    : v >= -0.05 ? '#e8eaf0'
-    : v > -1     ? '#f0c040'
-    : v > -2.5   ? '#ff8800'
+    : gap <= 0.05 ? '#e8eaf0'
+    : gap <= 1    ? '#f0c040'
+    : gap <= 2.5  ? '#ff8800'
     :               '#cc3333'
-  const s = v >= 0 ? `+${v.toFixed(2)}` : v.toFixed(2)
+  const s = gap <= 0 ? `-${Math.abs(gap).toFixed(2)}` : `+${gap.toFixed(2)}`
   return <span style={{ color, fontFamily: 'monospace', fontSize: 11 }}>{s}</span>
 }
 

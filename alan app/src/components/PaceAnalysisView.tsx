@@ -9,8 +9,9 @@ import type { DeltaMap, PredictionEntry, Category, TrackData } from '../lib/pace
 // ── Delta % display ─────────────────────────────────────────────────────────
 
 function DeltaPct({ v, dim = false }: { v: number; dim?: boolean }) {
-  const color = v >= 0 ? '#00e676' : v > -1 ? '#c8d800' : v > -2 ? '#ffab00' : '#f44336'
-  const s = v >= 0 ? `+${v.toFixed(3)}%` : `${v.toFixed(3)}%`
+  const gap = -v
+  const color = gap <= 0 ? '#00e676' : gap < 1 ? '#c8d800' : gap < 2 ? '#ffab00' : '#f44336'
+  const s = gap <= 0 ? `-${Math.abs(gap).toFixed(3)}%` : `+${gap.toFixed(3)}%`
   return <span style={{ color: dim ? '#445' : color, fontFamily: 'monospace', fontSize: 12, fontWeight: 700 }}>{s}</span>
 }
 
@@ -108,7 +109,8 @@ function CircuitHistory({ deltaMap, predictions }: { deltaMap: DeltaMap; predict
                 ? computeOverall(catMap)
                 : (catMap[cat]?.delta ?? NaN)
               const bg = isFinite(delta) ? deltaColor(delta) : '#1a2030'
-              const text = isFinite(delta) ? delta.toFixed(2) : '—'
+              const gap = -delta
+              const text = isFinite(delta) ? (gap > 0 ? `+${gap.toFixed(2)}` : gap.toFixed(2)) : '—'
               return (
                 <div
                   key={ev}
