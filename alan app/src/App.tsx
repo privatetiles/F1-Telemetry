@@ -39,7 +39,12 @@ export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>('speed')
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [activeView, setActiveView] = useState<AppView>('telemetry')
+  const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'privacy', 'about', 'disclaimer']
+  const hashToView = (hash: string): AppView => {
+    const v = hash.replace(/^#\/?/, '') as AppView
+    return VALID_VIEWS.includes(v) ? v : 'telemetry'
+  }
+  const [activeView, setActiveView] = useState<AppView>(() => hashToView(window.location.hash))
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
   const [customBgUrl, setCustomBgUrl] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
@@ -47,6 +52,16 @@ export default function App() {
   const dragCounter = useRef(0)
 
   const [trackData, setTrackData] = useState<TrackData | null>(null)
+
+  useEffect(() => {
+    window.location.hash = activeView === 'telemetry' ? '' : activeView
+  }, [activeView])
+
+  useEffect(() => {
+    const onPop = () => setActiveView(hashToView(window.location.hash))
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
 
   // Driver speed profiles — built in background (backup data, not shown in UI)
   const [driverProfiles, setDriverProfiles] = useState<ProfileData | null>(null)
