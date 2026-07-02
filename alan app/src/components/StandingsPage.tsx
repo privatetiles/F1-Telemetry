@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   fetchDriverStandings, fetchConstructorStandings,
   fetchAllResults, fetchDriverStandingsByRound, CONSTRUCTOR_TEAM,
@@ -28,6 +28,12 @@ function raceAbbr(raceName: string): string {
   return ROUND_ABBR[name] ?? name.slice(0, 3).toUpperCase()
 }
 
+// SVG chart geometry constants
+const W = 580, H = 240
+const PAD = { top: 12, right: 8, bottom: 28, left: 40 }
+const cw = W - PAD.left - PAD.right
+const ch = H - PAD.top - PAD.bottom
+
 export default function StandingsPage() {
   const [drivers, setDrivers]           = useState<DriverStanding[]>([])
   const [constructors, setConstructors] = useState<ConstructorStanding[]>([])
@@ -37,6 +43,11 @@ export default function StandingsPage() {
   const [chartSeries, setChartSeries]   = useState<ChartSeries[]>([])
   const [chartRounds, setChartRounds]   = useState<string[]>([])
   const [chartLoading, setChartLoading] = useState(true)
+  const [selectedCodes, setSelectedCodes] = useState<Set<string>>(new Set())
+
+  const [hoverRound, setHoverRound]     = useState<number | null>(null)
+  const [hoverPixelX, setHoverPixelX]   = useState(0)
+  const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
     setLoading(true); setError(false)
@@ -53,8 +64,7 @@ export default function StandingsPage() {
         const perRound = await Promise.all(
           roundNums.map(r => fetchDriverStandingsByRound(r).catch(() => []))
         )
-        const top8 = currentDrivers.slice(0, 8)
-        const series: ChartSeries[] = top8.map(dr => {
+        const series: ChartSeries[] = currentDrivers.map(dr => {
           const teamName = CONSTRUCTOR_TEAM[dr.Constructors[0]?.constructorId] ?? ''
           const color = TEAM_COLORS[teamName] ?? '#445'
           const pts = perRound.map(rStandings => {
@@ -65,10 +75,36 @@ export default function StandingsPage() {
         })
         setChartSeries(series)
         setChartRounds(races.map(r => raceAbbr(r.raceName)))
+        setSelectedCodes(new Set(currentDrivers.slice(0, 8).map(d => d.Driver.code)))
       })
       .catch(() => {})
       .finally(() => setChartLoading(false))
   }, [])
+
+  function toggleDriver(code: string) {
+    setSelectedCodes(prev => {
+      const next = new Set(prev)
+      if (next.has(code)) { if (next.size > 1) next.delete(code) }
+      else next.add(code)
+      return next
+    })
+  }
+
+  function handleSvgMouseMove(e: React.MouseEvent<SVGSVGElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const relX = e.clientX - rect.left
+    setHoverPixelX(relX)
+    const svgX = (relX / rect.width) * W
+    const n = chartRounds.length
+    if (n === 0) return
+    let nearest = 0, minDist = Infinity
+    for (let i = 0; i < n; i++) {
+      const xp = PAD.left + (n > 1 ? (i / (n - 1)) * cw : cw / 2)
+      const d = Math.abs(xp - svgX)
+      if (d < minDist) { minDist = d; nearest = i }
+    }
+    setHoverRound(nearest)
+  }
 
   if (loading) return <div className="page-loading">Loading standings…</div>
   if (error)   return <div className="page-error">Failed to load standings</div>
@@ -76,75 +112,124 @@ export default function StandingsPage() {
   const maxDriverPts = parseFloat(drivers[0]?.points ?? '1') || 1
   const maxConPts    = parseFloat(constructors[0]?.points ?? '1') || 1
 
-  // Chart geometry
-  const W = 580, H = 240
-  const PAD = { top: 12, right: 8, bottom: 28, left: 40 }
-  const cw = W - PAD.left - PAD.right
-  const ch = H - PAD.top - PAD.bottom
   const n = chartRounds.length
-  const maxPts = Math.max(...chartSeries.flatMap(s => s.points), 100)
-  const yStep = maxPts <= 100 ? 25 : maxPts <= 200 ? 50 : 100
+  const visibleSeries = chartSeries.filter(s => selectedCodes.has(s.code))
+  const maxPts = Math.max(...visibleSeries.flatMap(s => s.points), 100)
+  const yStep = maxPts <= 100 ? 25 : maxPts <= 250 ? 50 : 100
   const yTicks: number[] = []
   for (let y = 0; y <= maxPts + yStep; y += yStep) yTicks.push(y)
+  const yMax = yTicks[yTicks.length - 1] || 1
   const xPos = (i: number) => PAD.left + (n > 1 ? (i / (n - 1)) * cw : cw / 2)
-  const yPos = (pts: number) => PAD.top + ch - (pts / (yTicks[yTicks.length - 1] || 1)) * ch
+  const yPos = (pts: number) => PAD.top + ch - (pts / yMax) * ch
+
+  const tooltipOnLeft = hoverRound !== null && hoverRound > n / 2
 
   return (
     <div className="standings-page">
 
       {/* Points Over Time chart */}
       <section className="standings-section">
-        <h2 className="standings-title">Points Over Time — Top 8</h2>
+        <h2 className="standings-title">Points Over Time</h2>
         {chartLoading ? (
           <div className="page-loading-sm">Loading chart…</div>
         ) : chartSeries.length === 0 ? (
           <div className="page-empty">No data yet</div>
         ) : (
           <div className="pts-chart-wrap">
-            <svg viewBox={`0 0 ${W} ${H}`} className="pts-chart-svg">
-              {/* Horizontal grid lines */}
-              {yTicks.map(y => (
-                <line key={y}
-                  x1={PAD.left} x2={W - PAD.right}
-                  y1={yPos(y)} y2={yPos(y)}
-                  stroke="#1a2330" strokeWidth="1" strokeDasharray="3,4"
-                />
-              ))}
-              {/* Y axis labels */}
-              {yTicks.map(y => (
-                <text key={y} x={PAD.left - 6} y={yPos(y) + 4}
-                  textAnchor="end" fontSize="9" fill="#445" fontFamily="monospace">
-                  {y}
-                </text>
-              ))}
-              {/* X axis labels */}
-              {chartRounds.map((label, i) => (
-                <text key={i} x={xPos(i)} y={H - PAD.bottom + 14}
-                  textAnchor="middle" fontSize="9" fill="#445" fontFamily="monospace">
-                  {label}
-                </text>
-              ))}
-              {/* Lines + dots */}
-              {chartSeries.map(s => (
-                <g key={s.code}>
-                  <polyline
-                    points={s.points.map((p, i) => `${xPos(i)},${yPos(p)}`).join(' ')}
-                    fill="none" stroke={s.color} strokeWidth="2"
-                    strokeLinecap="round" strokeLinejoin="round"
+            {/* SVG chart */}
+            <div style={{ position: 'relative' }}>
+              <svg
+                ref={svgRef}
+                viewBox={`0 0 ${W} ${H}`}
+                className="pts-chart-svg"
+                onMouseMove={handleSvgMouseMove}
+                onMouseLeave={() => setHoverRound(null)}
+              >
+                {/* Grid lines */}
+                {yTicks.map(y => (
+                  <line key={y}
+                    x1={PAD.left} x2={W - PAD.right}
+                    y1={yPos(y)} y2={yPos(y)}
+                    stroke="#1a2330" strokeWidth="1" strokeDasharray="3,4"
                   />
-                  {s.points.map((p, i) => (
-                    <circle key={i} cx={xPos(i)} cy={yPos(p)} r="3" fill={s.color} />
-                  ))}
-                </g>
-              ))}
-            </svg>
-            {/* Legend */}
-            <div className="pts-chart-legend">
+                ))}
+                {/* Hover vertical line */}
+                {hoverRound !== null && (
+                  <line
+                    x1={xPos(hoverRound)} x2={xPos(hoverRound)}
+                    y1={PAD.top} y2={H - PAD.bottom}
+                    stroke="#2a3a4a" strokeWidth="1"
+                  />
+                )}
+                {/* Y axis labels */}
+                {yTicks.map(y => (
+                  <text key={y} x={PAD.left - 6} y={yPos(y) + 4}
+                    textAnchor="end" fontSize="9" fill="#445" fontFamily="monospace">
+                    {y}
+                  </text>
+                ))}
+                {/* X axis labels */}
+                {chartRounds.map((label, i) => (
+                  <text key={i} x={xPos(i)} y={H - PAD.bottom + 14}
+                    textAnchor="middle" fontSize="9" fill="#445" fontFamily="monospace">
+                    {label}
+                  </text>
+                ))}
+                {/* Lines + dots */}
+                {visibleSeries.map(s => (
+                  <g key={s.code}>
+                    <polyline
+                      points={s.points.map((p, i) => `${xPos(i)},${yPos(p)}`).join(' ')}
+                      fill="none" stroke={s.color} strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round"
+                    />
+                    {s.points.map((p, i) => (
+                      <circle key={i} cx={xPos(i)} cy={yPos(p)} r="3" fill={s.color} />
+                    ))}
+                  </g>
+                ))}
+                {/* Hover dots (highlighted) */}
+                {hoverRound !== null && visibleSeries.map(s => (
+                  <circle key={s.code}
+                    cx={xPos(hoverRound)} cy={yPos(s.points[hoverRound])}
+                    r="5" fill={s.color} stroke="#0d1117" strokeWidth="2"
+                  />
+                ))}
+              </svg>
+
+              {/* Hover tooltip */}
+              {hoverRound !== null && (
+                <div
+                  className={`pts-tooltip ${tooltipOnLeft ? 'pts-tooltip-left' : ''}`}
+                  style={{ left: hoverPixelX }}
+                >
+                  <div className="pts-tooltip-round">{chartRounds[hoverRound]}</div>
+                  {visibleSeries
+                    .slice()
+                    .sort((a, b) => b.points[hoverRound!] - a.points[hoverRound!])
+                    .map(s => (
+                      <div key={s.code} className="pts-tooltip-row">
+                        <span className="pts-tooltip-dot" style={{ background: s.color }} />
+                        <span className="pts-tooltip-code">{s.code}</span>
+                        <span className="pts-tooltip-pts">{s.points[hoverRound!]}</span>
+                      </div>
+                    ))
+                  }
+                </div>
+              )}
+            </div>
+
+            {/* Driver toggles */}
+            <div className="pts-driver-toggles">
               {chartSeries.map(s => (
-                <span key={s.code} className="pts-legend-item">
-                  <span className="pts-legend-dot" style={{ background: s.color }} />
+                <button
+                  key={s.code}
+                  className={`pts-toggle-btn ${selectedCodes.has(s.code) ? 'active' : ''}`}
+                  style={selectedCodes.has(s.code) ? { borderColor: s.color, color: s.color } : {}}
+                  onClick={() => toggleDriver(s.code)}
+                >
                   {s.code}
-                </span>
+                </button>
               ))}
             </div>
           </div>
