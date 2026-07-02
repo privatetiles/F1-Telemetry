@@ -91,3 +91,8 @@ export async function fetchRaceResult(round: number): Promise<Race | null> {
   const d = await get(`/2026/${round}/results.json`)
   return d.MRData?.RaceTable?.Races?.[0] ?? null
 }
+
+export async function fetchDriverStandingsByRound(round: number): Promise<DriverStanding[]> {
+  const d = await get(`/2026/${round}/driverStandings.json`)
+  return d.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings ?? []
+}
