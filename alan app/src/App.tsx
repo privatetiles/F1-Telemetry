@@ -24,6 +24,7 @@ import CircuitsPage from './components/CircuitsPage'
 import PrivacyPage from './components/PrivacyPage'
 import AboutPage from './components/AboutPage'
 import DisclaimerPage from './components/DisclaimerPage'
+import InsightsPage from './components/InsightsPage'
 import './App.css'
 
 export default function App() {
@@ -245,6 +246,8 @@ export default function App() {
             <TeamsPage />
           ) : activeView === 'circuits' ? (
             <CircuitsPage />
+          ) : activeView === 'insights' ? (
+            <InsightsPage />
           ) : activeView === 'privacy' ? (
             <PrivacyPage />
           ) : activeView === 'about' ? (
