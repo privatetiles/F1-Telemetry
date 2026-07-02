@@ -22,6 +22,8 @@ import DriversPage from './components/DriversPage'
 import TeamsPage from './components/TeamsPage'
 import CircuitsPage from './components/CircuitsPage'
 import PrivacyPage from './components/PrivacyPage'
+import AboutPage from './components/AboutPage'
+import DisclaimerPage from './components/DisclaimerPage'
 import './App.css'
 
 export default function App() {
@@ -245,6 +247,10 @@ export default function App() {
             <CircuitsPage />
           ) : activeView === 'privacy' ? (
             <PrivacyPage />
+          ) : activeView === 'about' ? (
+            <AboutPage />
+          ) : activeView === 'disclaimer' ? (
+            <DisclaimerPage />
           ) : activeView === 'pace' ? (
             <PaceAnalysisView />
           ) : activeView === 'pace2' ? (
@@ -307,6 +313,16 @@ export default function App() {
           )}
         </div>
       </div>
+
+      <footer className="app-footer">
+        <button className="footer-link" onClick={() => setActiveView('about')}>About</button>
+        <span className="footer-sep">·</span>
+        <button className="footer-link" onClick={() => setActiveView('privacy')}>Privacy Policy</button>
+        <span className="footer-sep">·</span>
+        <button className="footer-link" onClick={() => setActiveView('disclaimer')}>Disclaimer</button>
+        <span className="footer-sep">·</span>
+        <span className="footer-copy">© 2026 f1vis.app — Fan project, not affiliated with Formula 1®</span>
+      </footer>
     </div>
   )
 }

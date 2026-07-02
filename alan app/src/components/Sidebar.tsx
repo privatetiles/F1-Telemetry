@@ -1,4 +1,4 @@
-type AppView = 'telemetry' | 'standings' | 'calendar' | 'results' | 'drivers' | 'teams' | 'circuits' | 'pace' | 'pace2' | 'privacy'
+type AppView = 'telemetry' | 'standings' | 'calendar' | 'results' | 'drivers' | 'teams' | 'circuits' | 'pace' | 'pace2' | 'privacy' | 'about' | 'disclaimer'
 
 interface Props {
   active: AppView
@@ -31,15 +31,6 @@ export default function Sidebar({ active, onNav }: Props) {
           <span className="sidebar-label">{label}</span>
         </button>
       ))}
-      <div className="sidebar-spacer" />
-      <button
-        className={`sidebar-btn sidebar-btn-privacy ${active === 'privacy' ? 'active' : ''}`}
-        title="Privacy Policy"
-        onClick={() => onNav('privacy')}
-      >
-        <span className="sidebar-icon" style={{ fontSize: 13 }}>🔒</span>
-        <span className="sidebar-label">Privacy</span>
-      </button>
     </nav>
   )
 }
