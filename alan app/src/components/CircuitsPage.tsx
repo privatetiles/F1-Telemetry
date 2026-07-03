@@ -41,6 +41,9 @@ export default function CircuitsPage() {
   return (
     <div className="circuits-page">
       <h2 className="page-title">2026 Circuit Guide</h2>
+      <p className="page-intro">
+        The 2026 Formula 1 calendar spans 22 rounds across five continents, from the season opener at Albert Park in Melbourne through to the finale at Yas Marina in Abu Dhabi. New for 2026, the Madrid Street Circuit joins the calendar at round 14, replacing the long-standing Spanish GP slot. Each circuit card shows the key technical data relevant to race engineering: lap distance, total race laps, number of DRS detection zones, and the current outright lap record and its holder. DRS zone count is a useful proxy for how much raw straight-line speed advantages matter at each venue.
+      </p>
       <div className="circuits-grid">
         {sorted.map(([id, c]) => {
           const flag  = CIRCUIT_FLAGS[id] ?? '🏁'

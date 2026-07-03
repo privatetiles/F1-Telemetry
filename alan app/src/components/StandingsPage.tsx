@@ -126,6 +126,9 @@ export default function StandingsPage() {
 
   return (
     <div className="standings-page">
+      <p className="page-intro">
+        Live 2026 Formula 1 championship standings, updated after every race. The Points Over Time chart tracks how the driver standings have evolved round by round — toggle individual drivers on and off to compare their trajectories across the season. Hover over any round to see the exact points totals for all visible drivers at that stage of the championship. The constructor standings below reflect the combined points haul of each team's two drivers.
+      </p>
 
       {/* Points Over Time chart */}
       <section className="standings-section">

@@ -59,6 +59,9 @@ export default function CalendarPage({ onSelectRound }: Props) {
   return (
     <div className="calendar-page">
       <h2 className="page-title">2026 F1 Season Calendar</h2>
+      <p className="page-intro">
+        The 2026 Formula 1 World Championship runs 22 races across five continents from March to December. Completed rounds show a countdown from the race date; click any finished race to jump straight to its full results breakdown including finishing order, fastest lap, and driver status. The next upcoming race is highlighted. New to the 2026 calendar: the Madrid Street Circuit hosts the Spanish Grand Prix for the first time, joining the schedule as round 14.
+      </p>
       <div className="cal-list">
         {races.map((race) => {
           const st  = raceStatus(race.date)

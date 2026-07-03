@@ -323,6 +323,9 @@ export default function PaceAnalysisView() {
 
   return (
     <div className="pace-view">
+      <p className="page-intro">
+        F1 team pace analysis built from FastF1 telemetry data. Speed deltas are calculated as the percentage difference from Mercedes across three track categories — slow corners, fast corners, and straights — weighted by the time each team spends in each zone per lap. A positive value means slower than Mercedes; negative means faster. The circuit history grid shows how each team's pace has varied across different race venues throughout the season, letting you identify which teams are circuit-dependent and which are consistently strong.
+      </p>
       <PredictionTable predictions={predictions} />
       <CircuitHistory deltaMap={deltaMap} predictions={predictions} />
       <MapViewer />

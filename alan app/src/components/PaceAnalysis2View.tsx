@@ -197,6 +197,9 @@ export default function PaceAnalysis2View() {
 
   return (
     <div className="pa2-view">
+      <p className="page-intro">
+        Race-by-race pace predictions for the 2026 Formula 1 season, generated from FastF1 sector telemetry and time-weighted speed delta modelling. Select a race weekend to see the predicted qualifying order, estimated pole lap time, and team pace rankings broken down by slow corners, fast corners, and straights. All deltas shown are relative to Mercedes — positive means slower, negative means faster. Predictions are updated after each race weekend as new telemetry data becomes available.
+      </p>
       <div className="pa2-header">
         <div className="pa2-title">
           <span className="pa2-title-label">Pace Analysis 2</span>

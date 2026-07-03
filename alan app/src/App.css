@@ -619,6 +619,12 @@
 .footer-copy { color: #2a3a4a; margin-left: 4px; }
 .footer-legal { color: #2a3a4a; font-size: 9px; flex-basis: 100%; line-height: 1.4; padding-top: 2px; }
 
+/* ── Page intro text (AdSense content signal) ── */
+.page-intro {
+  color: #667; font-size: 12px; line-height: 1.7;
+  max-width: 780px; margin: 0 0 16px 0; padding: 0 24px;
+}
+
 /* ── Insights Page ── */
 .insights-page { flex: 1; overflow-y: auto; background: #080c10; }
 .insights-header {

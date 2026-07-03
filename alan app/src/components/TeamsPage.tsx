@@ -40,6 +40,9 @@ export default function TeamsPage() {
   return (
     <div className="teams-page">
       <h2 className="page-title">2026 Constructor Lineup</h2>
+      <p className="page-intro">
+        Eleven constructors contest the 2026 Formula 1 World Championship — the largest grid in over a decade. The headline story is the arrival of Cadillac from Concord, USA and Audi from Hinwil, Switzerland, both debuting new power unit programmes from scratch. The 2026 technical regulations mandate fully active aerodynamic systems and a significantly revised hybrid architecture, resetting the development pecking order and opening the constructor championship in ways not seen since the major overhaul of 2022. Teams are ranked by current points total.
+      </p>
       <div className="teams-grid">
         {teams.map((teamName) => {
           const color   = TEAM_COLORS[teamName] ?? '#445'

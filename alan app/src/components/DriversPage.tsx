@@ -23,6 +23,9 @@ export default function DriversPage() {
   return (
     <div className="drivers-page">
       <h2 className="page-title">2026 Driver Roster</h2>
+      <p className="page-intro">
+        The 2026 Formula 1 season fields 22 drivers across 11 constructors, including two new American-backed entries — Cadillac and Audi — making their championship debuts. Sweeping regulation changes have introduced fully active aerodynamics and a revised hybrid power unit formula, compressing the performance gap across the grid and reshaping the driver standings compared to recent seasons. Cards are ranked by current championship position and updated live throughout the season.
+      </p>
       <div className="drivers-grid">
         {entries.map(([code, info]) => {
           const s      = standingMap[code]
