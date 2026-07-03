@@ -339,7 +339,9 @@ export default function App() {
         <span className="footer-sep">·</span>
         <button className="footer-link" onClick={() => setActiveView('disclaimer')}>Disclaimer</button>
         <span className="footer-sep">·</span>
-        <span className="footer-copy">© 2026 f1vis.app — Fan project, not affiliated with Formula 1®</span>
+        <span className="footer-copy">© 2026 f1vis.app</span>
+        <span className="footer-sep">·</span>
+        <span className="footer-legal">This website is unofficial and is not associated in any way with the Formula 1 companies. F1, FORMULA ONE, FORMULA 1, FIA FORMULA ONE WORLD CHAMPIONSHIP, GRAND PRIX and related marks are trade marks of Formula One Licensing B.V.</span>
       </footer>
     </div>
   )
