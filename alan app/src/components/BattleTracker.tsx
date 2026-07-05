@@ -83,7 +83,6 @@ export default function BattleTracker({ drivers, driverTelemetry, progress, refL
       }))
       .sort((a, b) => b.dist - a.dist)
 
-    const leaderDist = positions[0]?.dist ?? 0
     const leaderTel = driverTelemetry[positions[0]?.driver]
 
     return positions.map((dp, i) => {
