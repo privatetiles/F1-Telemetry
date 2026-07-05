@@ -2507,9 +2507,9 @@
   .driver-pos  { display: none; }
   .driver-time { display: none; }
 
-  /* Track map: fixed height so it's always visible */
-  .center-pane { flex: none; height: 300px; }
-  .track-map-container { min-height: 240px; }
+  /* Track map: let center-pane size to content so mini sector stays visible */
+  .center-pane { flex: none; height: auto; }
+  .track-map-container { height: 260px; min-height: 260px; flex-shrink: 0; }
 
   /* Playback bar: compact */
   .playback-bar { padding: 6px 10px; gap: 6px; }
@@ -2623,6 +2623,26 @@
   .pa2-col-gap   { display: none; }
   .pa2-col-delta { display: none; }
 
-  .battle-panel { width: 100%; border-left: none; border-top: 1px solid #1e2a3a; flex-shrink: 0; max-height: 220px; }
-  .battle-driver-select { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+  .battle-panel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #1e2a3a;
+    flex-shrink: 0;
+    max-height: 170px;
+  }
+  .battle-driver-select {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: none;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+  .battle-pill { padding: 4px 8px; font-size: 10px; }
+  .battle-gap-list { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; padding: 4px 8px; gap: 12px; }
+  .battle-gap-row { flex-direction: column; align-items: center; gap: 2px; padding: 4px 6px; border-bottom: none; border-right: 1px solid #0d1520; min-width: 52px; }
+  .battle-footer { display: none; }
+  /* Hide SVG gap labels on mobile — unreadable at 40% scale; battle panel shows the data instead */
+  .battle-gap-label { display: none; }
 }

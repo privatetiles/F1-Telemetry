@@ -278,7 +278,7 @@ export default function TrackMap({
             const ly = pos.y - 28
 
             return (
-              <g key={`bl-${driver}`}>
+              <g key={`bl-${driver}`} className="battle-gap-label">
                 {/* connector line from dot to label */}
                 <line
                   x1={pos.x} y1={pos.y}
