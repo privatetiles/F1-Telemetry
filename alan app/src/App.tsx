@@ -214,7 +214,7 @@ export default function App() {
 
   const refLapDuration = useMemo(() => {
     const times = Object.values(lapTimes).filter(isFinite)
-    return times.length > 0 ? Math.min(...times) : 90
+    return times.length > 0 ? Math.max(...times) : 90
   }, [lapTimes])
 
   const battleGaps = useMemo<BattleGapEntry[]>(

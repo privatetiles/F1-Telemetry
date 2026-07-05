@@ -102,15 +102,17 @@ export default function TrackMap({
 
   const transform = useMemo(() => buildTransform(allPoints), [allPoints])
 
-  // Fastest driver = reference for lap duration and animation speed
+  // poleDriver = fastest; refLapDuration = slowest (animation runs until all finish)
   const { poleDriver, refLapDuration } = useMemo(() => {
-    let best: string | null = null
+    let pole: string | null = null
     let bestTime = Infinity
+    let maxTime = 0
     for (const [driver, tel] of Object.entries(driverTelemetry)) {
       const t = tel.at(-1)?.time ?? Infinity
-      if (t < bestTime) { bestTime = t; best = driver }
+      if (t < bestTime) { bestTime = t; pole = driver }
+      if (isFinite(t) && t > maxTime) maxTime = t
     }
-    return { poleDriver: best, refLapDuration: bestTime === Infinity ? 90 : bestTime }
+    return { poleDriver: pole, refLapDuration: maxTime > 0 ? maxTime : 90 }
   }, [driverTelemetry])
 
   // Clip zones per driver — computed once per session load
