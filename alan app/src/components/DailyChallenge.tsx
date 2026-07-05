@@ -5,7 +5,7 @@ import { telemetryUrl } from '../lib/dataIndex'
 import { CHALLENGES, shuffledOptions, getTodaysChallenge } from '../lib/challengeData'
 
 const STREAK_KEY  = 'f1vis_ch_streak'
-const ANSWER_KEY  = (idx: number) => `f1vis_ch_${idx}`
+const ANSWER_KEY  = (id: string) => `f1vis_ch_${id}`
 
 // ── Speed trace SVG ──────────────────────────────────────────────────────────
 
@@ -99,14 +99,18 @@ export default function DailyChallenge() {
   const [streak,      setStreak]      = useState(0)
   const [showHint,    setShowHint]    = useState(false)
 
-  const { challenge, dayIdx } = useMemo(() => getTodaysChallenge(), [])
-  const options = useMemo(() => shuffledOptions(challenge, dayIdx), [challenge, dayIdx])
+  const { challenge, challengeId } = useMemo(() => getTodaysChallenge(), [])
+  const options = useMemo(() => shuffledOptions(challenge, challenge.id.charCodeAt(0)), [challenge])
 
   const revealed = picked !== null
 
   useEffect(() => {
-    // Restore saved answer
-    const saved = localStorage.getItem(ANSWER_KEY(dayIdx))
+    setPicked(null)
+    setTelemetry([])
+    setLoadErr(false)
+
+    // Restore saved answer for this challenge
+    const saved = localStorage.getItem(ANSWER_KEY(challengeId))
     if (saved) {
       try {
         const data: SavedAnswer = JSON.parse(saved)
@@ -123,7 +127,7 @@ export default function DailyChallenge() {
     loadTelemetry(url)
       .then(setTelemetry)
       .catch(() => setLoadErr(true))
-  }, [challenge, dayIdx])
+  }, [challenge, challengeId])
 
   function handlePick(name: string) {
     if (revealed) return
@@ -133,15 +137,15 @@ export default function DailyChallenge() {
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
     localStorage.setItem(STREAK_KEY, String(newStreak))
-    localStorage.setItem(ANSWER_KEY(dayIdx), JSON.stringify({ picked: name, correct }))
+    localStorage.setItem(ANSWER_KEY(challengeId), JSON.stringify({ picked: name, correct }))
   }
 
   const isCorrect = picked === challenge.answer
 
   // ── Calendar view: all past answers ──────────────────────────────────────
   const historyDots = useMemo(() => {
-    return CHALLENGES.map((_, i) => {
-      const saved = localStorage.getItem(ANSWER_KEY(getDayIndexFor(i)))
+    return CHALLENGES.map((ch) => {
+      const saved = localStorage.getItem(ANSWER_KEY(ch.id))
       if (!saved) return null
       try { return (JSON.parse(saved) as SavedAnswer).correct } catch { return null }
     })
@@ -162,14 +166,14 @@ export default function DailyChallenge() {
 
       {/* Progress dots */}
       <div className="ch-progress-dots">
-        {CHALLENGES.map((_, i) => {
+        {CHALLENGES.map((ch, i) => {
           const h = historyDots[i]
-          const isToday = i === dayIdx % CHALLENGES.length
+          const isToday = ch.id === challengeId
           return (
             <span
-              key={i}
+              key={ch.id}
               className={`ch-dot ${h === true ? 'correct' : h === false ? 'wrong' : isToday ? 'today' : 'future'}`}
-              title={CHALLENGES[i].answer}
+              title={ch.answer}
             />
           )
         })}
@@ -254,7 +258,7 @@ export default function DailyChallenge() {
             const h = historyDots[i]
             if (h === null) return null
             return (
-              <div key={i} className={`ch-archive-row ${h ? 'correct' : 'wrong'}`}>
+              <div key={ch.id} className={`ch-archive-row ${h ? 'correct' : 'wrong'}`}>
                 <span>{ch.flag}</span>
                 <span>{ch.answer}</span>
                 <span>{h ? '✓' : '✗'}</span>
@@ -267,13 +271,3 @@ export default function DailyChallenge() {
   )
 }
 
-// dayIdx for the i-th challenge in the rotation (working backwards from today)
-function getDayIndexFor(challengeSlot: number): number {
-  const todayIdx = Math.floor(Date.now() / 86_400_000)
-  const todaySlot = todayIdx % CHALLENGES.length
-  const diff = (challengeSlot - todaySlot + CHALLENGES.length) % CHALLENGES.length
-  // if diff === 0 → today, diff === 1 → tomorrow (future), else → past
-  if (diff === 0) return todayIdx
-  if (diff <= CHALLENGES.length / 2) return todayIdx + diff  // future
-  return todayIdx - (CHALLENGES.length - diff)               // past
-}
