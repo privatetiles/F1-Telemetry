@@ -4,6 +4,7 @@ import { interpolatePositionAtTime, interpolateInputsAtTime } from '../lib/miniS
 import { driverColor } from '../lib/teamColors'
 import { loadTrackData, CIRCUIT_TRACK_PREFIX } from '../lib/paceData'
 import type { TrackData } from '../lib/paceData'
+import { detectClipZones } from '../lib/clipDetection'
 import InputsHUD from './InputsHUD'
 import SatelliteView from './SatelliteView'
 
@@ -77,6 +78,8 @@ export default function TrackMap({
   const [showSatellite,  setShowSatellite]  = useState(false)
   const [satCamDriver,   setSatCamDriver]   = useState<string | null>(null)
   const [trackData,      setTrackData]      = useState<TrackData | null>(null)
+  const [showClip,       setShowClip]       = useState(false)
+  const [showClipTip,    setShowClipTip]    = useState(false)
 
   // Load 3-class track data for this circuit
   useEffect(() => {
@@ -105,6 +108,17 @@ export default function TrackMap({
     }
     return { poleDriver: best, refLapDuration: bestTime === Infinity ? 90 : bestTime }
   }, [driverTelemetry])
+
+  // Clip zones per driver — computed once per session load
+  const clipZones = useMemo(() => {
+    if (!showClip) return {}
+    const out: Record<string, ReturnType<typeof detectClipZones>> = {}
+    for (const [driver, tel] of Object.entries(driverTelemetry)) {
+      const zones = detectClipZones(tel)
+      if (zones.length > 0) out[driver] = zones
+    }
+    return out
+  }, [driverTelemetry, showClip])
 
   // Animation loop
   useEffect(() => {
@@ -244,12 +258,49 @@ export default function TrackMap({
             )
           })}
 
+          {/* Clip zones — battery depletion markers */}
+          {showClip && Object.entries(clipZones).map(([driver, zones]) => {
+            if (!activeDrivers.has(driver)) return null
+            return zones.map((zone, zi) => {
+              const pts = zone.points.map(p => {
+                const { x, y } = transform.apply(p)
+                return `${x.toFixed(1)},${y.toFixed(1)}`
+              }).join(' ')
+              return (
+                <polyline
+                  key={`clip-${driver}-${zi}`}
+                  points={pts}
+                  fill="none"
+                  stroke="#ff9800"
+                  strokeWidth={6}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  opacity={0.85}
+                />
+              )
+            })
+          })}
+
           {!hasData && (
             <text x={SVG_W / 2} y={SVG_H / 2} textAnchor="middle" fill="#555" fontSize={16}>
               Loading telemetry…
             </text>
           )}
         </svg>
+      )}
+
+      {/* Clip zones tooltip (first-time) */}
+      {showClipTip && (
+        <div className="clip-tip-overlay" onClick={() => setShowClipTip(false)}>
+          <div className="clip-tip-box">
+            <span className="clip-tip-icon">🔋</span>
+            <div>
+              <strong>Battery clip zones</strong>
+              <p>Orange sections = full throttle but speed dropping. This is where the driver's ERS battery runs out of charge mid-straight, losing the electric power boost.</p>
+              <span className="clip-tip-dismiss">Click to dismiss</span>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Inputs HUD overlay */}
@@ -288,6 +339,21 @@ export default function TrackMap({
           title="Toggle satellite follow-cam view"
         >
           SAT
+        </button>
+        <button
+          className={`speed-btn ${showClip ? 'active clip-btn' : ''}`}
+          onClick={() => {
+            const next = !showClip
+            setShowClip(next)
+            if (next && !localStorage.getItem('f1vis_clip_seen')) {
+              setShowClipTip(true)
+              localStorage.setItem('f1vis_clip_seen', '1')
+              setTimeout(() => setShowClipTip(false), 5000)
+            }
+          }}
+          title="Highlight battery clip zones (full throttle + speed drop)"
+        >
+          CLIP
         </button>
       </div>
     </div>

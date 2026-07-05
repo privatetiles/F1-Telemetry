@@ -25,6 +25,8 @@ import PrivacyPage from './components/PrivacyPage'
 import AboutPage from './components/AboutPage'
 import DisclaimerPage from './components/DisclaimerPage'
 import InsightsPage from './components/InsightsPage'
+import DailyChallenge from './components/DailyChallenge'
+import BattleTracker from './components/BattleTracker'
 import './App.css'
 
 export default function App() {
@@ -39,7 +41,7 @@ export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>('speed')
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'privacy', 'about', 'disclaimer']
+  const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'challenge', 'privacy', 'about', 'disclaimer']
   const hashToView = (hash: string): AppView => {
     const v = hash.replace(/^#\/?/, '') as AppView
     return VALID_VIEWS.includes(v) ? v : 'telemetry'
@@ -206,6 +208,11 @@ export default function App() {
     return out
   }, [mergedTelemetry])
 
+  const refLapDuration = useMemo(() => {
+    const times = Object.values(lapTimes).filter(isFinite)
+    return times.length > 0 ? Math.min(...times) : 90
+  }, [lapTimes])
+
   const miniSectors = useMemo(
     () => trackData
       ? computeMiniSectorsFromSegments(mergedTelemetry, trackData.segments)
@@ -263,6 +270,8 @@ export default function App() {
             <CircuitsPage />
           ) : activeView === 'insights' ? (
             <InsightsPage />
+          ) : activeView === 'challenge' ? (
+            <DailyChallenge />
           ) : activeView === 'privacy' ? (
             <PrivacyPage />
           ) : activeView === 'about' ? (
@@ -320,6 +329,13 @@ export default function App() {
                         progress={progress}
                       />
                     </div>
+
+                    <BattleTracker
+                      drivers={circuit.hasData ? session.drivers : Object.keys(mergedTelemetry)}
+                      driverTelemetry={mergedTelemetry}
+                      progress={progress}
+                      refLapDuration={refLapDuration}
+                    />
                   </>
                 ) : (
                   <div className="static-track-center">
