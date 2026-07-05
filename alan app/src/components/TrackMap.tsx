@@ -272,10 +272,10 @@ export default function TrackMap({
             const isLeader = position === 1
             const gapText = isLeader ? 'LEAD' : gap > 0 ? `+${gap.toFixed(3)}` : `−${Math.abs(gap).toFixed(3)}`
             const gapColor = isLeader ? '#f0c040' : gap > 1 ? '#ff5252' : gap > 0.3 ? '#f0c040' : '#00e676'
-            const labelW = 62
-            const labelH = 16
-            const lx = pos.x + 10
-            const ly = pos.y - 20
+            const labelW = 90
+            const labelH = 24
+            const lx = pos.x + 12
+            const ly = pos.y - 28
 
             return (
               <g key={`bl-${driver}`}>
@@ -283,22 +283,39 @@ export default function TrackMap({
                 <line
                   x1={pos.x} y1={pos.y}
                   x2={lx} y2={ly + labelH / 2}
-                  stroke={col} strokeWidth={1} opacity={0.5}
+                  stroke={col} strokeWidth={1.5} opacity={0.6}
                 />
                 {/* label background */}
                 <rect
                   x={lx} y={ly}
                   width={labelW} height={labelH}
-                  rx={3} ry={3}
-                  fill="#050c14e8"
+                  rx={4} ry={4}
+                  fill="#050c14f0"
                   stroke={col}
-                  strokeWidth={1}
+                  strokeWidth={1.5}
                 />
+                {/* position badge */}
+                <rect
+                  x={lx} y={ly}
+                  width={18} height={labelH}
+                  rx={4} ry={4}
+                  fill={col + '33'}
+                />
+                <text
+                  x={lx + 9} y={ly + 16}
+                  fill={col}
+                  fontSize={10}
+                  fontFamily="monospace"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                >
+                  P{position}
+                </text>
                 {/* driver code */}
                 <text
-                  x={lx + 5} y={ly + 11}
+                  x={lx + 22} y={ly + 16}
                   fill={col}
-                  fontSize={8}
+                  fontSize={11}
                   fontFamily="monospace"
                   fontWeight="bold"
                 >
@@ -306,9 +323,9 @@ export default function TrackMap({
                 </text>
                 {/* gap value */}
                 <text
-                  x={lx + labelW - 4} y={ly + 11}
+                  x={lx + labelW - 5} y={ly + 16}
                   fill={gapColor}
-                  fontSize={8}
+                  fontSize={11}
                   fontFamily="monospace"
                   fontWeight="bold"
                   textAnchor="end"
