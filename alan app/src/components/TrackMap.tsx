@@ -74,8 +74,9 @@ export default function TrackMap({
   bgImageUrl,
   battleGaps = [],
 }: Props) {
-  const rafRef      = useRef<number | null>(null)
-  const lastTimeRef = useRef<number | null>(null)
+  const rafRef       = useRef<number | null>(null)
+  const lastTimeRef  = useRef<number | null>(null)
+  const progressRef  = useRef(0)
   const [playSpeed,      setPlaySpeed]      = useState(1)
   const [showHUD,        setShowHUD]        = useState(false)
   const [showSatellite,  setShowSatellite]  = useState(false)
@@ -123,6 +124,9 @@ export default function TrackMap({
     return out
   }, [driverTelemetry, showClip])
 
+  // Keep progressRef in sync so the RAF tick can read the current value
+  useEffect(() => { progressRef.current = progress }, [progress])
+
   // Animation loop
   useEffect(() => {
     if (!playing) {
@@ -134,15 +138,20 @@ export default function TrackMap({
       if (lastTimeRef.current === null) lastTimeRef.current = now
       const dt = (now - lastTimeRef.current) / 1000
       lastTimeRef.current = now
-      onProgressChange((prev: number) => {
-        const next = prev + (dt * playSpeed) / refLapDuration
-        return next >= 1 ? 0 : next
-      })
+      const next = progressRef.current + (dt * playSpeed) / refLapDuration
+      if (next >= 1) {
+        progressRef.current = 1
+        onProgressChange(1)
+        onPlayPause()   // pause — everyone has crossed the line
+        return
+      }
+      progressRef.current = next
+      onProgressChange(next)
       rafRef.current = requestAnimationFrame(tick)
     }
     rafRef.current = requestAnimationFrame(tick)
     return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
-  }, [playing, refLapDuration, playSpeed, onProgressChange])
+  }, [playing, refLapDuration, playSpeed, onProgressChange, onPlayPause])
 
   const focusDriver = soloMode
     ? (Array.from(activeDrivers)[0] ?? null)
