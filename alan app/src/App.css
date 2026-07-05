@@ -2481,10 +2481,11 @@
     flex-shrink: 0;
     border-right: none;
     border-bottom: 1px solid #1e2a3a;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .driver-list {
+    display: flex;
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
