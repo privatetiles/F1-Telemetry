@@ -6,6 +6,8 @@ import { computeMiniSectors, computeMiniSectorsFromSegments } from './lib/miniSe
 import { loadTrackData, CIRCUIT_TRACK_PREFIX } from './lib/paceData'
 import type { TrackData } from './lib/paceData'
 import { buildDriverSpeedProfiles, getEffectiveLayout, type ProfileData } from './lib/lapPredictor'
+import { computeBattleGaps } from './lib/battleGaps'
+import type { BattleGapEntry } from './lib/battleGaps'
 import CircuitSelector from './components/CircuitSelector'
 import TrackMap from './components/TrackMap'
 import DriverPanel from './components/DriverPanel'
@@ -47,6 +49,7 @@ export default function App() {
     return VALID_VIEWS.includes(v) ? v : 'telemetry'
   }
   const [activeView, setActiveView] = useState<AppView>(() => hashToView(window.location.hash))
+  const [battleDrivers, setBattleDrivers] = useState<string[]>([])
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
   const [customBgUrl, setCustomBgUrl] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
@@ -134,6 +137,7 @@ export default function App() {
     setDriverTelemetry({})
     setDnfDrivers(new Set())
     setActiveDrivers(new Set())
+    setBattleDrivers([])
 
     if (!circuit.hasData) {
       setLoading(false)
@@ -212,6 +216,11 @@ export default function App() {
     const times = Object.values(lapTimes).filter(isFinite)
     return times.length > 0 ? Math.min(...times) : 90
   }, [lapTimes])
+
+  const battleGaps = useMemo<BattleGapEntry[]>(
+    () => computeBattleGaps(battleDrivers, mergedTelemetry, progress * refLapDuration),
+    [battleDrivers, mergedTelemetry, progress, refLapDuration],
+  )
 
   const miniSectors = useMemo(
     () => trackData
@@ -318,6 +327,7 @@ export default function App() {
                         playing={playing}
                         onPlayPause={() => setPlaying((p) => !p)}
                         bgImageUrl={customBgUrl ?? undefined}
+                        battleGaps={battleGaps}
                       />
 
                       <MiniSectorTimeline
@@ -335,6 +345,8 @@ export default function App() {
                       driverTelemetry={mergedTelemetry}
                       progress={progress}
                       refLapDuration={refLapDuration}
+                      battleDrivers={battleDrivers}
+                      onChangeBattleDrivers={setBattleDrivers}
                     />
                   </>
                 ) : (

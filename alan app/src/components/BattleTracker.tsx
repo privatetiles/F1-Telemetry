@@ -1,39 +1,7 @@
-import { useState, useMemo } from 'react'
+import { useMemo } from 'react'
 import type { TelemetryPoint } from '../types'
 import { driverColor } from '../lib/teamColors'
-
-// ── Interpolation helpers ────────────────────────────────────────────────────
-
-function distanceAtTime(tel: TelemetryPoint[], t: number): number {
-  if (tel.length === 0) return 0
-  if (t <= tel[0].time) return tel[0].distance
-  const last = tel[tel.length - 1]
-  if (t >= last.time) return last.distance
-  let lo = 0, hi = tel.length - 1
-  while (lo < hi - 1) {
-    const mid = (lo + hi) >> 1
-    if (tel[mid].time < t) lo = mid; else hi = mid
-  }
-  const a = tel[lo], b = tel[hi]
-  const frac = (t - a.time) / (b.time - a.time)
-  return a.distance + frac * (b.distance - a.distance)
-}
-
-function timeAtDistance(tel: TelemetryPoint[], dist: number): number {
-  if (tel.length === 0) return 0
-  if (dist <= tel[0].distance) return tel[0].time
-  const last = tel[tel.length - 1]
-  if (dist >= last.distance) return last.time
-  let lo = 0, hi = tel.length - 1
-  while (lo < hi - 1) {
-    const mid = (lo + hi) >> 1
-    if (tel[mid].distance < dist) lo = mid; else hi = mid
-  }
-  const a = tel[lo], b = tel[hi]
-  if (b.distance === a.distance) return a.time
-  const frac = (dist - a.distance) / (b.distance - a.distance)
-  return a.time + frac * (b.time - a.time)
-}
+import { computeBattleGaps } from '../lib/battleGaps'
 
 function formatLapTime(sec: number): string {
   const m = Math.floor(sec / 60)
@@ -46,67 +14,56 @@ function formatGap(sec: number): string {
   return `+${sec.toFixed(3)}`
 }
 
-// ── Component ────────────────────────────────────────────────────────────────
-
 interface Props {
   drivers: string[]
   driverTelemetry: Record<string, TelemetryPoint[]>
   progress: number
   refLapDuration: number
+  battleDrivers: string[]
+  onChangeBattleDrivers: (d: string[]) => void
 }
 
 const MAX_BATTLE = 5
 
-export default function BattleTracker({ drivers, driverTelemetry, progress, refLapDuration }: Props) {
-  const [selected, setSelected] = useState<string[]>([])
-
+export default function BattleTracker({
+  drivers,
+  driverTelemetry,
+  progress,
+  refLapDuration,
+  battleDrivers,
+  onChangeBattleDrivers,
+}: Props) {
   const availableDrivers = drivers.filter((d) => driverTelemetry[d])
 
   function toggle(driver: string) {
-    setSelected((prev) => {
-      if (prev.includes(driver)) return prev.filter((d) => d !== driver)
-      if (prev.length >= MAX_BATTLE) return prev
-      return [...prev, driver]
-    })
+    if (battleDrivers.includes(driver)) {
+      onChangeBattleDrivers(battleDrivers.filter((d) => d !== driver))
+    } else if (battleDrivers.length < MAX_BATTLE) {
+      onChangeBattleDrivers([...battleDrivers, driver])
+    }
   }
 
   const targetTime = progress * refLapDuration
 
-  const gapData = useMemo(() => {
-    if (selected.length < 2) return []
+  const gapData = useMemo(
+    () => computeBattleGaps(battleDrivers, driverTelemetry, targetTime),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [battleDrivers, driverTelemetry, targetTime],
+  )
 
-    const positions = selected
-      .filter((d) => driverTelemetry[d])
-      .map((d) => ({
-        driver: d,
-        dist: distanceAtTime(driverTelemetry[d], targetTime),
-      }))
-      .sort((a, b) => b.dist - a.dist)
-
-    const leaderTel = driverTelemetry[positions[0]?.driver]
-
-    return positions.map((dp, i) => {
-      const gap = i === 0 ? 0 : targetTime - timeAtDistance(leaderTel, dp.dist)
-      const gapToAhead = i === 0 ? null
-        : targetTime - timeAtDistance(driverTelemetry[positions[i - 1].driver], dp.dist)
-      return { driver: dp.driver, gap, gapToAhead, position: i + 1 }
-    })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected, driverTelemetry, targetTime])
-
-  const active = selected.length >= 2
+  const active = battleDrivers.length >= 2
 
   return (
     <div className="battle-panel">
       <div className="battle-header">
         <span className="battle-title">BATTLE</span>
-        <span className="battle-subtitle">{selected.length}/5</span>
+        <span className="battle-subtitle">{battleDrivers.length}/5</span>
       </div>
 
       <div className="battle-driver-select">
         {availableDrivers.map((d) => {
-          const isSel = selected.includes(d)
-          const disabled = !isSel && selected.length >= MAX_BATTLE
+          const isSel = battleDrivers.includes(d)
+          const disabled = !isSel && battleDrivers.length >= MAX_BATTLE
           return (
             <button
               key={d}
@@ -156,7 +113,7 @@ export default function BattleTracker({ drivers, driverTelemetry, progress, refL
         </div>
       )}
 
-      {active && selected.length > 1 && (
+      {active && (
         <div className="battle-footer">
           gap to leader · △ to car ahead
         </div>

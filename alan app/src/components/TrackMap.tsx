@@ -5,6 +5,7 @@ import { driverColor } from '../lib/teamColors'
 import { loadTrackData, CIRCUIT_TRACK_PREFIX } from '../lib/paceData'
 import type { TrackData } from '../lib/paceData'
 import { detectClipZones } from '../lib/clipDetection'
+import type { BattleGapEntry } from '../lib/battleGaps'
 import InputsHUD from './InputsHUD'
 import SatelliteView from './SatelliteView'
 
@@ -57,6 +58,7 @@ interface Props {
   playing: boolean
   onPlayPause: () => void
   bgImageUrl?: string
+  battleGaps?: BattleGapEntry[]
 }
 
 export default function TrackMap({
@@ -70,6 +72,7 @@ export default function TrackMap({
   playing,
   onPlayPause,
   bgImageUrl,
+  battleGaps = [],
 }: Props) {
   const rafRef      = useRef<number | null>(null)
   const lastTimeRef = useRef<number | null>(null)
@@ -254,6 +257,64 @@ export default function TrackMap({
                     {driver}
                   </text>
                 )}
+              </g>
+            )
+          })}
+
+          {/* Battle gap labels — F1 TV style */}
+          {battleGaps.length >= 2 && battleGaps.map(({ driver, gap, position }) => {
+            const tel = driverTelemetry[driver]
+            if (!tel) return null
+            const raw = interpolatePositionAtTime(tel, targetTime)
+            if (!raw) return null
+            const pos = transform.apply(raw)
+            const col = driverColor(driver)
+            const isLeader = position === 1
+            const gapText = isLeader ? 'LEAD' : gap > 0 ? `+${gap.toFixed(3)}` : `−${Math.abs(gap).toFixed(3)}`
+            const gapColor = isLeader ? '#f0c040' : gap > 1 ? '#ff5252' : gap > 0.3 ? '#f0c040' : '#00e676'
+            const labelW = 62
+            const labelH = 16
+            const lx = pos.x + 10
+            const ly = pos.y - 20
+
+            return (
+              <g key={`bl-${driver}`}>
+                {/* connector line from dot to label */}
+                <line
+                  x1={pos.x} y1={pos.y}
+                  x2={lx} y2={ly + labelH / 2}
+                  stroke={col} strokeWidth={1} opacity={0.5}
+                />
+                {/* label background */}
+                <rect
+                  x={lx} y={ly}
+                  width={labelW} height={labelH}
+                  rx={3} ry={3}
+                  fill="#050c14e8"
+                  stroke={col}
+                  strokeWidth={1}
+                />
+                {/* driver code */}
+                <text
+                  x={lx + 5} y={ly + 11}
+                  fill={col}
+                  fontSize={8}
+                  fontFamily="monospace"
+                  fontWeight="bold"
+                >
+                  {driver}
+                </text>
+                {/* gap value */}
+                <text
+                  x={lx + labelW - 4} y={ly + 11}
+                  fill={gapColor}
+                  fontSize={8}
+                  fontFamily="monospace"
+                  fontWeight="bold"
+                  textAnchor="end"
+                >
+                  {gapText}
+                </text>
               </g>
             )
           })}
