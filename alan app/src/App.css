@@ -2353,14 +2353,31 @@
    CIRCUITS PAGE
 ══════════════════════════════════════════ */
 .circuits-page { padding: 20px 24px; overflow-y: auto; flex: 1; }
+
+.circuit-search {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  border: 1px solid #2a3a4a;
+  background: #0d1520;
+  color: #ccd;
+  font-size: 12px;
+  outline: none;
+}
+.circuit-search:focus { border-color: #3a5a7a; }
+
 .circuits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 10px;
 }
 .circuit-card {
   background: #0a0f16; border: 1px solid #1a2330; border-radius: 8px;
   overflow: hidden; transition: border-color 0.15s;
+  display: flex; flex-direction: column;
 }
 .circuit-card:hover { border-color: #2a3a4a; }
 .circuit-card-header {
@@ -2373,15 +2390,43 @@
 .circ-name-block { display: flex; flex-direction: column; gap: 1px; }
 .circ-country { font-size: 10px; font-weight: 700; color: #445; text-transform: uppercase; letter-spacing: 0.5px; }
 .circ-name    { font-size: 12px; color: #aab; }
-.circuit-card-stats {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; padding: 10px 14px 12px;
+
+/* Badges row */
+.circ-badges {
+  display: flex; gap: 5px; flex-wrap: wrap;
+  padding: 7px 14px;
+  border-bottom: 1px solid #1a2330;
 }
-.circ-stat { display: flex; flex-direction: column; gap: 2px; }
+.circ-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+  padding: 2px 7px; border-radius: 3px;
+  border: 1px solid currentColor;
+}
+.circ-badge-dim { color: #445; border-color: #2a3a4a; }
+
+/* Stats grid — 3 columns */
+.circuit-card-stats {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px 6px; padding: 10px 14px 12px;
+}
+.circ-stat { display: flex; flex-direction: column; gap: 3px; }
 .circ-stat-wide { grid-column: 1 / -1; }
 .cs-key   { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #334; }
-.cs-val   { font-size: 13px; font-weight: 700; color: #ccd; }
+.cs-val   { font-size: 12px; font-weight: 700; color: #ccd; }
 .cs-sub   { font-size: 10px; color: #556; font-weight: 400; }
+
+/* Downforce bar */
+.cs-val-df { display: flex; align-items: center; gap: 8px; }
+.df-bar-wrap { display: flex; gap: 2px; align-items: center; }
+.df-bar-seg  { width: 12px; height: 6px; border-radius: 2px; }
+
+/* Character note */
+.circ-character {
+  font-size: 11px; color: #556; line-height: 1.6;
+  padding: 8px 14px 12px;
+  border-top: 1px solid #1a2330;
+  flex: 1;
+}
 
 /* ══════════════════════════════════════════
    MOBILE (≤ 768px)
