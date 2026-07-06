@@ -50,10 +50,9 @@ function parseTelemetryText(text: string): Promise<TelemetryPoint[]> {
             (p) =>
               isFinite(p.time) &&
               isFinite(p.speed) &&
-              isFinite(p.x) &&
-              isFinite(p.y) &&
               isFinite(p.distance) &&
               isFinite(p.relDist)
+            // x/y may be NaN for sessions without GPS (e.g. Monaco race) — allowed
           )
 
         points.sort((a, b) => a.time - b.time)

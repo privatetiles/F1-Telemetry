@@ -96,8 +96,10 @@ export default function TrackMap({
   const allPoints = useMemo(() => {
     const entries = Object.values(driverTelemetry)
     if (entries.length === 0) return []
-    const ref = entries.reduce((best, cur) => cur.length > best.length ? cur : best)
-    return ref.map((p) => ({ x: p.x, y: p.y }))
+    // Pick the driver with the most GPS-valid points (some sessions lack X/Y)
+    const gpsCount = (tel: typeof entries[0]) => tel.filter(p => isFinite(p.x) && isFinite(p.y)).length
+    const ref = entries.reduce((best, cur) => gpsCount(cur) > gpsCount(best) ? cur : best)
+    return ref.filter(p => isFinite(p.x) && isFinite(p.y)).map((p) => ({ x: p.x, y: p.y }))
   }, [driverTelemetry])
 
   const transform = useMemo(() => buildTransform(allPoints), [allPoints])
