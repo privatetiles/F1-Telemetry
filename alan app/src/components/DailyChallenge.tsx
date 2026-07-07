@@ -171,7 +171,7 @@ interface SavedAnswer {
   correct: boolean
 }
 
-const HISTORY_DAYS = 14
+const HISTORY_DAYS = 14  // days to show in archive
 
 export default function DailyChallenge() {
   const [telemetry, setTelemetry] = useState<TelemetryPoint[]>([])
@@ -181,7 +181,7 @@ export default function DailyChallenge() {
   const [showHint,  setShowHint]  = useState(false)
 
   const { challenge, challengeId } = useMemo(() => getTodaysChallenge(), [])
-  const options = useMemo(() => shuffledOptions(challenge, challenge.id.charCodeAt(0)), [challenge])
+  const options = useMemo(() => shuffledOptions(challenge, challengeId), [challenge, challengeId])
 
   const revealed = picked !== null
 
@@ -216,8 +216,8 @@ export default function DailyChallenge() {
 
   const isCorrect = picked === challenge.answer
 
-  // Rolling window: last HISTORY_DAYS days (oldest first)
-  const historyDots = useMemo(() => {
+  // Past HISTORY_DAYS days for archive (oldest first)
+  const recentHistory = useMemo(() => {
     const days: { dateStr: string; correct: boolean | null; isToday: boolean }[] = []
     for (let i = HISTORY_DAYS - 1; i >= 0; i--) {
       const d = new Date()
@@ -254,17 +254,6 @@ export default function DailyChallenge() {
           Can you identify which circuit this {sessionLabel} was driven at?
           New challenge every day.
         </p>
-      </div>
-
-      {/* 14-day progress dots */}
-      <div className="ch-progress-dots">
-        {historyDots.map(({ dateStr, correct, isToday }) => (
-          <span
-            key={dateStr}
-            className={`ch-dot ${correct === true ? 'correct' : correct === false ? 'wrong' : isToday ? 'today' : 'missed'}`}
-            title={dateStr}
-          />
-        ))}
       </div>
 
       {/* Telemetry chart */}
@@ -332,7 +321,7 @@ export default function DailyChallenge() {
       <div className="ch-archive">
         <div className="ch-archive-title">Your history</div>
         <div className="ch-archive-list">
-          {historyDots
+          {recentHistory
             .filter(d => !d.isToday && d.correct !== null)
             .reverse()
             .map(({ dateStr, correct }) => {

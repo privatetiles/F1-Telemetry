@@ -546,25 +546,6 @@
   margin: 0;
 }
 
-/* Progress dots */
-.ch-progress-dots {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-}
-
-.ch-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-}
-.ch-dot.correct { background: #00e676; }
-.ch-dot.wrong   { background: #f44336; }
-.ch-dot.today   { background: #f0c040; border: 2px solid #f0c04088; box-shadow: 0 0 6px #f0c04066; }
-.ch-dot.future  { background: #1e2a3a; border: 1px solid #2a3a4a; }
-.ch-dot.missed  { background: #1a2030; border: 1px solid #252f40; }
 
 /* Trace */
 .ch-trace-wrap {

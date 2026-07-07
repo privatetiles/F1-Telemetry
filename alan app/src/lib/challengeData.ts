@@ -115,38 +115,95 @@ export const CHALLENGES: Challenge[] = [
 ]
 
 // Season start = first race date
-const BASE_DATE_MS = Date.parse('2026-03-08')
+// ── Schedule (localStorage-backed random rotation) ────────────────────────────
 
-function utcDateStr(d = new Date()): string {
-  const y = d.getUTCFullYear()
-  const m = String(d.getUTCMonth() + 1).padStart(2, '0')
-  const day = String(d.getUTCDate()).padStart(2, '0')
-  return `${y}-${m}-${day}`
+const SCHEDULE_KEY = 'f1vis_schedule'
+const NO_REPEAT_WINDOW = 3  // a challenge won't reappear until N others have been shown
+
+interface ScheduleEntry { date: string; challengeId: string }
+interface Schedule { entries: ScheduleEntry[] }
+
+function loadSchedule(): Schedule {
+  try {
+    const raw = localStorage.getItem(SCHEDULE_KEY)
+    if (raw) return JSON.parse(raw) as Schedule
+  } catch { /* ignore */ }
+  return { entries: [] }
 }
 
-function challengeForOffset(dayOffset: number): Challenge {
-  return CHALLENGES[Math.max(0, dayOffset) % CHALLENGES.length]
+function saveSchedule(s: Schedule): void {
+  try {
+    // Keep only last 60 entries to avoid localStorage bloat
+    s.entries = s.entries.slice(-60)
+    localStorage.setItem(SCHEDULE_KEY, JSON.stringify(s))
+  } catch { /* ignore */ }
+}
+
+// LCG seeded by a string — deterministic for the same date+id combo
+function seededRand(seed: string): () => number {
+  let s = 0
+  for (let i = 0; i < seed.length; i++) s = ((s * 31) + seed.charCodeAt(i)) >>> 0
+  return () => {
+    s = (s * 1664525 + 1013904223) >>> 0
+    return s / 0x100000000
+  }
+}
+
+function utcDateStr(d = new Date()): string {
+  const y   = d.getUTCFullYear()
+  const mo  = String(d.getUTCMonth() + 1).padStart(2, '0')
+  const day = String(d.getUTCDate()).padStart(2, '0')
+  return `${y}-${mo}-${day}`
+}
+
+function pickChallengeForDate(dateStr: string, schedule: Schedule): Challenge {
+  const sorted = [...schedule.entries].sort((a, b) => a.date.localeCompare(b.date))
+  const recentIds = new Set(sorted.slice(-NO_REPEAT_WINDOW).map(e => e.challengeId))
+  const pool = CHALLENGES.filter(c => !recentIds.has(c.id))
+  const eligible = pool.length > 0 ? pool : CHALLENGES
+
+  const rand = seededRand(dateStr)
+  const shuffled = [...eligible].sort(() => rand() - 0.5)
+  return shuffled[0]
 }
 
 export function getChallengeForDate(dateStr: string): { challenge: Challenge; challengeId: string } {
-  const dayOffset = Math.floor((Date.parse(dateStr) - BASE_DATE_MS) / 86400000)
-  return { challenge: challengeForOffset(dayOffset), challengeId: dateStr }
+  const schedule = loadSchedule()
+  const entry = schedule.entries.find(e => e.date === dateStr)
+  if (entry) {
+    const challenge = CHALLENGES.find(c => c.id === entry.challengeId) ?? CHALLENGES[0]
+    return { challenge, challengeId: dateStr }
+  }
+  // Not yet assigned (past date not in history or future) — derive without writing
+  const challenge = pickChallengeForDate(dateStr, schedule)
+  return { challenge, challengeId: dateStr }
 }
 
 export function getTodaysChallenge(): { challenge: Challenge; challengeId: string } {
-  return getChallengeForDate(utcDateStr())
+  const today = utcDateStr()
+  const schedule = loadSchedule()
+
+  const existing = schedule.entries.find(e => e.date === today)
+  if (existing) {
+    const challenge = CHALLENGES.find(c => c.id === existing.challengeId) ?? CHALLENGES[0]
+    return { challenge, challengeId: today }
+  }
+
+  const challenge = pickChallengeForDate(today, schedule)
+  schedule.entries.push({ date: today, challengeId: challenge.id })
+  saveSchedule(schedule)
+  return { challenge, challengeId: today }
 }
 
-// Seeded shuffle: same option order for all users on a given day
-export function shuffledOptions(challenge: Challenge, seed: number): ChallengeOption[] {
+// Shuffled answer options — seeded by date so they change daily
+export function shuffledOptions(challenge: Challenge, dateSeed: string): ChallengeOption[] {
   const opts: ChallengeOption[] = [
     { name: challenge.answer, flag: challenge.flag },
     ...challenge.distractors,
   ]
-  const s = (seed * 2654435761 + challenge.id.charCodeAt(0)) >>> 0
-  const rand = (i: number) => ((s * (i + 7) * 1664525 + 1013904223) >>> 0) / 0x100000000
+  const rand = seededRand(dateSeed + challenge.id)
   for (let i = opts.length - 1; i > 0; i--) {
-    const j = Math.floor(rand(i) * (i + 1))
+    const j = Math.floor(rand() * (i + 1))
     ;[opts[i], opts[j]] = [opts[j], opts[i]]
   }
   return opts
