@@ -1,5 +1,7 @@
 import type { SessionType } from '../types'
 
+export type ChartType = 'speed' | 'gear' | 'throttle' | 'brakeThrottle'
+
 export interface ChallengeOption {
   name: string
   flag: string
@@ -12,158 +14,130 @@ export interface Challenge {
   driver: string
   answer: string
   flag: string
-  activeSince: string   // YYYY-MM-DD — challenge becomes active on this UTC date
+  chartType: ChartType
   distractors: [ChallengeOption, ChallengeOption, ChallengeOption]
   hint: string
 }
 
+export const CHART_TYPE_LABELS: Record<ChartType, string> = {
+  speed:         'Speed (km/h) across one lap',
+  gear:          'Gear selection across one lap',
+  throttle:      'Throttle application (%) across one lap',
+  brakeThrottle: 'Throttle & braking across one lap',
+}
+
+export const CHART_TYPE_QUESTIONS: Record<ChartType, string> = {
+  speed:         'Study the anonymous speed trace.',
+  gear:          'Study the anonymous gear trace.',
+  throttle:      'Study the anonymous throttle trace.',
+  brakeThrottle: 'Study the anonymous throttle & brake trace.',
+}
+
+// Circuit shorthand options
+const AUS = { name: 'Australian GP',          flag: '🇦🇺' }
+const CHI = { name: 'Chinese GP',             flag: '🇨🇳' }
+const JPN = { name: 'Japanese GP',            flag: '🇯🇵' }
+const MIA = { name: 'Miami GP',               flag: '🇺🇸' }
+const CAN = { name: 'Canadian GP',            flag: '🇨🇦' }
+const MON = { name: 'Monaco GP',              flag: '🇲🇨' }
+const BAR = { name: 'Barcelona-Catalunya GP', flag: '🇪🇸' }
+const AUT = { name: 'Austrian GP',            flag: '🇦🇹' }
+const GBR = { name: 'British GP',             flag: '🇬🇧' }
+
+// 30-challenge rotating pool — cycles every 30 days.
+// Day 0 = 2026-03-08. Today (2026-07-07) = day 121 = index 1.
 export const CHALLENGES: Challenge[] = [
-  {
-    id: 'aus_q',
-    circuitId: 'australia',
-    sessionType: 'qualifying',
-    driver: 'NOR',
-    activeSince: '2026-03-08',
-    answer: 'Australian GP',
-    flag: '🇦🇺',
-    distractors: [
-      { name: 'Monaco GP',   flag: '🇲🇨' },
-      { name: 'Canadian GP', flag: '🇨🇦' },
-      { name: 'Austrian GP', flag: '🇦🇹' },
-    ],
-    hint: 'A street circuit converted for F1 racing',
-  },
-  {
-    id: 'chi_q',
-    circuitId: 'china',
-    sessionType: 'qualifying',
-    driver: 'NOR',
-    activeSince: '2026-03-15',
-    answer: 'Chinese GP',
-    flag: '🇨🇳',
-    distractors: [
-      { name: 'Miami GP',    flag: '🇺🇸' },
-      { name: 'Japanese GP', flag: '🇯🇵' },
-      { name: 'British GP',  flag: '🇬🇧' },
-    ],
-    hint: 'This circuit has one of the longest back straights on the calendar',
-  },
-  {
-    id: 'jpn_q',
-    circuitId: 'japan',
-    sessionType: 'qualifying',
-    driver: 'NOR',
-    activeSince: '2026-03-29',
-    answer: 'Japanese GP',
-    flag: '🇯🇵',
-    distractors: [
-      { name: 'Australian GP',          flag: '🇦🇺' },
-      { name: 'Barcelona-Catalunya GP', flag: '🇪🇸' },
-      { name: 'Austrian GP',            flag: '🇦🇹' },
-    ],
-    hint: 'Famously known for its figure-of-eight layout',
-  },
-  {
-    id: 'mia_q',
-    circuitId: 'miami',
-    sessionType: 'qualifying',
-    driver: 'NOR',
-    activeSince: '2026-05-03',
-    answer: 'Miami GP',
-    flag: '🇺🇸',
-    distractors: [
-      { name: 'Chinese GP',             flag: '🇨🇳' },
-      { name: 'Canadian GP',            flag: '🇨🇦' },
-      { name: 'Barcelona-Catalunya GP', flag: '🇪🇸' },
-    ],
-    hint: 'Hard Rock Stadium is at the center of this circuit',
-  },
-  {
-    id: 'can_q',
-    circuitId: 'canadian',
-    sessionType: 'qualifying',
-    driver: 'NOR',
-    activeSince: '2026-05-24',
-    answer: 'Canadian GP',
-    flag: '🇨🇦',
-    distractors: [
-      { name: 'Monaco GP',   flag: '🇲🇨' },
-      { name: 'Miami GP',    flag: '🇺🇸' },
-      { name: 'Austrian GP', flag: '🇦🇹' },
-    ],
-    hint: 'Known as the "Wall of Champions" circuit',
-  },
-  {
-    id: 'mon_q',
-    circuitId: 'monaco',
-    sessionType: 'qualifying',
-    driver: 'LEC',
-    activeSince: '2026-06-07',
-    answer: 'Monaco GP',
-    flag: '🇲🇨',
-    distractors: [
-      { name: 'Australian GP', flag: '🇦🇺' },
-      { name: 'Canadian GP',   flag: '🇨🇦' },
-      { name: 'Singapore GP',  flag: '🇸🇬' },
-    ],
-    hint: 'The slowest circuit on the F1 calendar — impossible to overtake',
-  },
-  {
-    id: 'bar_q',
-    circuitId: 'barcelona_catalunya',
-    sessionType: 'qualifying',
-    driver: 'NOR',
-    activeSince: '2026-06-14',
-    answer: 'Barcelona-Catalunya GP',
-    flag: '🇪🇸',
-    distractors: [
-      { name: 'Japanese GP', flag: '🇯🇵' },
-      { name: 'British GP',  flag: '🇬🇧' },
-      { name: 'Austrian GP', flag: '🇦🇹' },
-    ],
-    hint: 'Every team knows this circuit inside out — heavily used for pre-season testing',
-  },
-  {
-    id: 'aut_q',
-    circuitId: 'austrian',
-    sessionType: 'qualifying',
-    driver: 'NOR',
-    activeSince: '2026-06-28',
-    answer: 'Austrian GP',
-    flag: '🇦🇹',
-    distractors: [
-      { name: 'British GP',             flag: '🇬🇧' },
-      { name: 'Barcelona-Catalunya GP', flag: '🇪🇸' },
-      { name: 'Monaco GP',              flag: '🇲🇨' },
-    ],
-    hint: 'One of the shortest laps on the calendar — nestled in the Styrian mountains',
-  },
-  {
-    id: 'gbr_q',
-    circuitId: 'british',
-    sessionType: 'qualifying',
-    driver: 'ANT',
-    activeSince: '2026-07-05',
-    answer: 'British GP',
-    flag: '🇬🇧',
-    distractors: [
-      { name: 'Barcelona-Catalunya GP', flag: '🇪🇸' },
-      { name: 'Japanese GP',            flag: '🇯🇵' },
-      { name: 'Austrian GP',            flag: '🇦🇹' },
-    ],
-    hint: 'High-speed flowing corners — home of the oldest race on the calendar',
-  },
+  // --- round 1 ---
+  { id: 'aus_q_s',   circuitId: 'australia',          sessionType: 'qualifying',        driver: 'NOR', answer: 'Australian GP',          flag: '🇦🇺', chartType: 'speed',
+    distractors: [MON, CAN, AUT], hint: 'A street circuit converted for F1 — tight chicanes with walls very close to the racing line' },
+  { id: 'chi_q_g',   circuitId: 'china',              sessionType: 'qualifying',        driver: 'NOR', answer: 'Chinese GP',              flag: '🇨🇳', chartType: 'gear',
+    distractors: [MIA, JPN, GBR], hint: 'One of the longest back straights on the calendar — huge speed differential lap to lap' },
+  { id: 'jpn_q_t',   circuitId: 'japan',              sessionType: 'qualifying',        driver: 'NOR', answer: 'Japanese GP',             flag: '🇯🇵', chartType: 'throttle',
+    distractors: [AUS, BAR, AUT], hint: 'Famously known for its figure-of-eight layout — the 130R is taken almost flat-out' },
+  { id: 'mia_q_bt',  circuitId: 'miami',              sessionType: 'qualifying',        driver: 'NOR', answer: 'Miami GP',                flag: '🇺🇸', chartType: 'brakeThrottle',
+    distractors: [CHI, CAN, BAR], hint: 'Hard Rock Stadium sits at the center — watch for the long straight followed by a hairpin complex' },
+  { id: 'can_q_s',   circuitId: 'canadian',           sessionType: 'qualifying',        driver: 'NOR', answer: 'Canadian GP',             flag: '🇨🇦', chartType: 'speed',
+    distractors: [MON, MIA, AUT], hint: 'Known as the "Wall of Champions" — a semi-street circuit on an island in the St. Lawrence River' },
+  { id: 'mon_q_g',   circuitId: 'monaco',             sessionType: 'qualifying',        driver: 'LEC', answer: 'Monaco GP',               flag: '🇲🇨', chartType: 'gear',
+    distractors: [AUS, CAN, GBR], hint: 'The slowest circuit on the calendar — you\'ll never go above 5th gear for most of the lap' },
+  { id: 'bar_q_t',   circuitId: 'barcelona_catalunya',sessionType: 'qualifying',        driver: 'NOR', answer: 'Barcelona-Catalunya GP',  flag: '🇪🇸', chartType: 'throttle',
+    distractors: [JPN, GBR, AUT], hint: 'Every team knows this circuit inside out — used heavily for pre-season testing' },
+  { id: 'aut_q_bt',  circuitId: 'austrian',           sessionType: 'qualifying',        driver: 'NOR', answer: 'Austrian GP',             flag: '🇦🇹', chartType: 'brakeThrottle',
+    distractors: [GBR, BAR, MON], hint: 'One of the shortest laps on the calendar — nestled in the Styrian mountains, Red Bull Ring' },
+  { id: 'gbr_q_s',   circuitId: 'british',            sessionType: 'qualifying',        driver: 'ANT', answer: 'British GP',              flag: '🇬🇧', chartType: 'speed',
+    distractors: [BAR, JPN, AUT], hint: 'High-speed flowing corners through Maggotts and Becketts — home of the oldest F1 race' },
+  { id: 'aus_q_g',   circuitId: 'australia',          sessionType: 'qualifying',        driver: 'NOR', answer: 'Australian GP',          flag: '🇦🇺', chartType: 'gear',
+    distractors: [MON, CHI, GBR], hint: 'A street circuit converted for F1 — tight chicanes with walls very close to the racing line' },
+
+  // --- round 2 ---
+  { id: 'chi_sq_t',  circuitId: 'china',              sessionType: 'sprint_qualifying', driver: 'NOR', answer: 'Chinese GP',              flag: '🇨🇳', chartType: 'throttle',
+    distractors: [AUS, AUT, MIA], hint: 'One of the longest back straights on the calendar — huge speed differential lap to lap' },
+  { id: 'jpn_q_bt',  circuitId: 'japan',              sessionType: 'qualifying',        driver: 'NOR', answer: 'Japanese GP',             flag: '🇯🇵', chartType: 'brakeThrottle',
+    distractors: [CHI, BAR, CAN], hint: 'Famously known for its figure-of-eight layout — the 130R is taken almost flat-out' },
+  { id: 'mia_q_s',   circuitId: 'miami',              sessionType: 'qualifying',        driver: 'NOR', answer: 'Miami GP',                flag: '🇺🇸', chartType: 'speed',
+    distractors: [CAN, GBR, AUT], hint: 'Hard Rock Stadium sits at the center — watch for the long straight followed by a hairpin complex' },
+  { id: 'can_q_g',   circuitId: 'canadian',           sessionType: 'qualifying',        driver: 'NOR', answer: 'Canadian GP',             flag: '🇨🇦', chartType: 'gear',
+    distractors: [MON, MIA, BAR], hint: 'Known as the "Wall of Champions" — a semi-street circuit on an island in the St. Lawrence River' },
+  { id: 'mon_q_t',   circuitId: 'monaco',             sessionType: 'qualifying',        driver: 'LEC', answer: 'Monaco GP',               flag: '🇲🇨', chartType: 'throttle',
+    distractors: [AUS, CAN, CHI], hint: 'The slowest circuit on the calendar — you\'ll never go above 5th gear for most of the lap' },
+  { id: 'bar_q_bt',  circuitId: 'barcelona_catalunya',sessionType: 'qualifying',        driver: 'NOR', answer: 'Barcelona-Catalunya GP',  flag: '🇪🇸', chartType: 'brakeThrottle',
+    distractors: [JPN, AUT, MIA], hint: 'Every team knows this circuit inside out — used heavily for pre-season testing' },
+  { id: 'aut_q_s',   circuitId: 'austrian',           sessionType: 'qualifying',        driver: 'NOR', answer: 'Austrian GP',             flag: '🇦🇹', chartType: 'speed',
+    distractors: [MON, BAR, JPN], hint: 'One of the shortest laps on the calendar — nestled in the Styrian mountains, Red Bull Ring' },
+  { id: 'gbr_q_g',   circuitId: 'british',            sessionType: 'qualifying',        driver: 'ANT', answer: 'British GP',              flag: '🇬🇧', chartType: 'gear',
+    distractors: [CHI, BAR, MIA], hint: 'High-speed flowing corners through Maggotts and Becketts — home of the oldest F1 race' },
+  { id: 'aus_q_t',   circuitId: 'australia',          sessionType: 'qualifying',        driver: 'NOR', answer: 'Australian GP',          flag: '🇦🇺', chartType: 'throttle',
+    distractors: [MON, JPN, CAN], hint: 'A street circuit converted for F1 — tight chicanes with walls very close to the racing line' },
+  { id: 'chi_q_bt',  circuitId: 'china',              sessionType: 'qualifying',        driver: 'NOR', answer: 'Chinese GP',              flag: '🇨🇳', chartType: 'brakeThrottle',
+    distractors: [GBR, BAR, AUT], hint: 'One of the longest back straights on the calendar — huge speed differential lap to lap' },
+
+  // --- round 3 ---
+  { id: 'jpn_q_s',   circuitId: 'japan',              sessionType: 'qualifying',        driver: 'NOR', answer: 'Japanese GP',             flag: '🇯🇵', chartType: 'speed',
+    distractors: [AUS, CHI, MON], hint: 'Famously known for its figure-of-eight layout — the 130R is taken almost flat-out' },
+  { id: 'mia_sq_g',  circuitId: 'miami',              sessionType: 'sprint_qualifying', driver: 'NOR', answer: 'Miami GP',                flag: '🇺🇸', chartType: 'gear',
+    distractors: [CHI, CAN, BAR], hint: 'Hard Rock Stadium sits at the center — watch for the long straight followed by a hairpin complex' },
+  { id: 'can_q_t',   circuitId: 'canadian',           sessionType: 'qualifying',        driver: 'NOR', answer: 'Canadian GP',             flag: '🇨🇦', chartType: 'throttle',
+    distractors: [MON, MIA, JPN], hint: 'Known as the "Wall of Champions" — a semi-street circuit on an island in the St. Lawrence River' },
+  { id: 'mon_q_bt',  circuitId: 'monaco',             sessionType: 'qualifying',        driver: 'LEC', answer: 'Monaco GP',               flag: '🇲🇨', chartType: 'brakeThrottle',
+    distractors: [AUS, CAN, AUT], hint: 'The slowest circuit on the calendar — you\'ll never go above 5th gear for most of the lap' },
+  { id: 'bar_q_s',   circuitId: 'barcelona_catalunya',sessionType: 'qualifying',        driver: 'NOR', answer: 'Barcelona-Catalunya GP',  flag: '🇪🇸', chartType: 'speed',
+    distractors: [JPN, GBR, CHI], hint: 'Every team knows this circuit inside out — used heavily for pre-season testing' },
+  { id: 'aut_q_g',   circuitId: 'austrian',           sessionType: 'qualifying',        driver: 'NOR', answer: 'Austrian GP',             flag: '🇦🇹', chartType: 'gear',
+    distractors: [MON, BAR, CAN], hint: 'One of the shortest laps on the calendar — nestled in the Styrian mountains, Red Bull Ring' },
+  { id: 'gbr_q_t',   circuitId: 'british',            sessionType: 'qualifying',        driver: 'ANT', answer: 'British GP',              flag: '🇬🇧', chartType: 'throttle',
+    distractors: [CHI, AUS, JPN], hint: 'High-speed flowing corners through Maggotts and Becketts — home of the oldest F1 race' },
+  { id: 'aus_q_bt',  circuitId: 'australia',          sessionType: 'qualifying',        driver: 'NOR', answer: 'Australian GP',          flag: '🇦🇺', chartType: 'brakeThrottle',
+    distractors: [MON, BAR, GBR], hint: 'A street circuit converted for F1 — tight chicanes with walls very close to the racing line' },
+  { id: 'chi_sq_s',  circuitId: 'china',              sessionType: 'sprint_qualifying', driver: 'NOR', answer: 'Chinese GP',              flag: '🇨🇳', chartType: 'speed',
+    distractors: [MIA, AUT, CAN], hint: 'One of the longest back straights on the calendar — huge speed differential lap to lap' },
+  { id: 'mia_q_g',   circuitId: 'miami',              sessionType: 'qualifying',        driver: 'NOR', answer: 'Miami GP',                flag: '🇺🇸', chartType: 'gear',
+    distractors: [AUS, MON, CHI], hint: 'Hard Rock Stadium sits at the center — watch for the long straight followed by a hairpin complex' },
 ]
 
-function utcDateStr(): string {
-  const d = new Date()
+// Season start = first race date
+const BASE_DATE_MS = Date.parse('2026-03-08')
+
+function utcDateStr(d = new Date()): string {
   const y = d.getUTCFullYear()
   const m = String(d.getUTCMonth() + 1).padStart(2, '0')
   const day = String(d.getUTCDate()).padStart(2, '0')
   return `${y}-${m}-${day}`
 }
 
-// Seeded shuffle: same order for all users on the same challenge
+function challengeForOffset(dayOffset: number): Challenge {
+  return CHALLENGES[Math.max(0, dayOffset) % CHALLENGES.length]
+}
+
+export function getChallengeForDate(dateStr: string): { challenge: Challenge; challengeId: string } {
+  const dayOffset = Math.floor((Date.parse(dateStr) - BASE_DATE_MS) / 86400000)
+  return { challenge: challengeForOffset(dayOffset), challengeId: dateStr }
+}
+
+export function getTodaysChallenge(): { challenge: Challenge; challengeId: string } {
+  return getChallengeForDate(utcDateStr())
+}
+
+// Seeded shuffle: same option order for all users on a given day
 export function shuffledOptions(challenge: Challenge, seed: number): ChallengeOption[] {
   const opts: ChallengeOption[] = [
     { name: challenge.answer, flag: challenge.flag },
@@ -176,12 +150,4 @@ export function shuffledOptions(challenge: Challenge, seed: number): ChallengeOp
     ;[opts[i], opts[j]] = [opts[j], opts[i]]
   }
   return opts
-}
-
-export function getTodaysChallenge(): { challenge: Challenge; challengeId: string } {
-  const today = utcDateStr()
-  // Find the most recent challenge whose activeSince <= today
-  const active = [...CHALLENGES].reverse().find(c => c.activeSince <= today)
-  const challenge = active ?? CHALLENGES[0]
-  return { challenge, challengeId: challenge.id }
 }

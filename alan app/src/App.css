@@ -564,6 +564,7 @@
 .ch-dot.wrong   { background: #f44336; }
 .ch-dot.today   { background: #f0c040; border: 2px solid #f0c04088; box-shadow: 0 0 6px #f0c04066; }
 .ch-dot.future  { background: #1e2a3a; border: 1px solid #2a3a4a; }
+.ch-dot.missed  { background: #1a2030; border: 1px solid #252f40; }
 
 /* Trace */
 .ch-trace-wrap {
@@ -722,6 +723,17 @@
 }
 .ch-archive-row.correct { color: #00a848; }
 .ch-archive-row.wrong   { color: #c0392b; }
+.ch-archive-type {
+  font-size: 9px;
+  color: #334;
+  background: #0d1520;
+  border: 1px solid #1e2a3a;
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
 
 /* ── Mini sector timeline ── */
 .mini-sector-timeline {

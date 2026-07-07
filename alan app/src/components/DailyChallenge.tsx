@@ -2,102 +2,183 @@ import { useState, useEffect, useMemo } from 'react'
 import type { TelemetryPoint } from '../types'
 import { loadTelemetry } from '../lib/csvLoader'
 import { telemetryUrl } from '../lib/dataIndex'
-import { CHALLENGES, shuffledOptions, getTodaysChallenge } from '../lib/challengeData'
+import {
+  shuffledOptions, getTodaysChallenge, getChallengeForDate,
+  CHART_TYPE_LABELS, CHART_TYPE_QUESTIONS,
+  type ChartType,
+} from '../lib/challengeData'
 
-const STREAK_KEY  = 'f1vis_ch_streak'
-const ANSWER_KEY  = (id: string) => `f1vis_ch_${id}`
-
-// ── Speed trace SVG ──────────────────────────────────────────────────────────
+const STREAK_KEY = 'f1vis_ch_streak'
+const ANSWER_KEY = (dateStr: string) => `f1vis_ch_${dateStr}`
 
 const SVG_W = 560
 const SVG_H = 140
-const PAD   = { top: 12, bottom: 24, left: 36, right: 12 }
+const PAD   = { top: 12, bottom: 24, left: 40, right: 12 }
 
-function SpeedTrace({ telemetry, revealed }: { telemetry: TelemetryPoint[]; revealed: boolean }) {
+// ── Chart renderer ─────────────────────────────────────────────────────────────
+
+function TelemetryChart({ telemetry, chartType, revealed }: {
+  telemetry: TelemetryPoint[]
+  chartType: ChartType
+  revealed: boolean
+}) {
   if (telemetry.length === 0) return (
     <div className="ch-trace-placeholder">
       <div className="ch-trace-scanning">Loading telemetry…</div>
     </div>
   )
 
-  // Downsample to ~400 points for performance
   const step = Math.max(1, Math.floor(telemetry.length / 400))
   const pts  = telemetry.filter((_, i) => i % step === 0)
 
-  const maxDist  = pts[pts.length - 1].distance
-  const minSpeed = Math.min(...pts.map(p => p.speed))
-  const maxSpeed = Math.max(...pts.map(p => p.speed))
-  const speedRange = maxSpeed - minSpeed || 1
-
-  const plotW = SVG_W - PAD.left - PAD.right
-  const plotH = SVG_H - PAD.top - PAD.bottom
-
-  const toX = (d: number) => PAD.left + (d / maxDist) * plotW
-  const toY = (s: number) => PAD.top + plotH - ((s - minSpeed) / speedRange) * plotH
-
-  const path = pts.map((p, i) =>
-    `${i === 0 ? 'M' : 'L'}${toX(p.distance).toFixed(1)},${toY(p.speed).toFixed(1)}`
-  ).join(' ')
-
-  // Speed zone fills: under 200 km/h = low speed corners, 200-280 = medium, 280+ = high
-  const yLow    = toY(200)
-  const yMed    = toY(280)
+  const maxDist = pts[pts.length - 1].distance
+  const plotW   = SVG_W - PAD.left - PAD.right
+  const plotH   = SVG_H - PAD.top - PAD.bottom
   const plotBot = PAD.top + plotH
 
-  // Y-axis labels
-  const speedTicks = [150, 200, 250, 300, 350].filter(s => s >= minSpeed - 10 && s <= maxSpeed + 10)
+  const toX = (d: number) => PAD.left + (d / maxDist) * plotW
+
+  // ── Speed ───────────────────────────────────────────────────────────────────
+  if (chartType === 'speed') {
+    const minS = Math.min(...pts.map(p => p.speed))
+    const maxS = Math.max(...pts.map(p => p.speed))
+    const rng  = maxS - minS || 1
+    const toY  = (s: number) => PAD.top + plotH - ((s - minS) / rng) * plotH
+    const path = pts.map((p, i) =>
+      `${i === 0 ? 'M' : 'L'}${toX(p.distance).toFixed(1)},${toY(p.speed).toFixed(1)}`
+    ).join(' ')
+    const ticks = [150, 200, 250, 300, 350].filter(s => s >= minS - 10 && s <= maxS + 10)
+    return (
+      <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="ch-trace-svg" style={{ width: '100%', maxHeight: SVG_H }}>
+        {ticks.map(s => (
+          <line key={s} x1={PAD.left} y1={toY(s)} x2={SVG_W - PAD.right} y2={toY(s)} stroke="#1e2a3a" strokeWidth={1} />
+        ))}
+        <path d={path} fill="none" stroke={revealed ? '#e10600' : '#778'} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+        {ticks.map(s => (
+          <text key={s} x={PAD.left - 4} y={toY(s) + 4} textAnchor="end" fill="#446" fontSize={9} fontFamily="monospace">{s}</text>
+        ))}
+        <text x={PAD.left + plotW / 2} y={SVG_H - 4} textAnchor="middle" fill="#334" fontSize={9} fontFamily="monospace">distance →</text>
+        <text x={10} y={PAD.top + plotH / 2} textAnchor="middle" fill="#334" fontSize={9} fontFamily="monospace" transform={`rotate(-90,10,${PAD.top + plotH / 2})`}>km/h</text>
+      </svg>
+    )
+  }
+
+  // ── Gear (step chart) ────────────────────────────────────────────────────────
+  if (chartType === 'gear') {
+    const toY  = (g: number) => PAD.top + plotH - ((g - 1) / 7) * plotH
+    let path = ''
+    for (let i = 0; i < pts.length; i++) {
+      const x = toX(pts[i].distance).toFixed(1)
+      const y = toY(pts[i].gear).toFixed(1)
+      if (i === 0) {
+        path = `M${x},${y}`
+      } else {
+        path += ` L${x},${toY(pts[i - 1].gear).toFixed(1)} L${x},${y}`
+      }
+    }
+    const ticks = [2, 4, 6, 8]
+    return (
+      <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="ch-trace-svg" style={{ width: '100%', maxHeight: SVG_H }}>
+        {ticks.map(g => (
+          <line key={g} x1={PAD.left} y1={toY(g)} x2={SVG_W - PAD.right} y2={toY(g)} stroke="#1e2a3a" strokeWidth={1} />
+        ))}
+        <path d={path} fill="none" stroke={revealed ? '#4a9eff' : '#778'} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+        {ticks.map(g => (
+          <text key={g} x={PAD.left - 4} y={toY(g) + 4} textAnchor="end" fill="#446" fontSize={9} fontFamily="monospace">{g}</text>
+        ))}
+        <text x={PAD.left + plotW / 2} y={SVG_H - 4} textAnchor="middle" fill="#334" fontSize={9} fontFamily="monospace">distance →</text>
+        <text x={10} y={PAD.top + plotH / 2} textAnchor="middle" fill="#334" fontSize={9} fontFamily="monospace" transform={`rotate(-90,10,${PAD.top + plotH / 2})`}>gear</text>
+      </svg>
+    )
+  }
+
+  // ── Throttle (filled area) ────────────────────────────────────────────────────
+  if (chartType === 'throttle') {
+    const toY  = (v: number) => PAD.top + plotH - (v / 100) * plotH
+    const line = pts.map((p, i) =>
+      `${i === 0 ? 'M' : 'L'}${toX(p.distance).toFixed(1)},${toY(p.throttle).toFixed(1)}`
+    ).join(' ')
+    const area = `M${toX(pts[0].distance).toFixed(1)},${plotBot} ${line} L${toX(pts[pts.length - 1].distance).toFixed(1)},${plotBot} Z`
+    const ticks = [0, 25, 50, 75, 100]
+    return (
+      <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="ch-trace-svg" style={{ width: '100%', maxHeight: SVG_H }}>
+        {ticks.map(v => (
+          <line key={v} x1={PAD.left} y1={toY(v)} x2={SVG_W - PAD.right} y2={toY(v)} stroke="#1e2a3a" strokeWidth={1} />
+        ))}
+        <path d={area} fill={revealed ? '#27ae6020' : '#77889918'} stroke="none" />
+        <path d={line} fill="none" stroke={revealed ? '#27ae60' : '#778'} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+        {[0, 50, 100].map(v => (
+          <text key={v} x={PAD.left - 4} y={toY(v) + 4} textAnchor="end" fill="#446" fontSize={9} fontFamily="monospace">{v}%</text>
+        ))}
+        <text x={PAD.left + plotW / 2} y={SVG_H - 4} textAnchor="middle" fill="#334" fontSize={9} fontFamily="monospace">distance →</text>
+        <text x={10} y={PAD.top + plotH / 2} textAnchor="middle" fill="#334" fontSize={9} fontFamily="monospace" transform={`rotate(-90,10,${PAD.top + plotH / 2})`}>throttle</text>
+      </svg>
+    )
+  }
+
+  // ── Throttle + Brake overlay ──────────────────────────────────────────────────
+  const toY  = (v: number) => PAD.top + plotH - (v / 100) * plotH
+
+  const thLine = pts.map((p, i) =>
+    `${i === 0 ? 'M' : 'L'}${toX(p.distance).toFixed(1)},${toY(p.throttle).toFixed(1)}`
+  ).join(' ')
+  const thArea = `M${toX(pts[0].distance).toFixed(1)},${plotBot} ${thLine} L${toX(pts[pts.length - 1].distance).toFixed(1)},${plotBot} Z`
+
+  // Brake is boolean — use step path so transitions are sharp
+  let brakeLine = `M${toX(pts[0].distance).toFixed(1)},${toY(pts[0].brake ? 100 : 0).toFixed(1)}`
+  for (let i = 1; i < pts.length; i++) {
+    const x    = toX(pts[i].distance).toFixed(1)
+    const yPrev = toY(pts[i - 1].brake ? 100 : 0).toFixed(1)
+    const yCurr = toY(pts[i].brake ? 100 : 0).toFixed(1)
+    brakeLine += ` L${x},${yPrev} L${x},${yCurr}`
+  }
+  const brakeArea = `M${toX(pts[0].distance).toFixed(1)},${plotBot} ${brakeLine} L${toX(pts[pts.length - 1].distance).toFixed(1)},${plotBot} Z`
+
+  const tGreen = revealed ? '#27ae60' : '#557'
+  const tRed   = revealed ? '#e74c3c' : '#556'
 
   return (
-    <svg
-      viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-      className="ch-trace-svg"
-      style={{ width: '100%', maxHeight: SVG_H }}
-    >
-      {/* Background zones */}
-      <rect x={PAD.left} y={Math.min(yMed, PAD.top)} width={plotW} height={Math.max(0, Math.min(yLow, plotBot) - Math.min(yMed, PAD.top))} fill="#27ae6012" />
-      <rect x={PAD.left} y={Math.min(yLow, plotBot)} width={plotW} height={Math.max(0, plotBot - Math.min(yLow, plotBot))} fill="#e74c3c12" />
-
-      {/* Grid lines */}
-      {speedTicks.map(s => (
-        <line key={s} x1={PAD.left} y1={toY(s)} x2={SVG_W - PAD.right} y2={toY(s)}
-          stroke="#1e2a3a" strokeWidth={1} />
+    <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="ch-trace-svg" style={{ width: '100%', maxHeight: SVG_H }}>
+      {[0, 50, 100].map(v => (
+        <line key={v} x1={PAD.left} y1={toY(v)} x2={SVG_W - PAD.right} y2={toY(v)} stroke="#1e2a3a" strokeWidth={1} />
       ))}
-
-      {/* Speed line */}
-      <path d={path} fill="none" stroke={revealed ? '#e10600' : '#778'} strokeWidth={1.5}
-        strokeLinecap="round" strokeLinejoin="round" />
-
-      {/* Y axis labels */}
-      {speedTicks.map(s => (
-        <text key={s} x={PAD.left - 4} y={toY(s) + 4} textAnchor="end"
-          fill="#446" fontSize={9} fontFamily="monospace">{s}</text>
+      {/* Throttle */}
+      <path d={thArea} fill={`${tGreen}28`} stroke="none" />
+      <path d={thLine} fill="none" stroke={tGreen} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+      {/* Brake */}
+      <path d={brakeArea} fill={`${tRed}28`} stroke="none" />
+      <path d={brakeLine} fill="none" stroke={tRed} strokeWidth={1} strokeLinejoin="round" />
+      {[0, 50, 100].map(v => (
+        <text key={v} x={PAD.left - 4} y={toY(v) + 4} textAnchor="end" fill="#446" fontSize={9} fontFamily="monospace">{v}%</text>
       ))}
-
-      {/* X axis label */}
-      <text x={PAD.left + plotW / 2} y={SVG_H - 4} textAnchor="middle"
-        fill="#334" fontSize={9} fontFamily="monospace">distance →</text>
-
-      {/* Speed label */}
-      <text x={8} y={PAD.top + plotH / 2} textAnchor="middle"
-        fill="#334" fontSize={9} fontFamily="monospace"
-        transform={`rotate(-90, 8, ${PAD.top + plotH / 2})`}>km/h</text>
+      <text x={PAD.left + plotW / 2} y={SVG_H - 4} textAnchor="middle" fill="#334" fontSize={9} fontFamily="monospace">distance →</text>
+      {revealed && (
+        <>
+          <rect x={PAD.left + 4}  y={PAD.top + 4} width={6} height={6} fill={tGreen} rx={1} />
+          <text x={PAD.left + 13} y={PAD.top + 10} fill={tGreen} fontSize={8} fontFamily="monospace">throttle</text>
+          <rect x={PAD.left + 62} y={PAD.top + 4} width={6} height={6} fill={tRed} rx={1} />
+          <text x={PAD.left + 71} y={PAD.top + 10} fill={tRed} fontSize={8} fontFamily="monospace">brake</text>
+        </>
+      )}
     </svg>
   )
 }
 
-// ── Main component ───────────────────────────────────────────────────────────
+// ── Main component ─────────────────────────────────────────────────────────────
 
 interface SavedAnswer {
   picked: string
   correct: boolean
 }
 
+const HISTORY_DAYS = 14
+
 export default function DailyChallenge() {
-  const [telemetry,   setTelemetry]   = useState<TelemetryPoint[]>([])
-  const [loadErr,     setLoadErr]     = useState(false)
-  const [picked,      setPicked]      = useState<string | null>(null)
-  const [streak,      setStreak]      = useState(0)
-  const [showHint,    setShowHint]    = useState(false)
+  const [telemetry, setTelemetry] = useState<TelemetryPoint[]>([])
+  const [loadErr,   setLoadErr]   = useState(false)
+  const [picked,    setPicked]    = useState<string | null>(null)
+  const [streak,    setStreak]    = useState(0)
+  const [showHint,  setShowHint]  = useState(false)
 
   const { challenge, challengeId } = useMemo(() => getTodaysChallenge(), [])
   const options = useMemo(() => shuffledOptions(challenge, challenge.id.charCodeAt(0)), [challenge])
@@ -108,23 +189,17 @@ export default function DailyChallenge() {
     setPicked(null)
     setTelemetry([])
     setLoadErr(false)
+    setShowHint(false)
 
-    // Restore saved answer for this challenge
     const saved = localStorage.getItem(ANSWER_KEY(challengeId))
     if (saved) {
-      try {
-        const data: SavedAnswer = JSON.parse(saved)
-        setPicked(data.picked)
-      } catch { /* ignore */ }
+      try { setPicked((JSON.parse(saved) as SavedAnswer).picked) } catch { /* ignore */ }
     }
 
-    // Restore streak
     const s = parseInt(localStorage.getItem(STREAK_KEY) ?? '0', 10)
     setStreak(isNaN(s) ? 0 : s)
 
-    // Load telemetry
-    const url = telemetryUrl(challenge.circuitId, challenge.sessionType, challenge.driver)
-    loadTelemetry(url)
+    loadTelemetry(telemetryUrl(challenge.circuitId, challenge.sessionType, challenge.driver))
       .then(setTelemetry)
       .catch(() => setLoadErr(true))
   }, [challenge, challengeId])
@@ -133,7 +208,6 @@ export default function DailyChallenge() {
     if (revealed) return
     const correct = name === challenge.answer
     setPicked(name)
-
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
     localStorage.setItem(STREAK_KEY, String(newStreak))
@@ -142,53 +216,65 @@ export default function DailyChallenge() {
 
   const isCorrect = picked === challenge.answer
 
-  // ── Calendar view: all past answers ──────────────────────────────────────
+  // Rolling window: last HISTORY_DAYS days (oldest first)
   const historyDots = useMemo(() => {
-    return CHALLENGES.map((ch) => {
-      const saved = localStorage.getItem(ANSWER_KEY(ch.id))
-      if (!saved) return null
-      try { return (JSON.parse(saved) as SavedAnswer).correct } catch { return null }
-    })
-  }, [revealed])  // re-check after each answer
+    const days: { dateStr: string; correct: boolean | null; isToday: boolean }[] = []
+    for (let i = HISTORY_DAYS - 1; i >= 0; i--) {
+      const d = new Date()
+      d.setUTCDate(d.getUTCDate() - i)
+      const y   = d.getUTCFullYear()
+      const mo  = String(d.getUTCMonth() + 1).padStart(2, '0')
+      const day = String(d.getUTCDate()).padStart(2, '0')
+      const dateStr = `${y}-${mo}-${day}`
+      const isToday = dateStr === challengeId
+      const saved = localStorage.getItem(ANSWER_KEY(dateStr))
+      let correct: boolean | null = null
+      if (saved) {
+        try { correct = (JSON.parse(saved) as SavedAnswer).correct } catch { /* ignore */ }
+      }
+      days.push({ dateStr, correct, isToday })
+    }
+    return days
+  }, [revealed, challengeId])
+
+  // Session label for the description
+  const sessionLabel = (challenge.sessionType === 'qualifying' || challenge.sessionType === 'sprint_qualifying')
+    ? 'qualifying lap'
+    : 'race lap'
 
   return (
     <div className="ch-view">
       <div className="ch-header">
         <div className="ch-title-row">
           <span className="ch-title">Daily Telemetry Challenge</span>
-          <span className="ch-streak">{streak > 0 ? `🔥 ${streak} streak` : ''}</span>
+          <span className="ch-streak">{streak > 0 ? `🔥 ${streak}` : ''}</span>
         </div>
         <p className="ch-desc">
-          Study the anonymous speed trace. Can you identify which circuit this qualifying lap was driven at?
+          {CHART_TYPE_QUESTIONS[challenge.chartType]}{' '}
+          Can you identify which circuit this {sessionLabel} was driven at?
           New challenge every day.
         </p>
       </div>
 
-      {/* Progress dots */}
+      {/* 14-day progress dots */}
       <div className="ch-progress-dots">
-        {CHALLENGES.map((ch, i) => {
-          const h = historyDots[i]
-          const isToday = ch.id === challengeId
-          return (
-            <span
-              key={ch.id}
-              className={`ch-dot ${h === true ? 'correct' : h === false ? 'wrong' : isToday ? 'today' : 'future'}`}
-              title={ch.answer}
-            />
-          )
-        })}
+        {historyDots.map(({ dateStr, correct, isToday }) => (
+          <span
+            key={dateStr}
+            className={`ch-dot ${correct === true ? 'correct' : correct === false ? 'wrong' : isToday ? 'today' : 'missed'}`}
+            title={dateStr}
+          />
+        ))}
       </div>
 
-      {/* Speed trace */}
+      {/* Telemetry chart */}
       <div className="ch-trace-wrap">
         {loadErr ? (
-          <div className="ch-trace-placeholder" style={{ color: '#556' }}>
-            Failed to load telemetry data
-          </div>
+          <div className="ch-trace-placeholder" style={{ color: '#556' }}>Failed to load telemetry data</div>
         ) : (
-          <SpeedTrace telemetry={telemetry} revealed={revealed} />
+          <TelemetryChart telemetry={telemetry} chartType={challenge.chartType} revealed={revealed} />
         )}
-        <div className="ch-trace-label">Speed (km/h) across one qualifying lap</div>
+        <div className="ch-trace-label">{CHART_TYPE_LABELS[challenge.chartType]}</div>
       </div>
 
       {/* Revealed: circuit info */}
@@ -210,12 +296,7 @@ export default function DailyChallenge() {
             else                               cls += ' faded'
           }
           return (
-            <button
-              key={opt.name}
-              className={cls}
-              onClick={() => handlePick(opt.name)}
-              disabled={revealed}
-            >
+            <button key={opt.name} className={cls} onClick={() => handlePick(opt.name)} disabled={revealed}>
               <span className="ch-opt-flag">{opt.flag}</span>
               <span className="ch-opt-name">{opt.name}</span>
             </button>
@@ -223,15 +304,12 @@ export default function DailyChallenge() {
         })}
       </div>
 
-      {/* Hint / post-answer actions */}
       {!revealed && (
         <button className="ch-hint-btn" onClick={() => setShowHint(v => !v)}>
           {showHint ? 'Hide hint' : 'Show hint'}
         </button>
       )}
-      {showHint && !revealed && (
-        <div className="ch-hint">💡 {challenge.hint}</div>
-      )}
+      {showHint && !revealed && <div className="ch-hint">💡 {challenge.hint}</div>}
 
       {revealed && (
         <div className="ch-after">
@@ -250,24 +328,26 @@ export default function DailyChallenge() {
         </div>
       )}
 
-      {/* Past challenges archive */}
+      {/* Past answers (last 14 days, excluding today) */}
       <div className="ch-archive">
         <div className="ch-archive-title">Your history</div>
         <div className="ch-archive-list">
-          {CHALLENGES.map((ch, i) => {
-            const h = historyDots[i]
-            if (h === null) return null
-            return (
-              <div key={ch.id} className={`ch-archive-row ${h ? 'correct' : 'wrong'}`}>
-                <span>{ch.flag}</span>
-                <span>{ch.answer}</span>
-                <span>{h ? '✓' : '✗'}</span>
-              </div>
-            )
-          })}
+          {historyDots
+            .filter(d => !d.isToday && d.correct !== null)
+            .reverse()
+            .map(({ dateStr, correct }) => {
+              const { challenge: ch } = getChallengeForDate(dateStr)
+              return (
+                <div key={dateStr} className={`ch-archive-row ${correct ? 'correct' : 'wrong'}`}>
+                  <span>{ch.flag}</span>
+                  <span>{ch.answer}</span>
+                  <span className="ch-archive-type">{ch.chartType}</span>
+                  <span>{correct ? '✓' : '✗'}</span>
+                </div>
+              )
+            })}
         </div>
       </div>
     </div>
   )
 }
-
