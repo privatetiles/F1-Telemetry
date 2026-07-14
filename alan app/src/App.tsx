@@ -241,10 +241,10 @@ export default function App() {
   )
 
   const miniSectors = useMemo(
-    () => trackData
+    () => session.type === 'full_race' ? [] : trackData
       ? computeMiniSectorsFromSegments(mergedTelemetry, trackData.segments)
       : computeMiniSectors(mergedTelemetry),
-    [mergedTelemetry, trackData]
+    [mergedTelemetry, trackData, session.type]
   )
 
   const handleProgressChange = useCallback((p: number | ((prev: number) => number)) => {
@@ -322,7 +322,7 @@ export default function App() {
                 {hasDisplayData ? (
                   <>
                     <DriverPanel
-                      drivers={circuit.hasData ? session.drivers : Object.keys(mergedTelemetry)}
+                      drivers={session.drivers.length > 0 ? session.drivers : Object.keys(mergedTelemetry)}
                       activeDrivers={activeDrivers}
                       dnfDrivers={dnfDrivers}
                       onSelect={selectDriver}
@@ -348,6 +348,7 @@ export default function App() {
                         battleGaps={battleGaps}
                         lapBoundaries={lapBoundaries}
                         totalLaps={totalLaps}
+                        onHighlight={setHighlightedDriver}
                       />
 
                       <MiniSectorTimeline
@@ -361,7 +362,7 @@ export default function App() {
                     </div>
 
                     <BattleTracker
-                      drivers={circuit.hasData ? session.drivers : Object.keys(mergedTelemetry)}
+                      drivers={session.drivers.length > 0 ? session.drivers : Object.keys(mergedTelemetry)}
                       driverTelemetry={mergedTelemetry}
                       progress={progress}
                       refLapDuration={refLapDuration}

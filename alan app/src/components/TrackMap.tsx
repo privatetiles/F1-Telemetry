@@ -61,6 +61,7 @@ interface Props {
   battleGaps?: BattleGapEntry[]
   lapBoundaries?: number[]
   totalLaps?: number
+  onHighlight?: (driver: string | null) => void
 }
 
 export default function TrackMap({
@@ -77,6 +78,7 @@ export default function TrackMap({
   battleGaps = [],
   lapBoundaries = [],
   totalLaps = 0,
+  onHighlight,
 }: Props) {
   const rafRef       = useRef<number | null>(null)
   const lastTimeRef  = useRef<number | null>(null)
@@ -88,6 +90,11 @@ export default function TrackMap({
   const [trackData,      setTrackData]      = useState<TrackData | null>(null)
   const [showClip,       setShowClip]       = useState(false)
   const [showClipTip,    setShowClipTip]    = useState(false)
+
+  // Auto-set play speed for full race vs single lap
+  useEffect(() => {
+    setPlaySpeed(totalLaps > 0 ? 20 : 1)
+  }, [totalLaps])
 
   // Load 3-class track data for this circuit
   useEffect(() => {
@@ -103,8 +110,22 @@ export default function TrackMap({
     // Pick the driver with the most GPS-valid points (some sessions lack X/Y)
     const gpsCount = (tel: typeof entries[0]) => tel.filter(p => isFinite(p.x) && isFinite(p.y)).length
     const ref = entries.reduce((best, cur) => gpsCount(cur) > gpsCount(best) ? cur : best)
-    return ref.filter(p => isFinite(p.x) && isFinite(p.y)).map((p) => ({ x: p.x, y: p.y }))
-  }, [driverTelemetry])
+    // For full race (multiple laps), only use first lap to avoid drawing all laps as overlapping paths
+    const maxRelDist = totalLaps > 1 ? 1.05 / totalLaps : 1
+    return ref
+      .filter(p => isFinite(p.x) && isFinite(p.y) && p.relDist <= maxRelDist)
+      .map(p => ({ x: p.x, y: p.y }))
+  }, [driverTelemetry, totalLaps])
+
+  // Last relDist per driver — used for retired-driver detection in full race
+  const driverLastRelDist = useMemo(() => {
+    if (totalLaps === 0) return {} as Record<string, number>
+    const out: Record<string, number> = {}
+    for (const [d, tel] of Object.entries(driverTelemetry)) {
+      out[d] = tel.at(-1)?.relDist ?? 0
+    }
+    return out
+  }, [driverTelemetry, totalLaps])
 
   const transform = useMemo(() => buildTransform(allPoints), [allPoints])
 
@@ -261,20 +282,66 @@ export default function TrackMap({
             if (!raw) return null
             const pos = transform.apply(raw)
             const isHighlighted = highlightedDriver === driver
+            const col = driverColor(driver)
+            const isFullRace = totalLaps > 0
+
+            // Retired: driver's data ended significantly before race end
+            const lastRD = isFullRace ? (driverLastRelDist[driver] ?? 1) : 1
+            const isRetired = isFullRace && progress > lastRD + 1 / totalLaps && lastRD * totalLaps < totalLaps - 3
+
+            // Pitting: current speed < 100 km/h mid-race
+            let isPitting = false
+            if (isFullRace && !isRetired && progress > 0.015) {
+              let lo = 0, hi = telemetry.length - 1
+              while (lo < hi - 1) {
+                const m = (lo + hi) >> 1
+                if (telemetry[m].time < targetTime) lo = m; else hi = m
+              }
+              const spd = telemetry[lo].speed
+              isPitting = spd > 5 && spd < 100
+            }
+
+            const dotR = isHighlighted ? 8 : (isFullRace ? 6 : 5)
+
             return (
-              <g key={driver}>
+              <g key={driver} style={{ cursor: 'pointer' }}
+                onMouseEnter={() => onHighlight?.(driver)}
+                onMouseLeave={() => onHighlight?.(null)}>
+                {/* Enlarged invisible hit target */}
+                <circle cx={pos.x} cy={pos.y} r={dotR + 8} fill="transparent" />
+                {/* Main dot */}
                 <circle
-                  cx={pos.x} cy={pos.y}
-                  r={isHighlighted ? 8 : 5}
-                  fill={driverColor(driver)}
-                  stroke={isHighlighted ? '#ffffff' : 'transparent'}
-                  strokeWidth={2}
+                  cx={pos.x} cy={pos.y} r={dotR}
+                  fill={col}
+                  stroke={isHighlighted ? '#ffffff' : isRetired ? '#444' : 'transparent'}
+                  strokeWidth={isHighlighted ? 2 : 1}
+                  opacity={isRetired ? 0.3 : 1}
                 />
-                {isHighlighted && (
-                  <text x={pos.x + 10} y={pos.y + 4} fill="#ffffff" fontSize={10} fontFamily="monospace" fontWeight="bold">
-                    {driver}
+                {/* Status badge: PIT or OUT */}
+                {(isPitting || isRetired) && !isHighlighted && (
+                  <text x={pos.x} y={pos.y - dotR - 3}
+                    fill={isRetired ? '#666' : '#f0c040'}
+                    fontSize={8} fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+                    {isRetired ? 'OUT' : 'PIT'}
                   </text>
                 )}
+                {/* Driver code label */}
+                {isHighlighted ? (
+                  <g>
+                    <rect x={pos.x + dotR + 2} y={pos.y - 9} width={28} height={13}
+                      rx={2} fill="#050c14ee" stroke={col} strokeWidth={1} />
+                    <text x={pos.x + dotR + 16} y={pos.y + 2}
+                      fill="#fff" fontSize={10} fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+                      {driver}
+                    </text>
+                  </g>
+                ) : (isFullRace && !isRetired && !isPitting) ? (
+                  <text x={pos.x} y={pos.y - dotR - 2}
+                    fill={col} fontSize={8} fontFamily="monospace" fontWeight="bold"
+                    textAnchor="middle" opacity={0.9}>
+                    {driver}
+                  </text>
+                ) : null}
               </g>
             )
           })}
@@ -438,7 +505,7 @@ export default function TrackMap({
           )}
         </div>
         <div className="speed-btns">
-          {[0.25, 0.5, 1, 3, 5, 10].map((s) => (
+          {(totalLaps > 0 ? [5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map((s) => (
             <button key={s} className={`speed-btn ${playSpeed === s ? 'active' : ''}`} onClick={() => setPlaySpeed(s)}>
               {s}×
             </button>

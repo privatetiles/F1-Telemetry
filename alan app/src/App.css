@@ -102,6 +102,31 @@
   min-width: 60px;
 }
 
+.circuit-tabs {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.circuit-tab {
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid #2a3a4a;
+  background: #111820;
+  color: #667;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.circuit-tab:hover { border-color: #445; color: #bbb; }
+.circuit-tab.active {
+  background: #0d1c2c;
+  border-color: #e10600;
+  color: #fff;
+  font-weight: 700;
+}
+
 .pill-row { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .pill {
