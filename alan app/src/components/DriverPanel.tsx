@@ -11,6 +11,7 @@ interface Props {
   soloMode: boolean
   onSoloToggle: () => void
   currentPositions?: Record<string, number>
+  lapsBehind?: Record<string, number>
 }
 
 export default function DriverPanel({
@@ -24,17 +25,22 @@ export default function DriverPanel({
   soloMode,
   onSoloToggle,
   currentPositions,
+  lapsBehind,
 }: Props) {
   const liveMode = !!currentPositions
 
-  // In live mode (full race), sort by current race position; otherwise by lap time
+  // In live mode (full race), sort by current race position; otherwise by lap time.
+  // Within the lapped-driver group (lapTimes = Infinity), sort by laps behind ascending.
   const classified = drivers
     .filter((d) => !dnfDrivers.has(d))
-    .sort((a, b) =>
-      liveMode
-        ? (currentPositions![a] ?? 999) - (currentPositions![b] ?? 999)
-        : (lapTimes[a] ?? Infinity) - (lapTimes[b] ?? Infinity)
-    )
+    .sort((a, b) => {
+      if (liveMode) return (currentPositions![a] ?? 999) - (currentPositions![b] ?? 999)
+      const lta = lapTimes[a] ?? Infinity
+      const ltb = lapTimes[b] ?? Infinity
+      if (lta !== ltb) return lta - ltb
+      // Both lapped (Infinity): fewer laps behind = higher position
+      return (lapsBehind?.[a] ?? 0) - (lapsBehind?.[b] ?? 0)
+    })
 
   const dnfList = drivers.filter((d) => dnfDrivers.has(d))
   const sorted = [...classified, ...dnfList]
@@ -87,6 +93,8 @@ export default function DriverPanel({
                   ? delta === 0 || delta === null
                     ? formatTime(t)
                     : `+${delta!.toFixed(3)}`
+                  : lapsBehind?.[driver] != null
+                  ? `+${lapsBehind[driver]} Lap${lapsBehind[driver] > 1 ? 's' : ''}`
                   : '—'}
               </span>
             </div>

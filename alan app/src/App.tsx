@@ -229,14 +229,29 @@ export default function App() {
       if (data.length === 0) continue
       const lastTime = data.at(-1)!.time
       if (totalLaps > 0) {
-        // Full race: a driver who finished significantly fewer laps than the total is retired.
-        // Give them Infinity so they sort after finishers and don't corrupt fastestTime.
-        const lastRelDist = data.at(-1)!.relDist
-        const lapsCompleted = lastRelDist * totalLaps
-        out[driver] = lapsCompleted < totalLaps - 3 ? Infinity : lastTime
+        // Full race: only LEAD-LAP drivers (completed all totalLaps) get a finite lapTime
+        // that represents their actual race crossing time (winner = smallest).
+        // Lapped/retired drivers get Infinity so they sort after finishers and don't
+        // corrupt fastestTime (a driver 3 laps down crossed the line ~270 s before the
+        // winner, so their lastTime would be smaller — making them appear as "winner").
+        const lapsCompleted = data.at(-1)!.relDist * totalLaps
+        out[driver] = Math.round(lapsCompleted) >= totalLaps ? lastTime : Infinity
       } else {
         out[driver] = lastTime
       }
+    }
+    return out
+  }, [mergedTelemetry, totalLaps])
+
+  // Laps behind the leader for classified but lapped drivers — shown as "+X Laps" in panel
+  const lapsBehind = useMemo<Record<string, number>>(() => {
+    if (totalLaps === 0) return {}
+    const out: Record<string, number> = {}
+    for (const [driver, data] of Object.entries(mergedTelemetry)) {
+      if (data.length === 0) continue
+      const lapsCompleted = data.at(-1)!.relDist * totalLaps
+      const behind = totalLaps - Math.round(lapsCompleted)
+      if (behind > 0 && behind < totalLaps) out[driver] = behind  // lapped but classified
     }
     return out
   }, [mergedTelemetry, totalLaps])
@@ -372,6 +387,7 @@ export default function App() {
                       soloMode={soloMode}
                       onSoloToggle={handleSoloToggle}
                       currentPositions={currentRacePositions ?? undefined}
+                      lapsBehind={Object.keys(lapsBehind).length > 0 ? lapsBehind : undefined}
                     />
 
                     <div className="center-pane">
