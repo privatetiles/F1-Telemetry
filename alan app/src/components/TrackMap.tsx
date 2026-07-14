@@ -289,7 +289,9 @@ export default function TrackMap({
             const lastRD = isFullRace ? (driverLastRelDist[driver] ?? 1) : 1
             const isRetired = isFullRace && progress > lastRD + 1 / totalLaps && lastRD * totalLaps < totalLaps - 3
 
-            // Pitting: current speed < 100 km/h mid-race
+            // Pitting: sustained low speed over a 10-second window.
+            // Corners are briefly slow (1-3s); pit lane takes 15-25s at limiter speed.
+            // Requiring 75% of points in a ±5s window below 80 km/h eliminates false positives.
             let isPitting = false
             if (isFullRace && !isRetired && progress > 0.015) {
               let lo = 0, hi = telemetry.length - 1
@@ -297,8 +299,16 @@ export default function TrackMap({
                 const m = (lo + hi) >> 1
                 if (telemetry[m].time < targetTime) lo = m; else hi = m
               }
-              const spd = telemetry[lo].speed
-              isPitting = spd > 5 && spd < 100
+              const wStart = targetTime - 5, wEnd = targetTime + 5
+              let slowPts = 0, totalPts = 0
+              for (let k = Math.max(0, lo - 25); k < Math.min(telemetry.length, lo + 25); k++) {
+                const pt = telemetry[k]
+                if (pt.time >= wStart && pt.time <= wEnd) {
+                  totalPts++
+                  if (pt.speed < 80) slowPts++
+                }
+              }
+              isPitting = totalPts >= 4 && slowPts / totalPts >= 0.75
             }
 
             const dotR = isHighlighted ? 8 : (isFullRace ? 6 : 5)

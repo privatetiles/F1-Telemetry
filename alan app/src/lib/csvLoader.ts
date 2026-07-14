@@ -143,6 +143,17 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
   }
   if (totalLaps === 0) totalLaps = 1
 
+  // Find race start (min t0 of lap 1) and end (max t1 of any lap) to cut formation + cool-down laps
+  let raceStartTime = Infinity
+  let raceEndTime   = 0
+  for (const entries of Object.values(json.laps)) {
+    for (const e of entries) {
+      if (e.lap === 1 && e.t0 != null) raceStartTime = Math.min(raceStartTime, e.t0)
+      if (e.t1 != null)                raceEndTime   = Math.max(raceEndTime,   e.t1)
+    }
+  }
+  if (!isFinite(raceStartTime)) raceStartTime = 0
+
   const data: Record<string, TelemetryPoint[]> = {}
   const dnf = new Set<string>()
 
@@ -158,8 +169,13 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
 
     const points: TelemetryPoint[] = []
     for (let i = 0; i < n; i++) {
+      const t = cols.t[i]
+
+      // Skip formation lap (pre-race) and cool-down lap (post-race)
+      if (t < raceStartTime) continue
+      if (raceEndTime > 0 && t > raceEndTime + 60) continue
+
       const lap = cols.lap[i] || 1
-      const t   = cols.t[i]
 
       // Compute relative distance within lap → relDist across full race
       const timing = lapTiming.get(lap)
