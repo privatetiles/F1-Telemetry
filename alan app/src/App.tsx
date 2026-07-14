@@ -29,6 +29,7 @@ import DisclaimerPage from './components/DisclaimerPage'
 import InsightsPage from './components/InsightsPage'
 import DailyChallenge from './components/DailyChallenge'
 import BattleTracker from './components/BattleTracker'
+import HistoricalRacesPage from './components/HistoricalRacesPage'
 import './App.css'
 
 export default function App() {
@@ -43,7 +44,7 @@ export default function App() {
   const [colorMode, setColorMode] = useState<ColorMode>('speed')
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'challenge', 'privacy', 'about', 'disclaimer']
+  const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'challenge', 'historicalraces', 'privacy', 'about', 'disclaimer']
   const hashToView = (hash: string): AppView => {
     const v = hash.replace(/^#\/?/, '') as AppView
     return VALID_VIEWS.includes(v) ? v : 'telemetry'
@@ -299,6 +300,14 @@ export default function App() {
             <InsightsPage />
           ) : activeView === 'challenge' ? (
             <DailyChallenge />
+          ) : activeView === 'historicalraces' ? (
+            <HistoricalRacesPage
+              onWatchReplay={(c) => {
+                setCircuit(c)
+                setSession(c.sessions[0])
+                setActiveView('telemetry')
+              }}
+            />
           ) : activeView === 'privacy' ? (
             <PrivacyPage />
           ) : activeView === 'about' ? (
