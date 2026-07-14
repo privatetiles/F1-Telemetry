@@ -117,6 +117,40 @@ export default function TrackMap({
       .map(p => ({ x: p.x, y: p.y }))
   }, [driverTelemetry, totalLaps])
 
+  // Pit lane path — collected from sustained low-speed sections (>15 s < 80 km/h)
+  // across all drivers. Slow corners take 2-5 s; pit stops take 20-30 s, so 15 s
+  // cleanly separates them. Multiple drivers trace the same physical pit lane,
+  // so the overlapping segments visually merge into one clear path.
+  const pitLaneSegments = useMemo(() => {
+    if (totalLaps === 0) return [] as { x: number; y: number }[][]
+    const segs: { x: number; y: number }[][] = []
+    for (const tel of Object.values(driverTelemetry)) {
+      let segStart = -1
+      let segStartTime = 0
+      for (let i = 0; i < tel.length; i++) {
+        const pt = tel[i]
+        const isSlow = pt.speed > 0 && pt.speed < 80
+        if (isSlow && segStart === -1) { segStart = i; segStartTime = pt.time }
+        else if (!isSlow && segStart !== -1) {
+          if (tel[i - 1].time - segStartTime >= 15) {
+            const seg = tel.slice(segStart, i)
+              .filter(p => isFinite(p.x) && isFinite(p.y))
+              .map(p => ({ x: p.x, y: p.y }))
+            if (seg.length > 5) segs.push(seg)
+          }
+          segStart = -1
+        }
+      }
+      if (segStart !== -1 && (tel.at(-1)?.time ?? 0) - segStartTime >= 15) {
+        const seg = tel.slice(segStart)
+          .filter(p => isFinite(p.x) && isFinite(p.y))
+          .map(p => ({ x: p.x, y: p.y }))
+        if (seg.length > 5) segs.push(seg)
+      }
+    }
+    return segs
+  }, [driverTelemetry, totalLaps])
+
   // Last relDist per driver — used for retired-driver detection in full race
   const driverLastRelDist = useMemo(() => {
     if (totalLaps === 0) return {} as Record<string, number>
@@ -221,6 +255,33 @@ export default function TrackMap({
             <image href={bgImageUrl} x={0} y={0} width={SVG_W} height={SVG_H}
               preserveAspectRatio="xMidYMid meet" opacity={0.35} />
           )}
+
+          {/* Pit lane (full race only) — drawn below the racing line */}
+          {totalLaps > 0 && pitLaneSegments.length > 0 && pitLaneSegments.map((seg, i) => {
+            const pts = seg.map(p => {
+              const { x, y } = transform.apply(p)
+              return `${x.toFixed(1)},${y.toFixed(1)}`
+            }).join(' ')
+            return (
+              <polyline key={`pit${i}`} points={pts} fill="none"
+                stroke="#ffffff" strokeWidth={6}
+                strokeOpacity={0.08}
+                strokeLinecap="round" strokeLinejoin="round" />
+            )
+          })}
+          {totalLaps > 0 && pitLaneSegments.length > 0 && pitLaneSegments.map((seg, i) => {
+            const pts = seg.map(p => {
+              const { x, y } = transform.apply(p)
+              return `${x.toFixed(1)},${y.toFixed(1)}`
+            }).join(' ')
+            return (
+              <polyline key={`pitl${i}`} points={pts} fill="none"
+                stroke="#aaccff" strokeWidth={1.5}
+                strokeOpacity={0.35}
+                strokeLinecap="round" strokeLinejoin="round"
+                strokeDasharray="4 3" />
+            )
+          })}
 
           {/* 3-class colored track */}
           {hasData && trackData && (() => {
@@ -535,21 +596,23 @@ export default function TrackMap({
         >
           SAT
         </button>
-        <button
-          className={`speed-btn ${showClip ? 'active clip-btn' : ''}`}
-          onClick={() => {
-            const next = !showClip
-            setShowClip(next)
-            if (next && !localStorage.getItem('f1vis_clip_seen')) {
-              setShowClipTip(true)
-              localStorage.setItem('f1vis_clip_seen', '1')
-              setTimeout(() => setShowClipTip(false), 5000)
-            }
-          }}
-          title="Highlight battery clip zones (full throttle + speed drop)"
-        >
-          CLIP
-        </button>
+        {totalLaps === 0 && (
+          <button
+            className={`speed-btn ${showClip ? 'active clip-btn' : ''}`}
+            onClick={() => {
+              const next = !showClip
+              setShowClip(next)
+              if (next && !localStorage.getItem('f1vis_clip_seen')) {
+                setShowClipTip(true)
+                localStorage.setItem('f1vis_clip_seen', '1')
+                setTimeout(() => setShowClipTip(false), 5000)
+              }
+            }}
+            title="Highlight battery clip zones (full throttle + speed drop)"
+          >
+            CLIP
+          </button>
+        )}
       </div>
     </div>
   )

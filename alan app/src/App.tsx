@@ -226,15 +226,46 @@ export default function App() {
   const lapTimes = useMemo(() => {
     const out: Record<string, number> = {}
     for (const [driver, data] of Object.entries(mergedTelemetry)) {
-      if (data.length > 0) out[driver] = data[data.length - 1].time
+      if (data.length === 0) continue
+      const lastTime = data.at(-1)!.time
+      if (totalLaps > 0) {
+        // Full race: a driver who finished significantly fewer laps than the total is retired.
+        // Give them Infinity so they sort after finishers and don't corrupt fastestTime.
+        const lastRelDist = data.at(-1)!.relDist
+        const lapsCompleted = lastRelDist * totalLaps
+        out[driver] = lapsCompleted < totalLaps - 3 ? Infinity : lastTime
+      } else {
+        out[driver] = lastTime
+      }
     }
     return out
-  }, [mergedTelemetry])
+  }, [mergedTelemetry, totalLaps])
 
   const refLapDuration = useMemo(() => {
     const times = Object.values(lapTimes).filter(isFinite)
     return times.length > 0 ? Math.max(...times) : 90
   }, [lapTimes])
+
+  // Live race positions for full-race replay — recomputed each frame as progress changes.
+  // Binary-search each driver's telemetry by time to get their current relDist, then rank.
+  const currentRacePositions = useMemo<Record<string, number> | null>(() => {
+    if (totalLaps === 0) return null
+    const targetTime = progress * refLapDuration
+    const relDists: [string, number][] = []
+    for (const [driver, tel] of Object.entries(mergedTelemetry)) {
+      if (tel.length === 0) continue
+      let lo = 0, hi = tel.length - 1
+      while (lo < hi) {
+        const m = (lo + hi + 1) >> 1
+        if (tel[m].time <= targetTime) lo = m; else hi = m - 1
+      }
+      relDists.push([driver, tel[lo].relDist])
+    }
+    relDists.sort((a, b) => b[1] - a[1])
+    const out: Record<string, number> = {}
+    relDists.forEach(([d], i) => { out[d] = i + 1 })
+    return out
+  }, [totalLaps, progress, mergedTelemetry, refLapDuration])
 
   const battleGaps = useMemo<BattleGapEntry[]>(
     () => computeBattleGaps(battleDrivers, mergedTelemetry, progress * refLapDuration),
@@ -340,6 +371,7 @@ export default function App() {
                       onHighlight={setHighlightedDriver}
                       soloMode={soloMode}
                       onSoloToggle={handleSoloToggle}
+                      currentPositions={currentRacePositions ?? undefined}
                     />
 
                     <div className="center-pane">

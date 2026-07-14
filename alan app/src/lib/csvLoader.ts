@@ -143,16 +143,29 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
   }
   if (totalLaps === 0) totalLaps = 1
 
-  // Find race start (min t0 of lap 1) and end (max t1 of any lap) to cut formation + cool-down laps
+  // Race start: min t0 of lap 1 (all drivers start together at lights-out)
   let raceStartTime = Infinity
-  let raceEndTime   = 0
   for (const entries of Object.values(json.laps)) {
     for (const e of entries) {
       if (e.lap === 1 && e.t0 != null) raceStartTime = Math.min(raceStartTime, e.t0)
-      if (e.t1 != null)                raceEndTime   = Math.max(raceEndTime,   e.t1)
     }
   }
   if (!isFinite(raceStartTime)) raceStartTime = 0
+
+  // Race end: min t1 of the final lap (totalLaps) among drivers who completed it.
+  // Using MIN (not max) gives the WINNER's crossing time.
+  // Retired drivers have a "final lap" with t1 = session end — that's an outlier we exclude
+  // by only looking at laps with a plausible duration (> 0 seconds).
+  let raceEndTime = 0
+  for (const entries of Object.values(json.laps)) {
+    for (const e of entries) {
+      if (e.lap === totalLaps && e.t0 != null && e.t1 != null && e.t1 > e.t0) {
+        if (raceEndTime === 0 || e.t1 < raceEndTime) raceEndTime = e.t1
+      }
+    }
+  }
+  // 5-minute buffer after the winner crosses for lapped/backmarker drivers to finish
+  const raceCutoff = raceEndTime > 0 ? raceEndTime + 300 : 0
 
   const data: Record<string, TelemetryPoint[]> = {}
   const dnf = new Set<string>()
@@ -167,18 +180,43 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
       if (e.t0 != null && e.t1 != null) lapTiming.set(e.lap, { t0: e.t0, t1: e.t1 })
     }
 
+    // Sorted array for time-based lap lookup — used when cols.lap[i] has no matching timing
+    // (happens when Python assigns lap=0 to early-race points for drivers who retired on lap 1)
+    const lapBoundsArr = Array.from(lapTiming.entries())
+      .map(([lapNum, b]) => ({ lapNum, t0: b.t0, t1: b.t1 }))
+      .sort((a, b) => a.t0 - b.t0)
+
+    function findLapByTime(t: number): { lapNum: number; t0: number; t1: number } | null {
+      let lo = 0, hi = lapBoundsArr.length - 1
+      while (lo <= hi) {
+        const m = (lo + hi) >> 1
+        const entry = lapBoundsArr[m]
+        if (t < entry.t0) hi = m - 1
+        else if (t >= entry.t1) lo = m + 1
+        else return entry
+      }
+      // t is past the last known lap — return the last entry (driver crossing the line)
+      if (lo > 0 && lo >= lapBoundsArr.length) return lapBoundsArr[lapBoundsArr.length - 1]
+      return null
+    }
+
     const points: TelemetryPoint[] = []
     for (let i = 0; i < n; i++) {
       const t = cols.t[i]
 
       // Skip formation lap (pre-race) and cool-down lap (post-race)
       if (t < raceStartTime) continue
-      if (raceEndTime > 0 && t > raceEndTime + 60) continue
+      if (raceCutoff > 0 && t > raceCutoff) continue
 
-      const lap = cols.lap[i] || 1
+      let lap = cols.lap[i] || 1
 
       // Compute relative distance within lap → relDist across full race
-      const timing = lapTiming.get(lap)
+      let timing = lapTiming.get(lap)
+      if (!timing) {
+        // cols.lap[i] is wrong (e.g. lap=0 for early-race retirees) — find by time
+        const found = findLapByTime(t)
+        if (found) { lap = found.lapNum; timing = found }
+      }
       let lapFrac = 0
       if (timing && timing.t1 > timing.t0) {
         lapFrac = Math.max(0, Math.min(1, (t - timing.t0) / (timing.t1 - timing.t0)))
@@ -186,7 +224,7 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
       const relDist = ((lap - 1) + lapFrac) / totalLaps
 
       points.push({
-        time:     t,
+        time:     t - raceStartTime,
         speed:    cols.v[i],
         gear:     cols.g[i],
         throttle: cols.th[i],

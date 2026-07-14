@@ -10,6 +10,7 @@ interface Props {
   onHighlight: (driver: string | null) => void
   soloMode: boolean
   onSoloToggle: () => void
+  currentPositions?: Record<string, number>
 }
 
 export default function DriverPanel({
@@ -22,14 +23,20 @@ export default function DriverPanel({
   onHighlight,
   soloMode,
   onSoloToggle,
+  currentPositions,
 }: Props) {
-  // Sort: classified drivers by lap time first, then DNFs at bottom
+  const liveMode = !!currentPositions
+
+  // In live mode (full race), sort by current race position; otherwise by lap time
   const classified = drivers
     .filter((d) => !dnfDrivers.has(d))
-    .sort((a, b) => (lapTimes[a] ?? Infinity) - (lapTimes[b] ?? Infinity))
+    .sort((a, b) =>
+      liveMode
+        ? (currentPositions![a] ?? 999) - (currentPositions![b] ?? 999)
+        : (lapTimes[a] ?? Infinity) - (lapTimes[b] ?? Infinity)
+    )
 
   const dnfList = drivers.filter((d) => dnfDrivers.has(d))
-
   const sorted = [...classified, ...dnfList]
   const fastestTime = Math.min(...classified.map((d) => lapTimes[d]).filter(isFinite))
 
@@ -47,12 +54,15 @@ export default function DriverPanel({
       </div>
 
       <div className="driver-list">
-        {sorted.map((driver, pos) => {
+        {sorted.map((driver, idx) => {
           const isDnf = dnfDrivers.has(driver)
           const t = lapTimes[driver]
           const delta = !isDnf && isFinite(t) && isFinite(fastestTime) ? t - fastestTime : null
           const active = activeDrivers.has(driver)
           const highlighted = highlightedDriver === driver
+          const pos = liveMode
+            ? (currentPositions![driver] ?? idx + 1)
+            : idx + 1
 
           return (
             <div
@@ -67,7 +77,7 @@ export default function DriverPanel({
               onMouseEnter={() => !soloMode && !isDnf && onHighlight(driver)}
               onMouseLeave={() => !soloMode && onHighlight(null)}
             >
-              <span className="driver-pos">{isDnf ? '—' : pos + 1}</span>
+              <span className="driver-pos">{isDnf ? '—' : `P${pos}`}</span>
               <span className="driver-dot" style={{ background: driverColor(driver) }} />
               <span className="driver-name">{driver}</span>
               <span className={`driver-time ${isDnf ? 'dnf-label' : ''}`}>
