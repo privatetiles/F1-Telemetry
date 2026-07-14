@@ -114,6 +114,86 @@ export interface TelemetryLoadResult {
   dnf: Set<string>
 }
 
+// ── Full-race JSON loader ─────────────────────────────────────────────────────
+
+interface FullRaceJson {
+  laps: Record<string, Array<{ lap: number; t0: number | null; t1: number | null }>>
+  drivers: Record<string, {
+    t: number[]; x: number[]; y: number[]; v: number[]
+    g: number[]; th: number[]; br: number[]; lap: number[]
+  }>
+}
+
+export interface FullRaceResult {
+  data: Record<string, TelemetryPoint[]>
+  dnf: Set<string>
+  totalLaps: number
+  lapBoundaries: number[]  // progress (0→1) at start of each lap (index = lapNumber - 1)
+}
+
+export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult> {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  const json: FullRaceJson = await res.json()
+
+  // Determine total laps across all drivers
+  let totalLaps = 0
+  for (const entries of Object.values(json.laps)) {
+    for (const e of entries) totalLaps = Math.max(totalLaps, e.lap)
+  }
+  if (totalLaps === 0) totalLaps = 1
+
+  const data: Record<string, TelemetryPoint[]> = {}
+  const dnf = new Set<string>()
+
+  for (const [driver, cols] of Object.entries(json.drivers)) {
+    const n = cols.t.length
+    if (n === 0) { dnf.add(driver); continue }
+
+    // Build lap timing lookup: lapNumber → { t0, t1 }
+    const lapTiming = new Map<number, { t0: number; t1: number }>()
+    for (const e of (json.laps[driver] ?? [])) {
+      if (e.t0 != null && e.t1 != null) lapTiming.set(e.lap, { t0: e.t0, t1: e.t1 })
+    }
+
+    const points: TelemetryPoint[] = []
+    for (let i = 0; i < n; i++) {
+      const lap = cols.lap[i] || 1
+      const t   = cols.t[i]
+
+      // Compute relative distance within lap → relDist across full race
+      const timing = lapTiming.get(lap)
+      let lapFrac = 0
+      if (timing && timing.t1 > timing.t0) {
+        lapFrac = Math.max(0, Math.min(1, (t - timing.t0) / (timing.t1 - timing.t0)))
+      }
+      const relDist = ((lap - 1) + lapFrac) / totalLaps
+
+      points.push({
+        time:     t,
+        speed:    cols.v[i],
+        gear:     cols.g[i],
+        throttle: cols.th[i],
+        brake:    cols.br[i] === 1,
+        drs:      0,
+        x:        cols.x[i],
+        y:        cols.y[i],
+        distance: relDist * totalLaps * 5000, // pseudo-distance, monotone by construction
+        relDist,
+      })
+    }
+
+    if (points.length === 0) { dnf.add(driver); continue }
+    points.sort((a, b) => a.relDist - b.relDist)
+    data[driver] = points
+  }
+
+  // Lap boundaries: progress value at the start of each lap
+  const lapBoundaries = Array.from({ length: totalLaps }, (_, i) => i / totalLaps)
+
+  return { data, dnf, totalLaps, lapBoundaries }
+}
+
 export async function loadAllDriverTelemetry(
   urls: Array<{ driver: string; url: string }>
 ): Promise<TelemetryLoadResult> {

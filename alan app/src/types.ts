@@ -38,7 +38,7 @@ export interface ProcessedMiniSector {
   category?: string        // 'Slow corners' | 'Fast corners' | 'Straights' when loaded from track data
 }
 
-export type SessionType = 'qualifying' | 'race' | 'sprint_qualifying' | 'sprint_race'
+export type SessionType = 'qualifying' | 'race' | 'sprint_qualifying' | 'sprint_race' | 'full_race'
 
 export interface CircuitSession {
   type: SessionType
@@ -51,6 +51,7 @@ export interface CircuitConfig {
   name: string
   flag: string
   raceDate: string    // ISO YYYY-MM-DD race Sunday
+  year?: number       // defaults to 2026; override for historical races
   hasData: boolean
   hasPrediction?: boolean
   sessions: CircuitSession[]

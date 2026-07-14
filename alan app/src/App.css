@@ -305,10 +305,44 @@
 }
 .play-btn:hover { background: #c00400; }
 
-.progress-slider {
+.progress-slider-wrap {
   flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.progress-slider {
+  width: 100%;
   height: 4px;
   accent-color: #e10600;
+}
+
+.lap-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.lap-tick {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.5px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 1px;
+}
+
+.lap-counter {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #e10600;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+  min-width: 40px;
 }
 
 .speed-btns { display: flex; gap: 4px; }
@@ -1461,6 +1495,48 @@
   width: 100%;
   min-height: 0;
   background: #04080f;
+}
+
+.sat-body {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  transform-origin: center center;
+  transition: transform 0.25s ease;
+}
+
+.sat-map {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Kill Leaflet's default box-shadow / focus rings inside sat-map */
+.sat-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #04080f;
+}
+
+.sat-svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Re-enable pointer events on clickable car groups */
+.sat-svg-overlay g[style*="cursor"] {
+  pointer-events: all;
+}
+
+.sat-zoom-btn.active {
+  background: #0b3a60;
+  border-color: #2299ff;
+  color: #88ccff;
 }
 
 /* ── Pace Analysis ── */

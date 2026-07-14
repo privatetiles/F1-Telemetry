@@ -199,7 +199,7 @@ export default function DailyChallenge() {
     const s = parseInt(localStorage.getItem(STREAK_KEY) ?? '0', 10)
     setStreak(isNaN(s) ? 0 : s)
 
-    loadTelemetry(telemetryUrl(challenge.circuitId, challenge.sessionType, challenge.driver))
+    loadTelemetry(telemetryUrl(challenge.circuitId, 2026, challenge.sessionType, challenge.driver))
       .then(setTelemetry)
       .catch(() => setLoadErr(true))
   }, [challenge, challengeId])

@@ -62,7 +62,7 @@ export async function buildDriverSpeedProfiles(): Promise<ProfileData> {
 
     const urls = qualSession.drivers.map((d) => ({
       driver: d,
-      url: telemetryUrl(circuit.id, qualSession.type, d),
+      url: telemetryUrl(circuit.id, circuit.year ?? 2026, qualSession.type, d),
     }))
 
     const { data } = await loadAllDriverTelemetry(urls)

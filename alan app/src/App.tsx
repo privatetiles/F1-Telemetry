@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import type { CircuitConfig, CircuitSession, TelemetryPoint, ColorMode } from './types'
-import { CIRCUITS, telemetryUrl } from './lib/dataIndex'
-import { loadAllDriverTelemetry, loadTelemetryFromFile } from './lib/csvLoader'
+import { CIRCUITS, telemetryUrl, fullRaceUrl } from './lib/dataIndex'
+import { loadAllDriverTelemetry, loadTelemetryFromFile, loadFullRaceTelemetry } from './lib/csvLoader'
 import { computeMiniSectors, computeMiniSectorsFromSegments } from './lib/miniSectors'
 import { loadTrackData, CIRCUIT_TRACK_PREFIX } from './lib/paceData'
 import type { TrackData } from './lib/paceData'
@@ -55,6 +55,9 @@ export default function App() {
   const [isDragging, setIsDragging] = useState(false)
   const [pendingResultRound, setPendingResultRound] = useState<number | undefined>(undefined)
   const dragCounter = useRef(0)
+
+  const [lapBoundaries, setLapBoundaries] = useState<number[]>([])
+  const [totalLaps, setTotalLaps] = useState(0)
 
   const [trackData, setTrackData] = useState<TrackData | null>(null)
 
@@ -138,6 +141,8 @@ export default function App() {
     setDnfDrivers(new Set())
     setActiveDrivers(new Set())
     setBattleDrivers([])
+    setLapBoundaries([])
+    setTotalLaps(0)
 
     if (!circuit.hasData) {
       setLoading(false)
@@ -145,10 +150,23 @@ export default function App() {
     }
 
     setLoading(true)
+    const year = circuit.year ?? 2026
+
+    if (session.type === 'full_race') {
+      loadFullRaceTelemetry(fullRaceUrl(circuit.id, year)).then(({ data, dnf, totalLaps: tl, lapBoundaries: lb }) => {
+        setDriverTelemetry(data)
+        setDnfDrivers(dnf)
+        setLapBoundaries(lb)
+        setTotalLaps(tl)
+        setActiveDrivers(new Set(Object.keys(data)))
+        setLoading(false)
+      }).catch(() => setLoading(false))
+      return
+    }
 
     const urls = session.drivers.map((driver) => ({
       driver,
-      url: telemetryUrl(circuit.id, session.type, driver),
+      url: telemetryUrl(circuit.id, year, session.type, driver),
     }))
 
     loadAllDriverTelemetry(urls).then(({ data, dnf }) => {
@@ -328,6 +346,8 @@ export default function App() {
                         onPlayPause={() => setPlaying((p) => !p)}
                         bgImageUrl={customBgUrl ?? undefined}
                         battleGaps={battleGaps}
+                        lapBoundaries={lapBoundaries}
+                        totalLaps={totalLaps}
                       />
 
                       <MiniSectorTimeline

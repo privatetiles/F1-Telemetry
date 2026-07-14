@@ -59,6 +59,8 @@ interface Props {
   onPlayPause: () => void
   bgImageUrl?: string
   battleGaps?: BattleGapEntry[]
+  lapBoundaries?: number[]
+  totalLaps?: number
 }
 
 export default function TrackMap({
@@ -73,6 +75,8 @@ export default function TrackMap({
   onPlayPause,
   bgImageUrl,
   battleGaps = [],
+  lapBoundaries = [],
+  totalLaps = 0,
 }: Props) {
   const rafRef       = useRef<number | null>(null)
   const lastTimeRef  = useRef<number | null>(null)
@@ -181,6 +185,7 @@ export default function TrackMap({
     <div className="track-map-container">
       {showSatellite ? (
         <SatelliteView
+          circuitId={circuitId}
           driverTelemetry={driverTelemetry}
           activeDrivers={activeDrivers}
           progress={progress}
@@ -404,12 +409,34 @@ export default function TrackMap({
       {/* Playback controls */}
       <div className="playback-bar">
         <button className="play-btn" onClick={onPlayPause}>{playing ? '⏸' : '▶'}</button>
-        <input
-          type="range" min={0} max={1000}
-          value={Math.round(progress * 1000)}
-          onChange={(e) => onProgressChange(parseInt(e.target.value) / 1000)}
-          className="progress-slider"
-        />
+
+        {/* Lap counter for full-race mode */}
+        {totalLaps > 0 && (
+          <span className="lap-counter">
+            L{Math.min(totalLaps, Math.floor(progress * totalLaps) + 1)}/{totalLaps}
+          </span>
+        )}
+
+        <div className="progress-slider-wrap">
+          <input
+            type="range" min={0} max={1000}
+            value={Math.round(progress * 1000)}
+            onChange={(e) => onProgressChange(parseInt(e.target.value) / 1000)}
+            className="progress-slider"
+          />
+          {/* Lap boundary tick marks */}
+          {lapBoundaries.length > 1 && (
+            <div className="lap-ticks" aria-hidden>
+              {lapBoundaries.slice(1).map((b, i) => (
+                <div
+                  key={i}
+                  className="lap-tick"
+                  style={{ left: `${b * 100}%` }}
+                />
+              ))}
+            </div>
+          )}
+        </div>
         <div className="speed-btns">
           {[0.25, 0.5, 1, 3, 5, 10].map((s) => (
             <button key={s} className={`speed-btn ${playSpeed === s ? 'active' : ''}`} onClick={() => setPlaySpeed(s)}>
