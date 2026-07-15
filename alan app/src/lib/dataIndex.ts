@@ -60,6 +60,12 @@ export const CIRCUITS: CircuitConfig[] = [
   { id: 'brazilian_2021',  name: '2021 Brazilian GP',  flag: '🇧🇷', year: 2021, raceDate: '2021-11-14', hasData: true, sessions: fullRaceOnly },
   { id: 'japanese_2022',   name: '2022 Japanese GP',   flag: '🇯🇵', year: 2022, raceDate: '2022-10-09', hasData: true, sessions: fullRaceOnly },
   { id: 'las_vegas_2023',  name: '2023 Las Vegas GP',  flag: '🇺🇸', year: 2023, raceDate: '2023-11-18', hasData: true, sessions: fullRaceOnly },
+  { id: 'german_2019',    name: '2019 German GP',    flag: '🇩🇪', year: 2019, raceDate: '2019-07-28', hasData: true, sessions: fullRaceOnly },
+  { id: 'british_2021',   name: '2021 British GP',   flag: '🇬🇧', year: 2021, raceDate: '2021-07-18', hasData: true, sessions: fullRaceOnly },
+  { id: 'italian_2021',   name: '2021 Italian GP',   flag: '🇮🇹', year: 2021, raceDate: '2021-09-12', hasData: true, sessions: fullRaceOnly },
+  { id: 'belgian_2022',   name: '2022 Belgian GP',   flag: '🇧🇪', year: 2022, raceDate: '2022-08-28', hasData: true, sessions: fullRaceOnly },
+  { id: 'monaco_2024',    name: '2024 Monaco GP',    flag: '🇲🇨', year: 2024, raceDate: '2024-05-26', hasData: true, sessions: fullRaceOnly },
+  { id: 'bahrain_2020',   name: '2020 Bahrain GP',   flag: '🇧🇭', year: 2020, raceDate: '2020-11-29', hasData: true, sessions: fullRaceOnly },
   // ── 2026 season ──────────────────────────────────────────────────────────
   { id: 'australia',          name: 'Australian GP',           flag: '🇦🇺', raceDate: '2026-03-08', hasData: true,  sessions: stdSessionsFull    },
   { id: 'china',              name: 'Chinese GP',              flag: '🇨🇳', raceDate: '2026-03-15', hasData: true,  sessions: sprintSessionsFull },
@@ -92,6 +98,12 @@ const FOLDER_OVERRIDES: Record<string, string> = {
   brazilian_2021:      'brazilian',
   japanese_2022:       'japanese',
   las_vegas_2023:      'las_vegas',
+  german_2019:         'german',
+  british_2021:        'british',
+  italian_2021:        'italian',
+  belgian_2022:        'belgian',
+  monaco_2024:         'monaco',
+  bahrain_2020:        'bahrain',
 }
 
 function circuitFolder(circuitId: string): string {
