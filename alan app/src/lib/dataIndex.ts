@@ -55,8 +55,11 @@ const fullRaceOnly = [FR_SESSION]
 // Sprint weekends: China, Miami, Canada, Britain, Netherlands, Singapore.
 export const CIRCUITS: CircuitConfig[] = [
   // ── Historical full-race replays ──────────────────────────────────────────
-  { id: 'abu_dhabi_2021', name: '2021 Abu Dhabi GP', flag: '🇦🇪', year: 2021, raceDate: '2021-12-12', hasData: true, sessions: fullRaceOnly },
-  { id: 'austrian_2025',  name: '2025 Austrian GP',  flag: '🇦🇹', year: 2025, raceDate: '2025-06-29', hasData: true, sessions: fullRaceOnly },
+  { id: 'abu_dhabi_2021',  name: '2021 Abu Dhabi GP',  flag: '🇦🇪', year: 2021, raceDate: '2021-12-12', hasData: true, sessions: fullRaceOnly },
+  { id: 'austrian_2025',   name: '2025 Austrian GP',   flag: '🇦🇹', year: 2025, raceDate: '2025-06-29', hasData: true, sessions: fullRaceOnly },
+  { id: 'brazilian_2021',  name: '2021 Brazilian GP',  flag: '🇧🇷', year: 2021, raceDate: '2021-11-14', hasData: true, sessions: fullRaceOnly },
+  { id: 'japanese_2022',   name: '2022 Japanese GP',   flag: '🇯🇵', year: 2022, raceDate: '2022-10-09', hasData: true, sessions: fullRaceOnly },
+  { id: 'las_vegas_2023',  name: '2023 Las Vegas GP',  flag: '🇺🇸', year: 2023, raceDate: '2023-11-18', hasData: true, sessions: fullRaceOnly },
   // ── 2026 season ──────────────────────────────────────────────────────────
   { id: 'australia',          name: 'Australian GP',           flag: '🇦🇺', raceDate: '2026-03-08', hasData: true,  sessions: stdSessionsFull    },
   { id: 'china',              name: 'Chinese GP',              flag: '🇨🇳', raceDate: '2026-03-15', hasData: true,  sessions: sprintSessionsFull },
@@ -86,6 +89,9 @@ const FOLDER_OVERRIDES: Record<string, string> = {
   barcelona_catalunya: 'barcelona',
   abu_dhabi_2021:      'abu_dhabi',
   austrian_2025:       'austrian',
+  brazilian_2021:      'brazilian',
+  japanese_2022:       'japanese',
+  las_vegas_2023:      'las_vegas',
 }
 
 function circuitFolder(circuitId: string): string {
