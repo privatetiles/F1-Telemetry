@@ -491,6 +491,47 @@
   accent-color: #e10600;
 }
 
+/* Safety car timeline bands */
+.sc-bands {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sc-band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0.28;
+  border-radius: 2px;
+}
+
+.sc-band-sc  { background: #ffd600; }
+.sc-band-vsc { background: #ffe082; }
+.sc-band-red { background: #e10600; }
+
+/* Safety car / finish badge */
+.sc-badge {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: monospace;
+  letter-spacing: 0.8px;
+  pointer-events: none;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.sc-badge-sc     { background: #ffd600; color: #111; }
+.sc-badge-vsc    { background: #ffe082; color: #111; }
+.sc-badge-red    { background: #e10600; color: #fff; }
+.sc-badge-finish { background: #fff; color: #111; border: 1px solid #444; }
+
 .lap-ticks {
   position: absolute;
   inset: 0;

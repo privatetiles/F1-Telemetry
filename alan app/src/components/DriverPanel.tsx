@@ -12,6 +12,7 @@ interface Props {
   onSoloToggle: () => void
   currentPositions?: Record<string, number>
   lapsBehind?: Record<string, number>
+  gapsToAhead?: Record<string, number>
 }
 
 export default function DriverPanel({
@@ -26,6 +27,7 @@ export default function DriverPanel({
   onSoloToggle,
   currentPositions,
   lapsBehind,
+  gapsToAhead,
 }: Props) {
   const liveMode = !!currentPositions
 
@@ -89,12 +91,18 @@ export default function DriverPanel({
               <span className={`driver-time ${isDnf ? 'dnf-label' : ''}`}>
                 {isDnf
                   ? 'DNF'
+                  : liveMode
+                  ? lapsBehind?.[driver] != null
+                    ? `+${lapsBehind[driver]} Lap${lapsBehind[driver] > 1 ? 's' : ''}`
+                    : pos === 1
+                    ? 'LEADER'
+                    : gapsToAhead?.[driver] != null
+                    ? `+${gapsToAhead[driver].toFixed(1)}s`
+                    : '—'
                   : isFinite(t)
                   ? delta === 0 || delta === null
                     ? formatTime(t)
                     : `+${delta!.toFixed(3)}`
-                  : lapsBehind?.[driver] != null
-                  ? `+${lapsBehind[driver]} Lap${lapsBehind[driver] > 1 ? 's' : ''}`
                   : '—'}
               </span>
             </div>

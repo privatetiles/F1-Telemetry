@@ -6,6 +6,7 @@ import { loadTrackData, CIRCUIT_TRACK_PREFIX } from '../lib/paceData'
 import type { TrackData } from '../lib/paceData'
 import { detectClipZones } from '../lib/clipDetection'
 import type { BattleGapEntry } from '../lib/battleGaps'
+import type { SafetyCarPeriod } from '../lib/csvLoader'
 import InputsHUD from './InputsHUD'
 import SatelliteView from './SatelliteView'
 
@@ -62,6 +63,8 @@ interface Props {
   lapBoundaries?: number[]
   totalLaps?: number
   onHighlight?: (driver: string | null) => void
+  safetyCars?: (SafetyCarPeriod & { startP: number; endP: number })[]
+  currentSC?: SafetyCarPeriod
 }
 
 export default function TrackMap({
@@ -79,6 +82,8 @@ export default function TrackMap({
   lapBoundaries = [],
   totalLaps = 0,
   onHighlight,
+  safetyCars = [],
+  currentSC,
 }: Props) {
   const rafRef       = useRef<number | null>(null)
   const lastTimeRef  = useRef<number | null>(null)
@@ -537,6 +542,18 @@ export default function TrackMap({
         </div>
       )}
 
+      {/* Safety car / red flag badge */}
+      {totalLaps > 0 && currentSC && (
+        <div className={`sc-badge sc-badge-${currentSC.type.toLowerCase()}`}>
+          {currentSC.type === 'RED' ? '🔴 RED FLAG' : currentSC.type === 'VSC' ? 'VIRTUAL SC' : '🟡 SAFETY CAR'}
+        </div>
+      )}
+
+      {/* Chequered flag badge when race ends */}
+      {totalLaps > 0 && !currentSC && progress >= 0.999 && (
+        <div className="sc-badge sc-badge-finish">🏁 RACE ENDED</div>
+      )}
+
       {/* Inputs HUD overlay */}
       {showHUD && hudInputs && hudDriver && (
         <div className="hud-overlay">
@@ -562,6 +579,18 @@ export default function TrackMap({
             onChange={(e) => onProgressChange(parseInt(e.target.value) / 1000)}
             className="progress-slider"
           />
+          {/* Safety car period bands */}
+          {safetyCars.length > 0 && (
+            <div className="sc-bands" aria-hidden>
+              {safetyCars.map((sc, i) => (
+                <div
+                  key={i}
+                  className={`sc-band sc-band-${sc.type.toLowerCase()}`}
+                  style={{ left: `${sc.startP * 100}%`, width: `${(sc.endP - sc.startP) * 100}%` }}
+                />
+              ))}
+            </div>
+          )}
           {/* Lap boundary tick marks */}
           {lapBoundaries.length > 1 && (
             <div className="lap-ticks" aria-hidden>

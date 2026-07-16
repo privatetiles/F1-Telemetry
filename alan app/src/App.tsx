@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import type { CircuitConfig, CircuitSession, TelemetryPoint, ColorMode } from './types'
 import { CIRCUITS, telemetryUrl, fullRaceUrl } from './lib/dataIndex'
 import { loadAllDriverTelemetry, loadTelemetryFromFile, loadFullRaceTelemetry } from './lib/csvLoader'
+import type { SafetyCarPeriod } from './lib/csvLoader'
 import { computeMiniSectors, computeMiniSectorsFromSegments } from './lib/miniSectors'
 import { loadTrackData, CIRCUIT_TRACK_PREFIX } from './lib/paceData'
 import type { TrackData } from './lib/paceData'
@@ -59,6 +60,7 @@ export default function App() {
 
   const [lapBoundaries, setLapBoundaries] = useState<number[]>([])
   const [totalLaps, setTotalLaps] = useState(0)
+  const [safetyCars, setSafetyCars] = useState<SafetyCarPeriod[]>([])
 
   const [trackData, setTrackData] = useState<TrackData | null>(null)
 
@@ -144,6 +146,7 @@ export default function App() {
     setBattleDrivers([])
     setLapBoundaries([])
     setTotalLaps(0)
+    setSafetyCars([])
 
     if (!circuit.hasData) {
       setLoading(false)
@@ -154,11 +157,12 @@ export default function App() {
     const year = circuit.year ?? 2026
 
     if (session.type === 'full_race') {
-      loadFullRaceTelemetry(fullRaceUrl(circuit.id, year)).then(({ data, dnf, totalLaps: tl, lapBoundaries: lb }) => {
+      loadFullRaceTelemetry(fullRaceUrl(circuit.id, year)).then(({ data, dnf, totalLaps: tl, lapBoundaries: lb, safetyCars: sc }) => {
         setDriverTelemetry(data)
         setDnfDrivers(dnf)
         setLapBoundaries(lb)
         setTotalLaps(tl)
+        setSafetyCars(sc)
         setActiveDrivers(new Set(Object.keys(data)))
         setLoading(false)
       }).catch(() => setLoading(false))
@@ -261,12 +265,11 @@ export default function App() {
     return times.length > 0 ? Math.max(...times) : 90
   }, [lapTimes])
 
-  // Live race positions for full-race replay — recomputed each frame as progress changes.
-  // Binary-search each driver's telemetry by time to get their current relDist, then rank.
-  const currentRacePositions = useMemo<Record<string, number> | null>(() => {
+  // Live race positions + relDists for full-race replay — recomputed each frame as progress changes.
+  const currentRaceState = useMemo<{ positions: Record<string, number>; relDists: Record<string, number> } | null>(() => {
     if (totalLaps === 0) return null
     const targetTime = progress * refLapDuration
-    const relDists: [string, number][] = []
+    const pairs: [string, number][] = []
     for (const [driver, tel] of Object.entries(mergedTelemetry)) {
       if (tel.length === 0) continue
       let lo = 0, hi = tel.length - 1
@@ -274,13 +277,42 @@ export default function App() {
         const m = (lo + hi + 1) >> 1
         if (tel[m].time <= targetTime) lo = m; else hi = m - 1
       }
-      relDists.push([driver, tel[lo].relDist])
+      pairs.push([driver, tel[lo].relDist])
     }
-    relDists.sort((a, b) => b[1] - a[1])
-    const out: Record<string, number> = {}
-    relDists.forEach(([d], i) => { out[d] = i + 1 })
-    return out
+    pairs.sort((a, b) => b[1] - a[1])
+    const positions: Record<string, number> = {}
+    const relDists: Record<string, number> = {}
+    pairs.forEach(([d, rd], i) => { positions[d] = i + 1; relDists[d] = rd })
+    return { positions, relDists }
   }, [totalLaps, progress, mergedTelemetry, refLapDuration])
+
+  const currentRacePositions = currentRaceState?.positions ?? null
+
+  // Gap to car immediately ahead, in seconds (live, updates each frame)
+  const gapsToAhead = useMemo<Record<string, number> | null>(() => {
+    if (!currentRaceState) return null
+    const { positions, relDists } = currentRaceState
+    const out: Record<string, number> = {}
+    const drivers = Object.keys(positions).sort((a, b) => positions[a] - positions[b])
+    for (let i = 1; i < drivers.length; i++) {
+      const d = drivers[i]
+      const ahead = drivers[i - 1]
+      const gap = (relDists[ahead] - relDists[d]) * refLapDuration
+      out[d] = Math.max(0, gap)
+    }
+    return out
+  }, [currentRaceState, refLapDuration])
+
+  // Current safety car / red flag status
+  const currentSC = useMemo<SafetyCarPeriod | null>(() => {
+    if (safetyCars.length === 0) return null
+    const t = progress * refLapDuration
+    // RED takes priority over SC/VSC
+    return safetyCars.find(sc => sc.type === 'RED' && t >= sc.start && t <= sc.end)
+      ?? safetyCars.find(sc => sc.type === 'SC' && t >= sc.start && t <= sc.end)
+      ?? safetyCars.find(sc => sc.type === 'VSC' && t >= sc.start && t <= sc.end)
+      ?? null
+  }, [safetyCars, progress, refLapDuration])
 
   const battleGaps = useMemo<BattleGapEntry[]>(
     () => computeBattleGaps(battleDrivers, mergedTelemetry, progress * refLapDuration),
@@ -388,6 +420,7 @@ export default function App() {
                       onSoloToggle={handleSoloToggle}
                       currentPositions={currentRacePositions ?? undefined}
                       lapsBehind={Object.keys(lapsBehind).length > 0 ? lapsBehind : undefined}
+                      gapsToAhead={gapsToAhead ?? undefined}
                     />
 
                     <div className="center-pane">
@@ -406,6 +439,12 @@ export default function App() {
                         lapBoundaries={lapBoundaries}
                         totalLaps={totalLaps}
                         onHighlight={setHighlightedDriver}
+                        safetyCars={refLapDuration > 0 ? safetyCars.map(sc => ({
+                          ...sc,
+                          startP: sc.start / refLapDuration,
+                          endP: Math.min(1, sc.end / refLapDuration),
+                        })) : []}
+                        currentSC={currentSC ?? undefined}
                       />
 
                       <MiniSectorTimeline

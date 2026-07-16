@@ -124,11 +124,18 @@ interface FullRaceJson {
   }>
 }
 
+export interface SafetyCarPeriod {
+  type: 'SC' | 'VSC' | 'RED'
+  start: number  // normalized seconds from race start
+  end: number
+}
+
 export interface FullRaceResult {
   data: Record<string, TelemetryPoint[]>
   dnf: Set<string>
   totalLaps: number
   lapBoundaries: number[]  // progress (0→1) at start of each lap (index = lapNumber - 1)
+  safetyCars: SafetyCarPeriod[]
 }
 
 export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult> {
@@ -245,7 +252,16 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
   // Lap boundaries: progress value at the start of each lap
   const lapBoundaries = Array.from({ length: totalLaps }, (_, i) => i / totalLaps)
 
-  return { data, dnf, totalLaps, lapBoundaries }
+  // Safety car periods — normalize from raw session seconds to race-relative seconds
+  const safetyCars: SafetyCarPeriod[] = ((json as any).safety_cars ?? [])
+    .map((sc: { type: string; start: number; end: number }) => ({
+      type: sc.type as SafetyCarPeriod['type'],
+      start: sc.start - raceStartTime,
+      end: sc.end - raceStartTime,
+    }))
+    .filter((sc: SafetyCarPeriod) => sc.end > sc.start && sc.start >= 0)
+
+  return { data, dnf, totalLaps, lapBoundaries, safetyCars }
 }
 
 export async function loadAllDriverTelemetry(
