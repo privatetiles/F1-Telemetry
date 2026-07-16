@@ -605,7 +605,7 @@ export default function TrackMap({
           )}
         </div>
         <div className="speed-btns">
-          {(totalLaps > 0 ? [5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map((s) => (
+          {(totalLaps > 0 ? [1, 5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map((s) => (
             <button key={s} className={`speed-btn ${playSpeed === s ? 'active' : ''}`} onClick={() => setPlaySpeed(s)}>
               {s}×
             </button>
