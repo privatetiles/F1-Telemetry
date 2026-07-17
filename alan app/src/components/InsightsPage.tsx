@@ -1,5 +1,16 @@
 const INSIGHTS = [
   {
+    round: 'R9',
+    race: 'British GP — Silverstone Circuit',
+    date: 'July 5, 2026',
+    tag: 'Sprint Weekend',
+    body: [
+      `Silverstone delivered one of the most aerodynamically demanding weekends of the 2026 season. The circuit's unique combination of ultra-high-speed sweepers — Copse, the Maggotts-Becketts-Chapel complex, and the rebuilt Arena section — compresses the top teams into a narrow setup window where downforce level, rake angle, and front wing balance must all align simultaneously. The qualifying speed trace shows the top five covered by just 0.21 seconds, the closest margin at Silverstone in three seasons.`,
+      `The sprint race telemetry provided some of the clearest evidence yet of the 2026 active aerodynamics hierarchy. Through the Maggotts-Becketts chicane — where drivers sustain lateral G-forces exceeding 4.5G for over three seconds — the cars with more refined active aero management showed a measurably flatter speed profile through the sequence, losing less time to the brief directional loads compared to those whose systems were slower to react. The minimum speed differential through Chapel alone tracked closely to the final sprint classification order.`,
+      `In the main race, tyre behaviour on the resurfaced Arena complex played a larger role than expected. The new asphalt through Turns 13–16 has significantly higher abrasion characteristics than the original surface, and rear tyre degradation in this section was the primary driver behind several late-race pit decisions. The throttle trace data from the final ten laps shows the leading drivers managing wheelspin through the Arena exit kerbs far more conservatively than in the opening stint — a clear sign of rear rubber reaching its thermal limit under the warm Northamptonshire conditions.`,
+    ],
+  },
+  {
     round: 'R8',
     race: 'Austrian GP — Red Bull Ring',
     date: 'June 28, 2026',
