@@ -130,12 +130,35 @@ export interface SafetyCarPeriod {
   end: number
 }
 
+export interface StintInfo {
+  s: number  // start lap
+  e: number  // end lap
+  c: string  // compound name e.g. SOFT / MEDIUM / HARD / INTERMEDIATE / WET
+}
+
+export interface PitStopInfo {
+  lap: number
+  in: number   // normalized seconds
+  out: number
+  dur: number  // stop duration seconds
+}
+
+export interface OvertakeEvent {
+  t: number   // time (normalized seconds)
+  d: string   // driver who gained position
+  f: number   // from position
+  to: number  // to position
+}
+
 export interface FullRaceResult {
   data: Record<string, TelemetryPoint[]>
   dnf: Set<string>
   totalLaps: number
   lapBoundaries: number[]  // progress (0→1) at start of each lap (index = lapNumber - 1)
   safetyCars: SafetyCarPeriod[]
+  stints: Record<string, StintInfo[]>
+  pitStops: Record<string, PitStopInfo[]>
+  overtakes: OvertakeEvent[]
 }
 
 export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult> {
@@ -261,7 +284,11 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
     }))
     .filter((sc: SafetyCarPeriod) => sc.end > sc.start && sc.start >= 0)
 
-  return { data, dnf, totalLaps, lapBoundaries, safetyCars }
+  const stints: Record<string, StintInfo[]> = (json as any).stints ?? {}
+  const pitStops: Record<string, PitStopInfo[]> = (json as any).pit_stops ?? {}
+  const overtakes: OvertakeEvent[] = (json as any).overtakes ?? []
+
+  return { data, dnf, totalLaps, lapBoundaries, safetyCars, stints, pitStops, overtakes }
 }
 
 export async function loadAllDriverTelemetry(

@@ -400,8 +400,8 @@
 
 .driver-pos { font-size: 10px; color: #6a7fa0; min-width: 22px; font-family: monospace; font-weight: 600; letter-spacing: 0.3px; }
 .driver-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.driver-name { font-size: 12px; font-weight: 700; font-family: monospace; flex: 1; }
-.driver-time { font-size: 10px; color: #778; font-family: monospace; }
+.driver-name { font-size: 12px; font-weight: 700; font-family: monospace; flex: 1; min-width: 0; }
+.driver-time { font-size: 10px; color: #778; font-family: monospace; white-space: nowrap; flex-shrink: 0; }
 
 /* ── Center pane ── */
 .center-pane {
@@ -547,6 +547,68 @@
   background: rgba(255, 255, 255, 0.25);
   border-radius: 1px;
 }
+
+.speed-warn-toast {
+  position: absolute;
+  bottom: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1200;
+  border: 1px solid #c8a200;
+  color: #f0c040;
+  font-size: 11px;
+  font-family: monospace;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 20;
+  animation: fadeInOut 4s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.overtake-marks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.overtake-mark {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 6px;
+  background: rgba(100, 200, 255, 0.5);
+  border-radius: 1px;
+}
+
+/* Tyre compound chips */
+.compound-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 900;
+  font-family: monospace;
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+.compound-soft         { background: #c8001a; color: #fff; }
+.compound-medium       { background: #c8a200; color: #111; }
+.compound-hard         { background: #9a9a9a; color: #111; }
+.compound-intermediate { background: #1a8a3a; color: #fff; }
+.compound-wet          { background: #0055cc; color: #fff; }
 
 .lap-counter {
   font-family: monospace;
@@ -964,6 +1026,42 @@
 }
 
 /* ── Mini sector timeline ── */
+.position-chart-wrap {
+  background: #0d1117;
+  border-top: 1px solid #1e2a3a;
+  flex-shrink: 0;
+  padding-bottom: 2px;
+}
+
+.position-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 9px;
+  font-weight: 700;
+  color: #3a4a5a;
+  letter-spacing: 1.5px;
+  padding: 6px 10px;
+  text-align: left;
+  transition: color 0.15s;
+}
+.position-chart-header:hover { color: #6a8aaa; }
+
+.position-chart-chevron {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.position-chart-svg {
+  display: block;
+  width: 100%;
+}
+
 .mini-sector-timeline {
   background: #0d1117;
   border-top: 1px solid #1e2a3a;

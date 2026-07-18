@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import type { CircuitConfig, CircuitSession, TelemetryPoint, ColorMode } from './types'
 import { CIRCUITS, telemetryUrl, fullRaceUrl } from './lib/dataIndex'
 import { loadAllDriverTelemetry, loadTelemetryFromFile, loadFullRaceTelemetry } from './lib/csvLoader'
-import type { SafetyCarPeriod } from './lib/csvLoader'
+import type { SafetyCarPeriod, StintInfo, PitStopInfo, OvertakeEvent } from './lib/csvLoader'
 import { computeMiniSectors, computeMiniSectorsFromSegments } from './lib/miniSectors'
 import { loadTrackData, CIRCUIT_TRACK_PREFIX } from './lib/paceData'
 import type { TrackData } from './lib/paceData'
@@ -31,6 +31,7 @@ import InsightsPage from './components/InsightsPage'
 import DailyChallenge from './components/DailyChallenge'
 import BattleTracker from './components/BattleTracker'
 import HistoricalRacesPage from './components/HistoricalRacesPage'
+import PositionChart from './components/PositionChart'
 import './App.css'
 
 export default function App() {
@@ -61,12 +62,37 @@ export default function App() {
   const [lapBoundaries, setLapBoundaries] = useState<number[]>([])
   const [totalLaps, setTotalLaps] = useState(0)
   const [safetyCars, setSafetyCars] = useState<SafetyCarPeriod[]>([])
+  const [stints, setStints] = useState<Record<string, StintInfo[]>>({})
+  const [pitStops, setPitStops] = useState<Record<string, PitStopInfo[]>>({})
+  const [overtakes, setOvertakes] = useState<OvertakeEvent[]>([])
 
   const [trackData, setTrackData] = useState<TrackData | null>(null)
 
   useEffect(() => {
     window.location.hash = activeView === 'telemetry' ? '' : activeView
   }, [activeView])
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      if (activeView !== 'telemetry') return
+      if (e.key === ' ') {
+        e.preventDefault()
+        setPlaying((p) => !p)
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        const step = totalLaps > 0 ? 1 / totalLaps : 0.05
+        setProgress((p) => Math.min(1, p + step))
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        const step = totalLaps > 0 ? 1 / totalLaps : 0.05
+        setProgress((p) => Math.max(0, p - step))
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [activeView, totalLaps])
 
   useEffect(() => {
     const onPop = () => setActiveView(hashToView(window.location.hash))
@@ -147,6 +173,9 @@ export default function App() {
     setLapBoundaries([])
     setTotalLaps(0)
     setSafetyCars([])
+    setStints({})
+    setPitStops({})
+    setOvertakes([])
 
     if (!circuit.hasData) {
       setLoading(false)
@@ -157,12 +186,15 @@ export default function App() {
     const year = circuit.year ?? 2026
 
     if (session.type === 'full_race') {
-      loadFullRaceTelemetry(fullRaceUrl(circuit.id, year)).then(({ data, dnf, totalLaps: tl, lapBoundaries: lb, safetyCars: sc }) => {
+      loadFullRaceTelemetry(fullRaceUrl(circuit.id, year)).then(({ data, dnf, totalLaps: tl, lapBoundaries: lb, safetyCars: sc, stints: st, pitStops: ps, overtakes: ov }) => {
         setDriverTelemetry(data)
         setDnfDrivers(dnf)
         setLapBoundaries(lb)
         setTotalLaps(tl)
         setSafetyCars(sc)
+        setStints(st)
+        setPitStops(ps)
+        setOvertakes(ov)
         setActiveDrivers(new Set(Object.keys(data)))
         setLoading(false)
       }).catch(() => setLoading(false))
@@ -247,7 +279,7 @@ export default function App() {
     return out
   }, [mergedTelemetry, totalLaps])
 
-  // Laps behind the leader for classified but lapped drivers — shown as "+X Laps" in panel
+  // Static laps-behind from final telemetry — used only for sorting in non-live mode
   const lapsBehind = useMemo<Record<string, number>>(() => {
     if (totalLaps === 0) return {}
     const out: Record<string, number> = {}
@@ -255,7 +287,7 @@ export default function App() {
       if (data.length === 0) continue
       const lapsCompleted = data.at(-1)!.relDist * totalLaps
       const behind = totalLaps - Math.round(lapsCompleted)
-      if (behind > 0 && behind < totalLaps) out[driver] = behind  // lapped but classified
+      if (behind > 0 && behind < totalLaps) out[driver] = behind
     }
     return out
   }, [mergedTelemetry, totalLaps])
@@ -288,6 +320,21 @@ export default function App() {
 
   const currentRacePositions = currentRaceState?.positions ?? null
 
+  // Live laps behind — recomputed each frame from current race positions
+  const liveLapsBehind = useMemo<Record<string, number>>(() => {
+    if (!currentRaceState || totalLaps === 0) return {}
+    const { relDists } = currentRaceState
+    const vals = Object.values(relDists)
+    if (vals.length === 0) return {}
+    const leaderRD = Math.max(...vals)
+    const out: Record<string, number> = {}
+    for (const [driver, rd] of Object.entries(relDists)) {
+      const behind = Math.floor((leaderRD - rd) * totalLaps)
+      if (behind > 0) out[driver] = behind
+    }
+    return out
+  }, [currentRaceState, totalLaps])
+
   // Gap to car immediately ahead, in seconds (live, updates each frame)
   const gapsToAhead = useMemo<Record<string, number> | null>(() => {
     if (!currentRaceState) return null
@@ -313,6 +360,59 @@ export default function App() {
       ?? safetyCars.find(sc => sc.type === 'VSC' && t >= sc.start && t <= sc.end)
       ?? null
   }, [safetyCars, progress, refLapDuration])
+
+  // Current tyre compound per driver (changes each stint)
+  const currentCompounds = useMemo<Record<string, string>>(() => {
+    if (totalLaps === 0 || Object.keys(stints).length === 0) return {}
+    const currentLap = Math.floor(progress * totalLaps) + 1
+    const out: Record<string, string> = {}
+    for (const [driver, driverStints] of Object.entries(stints)) {
+      const stint = driverStints.find(s => currentLap >= s.s && currentLap <= s.e)
+      if (stint) out[driver] = stint.c
+    }
+    return out
+  }, [totalLaps, progress, stints])
+
+  // Overtake/position-change events as progress fractions (for timeline markers)
+  const overtakeMarkersP = useMemo<number[]>(() => {
+    if (refLapDuration === 0 || overtakes.length === 0) return []
+    const seen = new Set<number>()
+    const out: number[] = []
+    for (const o of overtakes) {
+      const bucket = Math.round(o.t / refLapDuration * 200)
+      if (seen.has(bucket)) continue
+      seen.add(bucket)
+      const p = o.t / refLapDuration
+      if (p > 0 && p < 1) out.push(p)
+    }
+    return out
+  }, [overtakes, refLapDuration])
+
+  // Position of each driver at the end of each lap — for the position chart
+  const lapPositions = useMemo<Record<string, number[]>>(() => {
+    if (totalLaps === 0 || lapBoundaries.length === 0) return {}
+    const drivers = Object.keys(mergedTelemetry)
+    if (drivers.length === 0) return {}
+    const out: Record<string, number[]> = {}
+    drivers.forEach((d) => { out[d] = [] })
+    for (let lap = 1; lap <= totalLaps; lap++) {
+      const p = lap < totalLaps ? (lapBoundaries[lap] ?? lap / totalLaps) : 1
+      const t = p * refLapDuration
+      const pairs: [string, number][] = []
+      for (const [driver, tel] of Object.entries(mergedTelemetry)) {
+        if (tel.length === 0) continue
+        let lo = 0, hi = tel.length - 1
+        while (lo < hi) {
+          const m = (lo + hi + 1) >> 1
+          if (tel[m].time <= t) lo = m; else hi = m - 1
+        }
+        pairs.push([driver, tel[lo].relDist])
+      }
+      pairs.sort((a, b) => b[1] - a[1])
+      pairs.forEach(([d], i) => { out[d].push(i + 1) })
+    }
+    return out
+  }, [totalLaps, lapBoundaries, mergedTelemetry, refLapDuration])
 
   const battleGaps = useMemo<BattleGapEntry[]>(
     () => computeBattleGaps(battleDrivers, mergedTelemetry, progress * refLapDuration),
@@ -419,8 +519,11 @@ export default function App() {
                       soloMode={soloMode}
                       onSoloToggle={handleSoloToggle}
                       currentPositions={currentRacePositions ?? undefined}
-                      lapsBehind={Object.keys(lapsBehind).length > 0 ? lapsBehind : undefined}
-                      gapsToAhead={gapsToAhead ?? undefined}
+                      lapsBehind={totalLaps > 0
+                        ? (progress * refLapDuration > 30 && Object.keys(liveLapsBehind).length > 0 ? liveLapsBehind : undefined)
+                        : (Object.keys(lapsBehind).length > 0 ? lapsBehind : undefined)}
+                      gapsToAhead={progress * refLapDuration > 30 ? (gapsToAhead ?? undefined) : undefined}
+                      currentCompounds={totalLaps > 0 && Object.keys(currentCompounds).length > 0 ? currentCompounds : undefined}
                     />
 
                     <div className="center-pane">
@@ -445,16 +548,30 @@ export default function App() {
                           endP: Math.min(1, sc.end / refLapDuration),
                         })) : []}
                         currentSC={currentSC ?? undefined}
+                        pitStops={Object.keys(pitStops).length > 0 ? pitStops : undefined}
+                        overtakeMarkers={overtakeMarkersP.length > 0 ? overtakeMarkersP : undefined}
                       />
 
-                      <MiniSectorTimeline
-                        miniSectors={miniSectors}
-                        activeDrivers={activeDrivers}
-                        highlightedDriver={effectiveHighlight}
-                        colorMode={colorMode}
-                        onColorModeChange={setColorMode}
-                        progress={progress}
-                      />
+                      {totalLaps > 0 ? (
+                        <PositionChart
+                          lapPositions={lapPositions}
+                          totalLaps={totalLaps}
+                          progress={progress}
+                          onProgressChange={handleProgressChange}
+                          lapBoundaries={lapBoundaries}
+                          activeDrivers={activeDrivers}
+                          highlightedDriver={effectiveHighlight}
+                        />
+                      ) : (
+                        <MiniSectorTimeline
+                          miniSectors={miniSectors}
+                          activeDrivers={activeDrivers}
+                          highlightedDriver={effectiveHighlight}
+                          colorMode={colorMode}
+                          onColorModeChange={setColorMode}
+                          progress={progress}
+                        />
+                      )}
                     </div>
 
                     <BattleTracker

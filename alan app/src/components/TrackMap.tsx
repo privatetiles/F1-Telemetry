@@ -1,4 +1,5 @@
-import { useMemo, useRef, useEffect, useState } from 'react'
+import { useMemo, useRef, useEffect, useState, useCallback } from 'react'
+import html2canvas from 'html2canvas'
 import type { TelemetryPoint } from '../types'
 import { interpolatePositionAtTime, interpolateInputsAtTime } from '../lib/miniSectors'
 import { driverColor } from '../lib/teamColors'
@@ -6,7 +7,7 @@ import { loadTrackData, CIRCUIT_TRACK_PREFIX } from '../lib/paceData'
 import type { TrackData } from '../lib/paceData'
 import { detectClipZones } from '../lib/clipDetection'
 import type { BattleGapEntry } from '../lib/battleGaps'
-import type { SafetyCarPeriod } from '../lib/csvLoader'
+import type { SafetyCarPeriod, PitStopInfo } from '../lib/csvLoader'
 import InputsHUD from './InputsHUD'
 import SatelliteView from './SatelliteView'
 
@@ -65,6 +66,8 @@ interface Props {
   onHighlight?: (driver: string | null) => void
   safetyCars?: (SafetyCarPeriod & { startP: number; endP: number })[]
   currentSC?: SafetyCarPeriod
+  pitStops?: Record<string, PitStopInfo[]>
+  overtakeMarkers?: number[]  // progress fractions where position changes occurred
 }
 
 export default function TrackMap({
@@ -84,7 +87,10 @@ export default function TrackMap({
   onHighlight,
   safetyCars = [],
   currentSC,
+  pitStops,
+  overtakeMarkers,
 }: Props) {
+  const containerRef = useRef<HTMLDivElement | null>(null)
   const rafRef       = useRef<number | null>(null)
   const lastTimeRef  = useRef<number | null>(null)
   const progressRef  = useRef(0)
@@ -95,11 +101,39 @@ export default function TrackMap({
   const [trackData,      setTrackData]      = useState<TrackData | null>(null)
   const [showClip,       setShowClip]       = useState(false)
   const [showClipTip,    setShowClipTip]    = useState(false)
+  const [showSpeedWarn,  setShowSpeedWarn]  = useState(false)
+  const speedWarnTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // Auto-set play speed for full race vs single lap
   useEffect(() => {
-    setPlaySpeed(totalLaps > 0 ? 20 : 1)
+    setPlaySpeed(totalLaps > 0 ? 10 : 1)
   }, [totalLaps])
+
+  const handleScreenshot = useCallback(async () => {
+    const el = containerRef.current
+    if (!el) return
+    const canvas = await html2canvas(el, {
+      backgroundColor: '#080d14',
+      scale: 2,
+      useCORS: true,
+      logging: false,
+    })
+    const link = document.createElement('a')
+    link.download = `f1vis-${Date.now()}.png`
+    link.href = canvas.toDataURL('image/png')
+    link.click()
+  }, [])
+
+  function handleSpeedSelect(s: number) {
+    setPlaySpeed(s)
+    if (totalLaps > 0 && s >= 20) {
+      setShowSpeedWarn(true)
+      if (speedWarnTimer.current) clearTimeout(speedWarnTimer.current)
+      speedWarnTimer.current = setTimeout(() => setShowSpeedWarn(false), 4000)
+    } else {
+      setShowSpeedWarn(false)
+    }
+  }
 
   // Load 3-class track data for this circuit
   useEffect(() => {
@@ -242,7 +276,7 @@ export default function TrackMap({
   )
 
   return (
-    <div className="track-map-container">
+    <div className="track-map-container" ref={containerRef}>
       {showSatellite ? (
         <SatelliteView
           circuitId={circuitId}
@@ -393,14 +427,22 @@ export default function TrackMap({
                   strokeWidth={isHighlighted ? 2 : 1}
                   opacity={isRetired ? 0.3 : 1}
                 />
-                {/* Status badge: PIT or OUT */}
-                {(isPitting || isRetired) && !isHighlighted && (
-                  <text x={pos.x} y={pos.y - dotR - 3}
-                    fill={isRetired ? '#666' : '#f0c040'}
-                    fontSize={8} fontFamily="monospace" fontWeight="bold" textAnchor="middle">
-                    {isRetired ? 'OUT' : 'PIT'}
-                  </text>
-                )}
+                {/* Status badge: PIT Xs or OUT */}
+                {(isPitting || isRetired) && !isHighlighted && (() => {
+                  let label = isRetired ? 'OUT' : 'PIT'
+                  if (isPitting && pitStops) {
+                    const currentLap = Math.floor(progress * totalLaps) + 1
+                    const stop = (pitStops[driver] ?? []).find(s => s.lap === currentLap || s.lap === currentLap - 1)
+                    if (stop) label = `PIT ${stop.dur.toFixed(1)}s`
+                  }
+                  return (
+                    <text x={pos.x} y={pos.y - dotR - 3}
+                      fill={isRetired ? '#666' : '#f0c040'}
+                      fontSize={8} fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+                      {label}
+                    </text>
+                  )
+                })()}
                 {/* Driver code label */}
                 {isHighlighted ? (
                   <g>
@@ -561,6 +603,13 @@ export default function TrackMap({
         </div>
       )}
 
+      {/* High-speed warning */}
+      {showSpeedWarn && (
+        <div className="speed-warn-toast">
+          ⚠️ At high speeds, live positions and gaps may be less accurate
+        </div>
+      )}
+
       {/* Playback controls */}
       <div className="playback-bar">
         <button className="play-btn" onClick={onPlayPause}>{playing ? '⏸' : '▶'}</button>
@@ -603,10 +652,18 @@ export default function TrackMap({
               ))}
             </div>
           )}
+          {/* Position-change markers */}
+          {overtakeMarkers && overtakeMarkers.length > 0 && (
+            <div className="overtake-marks" aria-hidden>
+              {overtakeMarkers.map((p, i) => (
+                <div key={i} className="overtake-mark" style={{ left: `${p * 100}%` }} />
+              ))}
+            </div>
+          )}
         </div>
         <div className="speed-btns">
           {(totalLaps > 0 ? [1, 5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map((s) => (
-            <button key={s} className={`speed-btn ${playSpeed === s ? 'active' : ''}`} onClick={() => setPlaySpeed(s)}>
+            <button key={s} className={`speed-btn ${playSpeed === s ? 'active' : ''}`} onClick={() => handleSpeedSelect(s)}>
               {s}×
             </button>
           ))}
@@ -624,6 +681,13 @@ export default function TrackMap({
           title="Toggle satellite follow-cam view"
         >
           SAT
+        </button>
+        <button
+          className="speed-btn screenshot-btn"
+          onClick={handleScreenshot}
+          title="Save screenshot as PNG"
+        >
+          📷
         </button>
         {totalLaps === 0 && (
           <button

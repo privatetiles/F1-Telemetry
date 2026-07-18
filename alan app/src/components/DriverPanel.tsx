@@ -13,6 +13,7 @@ interface Props {
   currentPositions?: Record<string, number>
   lapsBehind?: Record<string, number>
   gapsToAhead?: Record<string, number>
+  currentCompounds?: Record<string, string>
 }
 
 export default function DriverPanel({
@@ -28,6 +29,7 @@ export default function DriverPanel({
   currentPositions,
   lapsBehind,
   gapsToAhead,
+  currentCompounds,
 }: Props) {
   const liveMode = !!currentPositions
 
@@ -88,6 +90,11 @@ export default function DriverPanel({
               <span className="driver-pos">{isDnf ? '—' : `P${pos}`}</span>
               <span className="driver-dot" style={{ background: driverColor(driver) }} />
               <span className="driver-name">{driver}</span>
+              {liveMode && currentCompounds?.[driver] && (
+                <span className={`compound-chip compound-${currentCompounds[driver].toLowerCase()}`}>
+                  {currentCompounds[driver][0]}
+                </span>
+              )}
               <span className={`driver-time ${isDnf ? 'dnf-label' : ''}`}>
                 {isDnf
                   ? 'DNF'
