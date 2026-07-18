@@ -550,6 +550,7 @@ export default function App() {
                         currentSC={currentSC ?? undefined}
                         pitStops={Object.keys(pitStops).length > 0 ? pitStops : undefined}
                         overtakeMarkers={overtakeMarkersP.length > 0 ? overtakeMarkersP : undefined}
+                        loading={loading}
                       />
 
                       {totalLaps > 0 ? (

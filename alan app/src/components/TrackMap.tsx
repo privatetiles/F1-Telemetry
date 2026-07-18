@@ -68,6 +68,7 @@ interface Props {
   currentSC?: SafetyCarPeriod
   pitStops?: Record<string, PitStopInfo[]>
   overtakeMarkers?: number[]  // progress fractions where position changes occurred
+  loading?: boolean
 }
 
 export default function TrackMap({
@@ -89,6 +90,7 @@ export default function TrackMap({
   currentSC,
   pitStops,
   overtakeMarkers,
+  loading = false,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const rafRef       = useRef<number | null>(null)
@@ -564,7 +566,7 @@ export default function TrackMap({
 
           {!hasData && (
             <text x={SVG_W / 2} y={SVG_H / 2} textAnchor="middle" fill="#555" fontSize={16}>
-              Loading telemetry…
+              {loading ? 'Loading telemetry…' : 'No data available for this session'}
             </text>
           )}
         </svg>

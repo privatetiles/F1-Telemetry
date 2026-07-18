@@ -171,7 +171,7 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
   for (const entries of Object.values(json.laps)) {
     for (const e of entries) totalLaps = Math.max(totalLaps, e.lap)
   }
-  if (totalLaps === 0) totalLaps = 1
+  // Don't fake a 1-lap race when there's genuinely no data — keep 0 so the UI shows "no data"
 
   // Race start: min t0 of lap 1 (all drivers start together at lights-out)
   let raceStartTime = Infinity
