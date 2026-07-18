@@ -456,6 +456,9 @@ export default function App() {
           <span className="logo-text">Telemetry Visualizer</span>
         </div>
         {loading && activeView === 'telemetry' && <span className="loading-badge">Loading…</span>}
+        <a href="https://www.buymeacoffee.com/PrivateTiles" target="_blank" rel="noopener noreferrer" className="bmc-btn">
+          <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=PrivateTiles&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" alt="Buy me a coffee" />
+        </a>
       </header>
 
       <div className="app-body">

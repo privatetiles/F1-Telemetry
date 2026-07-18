@@ -25,6 +25,14 @@
 }
 .logo-text { font-size: 14px; font-weight: 600; color: #aaa; letter-spacing: 1px; text-transform: uppercase; }
 
+.bmc-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.bmc-btn img { height: 36px; display: block; }
+
 .upload-btn {
   margin-left: auto;
   padding: 4px 12px;
