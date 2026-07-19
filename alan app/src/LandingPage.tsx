@@ -86,7 +86,6 @@ export default function LandingPage({ onEnter }: Props) {
           <span className="land-logo-f1">F1</span>
           <span className="land-logo-text">Telemetry</span>
         </div>
-        <button className="land-nav-btn" onClick={onEnter}>Launch App</button>
       </nav>
 
       {/* Hero */}
