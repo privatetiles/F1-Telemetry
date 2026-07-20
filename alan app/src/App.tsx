@@ -318,7 +318,29 @@ export default function App() {
     return { positions, relDists }
   }, [totalLaps, progress, mergedTelemetry, refLapDuration])
 
-  const currentRacePositions = currentRaceState?.positions ?? null
+  // Final (frozen) standings computed once from each driver's last telemetry point.
+  // Used when progress >= 1 to lock the panel at the official race result.
+  const finalPositions = useMemo<Record<string, number> | null>(() => {
+    if (totalLaps === 0) return null
+    const entries = Object.entries(mergedTelemetry)
+      .filter(([, tel]) => tel.length > 0)
+      .map(([driver, tel]) => {
+        const last = tel.at(-1)!
+        return { driver, relDist: last.relDist, finishTime: last.time }
+      })
+    entries.sort((a, b) => {
+      const rdDiff = b.relDist - a.relDist
+      if (Math.abs(rdDiff) > 0.5 / totalLaps) return rdDiff > 0 ? 1 : -1
+      return a.finishTime - b.finishTime
+    })
+    const out: Record<string, number> = {}
+    entries.forEach(({ driver }, i) => { out[driver] = i + 1 })
+    return out
+  }, [mergedTelemetry, totalLaps])
+
+  const currentRacePositions = totalLaps > 0
+    ? (progress >= 1 ? finalPositions : (currentRaceState?.positions ?? null))
+    : null
 
   // Live laps behind — recomputed each frame from current race positions
   const liveLapsBehind = useMemo<Record<string, number>>(() => {
@@ -349,6 +371,21 @@ export default function App() {
     }
     return out
   }, [currentRaceState, refLapDuration])
+
+  // Final gaps — finish-time difference to car ahead for lead-lap drivers
+  const finalGapsToAhead = useMemo<Record<string, number> | null>(() => {
+    if (!finalPositions || totalLaps === 0) return null
+    const sorted = Object.keys(finalPositions).sort((a, b) => finalPositions[a] - finalPositions[b])
+    const out: Record<string, number> = {}
+    for (let i = 1; i < sorted.length; i++) {
+      const d = sorted[i]
+      const ahead = sorted[i - 1]
+      const tD = lapTimes[d]
+      const tAhead = lapTimes[ahead]
+      if (isFinite(tD) && isFinite(tAhead)) out[d] = Math.max(0, tD - tAhead)
+    }
+    return out
+  }, [finalPositions, lapTimes, totalLaps])
 
   // Current safety car / red flag status
   const currentSC = useMemo<SafetyCarPeriod | null>(() => {
@@ -523,9 +560,10 @@ export default function App() {
                       onSoloToggle={handleSoloToggle}
                       currentPositions={currentRacePositions ?? undefined}
                       lapsBehind={totalLaps > 0
-                        ? (progress * refLapDuration > 30 && Object.keys(liveLapsBehind).length > 0 ? liveLapsBehind : undefined)
+                        ? (progress >= 1 ? (Object.keys(lapsBehind).length > 0 ? lapsBehind : undefined)
+                          : (progress * refLapDuration > 30 && Object.keys(liveLapsBehind).length > 0 ? liveLapsBehind : undefined))
                         : (Object.keys(lapsBehind).length > 0 ? lapsBehind : undefined)}
-                      gapsToAhead={progress * refLapDuration > 30 ? (gapsToAhead ?? undefined) : undefined}
+                      gapsToAhead={progress >= 1 ? (finalGapsToAhead ?? undefined) : (progress * refLapDuration > 30 ? (gapsToAhead ?? undefined) : undefined)}
                       currentCompounds={totalLaps > 0 && Object.keys(currentCompounds).length > 0 ? currentCompounds : undefined}
                     />
 
