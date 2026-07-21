@@ -297,6 +297,9 @@ export default function App() {
     return times.length > 0 ? Math.max(...times) : 90
   }, [lapTimes])
 
+  // Previous position order — used for hysteresis when two cars are nose-to-tail.
+  const prevRaceOrderRef = useRef<Record<string, number>>({})
+
   // Live race positions + relDists for full-race replay — recomputed each frame as progress changes.
   const currentRaceState = useMemo<{ positions: Record<string, number>; relDists: Record<string, number> } | null>(() => {
     if (totalLaps === 0) return null
@@ -311,10 +314,22 @@ export default function App() {
       }
       pairs.push([driver, tel[lo].relDist])
     }
-    pairs.sort((a, b) => b[1] - a[1])
+    // Hysteresis: within 1s gap, keep previous order to prevent criss-crossing
+    const threshold = 1.0 / refLapDuration
+    const prevRank = prevRaceOrderRef.current
+    pairs.sort((a, b) => {
+      const rdDiff = b[1] - a[1]
+      if (Math.abs(rdDiff) < threshold) {
+        const pa = prevRank[a[0]] ?? 999
+        const pb = prevRank[b[0]] ?? 999
+        if (pa !== pb) return pa - pb
+      }
+      return rdDiff > 0 ? 1 : -1
+    })
     const positions: Record<string, number> = {}
     const relDists: Record<string, number> = {}
     pairs.forEach(([d, rd], i) => { positions[d] = i + 1; relDists[d] = rd })
+    prevRaceOrderRef.current = positions
     return { positions, relDists }
   }, [totalLaps, progress, mergedTelemetry, refLapDuration])
 
