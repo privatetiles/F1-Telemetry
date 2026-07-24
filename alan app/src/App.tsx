@@ -35,6 +35,7 @@ import PositionChart from './components/PositionChart'
 import './App.css'
 
 export default function App() {
+  const [selectedSeason, setSelectedSeason] = useState<'historical' | number>(2026)
   const [circuit, setCircuit] = useState<CircuitConfig>(CIRCUITS[0])
   const [session, setSession] = useState<CircuitSession>(CIRCUITS[0].sessions[0])
   const [driverTelemetry, setDriverTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
@@ -160,6 +161,16 @@ export default function App() {
 
   const handleCircuitChange = useCallback((c: CircuitConfig) => {
     setCircuit(c)
+  }, [])
+
+  const handleSeasonChange = useCallback((season: 'historical' | number) => {
+    setSelectedSeason(season)
+    const first = CIRCUITS.find(c =>
+      season === 'historical' ? (c.year !== undefined && c.year < 2026)
+      : season === 2026 ? !c.year
+      : c.year === season
+    )
+    if (first) { setCircuit(first); setSession(first.sessions[0]) }
   }, [])
 
   // Load telemetry for circuits with real data
@@ -556,8 +567,10 @@ export default function App() {
               <CircuitSelector
                 selectedCircuit={circuit}
                 selectedSession={session}
+                selectedSeason={selectedSeason}
                 onCircuitChange={handleCircuitChange}
                 onSessionChange={(s) => { setSession(s) }}
+                onSeasonChange={handleSeasonChange}
               />
 
               <div className="main-layout">

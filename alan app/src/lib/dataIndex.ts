@@ -53,6 +53,7 @@ const fullRaceOnly = [FR_SESSION]
 // 2026 calendar: 22 rounds (Bahrain + Saudi Arabia cancelled due to Middle East conflict).
 // Emilia Romagna dropped; replaced by Barcelona-Catalunya (Jun) and Madrid (Sep).
 // Sprint weekends: China, Miami, Canada, Britain, Netherlands, Singapore.
+// 2027 calendar: dates are provisional — update when FIA publishes official calendar.
 export const CIRCUITS: CircuitConfig[] = [
   // ── Historical full-race replays ──────────────────────────────────────────
   { id: 'abu_dhabi_2021',  name: '2021 Abu Dhabi GP',  flag: '🇦🇪', year: 2021, raceDate: '2021-12-12', hasData: true, sessions: fullRaceOnly },
@@ -89,6 +90,29 @@ export const CIRCUITS: CircuitConfig[] = [
   { id: 'las_vegas',          name: 'Las Vegas GP',            flag: '🇺🇸', raceDate: '2026-11-21', hasData: false, sessions: stdSessions    },
   { id: 'qatar',              name: 'Qatar GP',                flag: '🇶🇦', raceDate: '2026-11-29', hasData: false, sessions: stdSessions    },
   { id: 'abu_dhabi',          name: 'Abu Dhabi GP',            flag: '🇦🇪', raceDate: '2026-12-06', hasData: false, sessions: stdSessions    },
+  // ── 2027 season (provisional dates) ─────────────────────────────────────
+  { id: 'australia',          name: 'Australian GP',           flag: '🇦🇺', year: 2027, raceDate: '2027-03-07', hasData: false, sessions: stdSessions },
+  { id: 'china',              name: 'Chinese GP',              flag: '🇨🇳', year: 2027, raceDate: '2027-03-21', hasData: false, sessions: stdSessions },
+  { id: 'japan',              name: 'Japanese GP',             flag: '🇯🇵', year: 2027, raceDate: '2027-04-04', hasData: false, sessions: stdSessions },
+  { id: 'miami',              name: 'Miami GP',                flag: '🇺🇸', year: 2027, raceDate: '2027-05-02', hasData: false, sessions: stdSessions },
+  { id: 'canadian',           name: 'Canadian GP',             flag: '🇨🇦', year: 2027, raceDate: '2027-05-23', hasData: false, sessions: stdSessions },
+  { id: 'monaco',             name: 'Monaco GP',               flag: '🇲🇨', year: 2027, raceDate: '2027-06-06', hasData: false, sessions: stdSessions },
+  { id: 'barcelona_catalunya',name: 'Barcelona-Catalunya GP',  flag: '🇪🇸', year: 2027, raceDate: '2027-06-13', hasData: false, sessions: stdSessions },
+  { id: 'austrian',           name: 'Austrian GP',             flag: '🇦🇹', year: 2027, raceDate: '2027-06-27', hasData: false, sessions: stdSessions },
+  { id: 'british',            name: 'British GP',              flag: '🇬🇧', year: 2027, raceDate: '2027-07-04', hasData: false, sessions: stdSessions },
+  { id: 'belgian',            name: 'Belgian GP',              flag: '🇧🇪', year: 2027, raceDate: '2027-07-18', hasData: false, sessions: stdSessions },
+  { id: 'hungarian',          name: 'Hungarian GP',            flag: '🇭🇺', year: 2027, raceDate: '2027-07-25', hasData: false, sessions: stdSessions },
+  { id: 'dutch',              name: 'Dutch GP',                flag: '🇳🇱', year: 2027, raceDate: '2027-08-29', hasData: false, sessions: stdSessions },
+  { id: 'italian',            name: 'Italian GP',              flag: '🇮🇹', year: 2027, raceDate: '2027-09-05', hasData: false, sessions: stdSessions },
+  { id: 'madrid',             name: 'Spanish GP',              flag: '🇪🇸', year: 2027, raceDate: '2027-09-19', hasData: false, sessions: stdSessions },
+  { id: 'azerbaijan',         name: 'Azerbaijan GP',           flag: '🇦🇿', year: 2027, raceDate: '2027-09-26', hasData: false, sessions: stdSessions },
+  { id: 'singapore',          name: 'Singapore GP',            flag: '🇸🇬', year: 2027, raceDate: '2027-10-10', hasData: false, sessions: stdSessions },
+  { id: 'united_states',      name: 'United States GP',        flag: '🇺🇸', year: 2027, raceDate: '2027-10-24', hasData: false, sessions: stdSessions },
+  { id: 'mexican_city',       name: 'Mexico City GP',          flag: '🇲🇽', year: 2027, raceDate: '2027-10-31', hasData: false, sessions: stdSessions },
+  { id: 'sao_paulo',          name: 'São Paulo GP',            flag: '🇧🇷', year: 2027, raceDate: '2027-11-07', hasData: false, sessions: stdSessions },
+  { id: 'las_vegas',          name: 'Las Vegas GP',            flag: '🇺🇸', year: 2027, raceDate: '2027-11-21', hasData: false, sessions: stdSessions },
+  { id: 'qatar',              name: 'Qatar GP',                flag: '🇶🇦', year: 2027, raceDate: '2027-11-28', hasData: false, sessions: stdSessions },
+  { id: 'abu_dhabi',          name: 'Abu Dhabi GP',            flag: '🇦🇪', year: 2027, raceDate: '2027-12-05', hasData: false, sessions: stdSessions },
 ]
 
 const FOLDER_OVERRIDES: Record<string, string> = {

@@ -306,6 +306,10 @@
 .pill.predicted:hover { border-color: #f0c040; }
 .pill.predicted.active { background: #c88600; border-color: #f0c040; color: #fff; }
 
+.season-selector-group { border-bottom: 1px solid #1a2030; padding-bottom: 8px; margin-bottom: 2px; }
+.season-pill { font-weight: 600; letter-spacing: 0.04em; min-width: 72px; text-align: center; }
+.season-pill.active { background: #0d1520; border-color: #e10600; color: #e10600; }
+
 .countdown-bar {
   display: flex;
   align-items: center;
