@@ -68,6 +68,9 @@ interface Props {
   currentSC?: SafetyCarPeriod
   pitStops?: Record<string, PitStopInfo[]>
   overtakeMarkers?: number[]  // progress fractions where position changes occurred
+  radioCallsWithProgress?: Array<{ driver: string; progress: number; url: string }>
+  tunedDriver?: string | null
+  onTuneDriver?: (driver: string | null) => void
   loading?: boolean
 }
 
@@ -90,26 +93,93 @@ export default function TrackMap({
   currentSC,
   pitStops,
   overtakeMarkers,
+  radioCallsWithProgress,
+  tunedDriver,
+  onTuneDriver,
   loading = false,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const rafRef       = useRef<number | null>(null)
   const lastTimeRef  = useRef<number | null>(null)
   const progressRef  = useRef(0)
-  const [playSpeed,      setPlaySpeed]      = useState(1)
-  const [showHUD,        setShowHUD]        = useState(false)
-  const [showSatellite,  setShowSatellite]  = useState(false)
-  const [satCamDriver,   setSatCamDriver]   = useState<string | null>(null)
-  const [trackData,      setTrackData]      = useState<TrackData | null>(null)
-  const [showClip,       setShowClip]       = useState(false)
-  const [showClipTip,    setShowClipTip]    = useState(false)
-  const [showSpeedWarn,  setShowSpeedWarn]  = useState(false)
-  const speedWarnTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [playSpeed,        setPlaySpeed]        = useState(1)
+  const [showHUD,          setShowHUD]          = useState(false)
+  const [showSatellite,    setShowSatellite]    = useState(false)
+  const [satCamDriver,     setSatCamDriver]     = useState<string | null>(null)
+  const [trackData,        setTrackData]        = useState<TrackData | null>(null)
+  const [showClip,         setShowClip]         = useState(false)
+  const [showClipTip,      setShowClipTip]      = useState(false)
+  const [showSpeedWarn,    setShowSpeedWarn]    = useState(false)
+  const [radioEnabled,     setRadioEnabled]     = useState(false)
+  const [activeRadioCall,  setActiveRadioCall]  = useState<{ driver: string; url: string } | null>(null)
+  const speedWarnTimer  = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const audioRef        = useRef<HTMLAudioElement | null>(null)
+  const lastRadioIdxRef = useRef(-1)
+  const prevProgressRef = useRef(0)
 
   // Auto-set play speed for full race vs single lap
   useEffect(() => {
     setPlaySpeed(totalLaps > 0 ? 10 : 1)
   }, [totalLaps])
+
+  // Stop audio when paused or radio toggled off
+  useEffect(() => {
+    if (!playing || !radioEnabled) {
+      audioRef.current?.pause()
+      if (!radioEnabled) setActiveRadioCall(null)
+    }
+  }, [playing, radioEnabled])
+
+  // Reset radio index when session/circuit changes
+  useEffect(() => {
+    lastRadioIdxRef.current = -1
+    prevProgressRef.current = 0
+    audioRef.current?.pause()
+    setActiveRadioCall(null)
+  }, [radioCallsWithProgress])
+
+  // Auto-play team radio synchronized to replay progress
+  useEffect(() => {
+    if (!radioCallsWithProgress?.length || !radioEnabled || !playing) {
+      prevProgressRef.current = progress
+      return
+    }
+
+    const prevP = prevProgressRef.current
+    prevProgressRef.current = progress
+    const jump = progress - prevP
+
+    // Large jump (scrub) — reposition index without playing
+    if (Math.abs(jump) > 0.05 || jump < 0) {
+      let newIdx = -1
+      for (let i = radioCallsWithProgress.length - 1; i >= 0; i--) {
+        if (radioCallsWithProgress[i].progress <= progress) { newIdx = i; break }
+      }
+      lastRadioIdxRef.current = newIdx
+      audioRef.current?.pause()
+      if (jump < 0) setActiveRadioCall(null)
+      return
+    }
+
+    // Normal forward playback — find all newly passed calls
+    let callToPlay: { driver: string; url: string } | null = null
+    for (let i = lastRadioIdxRef.current + 1; i < radioCallsWithProgress.length; i++) {
+      const call = radioCallsWithProgress[i]
+      if (call.progress > progress) break
+      lastRadioIdxRef.current = i
+      if (!tunedDriver || tunedDriver === call.driver) callToPlay = call
+    }
+
+    if (callToPlay) {
+      audioRef.current?.pause()
+      const audio = new Audio(callToPlay.url)
+      audio.volume = 0.75
+      audio.play().catch(() => {})
+      audio.addEventListener('ended', () => setActiveRadioCall(null), { once: true })
+      audioRef.current = audio
+      setActiveRadioCall(callToPlay)
+    }
+  }, [progress, radioCallsWithProgress, radioEnabled, playing, tunedDriver])
 
   const handleScreenshot = useCallback(async () => {
     const el = containerRef.current
@@ -662,6 +732,22 @@ export default function TrackMap({
               ))}
             </div>
           )}
+          {/* Team radio markers */}
+          {radioCallsWithProgress && radioCallsWithProgress.length > 0 && radioEnabled && (
+            <div className="radio-marks" aria-hidden>
+              {radioCallsWithProgress.map((r, i) => (
+                <div
+                  key={i}
+                  className="radio-mark"
+                  style={{
+                    left: `${r.progress * 100}%`,
+                    borderColor: driverColor(r.driver),
+                    opacity: !tunedDriver || tunedDriver === r.driver ? 0.85 : 0.2,
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
         <div className="speed-btns">
           {(totalLaps > 0 ? [1, 5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map((s) => (
@@ -691,6 +777,45 @@ export default function TrackMap({
         >
           📷
         </button>
+        {radioCallsWithProgress && radioCallsWithProgress.length > 0 && (
+          <>
+            <button
+              className={`speed-btn ${radioEnabled ? 'active' : ''}`}
+              onClick={() => setRadioEnabled(v => !v)}
+              title={radioEnabled ? 'Mute team radio' : 'Enable team radio'}
+            >
+              📻
+            </button>
+            {radioEnabled && activeRadioCall && (
+              <div
+                className={`radio-now-playing ${tunedDriver === activeRadioCall.driver ? 'radio-locked' : ''}`}
+                onClick={() => onTuneDriver?.(tunedDriver === activeRadioCall.driver ? null : activeRadioCall.driver)}
+                title={tunedDriver === activeRadioCall.driver ? 'Click to disconnect' : `Click to lock onto ${activeRadioCall.driver}`}
+              >
+                <span
+                  className="radio-driver-dot"
+                  style={{ background: driverColor(activeRadioCall.driver) }}
+                />
+                <span className="radio-driver-name">{activeRadioCall.driver}</span>
+                <span className="radio-wave-icon">📻</span>
+              </div>
+            )}
+            {radioEnabled && tunedDriver && !activeRadioCall && (
+              <div
+                className="radio-now-playing radio-locked radio-standby"
+                onClick={() => onTuneDriver?.(null)}
+                title="Click to disconnect"
+              >
+                <span
+                  className="radio-driver-dot"
+                  style={{ background: driverColor(tunedDriver) }}
+                />
+                <span className="radio-driver-name">{tunedDriver}</span>
+                <span className="radio-wave-icon">🔒</span>
+              </div>
+            )}
+          </>
+        )}
         {totalLaps === 0 && (
           <button
             className={`speed-btn ${showClip ? 'active clip-btn' : ''}`}

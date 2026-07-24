@@ -8,6 +8,8 @@ import { loadTrackData, CIRCUIT_TRACK_PREFIX } from './lib/paceData'
 import type { TrackData } from './lib/paceData'
 import { buildDriverSpeedProfiles, getEffectiveLayout, type ProfileData } from './lib/lapPredictor'
 import { computeBattleGaps } from './lib/battleGaps'
+import { fetchRaceRadio } from './lib/openf1'
+import type { RadioCall } from './lib/openf1'
 import type { BattleGapEntry } from './lib/battleGaps'
 import CircuitSelector from './components/CircuitSelector'
 import TrackMap from './components/TrackMap'
@@ -66,6 +68,8 @@ export default function App() {
   const [stints, setStints] = useState<Record<string, StintInfo[]>>({})
   const [pitStops, setPitStops] = useState<Record<string, PitStopInfo[]>>({})
   const [overtakes, setOvertakes] = useState<OvertakeEvent[]>([])
+  const [radioData, setRadioData] = useState<RadioCall[]>([])
+  const [tunedDriver, setTunedDriver] = useState<string | null>(null)
 
   const [trackData, setTrackData] = useState<TrackData | null>(null)
 
@@ -187,6 +191,8 @@ export default function App() {
     setStints({})
     setPitStops({})
     setOvertakes([])
+    setRadioData([])
+    setTunedDriver(null)
 
     if (!circuit.hasData) {
       setLoading(false)
@@ -209,6 +215,8 @@ export default function App() {
         setActiveDrivers(new Set(Object.keys(data)))
         setLoading(false)
       }).catch(() => setLoading(false))
+      // Radio loads independently — doesn't block replay
+      fetchRaceRadio(year, circuit.raceDate).then(setRadioData).catch(() => {})
       return
     }
 
@@ -451,6 +459,14 @@ export default function App() {
     return out
   }, [overtakes, refLapDuration])
 
+  // Radio calls mapped to 0-1 progress fractions — passed to TrackMap for markers and playback
+  const radioCallsWithProgress = useMemo(() => {
+    if (refLapDuration <= 0 || radioData.length === 0) return []
+    return radioData
+      .map(r => ({ driver: r.driver, url: r.url, progress: r.time / refLapDuration }))
+      .filter(r => r.progress >= 0 && r.progress <= 1.02)
+  }, [radioData, refLapDuration])
+
   // Position of each driver at the end of each lap — for the position chart
   const lapPositions = useMemo<Record<string, number[]>>(() => {
     if (totalLaps === 0 || lapBoundaries.length === 0) return {}
@@ -593,6 +609,8 @@ export default function App() {
                         : (Object.keys(lapsBehind).length > 0 ? lapsBehind : undefined)}
                       gapsToAhead={progress >= 1 ? (finalGapsToAhead ?? undefined) : (progress * refLapDuration > 30 ? (gapsToAhead ?? undefined) : undefined)}
                       currentCompounds={totalLaps > 0 && Object.keys(currentCompounds).length > 0 ? currentCompounds : undefined}
+                      tunedDriver={radioCallsWithProgress.length > 0 ? tunedDriver : undefined}
+                      onTuneDriver={radioCallsWithProgress.length > 0 ? setTunedDriver : undefined}
                     />
 
                     <div className="center-pane">
@@ -619,6 +637,9 @@ export default function App() {
                         currentSC={currentSC ?? undefined}
                         pitStops={Object.keys(pitStops).length > 0 ? pitStops : undefined}
                         overtakeMarkers={overtakeMarkersP.length > 0 ? overtakeMarkersP : undefined}
+                        radioCallsWithProgress={radioCallsWithProgress.length > 0 ? radioCallsWithProgress : undefined}
+                        tunedDriver={tunedDriver}
+                        onTuneDriver={setTunedDriver}
                         loading={loading}
                       />
 

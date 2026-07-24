@@ -602,6 +602,100 @@
   border-radius: 1px;
 }
 
+/* Team radio markers on scrubber */
+.radio-marks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.radio-mark {
+  position: absolute;
+  top: 10%;
+  height: 80%;
+  width: 0;
+  transform: translateX(-50%);
+  border-left: 2px solid;
+  border-radius: 1px;
+  transition: opacity 0.15s;
+}
+
+/* Now-playing indicator */
+.radio-now-playing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(13, 21, 32, 0.92);
+  border: 1px solid #1a2030;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  animation: radio-fadein 0.2s ease;
+  transition: border-color 0.15s;
+}
+
+.radio-now-playing:hover { border-color: #334; }
+
+.radio-now-playing.radio-locked {
+  border-color: #e10600;
+}
+
+.radio-now-playing.radio-standby {
+  opacity: 0.75;
+}
+
+.radio-driver-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.radio-driver-name {
+  color: #e8eaf0;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+.radio-wave-icon {
+  font-size: 11px;
+  animation: radio-pulse 1.4s ease-in-out infinite;
+}
+
+.radio-standby .radio-wave-icon {
+  animation: none;
+}
+
+@keyframes radio-fadein {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes radio-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Per-driver tune button in DriverPanel */
+.radio-tune-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 0 2px;
+  opacity: 0.25;
+  transition: opacity 0.15s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.radio-tune-btn:hover { opacity: 0.7; }
+.radio-tune-btn.tuned { opacity: 1; }
+
 /* Tyre compound chips */
 .compound-chip {
   display: inline-flex;

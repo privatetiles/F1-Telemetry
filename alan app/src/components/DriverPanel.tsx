@@ -14,6 +14,8 @@ interface Props {
   lapsBehind?: Record<string, number>
   gapsToAhead?: Record<string, number>
   currentCompounds?: Record<string, string>
+  tunedDriver?: string | null
+  onTuneDriver?: (driver: string | null) => void
 }
 
 export default function DriverPanel({
@@ -30,6 +32,8 @@ export default function DriverPanel({
   lapsBehind,
   gapsToAhead,
   currentCompounds,
+  tunedDriver,
+  onTuneDriver,
 }: Props) {
   const liveMode = !!currentPositions
 
@@ -94,6 +98,18 @@ export default function DriverPanel({
                 <span className={`compound-chip compound-${currentCompounds[driver].toLowerCase()}`}>
                   {currentCompounds[driver][0]}
                 </span>
+              )}
+              {onTuneDriver && !isDnf && (
+                <button
+                  className={`radio-tune-btn ${tunedDriver === driver ? 'tuned' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onTuneDriver(tunedDriver === driver ? null : driver)
+                  }}
+                  title={tunedDriver === driver ? `Disconnect from ${driver}` : `Tune to ${driver}`}
+                >
+                  📻
+                </button>
               )}
               <span className={`driver-time ${isDnf ? 'dnf-label' : ''}`}>
                 {isDnf

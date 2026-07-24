@@ -175,7 +175,7 @@ export const CIRCUIT_DATA: Record<string, CircuitData> = {
     length: '4.940 km', lengthKm: 4.940, laps: 61,
     lapRecord: '1:35.867', lapRecordHolder: 'Kevin Magnussen', lapRecordYear: 2023,
     drsZones: 3, corners: 19, direction: 'Anti-clockwise',
-    topSpeed: '320 km/h', downforceLevel: 'High', circuitType: 'Street',
+    topSpeed: '295 km/h', downforceLevel: 'High', circuitType: 'Street',
     firstGP: 2008,
     character: 'F1\'s original night race. Extreme heat and humidity are as punishing as the circuit. Slow and technical — among the most physically draining for drivers all season.',
   },
