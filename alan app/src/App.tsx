@@ -50,6 +50,8 @@ import './App.css'
 
 const DEFAULT_DRIVER_PANE_WIDTH = 224
 const DEFAULT_RIGHT_PANE_WIDTH = 268
+const DEFAULT_HEADER_HEIGHT = 64
+const DEFAULT_SIDEBAR_WIDTH = 202
 
 function storedPaneWidth(key: string, fallback: number, min: number, max: number): number {
   const value = Number(localStorage.getItem(key))
@@ -101,6 +103,18 @@ export default function App() {
     pointerId: number
     startX: number
     startWidth: number
+  } | null>(null)
+  const [resizingChrome, setResizingChrome] = useState<'header' | 'sidebar' | null>(null)
+  const [chromeSizes, setChromeSizes] = useState(() => ({
+    header: storedPaneWidth('f1vis_header_height', DEFAULT_HEADER_HEIGHT, 54, 120),
+    sidebar: storedPaneWidth('f1vis_sidebar_width', DEFAULT_SIDEBAR_WIDTH, 80, 320),
+  }))
+  const chromeSizesRef = useRef(chromeSizes)
+  const chromeResizeRef = useRef<{
+    area: 'header' | 'sidebar'
+    pointerId: number
+    startPosition: number
+    startSize: number
   } | null>(null)
 
   const [lapBoundaries, setLapBoundaries] = useState<number[]>([])
@@ -316,6 +330,65 @@ export default function App() {
       String(width),
     )
   }, [updatePaneWidth])
+
+  const updateChromeSize = useCallback((area: 'header' | 'sidebar', requestedSize: number) => {
+    const min = area === 'header' ? 54 : 80
+    const max = area === 'header' ? 120 : 320
+    const size = Math.max(min, Math.min(max, Math.round(requestedSize)))
+    const next = { ...chromeSizesRef.current, [area]: size }
+    chromeSizesRef.current = next
+    setChromeSizes(next)
+  }, [])
+
+  const handleChromeResizeStart = useCallback((area: 'header' | 'sidebar', e: React.PointerEvent<HTMLDivElement>) => {
+    if (window.matchMedia('(max-width: 768px)').matches) return
+    e.preventDefault()
+    e.currentTarget.setPointerCapture(e.pointerId)
+    chromeResizeRef.current = {
+      area,
+      pointerId: e.pointerId,
+      startPosition: area === 'header' ? e.clientY : e.clientX,
+      startSize: chromeSizesRef.current[area],
+    }
+    setResizingChrome(area)
+  }, [])
+
+  const handleChromeResizeMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = chromeResizeRef.current
+    if (!drag || drag.pointerId !== e.pointerId) return
+    const position = drag.area === 'header' ? e.clientY : e.clientX
+    updateChromeSize(drag.area, drag.startSize + position - drag.startPosition)
+  }, [updateChromeSize])
+
+  const handleChromeResizeEnd = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = chromeResizeRef.current
+    if (!drag || drag.pointerId !== e.pointerId) return
+    chromeResizeRef.current = null
+    setResizingChrome(null)
+    localStorage.setItem('f1vis_header_height', String(chromeSizesRef.current.header))
+    localStorage.setItem('f1vis_sidebar_width', String(chromeSizesRef.current.sidebar))
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+  }, [])
+
+  const handleChromeResizeKey = useCallback((area: 'header' | 'sidebar', e: React.KeyboardEvent<HTMLDivElement>) => {
+    const validKey = area === 'header'
+      ? e.key === 'ArrowUp' || e.key === 'ArrowDown'
+      : e.key === 'ArrowLeft' || e.key === 'ArrowRight'
+    if (!validKey) return
+    e.preventDefault()
+    const grows = area === 'header' ? e.key === 'ArrowDown' : e.key === 'ArrowRight'
+    updateChromeSize(area, chromeSizesRef.current[area] + (grows ? 8 : -8))
+    localStorage.setItem(
+      area === 'header' ? 'f1vis_header_height' : 'f1vis_sidebar_width',
+      String(chromeSizesRef.current[area]),
+    )
+  }, [updateChromeSize])
+
+  const resetChromeSize = useCallback((area: 'header' | 'sidebar') => {
+    const size = area === 'header' ? DEFAULT_HEADER_HEIGHT : DEFAULT_SIDEBAR_WIDTH
+    updateChromeSize(area, size)
+    localStorage.setItem(area === 'header' ? 'f1vis_header_height' : 'f1vis_sidebar_width', String(size))
+  }, [updateChromeSize])
 
   const handleCircuitChange = useCallback((c: CircuitConfig) => {
     setCircuit(c)
@@ -783,7 +856,11 @@ export default function App() {
 
   return (
     <div
-      className="app"
+      className={`app ${resizingChrome ? `resizing-${resizingChrome}` : ''} ${chromeSizes.sidebar < 150 ? 'compact-sidebar' : ''}`}
+      style={{
+        '--app-header-height': `${chromeSizes.header}px`,
+        '--app-sidebar-width': `${chromeSizes.sidebar}px`,
+      } as React.CSSProperties}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
@@ -842,14 +919,50 @@ export default function App() {
             aria-label="Buy me a coffee"
             title="Buy me a coffee"
           >
-            <Icon name="coffee" size={17} />
-            <span>Support the project</span>
+            <img
+              src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=PrivateTiles&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"
+              alt="Buy me a coffee"
+            />
           </a>
         </div>
+        <div
+          className="app-header-resizer"
+          role="separator"
+          aria-label="Resize top bar"
+          aria-orientation="horizontal"
+          aria-valuemin={54}
+          aria-valuemax={120}
+          aria-valuenow={chromeSizes.header}
+          tabIndex={0}
+          onPointerDown={(e) => handleChromeResizeStart('header', e)}
+          onPointerMove={handleChromeResizeMove}
+          onPointerUp={handleChromeResizeEnd}
+          onPointerCancel={handleChromeResizeEnd}
+          onKeyDown={(e) => handleChromeResizeKey('header', e)}
+          onDoubleClick={() => resetChromeSize('header')}
+          title="Drag to resize the top bar. Double-click to reset."
+        />
       </header>
 
       <div className="app-body">
         <Sidebar active={activeView} onNav={setActiveView} />
+        <div
+          className="app-sidebar-resizer"
+          role="separator"
+          aria-label="Resize navigation sidebar"
+          aria-orientation="vertical"
+          aria-valuemin={80}
+          aria-valuemax={320}
+          aria-valuenow={chromeSizes.sidebar}
+          tabIndex={0}
+          onPointerDown={(e) => handleChromeResizeStart('sidebar', e)}
+          onPointerMove={handleChromeResizeMove}
+          onPointerUp={handleChromeResizeEnd}
+          onPointerCancel={handleChromeResizeEnd}
+          onKeyDown={(e) => handleChromeResizeKey('sidebar', e)}
+          onDoubleClick={() => resetChromeSize('sidebar')}
+          title="Drag to resize the navigation sidebar. Double-click to reset."
+        />
 
         <div className="app-content">
           {activeView === 'standings' ? (
