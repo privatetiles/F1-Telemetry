@@ -247,7 +247,7 @@ export default function DailyChallenge() {
       <div className="ch-header">
         <div className="ch-title-row">
           <span className="ch-title">Daily Telemetry Challenge</span>
-          <span className="ch-streak">{streak > 0 ? `🔥 ${streak}` : ''}</span>
+          <span className="ch-streak">{streak > 0 ? `${streak} streak` : ''}</span>
         </div>
         <p className="ch-desc">
           {CHART_TYPE_QUESTIONS[challenge.chartType]}{' '}
@@ -269,7 +269,6 @@ export default function DailyChallenge() {
       {/* Revealed: circuit info */}
       {revealed && (
         <div className={`ch-reveal ${isCorrect ? 'correct' : 'wrong'}`}>
-          <span className="ch-reveal-flag">{challenge.flag}</span>
           <span className="ch-reveal-name">{challenge.answer}</span>
           <span className="ch-reveal-verdict">{isCorrect ? '✓ Correct!' : '✗ Wrong'}</span>
         </div>
@@ -286,7 +285,6 @@ export default function DailyChallenge() {
           }
           return (
             <button key={opt.name} className={cls} onClick={() => handlePick(opt.name)} disabled={revealed}>
-              <span className="ch-opt-flag">{opt.flag}</span>
               <span className="ch-opt-name">{opt.name}</span>
             </button>
           )
@@ -298,7 +296,7 @@ export default function DailyChallenge() {
           {showHint ? 'Hide hint' : 'Show hint'}
         </button>
       )}
-      {showHint && !revealed && <div className="ch-hint">💡 {challenge.hint}</div>}
+      {showHint && !revealed && <div className="ch-hint"><strong>Hint:</strong> {challenge.hint}</div>}
 
       {revealed && (
         <div className="ch-after">
@@ -307,7 +305,7 @@ export default function DailyChallenge() {
             className="ch-after-btn"
             onClick={() => {
               const text = isCorrect
-                ? `I got today's F1 Telemetry Challenge correct! 🔥 ${streak} in a row — try it at f1vis.app`
+                ? `I got today's F1 Telemetry Challenge correct with a ${streak}-day streak — try it at f1vis.app`
                 : `I got today's F1 Telemetry Challenge wrong — can you beat me? f1vis.app`
               navigator.clipboard?.writeText(text).catch(() => {})
             }}
@@ -328,7 +326,6 @@ export default function DailyChallenge() {
               const { challenge: ch } = getChallengeForDate(dateStr)
               return (
                 <div key={dateStr} className={`ch-archive-row ${correct ? 'correct' : 'wrong'}`}>
-                  <span>{ch.flag}</span>
                   <span>{ch.answer}</span>
                   <span className="ch-archive-type">{ch.chartType}</span>
                   <span>{correct ? '✓' : '✗'}</span>

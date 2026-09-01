@@ -1,5 +1,6 @@
 import type { CircuitConfig, CircuitSession } from '../types'
 import { CIRCUITS } from '../lib/dataIndex'
+import Icon from './Icon'
 
 interface Props {
   selectedCircuit: CircuitConfig
@@ -53,68 +54,80 @@ export default function CircuitSelector({
     .sort((a, b) => a.raceDate.localeCompare(b.raceDate))[0] ?? null
 
   return (
-    <div className="circuit-selector">
+    <section className="circuit-selector" aria-label="Replay selection">
+      <div className="selector-fields">
+        <label className="selector-field" htmlFor="season-select">
+          <span className="selector-label">Season</span>
+          <span className="selector-select-wrap">
+            <select
+              id="season-select"
+              className="selector-select selector-select-season"
+              value={String(selectedSeason)}
+              onChange={(event) => {
+                const value = event.target.value
+                onSeasonChange(value === 'historical' ? 'historical' : Number(value))
+              }}
+            >
+              {SEASONS.map((season) => (
+                <option key={String(season.key)} value={String(season.key)}>{season.label}</option>
+              ))}
+            </select>
+            <Icon name="chevron-down" size={15} />
+          </span>
+        </label>
+
+        <label className="selector-field selector-field-race" htmlFor="race-select">
+          <span className="selector-label">Race</span>
+          <span className="selector-select-wrap">
+            <select
+              id="race-select"
+              className="selector-select"
+              value={selectedCircuit.id}
+              onChange={(event) => {
+                const selected = seasonCircuits.find((candidate) => candidate.id === event.target.value)
+                if (!selected) return
+                onCircuitChange(selected)
+                onSessionChange(selected.sessions[0])
+              }}
+            >
+              {seasonCircuits.map((candidate) => (
+                <option key={candidate.id} value={candidate.id}>
+                  {candidate.name}{candidate.hasData ? '' : ' — Preview'}
+                </option>
+              ))}
+            </select>
+            <Icon name="chevron-down" size={15} />
+          </span>
+        </label>
+
+        <label className="selector-field selector-field-session" htmlFor="session-select">
+          <span className="selector-label">Session</span>
+          <span className="selector-select-wrap">
+            <select
+              id="session-select"
+              className="selector-select"
+              value={selectedSession.type}
+              onChange={(event) => {
+                const selected = selectedCircuit.sessions.find((candidate) => candidate.type === event.target.value)
+                if (selected) onSessionChange(selected)
+              }}
+            >
+              {selectedCircuit.sessions.map((candidate) => (
+                <option key={candidate.type} value={candidate.type}>{candidate.label}</option>
+              ))}
+            </select>
+            <Icon name="chevron-down" size={15} />
+          </span>
+        </label>
+      </div>
+
       {nextRace && selectedSeason === 2026 && (
-        <div className="countdown-bar">
-          <span className="countdown-label">Next GP</span>
-          <span className="countdown-flag">{nextRace.flag}</span>
-          <span className="countdown-name">{nextRace.name}</span>
-          <span className="countdown-days">{countdownLabel(nextRace.raceDate)}</span>
+        <div className="selector-next-race" aria-label={`Next race: ${nextRace.name} ${countdownLabel(nextRace.raceDate)}`}>
+          <span className="selector-next-label">Up next</span>
+          <span className="selector-next-name">{nextRace.name}</span>
+          <span className="selector-next-days">{countdownLabel(nextRace.raceDate)}</span>
         </div>
       )}
-
-      <div className="selector-group season-selector-group">
-        <label>Season</label>
-        <div className="pill-row">
-          {SEASONS.map(s => (
-            <button
-              key={String(s.key)}
-              className={`pill season-pill ${selectedSeason === s.key ? 'active' : ''}`}
-              onClick={() => onSeasonChange(s.key)}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="selector-group">
-        <label>Circuit</label>
-        <div className="pill-row">
-          {seasonCircuits.map((c) => {
-            const locked = !c.hasData
-            const active = c.id === selectedCircuit.id
-            return (
-              <button
-                key={c.id}
-                className={`pill ${active ? 'active' : ''} ${locked ? 'locked' : ''} ${c.hasPrediction ? 'predicted' : ''}`}
-                title={locked ? (c.year === 2027 ? 'Provisional date — 2027 calendar TBC' : `Predicted — race ${countdownLabel(c.raceDate) || 'TBC'}`) : undefined}
-                onClick={() => {
-                  onCircuitChange(c)
-                  onSessionChange(c.sessions[0])
-                }}
-              >
-                {c.flag} {c.name}{locked ? ' ★' : ''}
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
-      <div className="selector-group">
-        <label>Session</label>
-        <div className="pill-row">
-          {selectedCircuit.sessions.map((s) => (
-            <button
-              key={s.type}
-              className={`pill ${s.type === selectedSession.type ? 'active' : ''}`}
-              onClick={() => onSessionChange(s)}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
+    </section>
   )
 }

@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import type { TelemetryPoint } from '../types'
 import { driverColor } from '../lib/teamColors'
 import { computeBattleGaps } from '../lib/battleGaps'
+import Icon from './Icon'
 
 function formatLapTime(sec: number): string {
   const m = Math.floor(sec / 60)
@@ -34,6 +35,7 @@ export default function BattleTracker({
   onChangeBattleDrivers,
 }: Props) {
   const availableDrivers = drivers.filter((d) => driverTelemetry[d])
+  const selectableDrivers = availableDrivers.filter((driver) => !battleDrivers.includes(driver))
 
   function toggle(driver: string) {
     if (battleDrivers.includes(driver)) {
@@ -47,7 +49,6 @@ export default function BattleTracker({
 
   const gapData = useMemo(
     () => computeBattleGaps(battleDrivers, driverTelemetry, targetTime),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [battleDrivers, driverTelemetry, targetTime],
   )
 
@@ -60,26 +61,48 @@ export default function BattleTracker({
         <span className="battle-subtitle">{battleDrivers.length}/5</span>
       </div>
 
-      <div className="battle-driver-select">
-        {availableDrivers.map((d) => {
-          const isSel = battleDrivers.includes(d)
-          const disabled = !isSel && battleDrivers.length >= MAX_BATTLE
-          return (
-            <button
-              key={d}
-              className={`battle-pill ${isSel ? 'sel' : ''} ${disabled ? 'dim' : ''}`}
-              style={isSel ? { borderColor: driverColor(d), color: driverColor(d) } : {}}
-              onClick={() => toggle(d)}
-              disabled={disabled}
+      <div className="battle-controls">
+        <label className="battle-add-field">
+          <span className="battle-control-label">Track drivers</span>
+          <span className="battle-add-select-wrap">
+            <select
+              value=""
+              onChange={(event) => {
+                if (event.target.value) toggle(event.target.value)
+              }}
+              disabled={battleDrivers.length >= MAX_BATTLE || selectableDrivers.length === 0}
+              aria-label="Add driver to battle"
             >
-              {d}
+              <option value="">Add a driver…</option>
+              {selectableDrivers.map((driver) => (
+                <option key={driver} value={driver}>{driver}</option>
+              ))}
+            </select>
+            <Icon name="chevron-down" size={14} />
+          </span>
+        </label>
+
+        {battleDrivers.length > 0 && (
+          <div className="battle-selected-drivers" aria-label="Tracked drivers">
+            {battleDrivers.map((driver) => (
+            <button
+              key={driver}
+              className="battle-selected-driver"
+              style={{ borderColor: driverColor(driver), color: driverColor(driver) }}
+              onClick={() => toggle(driver)}
+              title={`Remove ${driver}`}
+            >
+              {driver}<span aria-hidden>×</span>
             </button>
-          )
-        })}
+            ))}
+          </div>
+        )}
       </div>
 
       {!active && (
-        <div className="battle-hint">Pick 2–5 drivers to see live gaps</div>
+        <div className="battle-hint">
+          {battleDrivers.length === 0 ? 'Add two drivers to compare live gaps.' : 'Add one more driver to start comparing.'}
+        </div>
       )}
 
       {active && (

@@ -49,7 +49,6 @@ export default function PredictionPanel({ circuit, circuitLayout: propLayout, dr
     <div className="prediction-panel">
       <div className="pred-header">
         <div className="pred-title">
-          <span className="pred-flag">{circuit.flag}</span>
           <span className="pred-name">{circuit.name}</span>
           <span className="pred-badge">Predicted Qualifying</span>
         </div>

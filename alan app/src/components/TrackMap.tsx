@@ -1,4 +1,5 @@
 import { useMemo, useRef, useEffect, useState, useCallback } from 'react'
+import type { PointerEvent as ReactPointerEvent, WheelEvent as ReactWheelEvent } from 'react'
 import html2canvas from 'html2canvas'
 import type { TelemetryPoint } from '../types'
 import { interpolatePositionAtTime, interpolateInputsAtTime } from '../lib/miniSectors'
@@ -10,6 +11,7 @@ import type { BattleGapEntry } from '../lib/battleGaps'
 import type { SafetyCarPeriod, PitStopInfo } from '../lib/csvLoader'
 import InputsHUD from './InputsHUD'
 import SatelliteView from './SatelliteView'
+import Icon from './Icon'
 
 const SVG_W = 900
 const SVG_H = 600
@@ -81,7 +83,6 @@ interface Props {
   onProgressChange: (p: number | ((prev: number) => number)) => void
   playing: boolean
   onPlayPause: () => void
-  bgImageUrl?: string
   battleGaps?: BattleGapEntry[]
   lapBoundaries?: number[]
   totalLaps?: number
@@ -109,7 +110,6 @@ export default function TrackMap({
   onProgressChange,
   playing,
   onPlayPause,
-  bgImageUrl,
   battleGaps = [],
   lapBoundaries = [],
   totalLaps = 0,
@@ -140,10 +140,20 @@ export default function TrackMap({
   const [showSpeedWarn,    setShowSpeedWarn]    = useState(false)
   const [radioEnabled,     setRadioEnabled]     = useState(false)
   const [activeRadioCall,  setActiveRadioCall]  = useState<{ driver: string; url: string; text?: string } | null>(null)
+  const [trackZoom,        setTrackZoom]        = useState(1)
+  const [trackPan,         setTrackPan]         = useState({ x: 0, y: 0 })
   const speedWarnTimer  = useRef<ReturnType<typeof setTimeout> | null>(null)
   const audioRef        = useRef<HTMLAudioElement | null>(null)
   const lastRadioIdxRef = useRef(-1)
   const prevProgressRef = useRef(0)
+  const trackDragRef = useRef<{
+    pointerId: number
+    startX: number
+    startY: number
+    panX: number
+    panY: number
+    zoom: number
+  } | null>(null)
 
   // poleDriver = fastest; refLapDuration = slowest (animation runs until all finish)
   // Declared early — used by radio useEffects below before the main useMemo block.
@@ -602,6 +612,74 @@ export default function TrackMap({
     [allPoints, transform]
   )
 
+  const updateTrackZoom = useCallback((requestedZoom: number) => {
+    const nextZoom = Math.max(1, Math.min(4, Math.round(requestedZoom * 2) / 2))
+    const maxPanX = (SVG_W - SVG_W / nextZoom) / 2
+    const maxPanY = (SVG_H - SVG_H / nextZoom) / 2
+
+    setTrackZoom(nextZoom)
+    setTrackPan((current) => nextZoom === 1
+      ? { x: 0, y: 0 }
+      : {
+          x: Math.max(-maxPanX, Math.min(maxPanX, current.x)),
+          y: Math.max(-maxPanY, Math.min(maxPanY, current.y)),
+        })
+  }, [])
+
+  const handleTrackPointerDown = useCallback((event: ReactPointerEvent<SVGSVGElement>) => {
+    if (trackZoom <= 1) return
+    event.preventDefault()
+    event.currentTarget.setPointerCapture(event.pointerId)
+    trackDragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      panX: trackPan.x,
+      panY: trackPan.y,
+      zoom: trackZoom,
+    }
+  }, [trackPan, trackZoom])
+
+  const handleTrackPointerMove = useCallback((event: ReactPointerEvent<SVGSVGElement>) => {
+    const drag = trackDragRef.current
+    if (!drag || drag.pointerId !== event.pointerId) return
+    const rect = event.currentTarget.getBoundingClientRect()
+    if (rect.width === 0 || rect.height === 0) return
+
+    const viewWidth = SVG_W / drag.zoom
+    const viewHeight = SVG_H / drag.zoom
+    const dx = (event.clientX - drag.startX) * viewWidth / rect.width
+    const dy = (event.clientY - drag.startY) * viewHeight / rect.height
+    const maxPanX = (SVG_W - viewWidth) / 2
+    const maxPanY = (SVG_H - viewHeight) / 2
+    setTrackPan({
+      x: Math.max(-maxPanX, Math.min(maxPanX, drag.panX - dx)),
+      y: Math.max(-maxPanY, Math.min(maxPanY, drag.panY - dy)),
+    })
+  }, [])
+
+  const handleTrackPointerEnd = useCallback((event: ReactPointerEvent<SVGSVGElement>) => {
+    if (trackDragRef.current?.pointerId !== event.pointerId) return
+    trackDragRef.current = null
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+  }, [])
+
+  const handleTrackWheel = useCallback((event: ReactWheelEvent<SVGSVGElement>) => {
+    event.preventDefault()
+    updateTrackZoom(trackZoom + (event.deltaY < 0 ? 0.5 : -0.5))
+  }, [trackZoom, updateTrackZoom])
+
+  const trackViewWidth = SVG_W / trackZoom
+  const trackViewHeight = SVG_H / trackZoom
+  const trackViewBox = [
+    (SVG_W - trackViewWidth) / 2 + trackPan.x,
+    (SVG_H - trackViewHeight) / 2 + trackPan.y,
+    trackViewWidth,
+    trackViewHeight,
+  ].join(' ')
+
   return (
     <div className="track-map-container" ref={containerRef}>
       {showSatellite ? (
@@ -614,13 +692,19 @@ export default function TrackMap({
           onCameraDriverChange={setSatCamDriver}
         />
       ) : (
-        <svg width={SVG_W} height={SVG_H} viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="track-svg" shapeRendering="geometricPrecision">
-
-          {/* Optional dropped background image */}
-          {bgImageUrl && (
-            <image href={bgImageUrl} x={0} y={0} width={SVG_W} height={SVG_H}
-              preserveAspectRatio="xMidYMid meet" opacity={0.35} />
-          )}
+        <svg
+          width={SVG_W}
+          height={SVG_H}
+          viewBox={trackViewBox}
+          className={`track-svg ${trackZoom > 1 ? 'zoomed' : ''}`}
+          shapeRendering="geometricPrecision"
+          onPointerDown={handleTrackPointerDown}
+          onPointerMove={handleTrackPointerMove}
+          onPointerUp={handleTrackPointerEnd}
+          onPointerCancel={handleTrackPointerEnd}
+          onWheel={handleTrackWheel}
+          onDoubleClick={() => updateTrackZoom(trackZoom + 0.5)}
+        >
 
           {/* Pit lane (full race only) — drawn below the racing line */}
           {totalLaps > 0 && pitLaneSegments.length > 0 && pitLaneSegments.map((seg, i) => {
@@ -904,11 +988,47 @@ export default function TrackMap({
         </svg>
       )}
 
+      {!showSatellite && hasData && (
+        <div className="track-zoom-controls" role="group" aria-label="Track zoom controls">
+          <button
+            type="button"
+            className="track-zoom-btn"
+            onClick={() => updateTrackZoom(trackZoom - 0.5)}
+            disabled={trackZoom <= 1}
+            aria-label="Zoom out from track"
+            title="Zoom out"
+          >
+            <Icon name="minus" size={15} />
+          </button>
+          <span className="track-zoom-value" aria-live="polite">{Math.round(trackZoom * 100)}%</span>
+          <button
+            type="button"
+            className="track-zoom-btn"
+            onClick={() => updateTrackZoom(trackZoom + 0.5)}
+            disabled={trackZoom >= 4}
+            aria-label="Zoom in on track"
+            title="Zoom in"
+          >
+            <Icon name="plus" size={15} />
+          </button>
+          <button
+            type="button"
+            className="track-zoom-btn track-zoom-reset"
+            onClick={() => updateTrackZoom(1)}
+            disabled={trackZoom === 1 && trackPan.x === 0 && trackPan.y === 0}
+            aria-label="Reset track zoom"
+            title="Reset zoom"
+          >
+            <Icon name="reset" size={14} />
+          </button>
+        </div>
+      )}
+
       {/* Clip zones tooltip (first-time) */}
       {showClipTip && (
         <div className="clip-tip-overlay" onClick={() => setShowClipTip(false)}>
           <div className="clip-tip-box">
-            <span className="clip-tip-icon">🔋</span>
+            <span className="clip-tip-icon"><Icon name="battery" size={22} /></span>
             <div>
               <strong>Battery clip zones</strong>
               <p>Orange sections = full throttle but speed dropping. This is where the driver's ERS battery runs out of charge mid-straight, losing the electric power boost.</p>
@@ -921,13 +1041,13 @@ export default function TrackMap({
       {/* Safety car / red flag badge */}
       {totalLaps > 0 && currentSC && (
         <div className={`sc-badge sc-badge-${currentSC.type.toLowerCase()}`}>
-          {currentSC.type === 'RED' ? '🔴 RED FLAG' : currentSC.type === 'VSC' ? 'VIRTUAL SC' : '🟡 SAFETY CAR'}
+          {currentSC.type === 'RED' ? 'RED FLAG' : currentSC.type === 'VSC' ? 'VIRTUAL SAFETY CAR' : 'SAFETY CAR'}
         </div>
       )}
 
       {/* Chequered flag badge when race ends */}
       {totalLaps > 0 && !currentSC && progress >= 0.999 && (
-        <div className="sc-badge sc-badge-finish">🏁 RACE ENDED</div>
+        <div className="sc-badge sc-badge-finish">RACE ENDED</div>
       )}
 
       {/* Inputs HUD overlay */}
@@ -955,28 +1075,30 @@ export default function TrackMap({
       {/* High-speed warning */}
       {showSpeedWarn && (
         <div className="speed-warn-toast">
-          ⚠️ At high speeds, live positions and gaps may be less accurate
+          At high speeds, live positions and gaps may be less accurate
         </div>
       )}
 
       {/* Playback controls */}
       <div className="playback-bar">
-        <button className="play-btn" onClick={onPlayPause}>{playing ? '⏸' : '▶'}</button>
+        <div className="playback-primary">
+          <button className="play-btn" onClick={onPlayPause}>{playing ? '⏸' : '▶'}</button>
 
-        {/* Lap counter for full-race mode */}
-        {totalLaps > 0 && (
-          <span className="lap-counter">
-            L{Math.min(totalLaps, Math.floor(progress * totalLaps) + 1)}/{totalLaps}
-          </span>
-        )}
+          {/* Lap counter for full-race mode */}
+          {totalLaps > 0 && (
+            <span className="lap-counter">
+              L{Math.min(totalLaps, Math.floor(progress * totalLaps) + 1)}/{totalLaps}
+            </span>
+          )}
 
-        <div className="progress-slider-wrap">
-          <input
-            type="range" min={0} max={1000}
-            value={Math.round(progress * 1000)}
-            onChange={(e) => onProgressChange(parseInt(e.target.value) / 1000)}
-            className="progress-slider"
-          />
+          <div className="progress-slider-wrap">
+            <input
+              type="range" min={0} max={1000}
+              value={Math.round(progress * 1000)}
+              onChange={(e) => onProgressChange(parseInt(e.target.value) / 1000)}
+              className="progress-slider"
+              aria-label="Race progress"
+            />
           {/* Safety car period bands */}
           {safetyCars.length > 0 && (
             <div className="sc-bands" aria-hidden>
@@ -1010,29 +1132,40 @@ export default function TrackMap({
             </div>
           )}
           {/* Team radio markers */}
-          {radioCallsWithProgress && radioCallsWithProgress.length > 0 && radioEnabled && (
-            <div className="radio-marks" aria-hidden>
-              {radioCallsWithProgress.map((r, i) => (
-                <div
-                  key={i}
-                  className="radio-mark"
-                  style={{
-                    left: `${Math.min(r.progress, 1) * 100}%`,
-                    borderColor: driverColor(r.driver),
-                    opacity: !tunedDriver || tunedDriver === r.driver ? 0.85 : 0.2,
-                  }}
-                />
+            {radioCallsWithProgress && radioCallsWithProgress.length > 0 && radioEnabled && (
+              <div className="radio-marks" aria-hidden>
+                {radioCallsWithProgress.map((r, i) => (
+                  <div
+                    key={i}
+                    className="radio-mark"
+                    style={{
+                      left: `${Math.min(r.progress, 1) * 100}%`,
+                      borderColor: driverColor(r.driver),
+                      opacity: !tunedDriver || tunedDriver === r.driver ? 0.85 : 0.2,
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="playback-tools" aria-label="Playback tools">
+          <label className="playback-speed">
+          <span>Speed</span>
+          <span className="playback-speed-select-wrap">
+            <select
+              value={playSpeed}
+              onChange={(event) => handleSpeedSelect(Number(event.target.value))}
+              aria-label="Playback speed"
+            >
+              {(totalLaps > 0 ? [1, 5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map((speed) => (
+                <option key={speed} value={speed}>{speed}×</option>
               ))}
-            </div>
-          )}
-        </div>
-        <div className="speed-btns">
-          {(totalLaps > 0 ? [1, 5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map((s) => (
-            <button key={s} className={`speed-btn ${playSpeed === s ? 'active' : ''}`} onClick={() => handleSpeedSelect(s)}>
-              {s}×
-            </button>
-          ))}
-        </div>
+            </select>
+            <Icon name="chevron-down" size={13} />
+          </span>
+        </label>
         <button
           className={`speed-btn ${showHUD ? 'active' : ''}`}
           onClick={() => setShowHUD((v) => !v)}
@@ -1051,8 +1184,9 @@ export default function TrackMap({
           className="speed-btn screenshot-btn"
           onClick={handleScreenshot}
           title="Save screenshot as PNG"
+          aria-label="Save screenshot as PNG"
         >
-          📷
+          <Icon name="camera" size={14} />
         </button>
         {radioCallsWithProgress && radioCallsWithProgress.length > 0 && (
           <>
@@ -1064,8 +1198,9 @@ export default function TrackMap({
                 if (next) onTuneDriver?.(null)   // reset driver lock when re-enabling
               }}
               title={radioEnabled ? 'Mute team radio' : 'Enable team radio'}
+              aria-label={radioEnabled ? 'Mute team radio' : 'Enable team radio'}
             >
-              📻
+              <Icon name="radio" size={14} />
             </button>
             {radioEnabled && navCalls.length > 0 && (
               <div className="radio-nav">
@@ -1079,7 +1214,8 @@ export default function TrackMap({
                   onClick={goToPrevRadio}
                   disabled={currentNavIdx <= 0}
                   title="Previous radio message"
-                >⏮</button>
+                  aria-label="Previous radio message"
+                ><Icon name="arrow-left" size={14} /></button>
                 <span className="radio-nav-count">
                   {Math.max(0, currentNavIdx + 1)}/{navCalls.length}
                 </span>
@@ -1088,7 +1224,8 @@ export default function TrackMap({
                   onClick={goToNextRadio}
                   disabled={currentNavIdx >= navCalls.length - 1}
                   title="Next radio message"
-                >⏭</button>
+                  aria-label="Next radio message"
+                ><Icon name="arrow-right" size={14} /></button>
               </div>
             )}
             {radioEnabled && activeRadioCall && (
@@ -1099,7 +1236,7 @@ export default function TrackMap({
               >
                 <span className="radio-driver-dot" style={{ background: driverColor(activeRadioCall.driver) }} />
                 <span className="radio-driver-name">{activeRadioCall.driver}</span>
-                <span className="radio-wave-icon">📻</span>
+                <span className="radio-wave-icon"><Icon name="radio" size={14} /></span>
               </div>
             )}
             {radioEnabled && tunedDriver && !activeRadioCall && (
@@ -1113,28 +1250,29 @@ export default function TrackMap({
                   style={{ background: driverColor(tunedDriver) }}
                 />
                 <span className="radio-driver-name">{tunedDriver}</span>
-                <span className="radio-wave-icon">🔒</span>
+                <span className="radio-wave-icon"><Icon name="lock" size={14} /></span>
               </div>
             )}
           </>
         )}
-        {totalLaps === 0 && (
-          <button
-            className={`speed-btn ${showClip ? 'active clip-btn' : ''}`}
-            onClick={() => {
-              const next = !showClip
-              setShowClip(next)
-              if (next && !localStorage.getItem('f1vis_clip_seen')) {
-                setShowClipTip(true)
-                localStorage.setItem('f1vis_clip_seen', '1')
-                setTimeout(() => setShowClipTip(false), 5000)
-              }
-            }}
-            title="Highlight battery clip zones (full throttle + speed drop)"
-          >
-            CLIP
-          </button>
-        )}
+          {totalLaps === 0 && (
+            <button
+              className={`speed-btn ${showClip ? 'active clip-btn' : ''}`}
+              onClick={() => {
+                const next = !showClip
+                setShowClip(next)
+                if (next && !localStorage.getItem('f1vis_clip_seen')) {
+                  setShowClipTip(true)
+                  localStorage.setItem('f1vis_clip_seen', '1')
+                  setTimeout(() => setShowClipTip(false), 5000)
+                }
+              }}
+              title="Highlight battery clip zones (full throttle + speed drop)"
+            >
+              CLIP
+            </button>
+          )}
+        </div>
       </div>
     </div>
   )

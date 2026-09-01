@@ -245,7 +245,6 @@ export default function StaticTrackMap({ circuit }: Props) {
     return (
       <div className="static-track-wrap prediction-mode">
         <div className="static-track-header" style={{ borderTop: '2px solid #c88600' }}>
-          <span className="static-track-flag">{circuit.flag}</span>
           <div>
             <div className="static-track-name">{circuit.name}</div>
             <div className="static-track-badge" style={{ color: '#c88600' }}>
@@ -271,7 +270,6 @@ export default function StaticTrackMap({ circuit }: Props) {
   return (
     <div className="static-track-wrap">
       <div className="static-track-header">
-        <span className="static-track-flag">{circuit.flag}</span>
         <div>
           <div className="static-track-name">{circuit.name}</div>
           <div className="static-track-badge">Track Map</div>

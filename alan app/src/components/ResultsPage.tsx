@@ -3,21 +3,6 @@ import { fetchAllResults, fetchRaceResult, CONSTRUCTOR_TEAM } from '../lib/f1Api
 import type { Race, RaceResult } from '../lib/f1Api'
 import { TEAM_COLORS } from '../lib/paceData'
 
-const COUNTRY_FLAG: Record<string, string> = {
-  Australia: '🇦🇺', China: '🇨🇳', Japan: '🇯🇵', 'United States': '🇺🇸',
-  Canada: '🇨🇦', Monaco: '🇲🇨', Spain: '🇪🇸', Austria: '🇦🇹',
-  'United Kingdom': '🇬🇧', Belgium: '🇧🇪', Hungary: '🇭🇺', Netherlands: '🇳🇱',
-  Italy: '🇮🇹', Azerbaijan: '🇦🇿', Singapore: '🇸🇬', Mexico: '🇲🇽',
-  Brazil: '🇧🇷', 'United Arab Emirates': '🇦🇪', Qatar: '🇶🇦',
-}
-
-function posIcon(posText: string) {
-  if (posText === '1') return '🥇'
-  if (posText === '2') return '🥈'
-  if (posText === '3') return '🥉'
-  return null
-}
-
 function statusClass(status: string) {
   if (status === 'Finished') return ''
   if (status.startsWith('+')) return 'lapped'
@@ -73,7 +58,6 @@ export default function ResultsPage({ initialRound }: Props) {
         {loadingList
           ? <div className="page-loading-sm">Loading…</div>
           : rounds.map((r) => {
-              const flag = COUNTRY_FLAG[r.Circuit.Location.country] ?? '🏁'
               return (
                 <button
                   key={r.round}
@@ -81,7 +65,6 @@ export default function ResultsPage({ initialRound }: Props) {
                   onClick={() => selectRound(parseInt(r.round))}
                 >
                   <span className="round-btn-num">R{r.round}</span>
-                  <span className="round-btn-flag">{flag}</span>
                   <span className="round-btn-name">{r.raceName.replace(' Grand Prix', ' GP')}</span>
                 </button>
               )
@@ -112,7 +95,6 @@ export default function ResultsPage({ initialRound }: Props) {
               {(detail.Results ?? []).map((r: RaceResult) => {
                 const teamName = CONSTRUCTOR_TEAM[r.Constructor.constructorId] ?? r.Constructor.name
                 const color    = TEAM_COLORS[teamName] ?? '#445'
-                const icon     = posIcon(r.positionText)
                 const sc       = statusClass(r.status)
                 const isFl     = r.FastestLap?.rank === '1'
                 return (
@@ -127,13 +109,13 @@ export default function ResultsPage({ initialRound }: Props) {
                             </span>
                           </span>
                         )
-                        : icon ?? <span style={{ color: '#778' }}>{r.positionText === 'R' ? 'DNF' : r.positionText === 'W' ? 'DNS' : r.positionText}</span>}
+                        : <span style={{ color: '#778' }}>{r.positionText === 'R' ? 'DNF' : r.positionText === 'W' ? 'DNS' : r.positionText}</span>}
                     </span>
                     <span className="rc-no" style={{ color }}>{r.Driver.permanentNumber}</span>
                     <span className="rc-driver">
                       <span className="rc-code">{r.Driver.code}</span>
                       <span className="rc-name">{r.Driver.givenName} {r.Driver.familyName}</span>
-                      {isFl && <span className="rc-fl" title="Fastest Lap">⚡</span>}
+                      {isFl && <span className="rc-fl" title="Fastest Lap">FL</span>}
                     </span>
                     <span className="rc-team">
                       <span className="rc-dot" style={{ background: color }} />

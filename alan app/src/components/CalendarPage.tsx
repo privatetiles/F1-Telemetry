@@ -2,15 +2,6 @@ import { useEffect, useState } from 'react'
 import { fetchSchedule } from '../lib/f1Api'
 import type { Race } from '../lib/f1Api'
 
-const COUNTRY_FLAG: Record<string, string> = {
-  Australia: '🇦🇺', China: '🇨🇳', Japan: '🇯🇵', 'United States': '🇺🇸', USA: '🇺🇸',
-  Canada: '🇨🇦', Monaco: '🇲🇨', Spain: '🇪🇸', Austria: '🇦🇹',
-  'United Kingdom': '🇬🇧', UK: '🇬🇧', Belgium: '🇧🇪', Hungary: '🇭🇺', Netherlands: '🇳🇱',
-  Italy: '🇮🇹', Azerbaijan: '🇦🇿', Singapore: '🇸🇬', Mexico: '🇲🇽',
-  Brazil: '🇧🇷', 'United Arab Emirates': '🇦🇪', UAE: '🇦🇪', Qatar: '🇶🇦',
-  Bahrain: '🇧🇭', Malaysia: '🇲🇾', 'Saudi Arabia': '🇸🇦',
-}
-
 function raceStatus(dateStr: string): 'past' | 'upcoming' | 'next' {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
@@ -67,7 +58,6 @@ export default function CalendarPage({ onSelectRound }: Props) {
         {races.map((race) => {
           const st  = raceStatus(race.date)
           const cd  = countdown(race.date)
-          const flag = COUNTRY_FLAG[race.Circuit.Location.country] ?? '🏁'
           const isNext = st === 'upcoming' && !nextFound
           if (isNext) nextFound = true
           return (
@@ -78,7 +68,6 @@ export default function CalendarPage({ onSelectRound }: Props) {
               style={st === 'past' && onSelectRound ? { cursor: 'pointer' } : undefined}
             >
               <span className="cal-round">R{race.round}</span>
-              <span className="cal-flag">{flag}</span>
               <div className="cal-info">
                 <span className="cal-name">{race.raceName}</span>
                 <span className="cal-circuit">{race.Circuit.circuitName} · {race.Circuit.Location.country}</span>

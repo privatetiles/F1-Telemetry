@@ -45,7 +45,16 @@ import BattleTracker from './components/BattleTracker'
 import HistoricalRacesPage from './components/HistoricalRacesPage'
 import PositionChart from './components/PositionChart'
 import Settings, { getStoredTheme, applyTheme } from './components/Settings'
+import Icon from './components/Icon'
 import './App.css'
+
+const DEFAULT_DRIVER_PANE_WIDTH = 224
+const DEFAULT_RIGHT_PANE_WIDTH = 268
+
+function storedPaneWidth(key: string, fallback: number, min: number, max: number): number {
+  const value = Number(localStorage.getItem(key))
+  return Number.isFinite(value) && value >= min && value <= max ? value : fallback
+}
 
 export default function App() {
   const [selectedSeason, setSelectedSeason] = useState<'historical' | number>(2026)
@@ -78,10 +87,21 @@ export default function App() {
   const [activeView, setActiveView] = useState<AppView>(() => hashToView(window.location.hash))
   const [battleDrivers, setBattleDrivers] = useState<string[]>([])
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
-  const [customBgUrl, setCustomBgUrl] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [pendingResultRound, setPendingResultRound] = useState<number | undefined>(undefined)
   const dragCounter = useRef(0)
+  const [resizingPane, setResizingPane] = useState<'driver' | 'right' | null>(null)
+  const [paneWidths, setPaneWidths] = useState(() => ({
+    driver: storedPaneWidth('f1vis_driver_pane_width', DEFAULT_DRIVER_PANE_WIDTH, 150, 360),
+    right: storedPaneWidth('f1vis_right_pane_width', DEFAULT_RIGHT_PANE_WIDTH, 180, 420),
+  }))
+  const paneWidthsRef = useRef(paneWidths)
+  const paneResizeRef = useRef<{
+    side: 'driver' | 'right'
+    pointerId: number
+    startX: number
+    startWidth: number
+  } | null>(null)
 
   const [lapBoundaries, setLapBoundaries] = useState<number[]>([])
   const [totalLaps, setTotalLaps] = useState(0)
@@ -202,7 +222,6 @@ export default function App() {
 
   const processFiles = useCallback(async (files: File[]) => {
     const csvFiles = files.filter((f) => f.name.toLowerCase().endsWith('.csv'))
-    const imgFiles = files.filter((f) => f.type.startsWith('image/') || /\.(png|jpe?g|webp|gif|svg)$/i.test(f.name))
 
     for (const file of csvFiles) {
       const match = file.name.match(/^([A-Za-z]{2,3})[^A-Za-z]/)
@@ -215,11 +234,6 @@ export default function App() {
           setActiveDrivers((prev) => new Set([...prev, code]))
         }
       } catch { /* skip unrecognised files */ }
-    }
-
-    for (const file of imgFiles) {
-      const url = URL.createObjectURL(file)
-      setCustomBgUrl((prev) => { if (prev) URL.revokeObjectURL(prev); return url })
     }
   }, [])
 
@@ -243,6 +257,65 @@ export default function App() {
     setIsDragging(false)
     processFiles(Array.from(e.dataTransfer.files))
   }, [processFiles])
+
+  const updatePaneWidth = useCallback((side: 'driver' | 'right', requestedWidth: number) => {
+    const min = side === 'driver' ? 150 : 180
+    const max = side === 'driver' ? 360 : 420
+    const width = Math.max(min, Math.min(max, Math.round(requestedWidth)))
+    const next = { ...paneWidthsRef.current, [side]: width }
+    paneWidthsRef.current = next
+    setPaneWidths(next)
+  }, [])
+
+  const handlePaneResizeStart = useCallback((side: 'driver' | 'right', e: React.PointerEvent<HTMLDivElement>) => {
+    if (window.matchMedia('(max-width: 768px)').matches) return
+    e.preventDefault()
+    e.currentTarget.setPointerCapture(e.pointerId)
+    paneResizeRef.current = {
+      side,
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startWidth: paneWidthsRef.current[side],
+    }
+    setResizingPane(side)
+  }, [])
+
+  const handlePaneResizeMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = paneResizeRef.current
+    if (!drag || drag.pointerId !== e.pointerId) return
+    const delta = e.clientX - drag.startX
+    updatePaneWidth(drag.side, drag.startWidth + (drag.side === 'driver' ? delta : -delta))
+  }, [updatePaneWidth])
+
+  const handlePaneResizeEnd = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = paneResizeRef.current
+    if (!drag || drag.pointerId !== e.pointerId) return
+    paneResizeRef.current = null
+    setResizingPane(null)
+    localStorage.setItem('f1vis_driver_pane_width', String(paneWidthsRef.current.driver))
+    localStorage.setItem('f1vis_right_pane_width', String(paneWidthsRef.current.right))
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+  }, [])
+
+  const handlePaneResizeKey = useCallback((side: 'driver' | 'right', e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+    e.preventDefault()
+    const delta = e.key === 'ArrowRight' ? 16 : -16
+    updatePaneWidth(side, paneWidthsRef.current[side] + (side === 'driver' ? delta : -delta))
+    localStorage.setItem(
+      side === 'driver' ? 'f1vis_driver_pane_width' : 'f1vis_right_pane_width',
+      String(paneWidthsRef.current[side]),
+    )
+  }, [updatePaneWidth])
+
+  const resetPaneWidth = useCallback((side: 'driver' | 'right') => {
+    const width = side === 'driver' ? DEFAULT_DRIVER_PANE_WIDTH : DEFAULT_RIGHT_PANE_WIDTH
+    updatePaneWidth(side, width)
+    localStorage.setItem(
+      side === 'driver' ? 'f1vis_driver_pane_width' : 'f1vis_right_pane_width',
+      String(width),
+    )
+  }, [updatePaneWidth])
 
   const handleCircuitChange = useCallback((c: CircuitConfig) => {
     setCircuit(c)
@@ -653,7 +726,7 @@ export default function App() {
     {
       selector: '.playback-bar',
       title: 'Team radio',
-      body: "Press the 📻 button to enable synchronized team radio. Real clips from drivers and engineers play at the exact moment they happened in the race.",
+      body: "Use the Radio control to enable synchronized team radio. Real clips from drivers and engineers play at the exact moment they happened in the race.",
       placement: 'top',
     },
     {
@@ -664,7 +737,7 @@ export default function App() {
     {
       selector: '.app-header',
       title: "That's it!",
-      body: "Explore Pace Analysis, Standings, and Calendar in the sidebar. Drop a CSV file anywhere to load custom telemetry. Enjoy the data! 🏎️",
+      body: "Explore Pace Analysis, Standings, and Calendar in the navigation. Drop a CSV file anywhere to load custom telemetry.",
       placement: 'bottom',
     },
   ]
@@ -718,48 +791,61 @@ export default function App() {
     >
       {isDragging && (
         <div className="drop-overlay">
-          <div className="drop-hint">Drop CSV or image files here</div>
+          <div className="drop-hint">Drop telemetry CSV files here</div>
         </div>
       )}
 
       <header className="app-header">
         <div className="logo">
           <span className="logo-f1">F1</span>
-          <span className="logo-text">Telemetry Visualizer</span>
+          <span className="logo-divider" />
+          <span className="logo-text">Telemetry</span>
         </div>
+        <span className="header-context">Race data, replayed</span>
         {loading && activeView === 'telemetry' && <span className="loading-badge">Loading…</span>}
-        <button
-          className="tutorial-trigger"
-          onClick={() => setTutorialOpen(true)}
-          title="Tour the features"
-        >?</button>
-        <button
-          className={`comments-toggle-btn ${commentsOpen ? 'active' : ''}`}
-          onClick={() => setCommentsOpen(v => !v)}
-          title="Toggle comments"
-        >
-          💬
-        </button>
-        {authUser ? (
-          <button className="auth-user-btn" onClick={() => supabase.auth.signOut()} title="Sign out">
-            {(authUser.user_metadata?.full_name ?? authUser.email ?? 'User').split(' ')[0]}
-          </button>
-        ) : (
-          <button className="auth-signin-header-btn" onClick={() => setAuthModalOpen(true)}>
-            Sign in
-          </button>
-        )}
-        <div style={{ position: 'relative' }}>
+        <div className="header-actions">
           <button
-            className={`settings-trigger ${settingsOpen ? 'active' : ''}`}
+            className="header-action-btn tutorial-trigger"
+            onClick={() => setTutorialOpen(true)}
+            title="Tour the features"
+          ><Icon name="help" size={17} /><span>Help</span></button>
+          <button
+            className={`header-action-btn comments-toggle-btn ${commentsOpen ? 'active' : ''}`}
+            onClick={() => setCommentsOpen(v => !v)}
+            title="Open community comments"
+          >
+            <Icon name="socials" size={17} /><span>Community</span>
+          </button>
+          {authUser ? (
+            <button className="auth-user-btn" onClick={() => supabase.auth.signOut()} title="Sign out">
+              {(authUser.user_metadata?.full_name ?? authUser.email ?? 'User').split(' ')[0]}
+            </button>
+          ) : (
+            <button className="auth-signin-header-btn" onClick={() => setAuthModalOpen(true)}>
+              Sign in
+            </button>
+          )}
+          <div className="settings-wrap">
+          <button
+            className={`header-action-btn settings-trigger ${settingsOpen ? 'active' : ''}`}
             onClick={() => setSettingsOpen(v => !v)}
             title="Appearance settings"
-          >⚙</button>
+            aria-label="Appearance settings"
+          ><Icon name="settings" size={17} /></button>
           {settingsOpen && <Settings onClose={() => setSettingsOpen(false)} />}
+          </div>
+          <a
+            href="https://www.buymeacoffee.com/PrivateTiles"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bmc-btn"
+            aria-label="Buy me a coffee"
+            title="Buy me a coffee"
+          >
+            <Icon name="coffee" size={17} />
+            <span>Support the project</span>
+          </a>
         </div>
-        <a href="https://www.buymeacoffee.com/PrivateTiles" target="_blank" rel="noopener noreferrer" className="bmc-btn">
-          <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=PrivateTiles&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" alt="Buy me a coffee" />
-        </a>
       </header>
 
       <div className="app-body">
@@ -809,7 +895,13 @@ export default function App() {
                 onSeasonChange={handleSeasonChange}
               />
 
-              <div className="main-layout">
+              <div
+                className={`main-layout ${hasDisplayData ? 'resizable-panes' : ''} ${resizingPane ? 'resizing-panes' : ''}`}
+                style={hasDisplayData ? {
+                  '--driver-pane-width': `${paneWidths.driver}px`,
+                  '--right-pane-width': `${paneWidths.right}px`,
+                } as React.CSSProperties : undefined}
+              >
                 {hasDisplayData ? (
                   <>
                     <DriverPanel
@@ -833,6 +925,24 @@ export default function App() {
                       onTuneDriver={radioCallsWithProgress.length > 0 ? setTunedDriver : undefined}
                     />
 
+                    <div
+                      className="pane-resizer"
+                      role="separator"
+                      aria-label="Resize drivers panel"
+                      aria-orientation="vertical"
+                      aria-valuemin={150}
+                      aria-valuemax={360}
+                      aria-valuenow={paneWidths.driver}
+                      tabIndex={0}
+                      onPointerDown={(e) => handlePaneResizeStart('driver', e)}
+                      onPointerMove={handlePaneResizeMove}
+                      onPointerUp={handlePaneResizeEnd}
+                      onPointerCancel={handlePaneResizeEnd}
+                      onKeyDown={(e) => handlePaneResizeKey('driver', e)}
+                      onDoubleClick={() => resetPaneWidth('driver')}
+                      title="Drag to resize Drivers. Double-click to reset."
+                    />
+
                     <div className="center-pane">
                       <TrackMap
                         circuitId={circuit.id}
@@ -844,7 +954,6 @@ export default function App() {
                         onProgressChange={handleProgressChange}
                         playing={playing}
                         onPlayPause={() => setPlaying((p) => !p)}
-                        bgImageUrl={customBgUrl ?? undefined}
                         battleGaps={battleGaps}
                         lapBoundaries={lapBoundaries}
                         totalLaps={totalLaps}
@@ -888,6 +997,24 @@ export default function App() {
                       )}
                     </div>
 
+                    <div
+                      className="pane-resizer"
+                      role="separator"
+                      aria-label="Resize battle panel"
+                      aria-orientation="vertical"
+                      aria-valuemin={180}
+                      aria-valuemax={420}
+                      aria-valuenow={paneWidths.right}
+                      tabIndex={0}
+                      onPointerDown={(e) => handlePaneResizeStart('right', e)}
+                      onPointerMove={handlePaneResizeMove}
+                      onPointerUp={handlePaneResizeEnd}
+                      onPointerCancel={handlePaneResizeEnd}
+                      onKeyDown={(e) => handlePaneResizeKey('right', e)}
+                      onDoubleClick={() => resetPaneWidth('right')}
+                      title="Drag to resize Battle. Double-click to reset."
+                    />
+
                     <div className="right-pane">
                       <BattleTracker
                         drivers={session.drivers.length > 0 ? session.drivers : Object.keys(mergedTelemetry)}
@@ -909,7 +1036,7 @@ export default function App() {
                                 title="Download clip"
                               >↓</button>
                             )}
-                            <span className="radio-wave-icon" style={{ marginLeft: profile?.tier === 'pro' ? '0' : 'auto' }}>📻</span>
+                            <span className="radio-wave-icon" style={{ marginLeft: profile?.tier === 'pro' ? '0' : 'auto' }}><Icon name="radio" size={15} /></span>
                           </div>
                           {activeRadioCaption.text && (
                             <div className="radio-caption-box-text">{activeRadioCaption.text}</div>

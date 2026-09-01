@@ -428,3 +428,55 @@
   .land-banner { flex-direction: column; gap: 18px; text-align: center; }
   .land-footer { flex-direction: column; gap: 4px; }
 }
+
+/* Editorial refresh */
+.landing { background: #080b0f; }
+.land-nav {
+  min-height: 68px;
+  padding: 0 max(24px, calc((100vw - 1180px) / 2));
+}
+.land-hero {
+  align-items: stretch;
+  padding: 124px max(24px, calc((100vw - 1180px) / 2)) 132px;
+  background:
+    linear-gradient(90deg, rgba(225, 6, 0, 0.08) 0, transparent 34%),
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: auto, 100% 84px;
+}
+.land-hero-body { width: 100%; max-width: 760px; text-align: left; }
+.land-eyebrow { letter-spacing: 1.7px; }
+.land-headline {
+  font-size: clamp(50px, 7vw, 92px);
+  font-weight: 760;
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+.land-sub {
+  max-width: 650px;
+  margin: 0 0 38px;
+  color: #9aa5b1;
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.65;
+}
+.land-cta { border-radius: 7px; font-weight: 650; box-shadow: none; }
+.land-cta:hover { box-shadow: 0 8px 28px rgba(225, 6, 0, 0.22); }
+.land-hint { color: #64707c; }
+.land-stats { background: #0b0f14; }
+.land-feature-card { border-radius: 10px; }
+.land-feature-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #2b3540;
+  border-radius: 8px;
+  color: #e85b56;
+  font-size: 0;
+}
+
+@media (max-width: 600px) {
+  .land-nav { min-height: 60px; padding: 0 18px; }
+  .land-hero { padding: 76px 18px 88px; }
+  .land-headline { font-size: clamp(44px, 14vw, 62px); }
+}

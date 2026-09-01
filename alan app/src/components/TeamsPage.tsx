@@ -70,7 +70,6 @@ export default function TeamsPage() {
                 <div className="team-drivers">
                   {drivers.map(([code, d]) => (
                     <span key={code} className="team-driver-chip">
-                      <span className="tdc-flag">{d.flag}</span>
                       <span className="tdc-code">{code}</span>
                       <span className="tdc-num" style={{ color }}>#{d.number}</span>
                     </span>

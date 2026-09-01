@@ -183,7 +183,7 @@ export default function DataLabPanel({ circuit, driverProfiles, profilesLoading 
                 return (
                   <tr key={c.id} style={{ opacity: isSelected ? 1 : 0.7, fontWeight: isSelected ? 700 : 400 }}>
                     <td style={{ color: isSelected ? '#ddd' : '#778' }}>
-                      {c.flag} {c.name}
+                      {c.name}
                       {derived && <span className="lab-dim" style={{ fontSize: 9, marginLeft: 4 }}>telemetry</span>}
                     </td>
                     <td>{Math.round(lapDist).toLocaleString()}</td>
@@ -212,7 +212,7 @@ export default function DataLabPanel({ circuit, driverProfiles, profilesLoading 
       {driverProfiles && layout && (
         <div className="lab-section">
           <div className="lab-section-title">
-            Circuit Similarity — how training data maps to {circuit.flag} {circuit.name}
+            Circuit Similarity — how training data maps to {circuit.name}
             <span className="lab-dim" style={{ marginLeft: 8 }}>
               Cosine² of speed-class distributions · higher = more relevant
             </span>
@@ -263,7 +263,7 @@ export default function DataLabPanel({ circuit, driverProfiles, profilesLoading 
                     return (
                       <tr key={r.cid}>
                         <td style={{ color: '#ddd' }}>
-                          {circ?.flag} {circ?.name ?? r.cid}
+                          {circ?.name ?? r.cid}
                           {r.derived && <span className="lab-dim" style={{ marginLeft: 4 }}>({fmtTime(r.derived.poleTime)} actual pole)</span>}
                         </td>
                         <td style={{ fontFamily: 'monospace', color: r.sim > 0.85 ? '#00e676' : r.sim > 0.65 ? '#ffd600' : '#ff6d00' }}>
@@ -285,7 +285,7 @@ export default function DataLabPanel({ circuit, driverProfiles, profilesLoading 
                 })()}
                 {/* Target row */}
                 <tr style={{ borderTop: '1px solid #334' }}>
-                  <td style={{ color: '#e10600', fontWeight: 700 }}>{circuit.flag} {circuit.name} (target)</td>
+                  <td style={{ color: '#e10600', fontWeight: 700 }}>{circuit.name} (target)</td>
                   <td style={{ color: '#556' }}>—</td>
                   <td />
                   {SPEED_CLASSES.map((cls) => {
@@ -306,7 +306,7 @@ export default function DataLabPanel({ circuit, driverProfiles, profilesLoading 
       {/* ── Section 4: Predicted Qualifying Detail ───────────────────────── */}
       <div className="lab-section">
         <div className="lab-section-title">
-          Predicted Qualifying Results — {circuit.flag} {circuit.name}
+          Predicted Qualifying Results — {circuit.name}
           {driverProfiles?.derivedLayouts?.[circuit.id]
             ? <span className="lab-dim"> · actual pole {fmtTime(driverProfiles.derivedLayouts[circuit.id].poleTime)} (telemetry)</span>
             : layout && layout.baselineSeconds > 0

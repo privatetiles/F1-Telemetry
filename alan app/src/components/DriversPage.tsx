@@ -50,7 +50,6 @@ function DriverCard({ code, standingMap }: DriverCardProps) {
       <div className="driver-card-bar" style={{ background: color }} />
       <div className="driver-card-body">
         <div className="driver-card-top">
-          <span className="driver-flag">{info.flag}</span>
           <span className="driver-num" style={{ color }}>{info.number}</span>
         </div>
         <div className="driver-code">{code}</div>

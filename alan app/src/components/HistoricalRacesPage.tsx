@@ -149,10 +149,9 @@ export default function HistoricalRacesPage({ onWatchReplay }: Props) {
           const available = circuit !== null
 
           return (
-            <div key={`${battle.year}-${battle.flag}`} className={`battle-card ${available ? '' : 'battle-card-locked'}`}>
+            <div key={`${battle.year}-${battle.name}`} className={`battle-card ${available ? '' : 'battle-card-locked'}`}>
               <div className="battle-card-header">
                 <span className="battle-year">{battle.year}</span>
-                <span className="battle-flag">{battle.flag}</span>
                 {!available && <span className="battle-coming-soon">Coming Soon</span>}
               </div>
 
@@ -162,7 +161,6 @@ export default function HistoricalRacesPage({ onWatchReplay }: Props) {
                 <p className="battle-description">{battle.description}</p>
 
                 <div className="battle-highlight">
-                  <span className="battle-highlight-icon">⚡</span>
                   {battle.highlight}
                 </div>
 
@@ -179,7 +177,7 @@ export default function HistoricalRacesPage({ onWatchReplay }: Props) {
                     className="battle-watch-btn"
                     onClick={() => circuit && onWatchReplay(circuit)}
                   >
-                    ▶ Watch Full Race Replay
+                    Watch full race replay
                   </button>
                 ) : (
                   <button className="battle-watch-btn battle-watch-locked" disabled>

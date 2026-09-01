@@ -165,7 +165,14 @@ export interface FullRaceResult {
 export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult> {
   const res = await fetch(url)
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const json: FullRaceJson = await res.json()
+  let json: FullRaceJson
+  if (url.endsWith('.gz')) {
+    if (!res.body) throw new Error('Compressed telemetry response has no body')
+    const decompressed = res.body.pipeThrough(new DecompressionStream('gzip'))
+    json = JSON.parse(await new Response(decompressed).text()) as FullRaceJson
+  } else {
+    json = await res.json() as FullRaceJson
+  }
 
   // Determine total laps across all drivers
   let totalLaps = 0

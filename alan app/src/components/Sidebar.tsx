@@ -1,3 +1,5 @@
+import Icon, { type IconName } from './Icon'
+
 type AppView = 'telemetry' | 'standings' | 'calendar' | 'results' | 'drivers' | 'teams' | 'circuits' | 'pace' | 'pace2' | 'insights' | 'games' | 'historicalraces' | 'socials' | 'changelog'
 
 interface Props {
@@ -5,36 +7,50 @@ interface Props {
   onNav: (v: AppView) => void
 }
 
-const NAV: { id: AppView; icon: string; label: string; title: string }[] = [
-  { id: 'telemetry', icon: '🏁', label: 'Track',     title: 'Telemetry' },
-  { id: 'standings', icon: '🏆', label: 'Standings', title: 'Standings' },
-  { id: 'calendar',  icon: '🗓',  label: 'Calendar',  title: 'Calendar' },
-  { id: 'results',   icon: '📋', label: 'Results',   title: 'Race Results' },
-  { id: 'drivers',   icon: '👤', label: 'Drivers',   title: 'Drivers' },
-  { id: 'teams',     icon: '🏎', label: 'Teams',     title: 'Teams' },
-  { id: 'circuits',  icon: '🗺',  label: 'Circuits',  title: 'Circuits' },
-  { id: 'pace',      icon: '📊', label: 'Pace',      title: 'Pace Analysis' },
-  { id: 'pace2',     icon: '🔮', label: 'Predict',   title: 'Predictions' },
-  { id: 'insights',   icon: '📝', label: 'Insights',  title: 'Race Insights' },
-  { id: 'games',           icon: '🎮', label: 'Games',     title: 'F1 Games' },
-  { id: 'historicalraces', icon: '⚡', label: 'Classics',  title: 'Historic Race Replays' },
-  { id: 'socials',          icon: '💬', label: 'Socials',    title: 'Community & Socials' },
-  { id: 'changelog',       icon: '📣', label: "What's New", title: "What's New" },
+const NAV: Array<{ heading: string; items: Array<{ id: AppView; icon: IconName; label: string; title: string }> }> = [
+  { heading: 'Race', items: [
+    { id: 'telemetry', icon: 'track', label: 'Telemetry', title: 'Telemetry replay' },
+    { id: 'results', icon: 'results', label: 'Results', title: 'Race results' },
+    { id: 'standings', icon: 'standings', label: 'Standings', title: 'Championship standings' },
+    { id: 'calendar', icon: 'calendar', label: 'Calendar', title: 'Race calendar' },
+  ] },
+  { heading: 'Explore', items: [
+    { id: 'drivers', icon: 'drivers', label: 'Drivers', title: 'Drivers' },
+    { id: 'teams', icon: 'teams', label: 'Teams', title: 'Teams' },
+    { id: 'circuits', icon: 'circuits', label: 'Circuits', title: 'Circuits' },
+    { id: 'insights', icon: 'insights', label: 'Insights', title: 'Race insights' },
+    { id: 'games', icon: 'games', label: 'Games', title: 'F1 games' },
+  ] },
+  { heading: 'Analysis', items: [
+    { id: 'pace', icon: 'pace', label: 'Pace analysis', title: 'Pace analysis' },
+    { id: 'pace2', icon: 'predict', label: 'Predictions', title: 'Predictions' },
+    { id: 'historicalraces', icon: 'classics', label: 'Classic races', title: 'Historic race replays' },
+  ] },
+  { heading: 'More', items: [
+    { id: 'socials', icon: 'socials', label: 'Community', title: 'Community' },
+    { id: 'changelog', icon: 'updates', label: 'Updates', title: 'Product updates' },
+  ] },
 ]
 
 export default function Sidebar({ active, onNav }: Props) {
   return (
-    <nav className="sidebar">
-      {NAV.map(({ id, icon, label, title }) => (
-        <button
-          key={id}
-          className={`sidebar-btn ${active === id ? 'active' : ''}`}
-          title={title}
-          onClick={() => onNav(id)}
-        >
-          <span className="sidebar-icon">{icon}</span>
-          <span className="sidebar-label">{label}</span>
-        </button>
+    <nav className="sidebar" aria-label="Main navigation">
+      {NAV.map(({ heading, items }) => (
+        <div className="sidebar-group" key={heading}>
+          <span className="sidebar-heading">{heading}</span>
+          {items.map(({ id, icon, label, title }) => (
+            <button
+              key={id}
+              className={`sidebar-btn ${active === id ? 'active' : ''}`}
+              title={title}
+              onClick={() => onNav(id)}
+              aria-current={active === id ? 'page' : undefined}
+            >
+              <span className="sidebar-icon"><Icon name={icon} size={18} /></span>
+              <span className="sidebar-label">{label}</span>
+            </button>
+          ))}
+        </div>
       ))}
     </nav>
   )

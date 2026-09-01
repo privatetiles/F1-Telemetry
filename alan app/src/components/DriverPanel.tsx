@@ -1,4 +1,5 @@
 import { driverColor } from '../lib/teamColors'
+import Icon from './Icon'
 
 interface Props {
   drivers: string[]
@@ -108,7 +109,7 @@ export default function DriverPanel({
                   }}
                   title={tunedDriver === driver ? `Disconnect from ${driver}` : `Tune to ${driver}`}
                 >
-                  📻
+                  <Icon name="radio" size={14} />
                 </button>
               )}
               <span className={`driver-time ${isDnf ? 'dnf-label' : ''}`}>

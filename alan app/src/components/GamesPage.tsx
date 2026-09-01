@@ -124,7 +124,7 @@ function DailyOverScreen({ gameType, score, maxScore, authUser, onSignIn, submit
   return (
     <div className="game-area">
       <div className="game-card game-finished">
-        <p className="game-finish-headline">🏁 Today's {label} done!</p>
+        <p className="game-finish-headline">Today's {label} is complete</p>
         <p className="game-finish-score">
           {gameType === 'circuit' ? `${score} / ${maxScore} correct` : `${score} / ${maxScore} pts`}
         </p>
@@ -467,15 +467,15 @@ function CircuitGame({ authUser, onSignIn }: { authUser: User | null; onSignIn?:
       <div className="game-card">
         <div className="circuit-clue-box">
           <div className="circuit-clue-stats">
-            <span>🔄 {data.direction}</span>
+            <span>Direction: {data.direction}</span>
             <span>↩ {data.corners} corners</span>
-            <span>📏 {data.length}</span>
-            <span>💨 {data.topSpeed} top speed</span>
-            <span>🚀 {data.drsZones} DRS zones</span>
-            <span>🏎 {data.laps} laps</span>
-            <span>📉 {data.downforceLevel} downforce</span>
-            <span>🏟 {data.circuitType}</span>
-            <span>📅 First GP: {data.firstGP}</span>
+            <span>Length: {data.length}</span>
+            <span>Top speed: {data.topSpeed}</span>
+            <span>DRS zones: {data.drsZones}</span>
+            <span>Laps: {data.laps}</span>
+            <span>Downforce: {data.downforceLevel}</span>
+            <span>Type: {data.circuitType}</span>
+            <span>First GP: {data.firstGP}</span>
           </div>
         </div>
         <p className="game-prompt">Which circuit is this?</p>
@@ -611,7 +611,7 @@ function WhoAmIGame({ authUser, onSignIn }: { authUser: User | null; onSignIn?: 
       <div className="whoami-stats-row">
         <span className="game-score">{score} pts · {playsLeft} play{playsLeft !== 1 ? 's' : ''} left today</span>
         <span className="whoami-streak">
-          {streak > 0 && <span className="whoami-streak-fire">{streak >= 3 ? '🔥' : '⚡'} {streak} streak</span>}
+          {streak > 0 && <span className="whoami-streak-fire">{streak} streak</span>}
           {bestStreak > 0 && <span className="whoami-streak-best">Best: {bestStreak}</span>}
         </span>
       </div>
@@ -791,7 +791,7 @@ function Leaderboard() {
     void run()
   }, [game, period])
 
-  const medals = ['🥇', '🥈', '🥉']
+  const medals = ['1', '2', '3']
 
   return (
     <div className="game-area">
@@ -799,7 +799,7 @@ function Leaderboard() {
         <div className="lb-filter-row">
           {(['circuit', 'whoami'] as LbGame[]).map(g => (
             <button key={g} className={`lb-pill ${game === g ? 'active' : ''}`} onClick={() => setGame(g)}>
-              {g === 'circuit' ? '🗺 Circuit ID' : '👤 Who Am I?'}
+              {g === 'circuit' ? 'Circuit ID' : 'Who Am I?'}
             </button>
           ))}
         </div>
@@ -855,31 +855,31 @@ export default function GamesPage({ authUser, onSignIn }: Props) {
           className={`games-tab ${tab === 'circuit' ? 'active' : ''}`}
           onClick={() => setTab('circuit')}
         >
-          🗺 Circuit ID
+          Circuit ID
         </button>
         <button
           className={`games-tab ${tab === 'whoami' ? 'active' : ''}`}
           onClick={() => setTab('whoami')}
         >
-          👤 Who Am I?
+          Who Am I?
         </button>
         <button
           className={`games-tab ${tab === 'trivia' ? 'active' : ''}`}
           onClick={() => setTab('trivia')}
         >
-          🎯 F1 Trivia
+          F1 Trivia
         </button>
         <button
           className={`games-tab ${tab === 'challenge' ? 'active' : ''}`}
           onClick={() => setTab('challenge')}
         >
-          📅 Daily Challenge
+          Daily Challenge
         </button>
         <button
           className={`games-tab ${tab === 'leaderboard' ? 'active' : ''}`}
           onClick={() => setTab('leaderboard')}
         >
-          🏆 Leaderboard
+          Leaderboard
         </button>
       </div>
 
@@ -893,7 +893,7 @@ export default function GamesPage({ authUser, onSignIn }: Props) {
 
       {!authUser && (
         <div className="games-save-bar">
-          <span>🔒 <strong>Login to save your progress</strong> and track high scores</span>
+          <span><strong>Sign in to save your progress</strong> and track high scores</span>
           {onSignIn && (
             <button className="games-save-signin" onClick={onSignIn}>Sign in</button>
           )}

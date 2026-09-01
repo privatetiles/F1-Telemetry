@@ -3,31 +3,6 @@ import { CIRCUIT_DATA } from '../lib/circuitData'
 import { CIRCUIT_HIGHLIGHTS } from '../lib/raceHighlights'
 import type { CircuitHighlight } from '../lib/raceHighlights'
 
-const CIRCUIT_FLAGS: Record<string, string> = {
-  australia:          '🇦🇺',
-  china:              '🇨🇳',
-  japan:              '🇯🇵',
-  miami:              '🇺🇸',
-  canadian:           '🇨🇦',
-  monaco:             '🇲🇨',
-  barcelona_catalunya:'🇪🇸',
-  austrian:           '🇦🇹',
-  british:            '🇬🇧',
-  belgian:            '🇧🇪',
-  hungarian:          '🇭🇺',
-  dutch:              '🇳🇱',
-  italian:            '🇮🇹',
-  madrid:             '🇪🇸',
-  azerbaijan:         '🇦🇿',
-  singapore:          '🇸🇬',
-  united_states:      '🇺🇸',
-  mexican_city:       '🇲🇽',
-  sao_paulo:          '🇧🇷',
-  las_vegas:          '🇺🇸',
-  qatar:              '🇶🇦',
-  abu_dhabi:          '🇦🇪',
-}
-
 const CIRCUIT_ROUND: Record<string, number> = {
   australia: 1, china: 2, japan: 3, miami: 4, canadian: 5, monaco: 6,
   barcelona_catalunya: 7, austrian: 8, british: 9, belgian: 10,
@@ -92,7 +67,6 @@ interface CircuitCardProps {
 
 function CircuitCard({ id }: CircuitCardProps) {
   const c = CIRCUIT_DATA[id]
-  const flag     = CIRCUIT_FLAGS[id] ?? '🏁'
   const round    = CIRCUIT_ROUND[id] ?? '?'
   const raceDist = (c.lengthKm * c.laps).toFixed(1)
   const highlights = CIRCUIT_HIGHLIGHTS[id] ?? []
@@ -103,7 +77,6 @@ function CircuitCard({ id }: CircuitCardProps) {
       {/* Header */}
       <div className="circuit-card-header">
         <span className="circ-round">R{round}</span>
-        <span className="circ-flag">{flag}</span>
         <div className="circ-name-block">
           <span className="circ-country">{c.locality}, {c.country}</span>
           <span className="circ-name">{c.fullName}</span>

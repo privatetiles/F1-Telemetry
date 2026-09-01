@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
 import './LandingPage.css'
+import Icon, { type IconName } from './components/Icon'
 
 interface Props {
   onEnter: () => void
@@ -7,77 +7,28 @@ interface Props {
 
 const FEATURES = [
   {
-    icon: '⏱',
+    icon: 'track' as IconName,
     title: 'Real telemetry data',
     body: 'FastF1-sourced qualifying and race fastest laps for all 22 drivers, every round of the 2026 season.',
   },
   {
-    icon: '🗺',
+    icon: 'circuits' as IconName,
     title: 'Live track playback',
     body: 'Animate any lap on an accurate circuit outline. Watch steering, throttle, brake, and DRS update frame-by-frame.',
   },
   {
-    icon: '📊',
+    icon: 'pace' as IconName,
     title: 'Three-class pace analysis',
     body: 'Track segments split into Slow Corners, Fast Corners, and Straights. See exactly where each team gains or loses time.',
   },
   {
-    icon: '🔮',
+    icon: 'predict' as IconName,
     title: 'Season predictions',
     body: 'Pace projections for upcoming rounds, weighted by historical performance at circuit types matching the next venue.',
   },
 ]
 
 export default function LandingPage({ onEnter }: Props) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  // Subtle animated particle grid
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let frame = 0
-    let raf: number
-
-    const resize = () => {
-      canvas.width  = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    const draw = () => {
-      const { width, height } = canvas
-      ctx.clearRect(0, 0, width, height)
-
-      const cols = Math.ceil(width  / 48)
-      const rows = Math.ceil(height / 48)
-
-      for (let r = 0; r <= rows; r++) {
-        for (let c = 0; c <= cols; c++) {
-          const x = c * 48
-          const y = r * 48
-          const wave = Math.sin((c + r) * 0.4 + frame * 0.018) * 0.5 + 0.5
-          const alpha = wave * 0.12 + 0.02
-          ctx.fillStyle = `rgba(225, 6, 0, ${alpha})`
-          ctx.beginPath()
-          ctx.arc(x, y, 1.2, 0, Math.PI * 2)
-          ctx.fill()
-        }
-      }
-      frame++
-      raf = requestAnimationFrame(draw)
-    }
-
-    draw()
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
-
   return (
     <div className="landing">
       {/* Nav */}
@@ -90,16 +41,14 @@ export default function LandingPage({ onEnter }: Props) {
 
       {/* Hero */}
       <section className="land-hero">
-        <canvas ref={canvasRef} className="land-hero-canvas" />
         <div className="land-hero-body">
-          <div className="land-eyebrow">2026 Season · Live Data</div>
+          <div className="land-eyebrow">2026 race data</div>
           <h1 className="land-headline">
-            Every lap.<br />Every driver.
+            F1 telemetry,<br />made readable.
           </h1>
           <p className="land-sub">
-            Full telemetry from every 2026 F1 race weekend — qualifying and race fastest laps
-            for the complete grid. Visualize inputs, compare pace, and see exactly
-            where tenths are won and lost.
+            Replay races, compare drivers, and understand where the time was won.
+            One focused workspace for track position, inputs, pace, and strategy.
           </p>
           <button className="land-cta" onClick={onEnter}>
             Open Visualizer
@@ -141,7 +90,7 @@ export default function LandingPage({ onEnter }: Props) {
         <div className="land-feature-grid">
           {FEATURES.map(f => (
             <div key={f.title} className="land-feature-card">
-              <span className="land-feature-icon">{f.icon}</span>
+              <span className="land-feature-icon"><Icon name={f.icon} size={20} /></span>
               <h3 className="land-feature-title">{f.title}</h3>
               <p className="land-feature-body">{f.body}</p>
             </div>

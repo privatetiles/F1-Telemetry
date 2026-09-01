@@ -42,10 +42,10 @@ export default function ProModal({ onClose }: Props) {
         <div className="auth-sub">$3 / month · cancel anytime</div>
 
         <ul className="pro-perks">
-          <li>🚫 Ad-free experience</li>
-          <li>🎨 Custom comment color</li>
+          <li>Ad-free experience</li>
+          <li>Custom comment color</li>
           <li>⭐ Pro badge on comments</li>
-          <li>📥 Download telemetry as CSV</li>
+          <li>Download telemetry as CSV</li>
         </ul>
 
         <button className="pro-upgrade-btn" onClick={handleUpgrade} disabled={loading}>
