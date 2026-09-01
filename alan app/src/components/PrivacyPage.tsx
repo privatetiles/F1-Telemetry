@@ -149,7 +149,7 @@ export default function PrivacyPage() {
         <h2 className="privacy-h2">12. Contact</h2>
         <p>
           If you have any questions about this Privacy Policy or wish to exercise your rights,
-          please contact us at: <a className="privacy-link" href="mailto:caichaochao@gmail.com">caichaochao@gmail.com</a>
+          please contact us at: <a className="privacy-link" href="mailto:privatetiles@gmail.com">privatetiles@gmail.com</a>
         </p>
       </div>
     </div>

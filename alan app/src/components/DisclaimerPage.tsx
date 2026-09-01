@@ -51,7 +51,7 @@ export default function DisclaimerPage() {
           The design, code, and custom analysis on this site are the original work of the site
           creator. Reproduction or redistribution of site content without permission is prohibited.
           If you believe any content on this site infringes your rights, please contact us at{' '}
-          <a className="privacy-link" href="mailto:caichaochao@gmail.com">caichaochao@gmail.com</a>.
+          <a className="privacy-link" href="mailto:privatetiles@gmail.com">privatetiles@gmail.com</a>.
         </p>
       </div>
     </div>
