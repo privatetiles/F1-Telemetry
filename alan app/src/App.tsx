@@ -37,9 +37,6 @@ import ResultsPage from './components/ResultsPage'
 import DriversPage from './components/DriversPage'
 import TeamsPage from './components/TeamsPage'
 import CircuitsPage from './components/CircuitsPage'
-import PrivacyPage from './components/PrivacyPage'
-import AboutPage from './components/AboutPage'
-import DisclaimerPage from './components/DisclaimerPage'
 import ChangelogPage from './components/ChangelogPage'
 import InsightsPage from './components/InsightsPage'
 import GamesPage from './components/GamesPage'
@@ -71,7 +68,9 @@ export default function App() {
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'games', 'historicalraces', 'socials', 'privacy', 'about', 'disclaimer', 'changelog']
+  // 'about', 'privacy' and 'disclaimer' are intentionally excluded — they now
+  // live at their own paths (/about/, /privacy/, /disclaimer/), not hash views.
+  const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'games', 'historicalraces', 'socials', 'changelog']
   const hashToView = (hash: string): AppView => {
     const v = hash.replace(/^#\/?/, '') as AppView
     return VALID_VIEWS.includes(v) ? v : 'telemetry'
@@ -793,12 +792,6 @@ export default function App() {
             />
           ) : activeView === 'socials' ? (
             <SocialsPage />
-          ) : activeView === 'privacy' ? (
-            <PrivacyPage />
-          ) : activeView === 'about' ? (
-            <AboutPage />
-          ) : activeView === 'disclaimer' ? (
-            <DisclaimerPage />
           ) : activeView === 'changelog' ? (
             <ChangelogPage />
           ) : activeView === 'pace' ? (
@@ -942,11 +935,11 @@ export default function App() {
       </div>
 
       <footer className="app-footer">
-        <button className="footer-link" onClick={() => setActiveView('about')}>About</button>
+        <a className="footer-link" href="/about/">About</a>
         <span className="footer-sep">·</span>
-        <button className="footer-link" onClick={() => setActiveView('privacy')}>Privacy Policy</button>
+        <a className="footer-link" href="/privacy/">Privacy Policy</a>
         <span className="footer-sep">·</span>
-        <button className="footer-link" onClick={() => setActiveView('disclaimer')}>Disclaimer</button>
+        <a className="footer-link" href="/disclaimer/">Disclaimer</a>
         <span className="footer-sep">·</span>
         <span className="footer-copy">© 2026 f1vis.app</span>
         <span className="footer-sep">·</span>

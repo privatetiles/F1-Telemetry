@@ -337,6 +337,87 @@
 
 .land-footer-sep { color: #223; }
 
+/* ── Legal / static pages (About, etc.) ── */
+.land-legal {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 56px 32px 80px;
+}
+
+.land-legal-body {
+  width: 100%;
+  max-width: 720px;
+}
+
+.land-legal-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #f0f2f8;
+  margin: 0 0 8px;
+}
+
+.land-legal-meta {
+  font-size: 13px;
+  color: #667;
+  margin: 0 0 32px;
+}
+
+.land-legal-h2 {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #8899aa;
+  margin: 32px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1a2232;
+}
+
+.land-legal-body p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #99a7b5;
+  margin: 0 0 12px;
+}
+
+.land-legal-body p.land-legal-intro {
+  font-size: 15px;
+  color: #aeb9c5;
+  margin-bottom: 18px;
+}
+
+.land-legal-h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #c3ccd6;
+  margin: 20px 0 8px;
+}
+
+.land-legal-list {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+.land-legal-list li {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #99a7b5;
+  margin: 0 0 8px;
+}
+
+.land-legal-body strong { color: #c8d0da; font-weight: 600; }
+
+.land-legal-link {
+  color: #e10600;
+  text-decoration: none;
+}
+.land-legal-link:hover { text-decoration: underline; }
+
+/* Anchor variants of the nav elements used on static pages */
+.land-logo { text-decoration: none; }
+.land-nav-btn { text-decoration: none; display: inline-block; }
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .land-nav { padding: 14px 18px; }
