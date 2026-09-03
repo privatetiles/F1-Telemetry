@@ -4964,6 +4964,7 @@
   text-transform: uppercase;
 }
 .sidebar-btn {
+  position: relative;
   min-height: 38px;
   flex-direction: row;
   justify-content: flex-start;
@@ -4975,10 +4976,20 @@
 }
 .sidebar-btn:hover { background: #11171e; color: #c2c8cf; }
 .sidebar-btn.active {
-  background: #191317;
-  border-color: rgba(225, 6, 0, 0.24);
+  background: rgba(225, 6, 0, 0.07);
+  border-color: transparent;
   color: #f3f4f6;
-  box-shadow: inset 3px 0 0 var(--accent);
+  box-shadow: none;
+}
+.sidebar-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
 }
 .sidebar-icon { width: 20px; display: inline-flex; color: #65707c; }
 .sidebar-btn.active .sidebar-icon { color: #ff514c; }
@@ -5225,7 +5236,8 @@
   .sidebar-group { display: contents; }
   .sidebar-heading { display: none; }
   .sidebar-btn { justify-content: center; gap: 4px; min-width: 66px; min-height: 62px; padding: 6px 9px; border: 0; border-radius: 0; box-shadow: none; }
-  .sidebar-btn.active { box-shadow: inset 0 2px 0 var(--accent); }
+  .sidebar-btn.active { background: transparent; box-shadow: inset 0 2px 0 var(--accent); }
+  .sidebar-btn.active::before { display: none; }
   .sidebar-icon { width: auto; }
   .sidebar-label { font-size: 9px; white-space: nowrap; }
   .compact-sidebar .sidebar-label { display: inline; }
