@@ -1,5 +1,22 @@
 const CHANGELOG: { version: string; date: string; entries: { tag: string; text: string }[] }[] = [
   {
+    version: '1.6',
+    date: 'Sep 2026',
+    entries: [
+      { tag: 'new',  text: 'Theme system — Red Flag, Pit Wall, Carbon, and Team Livery themes' },
+      { tag: 'new',  text: 'Race control event ticker — live red flag, safety car, and penalty overlays during replay' },
+      { tag: 'new',  text: 'Interactive track zoom controls' },
+      { tag: 'new',  text: 'Resizable telemetry panes' },
+      { tag: 'impr', text: 'Team livery dual-color swatches in the circuit selector' },
+      { tag: 'impr', text: 'Smooth track rendering with Catmull-Rom splines' },
+      { tag: 'impr', text: 'Telemetry workspace is more spacious with improved responsive layout on laptops' },
+      { tag: 'impr', text: 'Satellite view — improved car visibility, team color separation, and position accuracy' },
+      { tag: 'fix',  text: 'Trivia fastest pitstop answer corrected to Red Bull Racing' },
+      { tag: 'fix',  text: 'Driver career highlights updated across the grid' },
+      { tag: 'fix',  text: 'Results page now shows position number and laps-behind badge for lapped drivers' },
+    ],
+  },
+  {
     version: '1.5',
     date: 'Aug 2026',
     entries: [
