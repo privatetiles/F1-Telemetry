@@ -19,6 +19,7 @@ export const RACES2: Race2[] = [
   { label: 'Belgium',  fullName: 'Belgium GP / Spa-Francorchamps',   eventKey: 'fastf1_2025_belgian_grand_prix',   imgPrefix: '09_spa_francorchamps_2025' },
   { label: 'Hungary',  fullName: 'Hungary GP / Hungaroring',         eventKey: 'fastf1_2025_hungarian_grand_prix', imgPrefix: '11_hungaroring_2025' },
   { label: 'Dutch',    fullName: 'Dutch GP / Zandvoort',             eventKey: 'fastf1_2025_dutch_grand_prix',     imgPrefix: '12_zandvoort_2025' },
+  { label: 'Italian',  fullName: 'Italian GP / Monza',               eventKey: 'fastf1_2025_italian_grand_prix',   imgPrefix: '13_monza_2025' },
 ]
 
 // ── Driver qualifying predictions ────────────────────────────────────────────
@@ -42,6 +43,7 @@ const DRIVER_PRED_BASE = '/pace2/predictions/qualifying_time_predictions/driver_
 const DRIVER_PRED_CSVS = [
   `${DRIVER_PRED_BASE}/four_race_2026_driver_qualifying_predictions.csv`,
   `${DRIVER_PRED_BASE}/zandvoort_2026_driver_qualifying_predictions_recency_weighted.csv`,
+  `${DRIVER_PRED_BASE}/monza_2026_driver_qualifying_predictions_recency_weighted.csv`,
 ]
 
 type RawDriverPred = {

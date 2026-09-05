@@ -1,0 +1,23 @@
+prediction_target_race,prediction_target_event,predicted_position,driver,driver_number,source_model_driver,temporary_driver_override,team,predicted_qualifying_time,predicted_qualifying_seconds,gap_to_predicted_pole_seconds,model_pole_time,model_pole_seconds,target_team_delta_pct_vs_mercedes,driver_offset_to_team_best_seconds,driver_qualifying_samples_used
+Italian GP / Monza,fastf1_2025_italian_grand_prix,1,HAM,44,HAM,,Ferrari,1:21.550,81.550,0.000,1:21.400,81.400,0.147,0.150,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,2,ANT,12,ANT,,Mercedes,1:21.578,81.578,0.028,1:21.400,81.400,0.000,0.178,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,3,LEC,16,LEC,,Ferrari,1:21.608,81.608,0.058,1:21.400,81.400,0.147,0.208,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,4,RUS,63,RUS,,Mercedes,1:21.671,81.671,0.121,1:21.400,81.400,0.000,0.271,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,5,VER,3,VER,,Red Bull Racing,1:21.752,81.752,0.202,1:21.400,81.400,-0.164,0.352,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,6,NOR,1,NOR,,McLaren,1:21.796,81.796,0.246,1:21.400,81.400,-0.538,0.396,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,7,PIA,81,PIA,,McLaren,1:21.929,81.929,0.379,1:21.400,81.400,-0.538,0.529,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,8,LAW,30,LAW,,Red Bull Racing,1:21.942,81.942,0.392,1:21.400,81.400,-0.164,0.542,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,9,GAS,10,GAS,,Alpine,1:22.625,82.625,1.075,1:21.400,81.400,-1.228,1.225,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,10,COL,43,COL,,Alpine,1:22.928,82.928,1.378,1:21.400,81.400,-1.228,1.528,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,11,BOR,5,BOR,,Audi,1:22.978,82.978,1.428,1:21.400,81.400,-1.779,1.578,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,12,LIN,41,LIN,,Racing Bulls,1:23.005,83.005,1.455,1:21.400,81.400,-2.025,1.605,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,13,HUL,27,HUL,,Audi,1:23.131,83.131,1.581,1:21.400,81.400,-1.779,1.731,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,14,TSU,22,TSU,,Racing Bulls,1:23.268,83.268,1.718,1:21.400,81.400,-2.025,1.868,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,15,OCO,31,OCO,,Haas F1 Team,1:23.304,83.304,1.754,1:21.400,81.400,-1.799,1.904,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,16,ALB,23,ALB,,Williams,1:23.321,83.321,1.771,1:21.400,81.400,-1.827,1.921,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,17,SAI,55,SAI,,Williams,1:23.340,83.340,1.790,1:21.400,81.400,-1.827,1.940,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,18,BEA,87,BEA,,Haas F1 Team,1:23.440,83.440,1.890,1:21.400,81.400,-1.799,2.040,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,19,BOT,77,BOT,,Cadillac,1:24.711,84.711,3.161,1:21.400,81.400,-3.810,3.311,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,20,PER,11,PER,,Cadillac,1:24.821,84.821,3.271,1:21.400,81.400,-3.810,3.421,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,21,ALO,14,ALO,,Aston Martin,1:25.001,85.001,3.451,1:21.400,81.400,-4.738,3.601,11
+Italian GP / Monza,fastf1_2025_italian_grand_prix,22,STR,18,STR,,Aston Martin,1:25.295,85.295,3.745,1:21.400,81.400,-4.738,3.895,11
