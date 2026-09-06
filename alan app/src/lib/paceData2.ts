@@ -1,5 +1,5 @@
 import Papa from 'papaparse'
-import { HIDDEN_PACE_TEAMS } from './paceData'
+import { isHiddenPaceTeamEvent } from './paceData'
 
 function parseCsv<T>(text: string): T[] {
   return Papa.parse<T>(text, { header: true, skipEmptyLines: true }).data
@@ -57,6 +57,7 @@ const DRIVER_PRED_CSVS = [
 
 type RawDriverPred = {
   prediction_target_race: string
+  prediction_target_event: string
   predicted_position: string
   driver: string
   driver_number: string
@@ -70,19 +71,21 @@ type RawDriverPred = {
 }
 
 function parseDriverPredRows(text: string): DriverPrediction[] {
-  return parseCsv<RawDriverPred>(text).map(r => ({
-    race:             r.prediction_target_race,
-    position:         parseInt(r.predicted_position, 10),
-    driver:           r.driver,
-    driverNumber:     parseInt(r.driver_number, 10),
-    team:             r.team,
-    predictedTime:    r.predicted_qualifying_time,
-    predictedSeconds: parseFloat(r.predicted_qualifying_seconds),
-    gap:              parseFloat(r.gap_to_predicted_pole_seconds),
-    poleTime:         r.model_pole_time,
-    poleSeconds:      parseFloat(r.model_pole_seconds),
-    teamDelta:        fasterPositiveToSlowerPositive(parseFloat(r.target_team_delta_pct_vs_mercedes)),
-  })).filter(row => !HIDDEN_PACE_TEAMS.has(row.team) && !HIDDEN_PACE_RACES.has(row.race))
+  return parseCsv<RawDriverPred>(text)
+    .filter(r => !isHiddenPaceTeamEvent(r.prediction_target_event, r.team))
+    .map(r => ({
+      race:             r.prediction_target_race,
+      position:         parseInt(r.predicted_position, 10),
+      driver:           r.driver,
+      driverNumber:     parseInt(r.driver_number, 10),
+      team:             r.team,
+      predictedTime:    r.predicted_qualifying_time,
+      predictedSeconds: parseFloat(r.predicted_qualifying_seconds),
+      gap:              parseFloat(r.gap_to_predicted_pole_seconds),
+      poleTime:         r.model_pole_time,
+      poleSeconds:      parseFloat(r.model_pole_seconds),
+      teamDelta:        fasterPositiveToSlowerPositive(parseFloat(r.target_team_delta_pct_vs_mercedes)),
+    })).filter(row => !HIDDEN_PACE_RACES.has(row.race))
 }
 
 export async function loadDriverPredictions(): Promise<DriverPrediction[]> {
@@ -118,6 +121,7 @@ const TEAM_CATEGORY_INPUT_CSV = '/pace2/predictions/delta_predictions/team_categ
 
 type RawTeamDelta = {
   prediction_target_race: string
+  prediction_target_event: string
   team: string
   predicted_overall_delta_pct_vs_mercedes: string
   predicted_slow_corners_delta_pct: string
@@ -146,7 +150,6 @@ export async function loadTeamDeltas2(): Promise<TeamDelta2[]> {
 
   const teamCategories = new Map<string, Partial<Record<RawTeamCategoryInput['category'], number>>>()
   for (const row of parseCsv<RawTeamCategoryInput>(categoryInputText)) {
-    if (HIDDEN_PACE_TEAMS.has(row.team)) continue
     const value = parseFloat(row.predicted_category_delta_pct_vs_mercedes)
     if (!isFinite(value)) continue
     const categories = teamCategories.get(row.team) ?? {}
@@ -169,6 +172,7 @@ export async function loadTeamDeltas2(): Promise<TeamDelta2[]> {
     const totalShare = slowShare + fastShare + straightShare
 
     return [...teamCategories.entries()].flatMap(([team, categories]) => {
+      if (isHiddenPaceTeamEvent(mix.prediction_target_event, team)) return []
       const slow = categories['Slow corners']
       const fast = categories['Fast corners']
       const straight = categories.Straights
