@@ -2421,6 +2421,7 @@
 
 .pace-grid-cell-head {
   width: 58px;
+  flex-shrink: 0;
   text-align: center;
   font-size: 9px;
   font-weight: 700;

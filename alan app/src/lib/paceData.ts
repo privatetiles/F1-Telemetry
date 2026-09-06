@@ -29,12 +29,17 @@ export const TEAM_COLORS: Record<string, string> = {
 
 export const EVENTS = [
   'fastf1_2026_australia_grand_prix',
-  'fastf1_2026_barcelona_grand_prix',
-  'fastf1_2026_canadian_grand_prix',
   'fastf1_2026_china_grand_prix',
   'fastf1_2026_japan_grand_prix',
   'fastf1_2026_miami_grand_prix',
   'fastf1_2026_monaco_grand_prix',
+  'fastf1_2026_barcelona_grand_prix',
+  'fastf1_2026_canadian_grand_prix',
+  'fastf1_2026_austrian_grand_prix',
+  'fastf1_2026_british_grand_prix',
+  'fastf1_2026_belgian_grand_prix',
+  'fastf1_2026_hungarian_grand_prix',
+  'fastf1_2026_dutch_grand_prix',
 ] as const
 
 export type EventKey = typeof EVENTS[number]
@@ -48,6 +53,11 @@ export const EVENT_LABEL: Record<string, string> = {
   'fastf1_2026_japan_grand_prix':     'JPN',
   'fastf1_2026_miami_grand_prix':     'MIA',
   'fastf1_2026_monaco_grand_prix':    'MON',
+  'fastf1_2026_austrian_grand_prix':  'AUT',
+  'fastf1_2026_british_grand_prix':   'GBR',
+  'fastf1_2026_belgian_grand_prix':   'BEL',
+  'fastf1_2026_hungarian_grand_prix': 'HUN',
+  'fastf1_2026_dutch_grand_prix':     'NED',
   'fastf1_2025_austrian_grand_prix':  'AUT',
   'fastf1_2025_belgian_grand_prix':   'BEL',
   'fastf1_2025_british_grand_prix':   'GBR',
@@ -132,7 +142,7 @@ function parseCsv<T>(text: string): T[] {
 }
 
 export async function loadDeltaData(): Promise<DeltaMap> {
-  const res = await fetch('/pace/delta_calculations/first_7_circuits_3class_delta_calculations.csv')
+  const res = await fetch('/pace2/delta_calculations/all_available_2026_3class_delta_calculations.csv')
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
   type Raw = { event: string; team: string; category: string; weighted_speed_delta_vs_mercedes_pct: string; time_weight_seconds: string }
@@ -151,31 +161,50 @@ export async function loadDeltaData(): Promise<DeltaMap> {
 }
 
 export async function loadPredictions(): Promise<PredictionEntry[]> {
-  const res = await fetch('/pace/predictions/austria_predictions_from_first_7_circuits_3class.csv')
+  const res = await fetch('/pace2/predictions/delta_predictions/team_category_delta_inputs_from_2026.csv')
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
   type Raw = {
     team: string
-    predicted_overall_delta_pct_vs_mercedes: string
-    predicted_slow_corners_delta_pct: string
-    predicted_fast_corners_delta_pct: string
-    predicted_straights_delta_pct: string
+    category: Category
+    predicted_category_delta_pct_vs_mercedes: string
     input_events_used: string
-    note: string
+    input_time_weight_seconds: string
   }
 
-  return parseCsv<Raw>(await res.text())
-    .map(r => ({
-      team:       r.team,
-      overall:    parseFloat(r.predicted_overall_delta_pct_vs_mercedes),
-      slow:       parseFloat(r.predicted_slow_corners_delta_pct),
-      fast:       parseFloat(r.predicted_fast_corners_delta_pct),
-      straight:   parseFloat(r.predicted_straights_delta_pct),
-      inputRaces: parseInt(r.input_events_used, 10),
-      note:       r.note ?? '',
-    }))
-    .filter(r => isFinite(r.overall))
-    .sort((a, b) => b.overall - a.overall)
+  const teams = new Map<string, Map<Category, { delta: number; timeWeight: number; inputRaces: number }>>()
+  for (const row of parseCsv<Raw>(await res.text())) {
+    const delta = parseFloat(row.predicted_category_delta_pct_vs_mercedes)
+    const timeWeight = parseFloat(row.input_time_weight_seconds)
+    const inputRaces = parseInt(row.input_events_used, 10)
+    if (!CATEGORIES.includes(row.category) || !isFinite(delta) || !isFinite(timeWeight)) continue
+    const categories = teams.get(row.team) ?? new Map()
+    categories.set(row.category, { delta, timeWeight, inputRaces })
+    teams.set(row.team, categories)
+  }
+
+  return [...teams.entries()].flatMap(([team, categories]) => {
+    const slow = categories.get('Slow corners')
+    const fast = categories.get('Fast corners')
+    const straight = categories.get('Straights')
+    if (!slow || !fast || !straight) return []
+    const overallWeight = slow.timeWeight + fast.timeWeight + straight.timeWeight
+    const overall = (
+      slow.delta * slow.timeWeight
+      + fast.delta * fast.timeWeight
+      + straight.delta * straight.timeWeight
+    ) / overallWeight
+
+    return [{
+      team,
+      overall,
+      slow: slow.delta,
+      fast: fast.delta,
+      straight: straight.delta,
+      inputRaces: Math.max(slow.inputRaces, fast.inputRaces, straight.inputRaces),
+      note: '',
+    }]
+  }).sort((a, b) => a.overall - b.overall)
 }
 
 // Weighted overall delta for a team at one event
@@ -185,13 +214,13 @@ export function computeOverall(catMap: Partial<Record<Category, { delta: number;
     const e = catMap[cat]
     if (e) { num += e.delta * e.timeWeight; den += e.timeWeight }
   }
-  return den > 0 ? num / den : 0
+  return den > 0 ? num / den : NaN
 }
 
-// Map [0%, -6%] → color: green → amber → red
+// Map [0%, +6%] to green, amber, then red as teams get slower.
 export function deltaColor(delta: number): string {
-  if (delta >= 0) return '#00e676'
-  const t = Math.min(1, Math.abs(delta) / 6)
+  if (delta <= 0) return '#00e676'
+  const t = Math.min(1, delta / 6)
   if (t < 0.4) {
     const x = t / 0.4
     return `rgb(${Math.round(30 + 225 * x)},${Math.round(230 - 30 * x)},0)`
