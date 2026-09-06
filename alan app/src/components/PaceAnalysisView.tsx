@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import {
   CATEGORIES, CAT_SHORT, CAT_COLOR, TEAM_COLORS, EVENTS, EVENT_LABEL,
-  EVENT_MAP_PREFIX, PREDICTION_EVENT,
+  EVENT_MAP_PREFIX, PREDICTION_EVENT, HIDDEN_PACE_EVENTS,
   loadDeltaData, loadPredictions, loadTrackData, computeOverall, deltaColor,
 } from '../lib/paceData'
 import type { DeltaMap, PredictionEntry, Category, TrackData } from '../lib/paceData'
@@ -234,7 +234,8 @@ const ADDITIONAL_MAP_EVENTS = [
   'fastf1_2025_italian_grand_prix',
 ] as const
 
-const ALL_MAP_EVENTS = [...EVENTS, PREDICTION_EVENT, ...ADDITIONAL_MAP_EVENTS] as const
+const ALL_MAP_EVENTS = [...EVENTS, PREDICTION_EVENT, ...ADDITIONAL_MAP_EVENTS]
+  .filter(event => !HIDDEN_PACE_EVENTS.has(event))
 const TRACK_DATA_EVENTS = new Set<string>([...EVENTS, PREDICTION_EVENT])
 const DELTA_GRAPH_EVENTS = new Set<string>(EVENTS)
 

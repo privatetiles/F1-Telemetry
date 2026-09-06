@@ -1,4 +1,5 @@
 import Papa from 'papaparse'
+import { HIDDEN_PACE_TEAMS } from './paceData'
 
 function parseCsv<T>(text: string): T[] {
   return Papa.parse<T>(text, { header: true, skipEmptyLines: true }).data
@@ -17,7 +18,9 @@ export interface Race2 {
   imgPrefix: string      // "08_austria_2025"
 }
 
-export const RACES2: Race2[] = [
+const HIDDEN_PACE_RACES = new Set<string>(['Hungary GP / Hungaroring'])
+
+const ALL_RACES2: Race2[] = [
   { label: 'Austria',  fullName: 'Austria GP',                       eventKey: 'fastf1_2025_austrian_grand_prix',  imgPrefix: '08_austria_2025' },
   { label: 'Britain',  fullName: 'British GP / Silverstone',         eventKey: 'fastf1_2025_british_grand_prix',   imgPrefix: '10_silverstone_2025' },
   { label: 'Belgium',  fullName: 'Belgium GP / Spa-Francorchamps',   eventKey: 'fastf1_2025_belgian_grand_prix',   imgPrefix: '09_spa_francorchamps_2025' },
@@ -25,6 +28,8 @@ export const RACES2: Race2[] = [
   { label: 'Dutch',    fullName: 'Dutch GP / Zandvoort',             eventKey: 'fastf1_2025_dutch_grand_prix',     imgPrefix: '12_zandvoort_2025' },
   { label: 'Italian',  fullName: 'Italian GP / Monza',               eventKey: 'fastf1_2025_italian_grand_prix',   imgPrefix: '13_monza_2025' },
 ]
+
+export const RACES2 = ALL_RACES2.filter(race => !HIDDEN_PACE_RACES.has(race.fullName))
 
 // ── Driver qualifying predictions ────────────────────────────────────────────
 
@@ -77,7 +82,7 @@ function parseDriverPredRows(text: string): DriverPrediction[] {
     poleTime:         r.model_pole_time,
     poleSeconds:      parseFloat(r.model_pole_seconds),
     teamDelta:        fasterPositiveToSlowerPositive(parseFloat(r.target_team_delta_pct_vs_mercedes)),
-  }))
+  })).filter(row => !HIDDEN_PACE_TEAMS.has(row.team) && !HIDDEN_PACE_RACES.has(row.race))
 }
 
 export async function loadDriverPredictions(): Promise<DriverPrediction[]> {
@@ -141,6 +146,7 @@ export async function loadTeamDeltas2(): Promise<TeamDelta2[]> {
 
   const teamCategories = new Map<string, Partial<Record<RawTeamCategoryInput['category'], number>>>()
   for (const row of parseCsv<RawTeamCategoryInput>(categoryInputText)) {
+    if (HIDDEN_PACE_TEAMS.has(row.team)) continue
     const value = parseFloat(row.predicted_category_delta_pct_vs_mercedes)
     if (!isFinite(value)) continue
     const categories = teamCategories.get(row.team) ?? {}
@@ -150,6 +156,7 @@ export async function loadTeamDeltas2(): Promise<TeamDelta2[]> {
 
   const targetMixes = new Map<string, RawTeamDelta>()
   for (const row of targetMixTexts.flatMap(text => parseCsv<RawTeamDelta>(text))) {
+    if (HIDDEN_PACE_RACES.has(row.prediction_target_race)) continue
     if (!targetMixes.has(row.prediction_target_race)) {
       targetMixes.set(row.prediction_target_race, row)
     }
@@ -219,5 +226,5 @@ export async function loadPolePredictions(): Promise<PolePrediction[]> {
     predictedTime: r.predicted_2026_qualifying_time,
     lowTime:       r.model_low_time,
     highTime:      r.model_high_time,
-  }))
+  })).filter(row => !HIDDEN_PACE_RACES.has(row.race))
 }

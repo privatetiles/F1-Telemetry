@@ -51,7 +51,7 @@ function QualifyingGrid({ drivers, pole }: { drivers: DriverPrediction[]; pole: 
         const col = TEAM_COLORS[d.team] ?? '#778'
         return (
           <div key={d.driver} className="pa2-grid-row">
-            <span className="pa2-col-pos" style={{ color: posColor(i) }}>{d.position}</span>
+            <span className="pa2-col-pos" style={{ color: posColor(i) }}>{i + 1}</span>
             <span className="pa2-col-num" style={{ color: '#556' }}>{d.driverNumber}</span>
             <span className="pa2-col-driver" style={{ color: col, fontWeight: 700 }}>{d.driver}</span>
             <span className="pa2-col-team">

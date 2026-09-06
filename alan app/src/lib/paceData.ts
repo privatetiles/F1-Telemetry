@@ -27,7 +27,14 @@ export const TEAM_COLORS: Record<string, string> = {
   'Cadillac':        '#c0c8ff',
 }
 
-export const EVENTS = [
+// Temporarily excluded from the published pace views while their inputs are reviewed.
+export const HIDDEN_PACE_TEAMS = new Set<string>(['Williams'])
+export const HIDDEN_PACE_EVENTS = new Set<string>([
+  'fastf1_2026_hungarian_grand_prix',
+  'fastf1_2025_hungarian_grand_prix',
+])
+
+const ALL_EVENTS = [
   'fastf1_2026_australia_grand_prix',
   'fastf1_2026_china_grand_prix',
   'fastf1_2026_japan_grand_prix',
@@ -42,7 +49,9 @@ export const EVENTS = [
   'fastf1_2026_dutch_grand_prix',
 ] as const
 
-export type EventKey = typeof EVENTS[number]
+export const EVENTS = ALL_EVENTS.filter(event => !HIDDEN_PACE_EVENTS.has(event))
+
+export type EventKey = typeof ALL_EVENTS[number]
 export const PREDICTION_EVENT = 'fastf1_2025_austrian_grand_prix'
 
 export const EVENT_LABEL: Record<string, string> = {
@@ -150,6 +159,7 @@ export async function loadDeltaData(): Promise<DeltaMap> {
 
   const map: DeltaMap = {}
   for (const row of rows) {
+    if (HIDDEN_PACE_EVENTS.has(row.event) || HIDDEN_PACE_TEAMS.has(row.team)) continue
     const delta = parseFloat(row.weighted_speed_delta_vs_mercedes_pct)
     const tw    = parseFloat(row.time_weight_seconds)
     if (!isFinite(delta) || !isFinite(tw)) continue
@@ -174,6 +184,7 @@ export async function loadPredictions(): Promise<PredictionEntry[]> {
 
   const teams = new Map<string, Map<Category, { delta: number; timeWeight: number; inputRaces: number }>>()
   for (const row of parseCsv<Raw>(await res.text())) {
+    if (HIDDEN_PACE_TEAMS.has(row.team)) continue
     const delta = parseFloat(row.predicted_category_delta_pct_vs_mercedes)
     const timeWeight = parseFloat(row.input_time_weight_seconds)
     const inputRaces = parseInt(row.input_events_used, 10)
