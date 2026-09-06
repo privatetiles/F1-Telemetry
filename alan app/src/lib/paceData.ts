@@ -49,6 +49,11 @@ export const EVENT_LABEL: Record<string, string> = {
   'fastf1_2026_miami_grand_prix':     'MIA',
   'fastf1_2026_monaco_grand_prix':    'MON',
   'fastf1_2025_austrian_grand_prix':  'AUT',
+  'fastf1_2025_belgian_grand_prix':   'SPA',
+  'fastf1_2025_british_grand_prix':   'SIL',
+  'fastf1_2025_hungarian_grand_prix': 'HUN',
+  'fastf1_2025_dutch_grand_prix':     'ZAN',
+  'fastf1_2025_italian_grand_prix':   'MNZ',
 }
 
 export const EVENT_MAP_PREFIX: Record<string, string> = {
@@ -60,6 +65,11 @@ export const EVENT_MAP_PREFIX: Record<string, string> = {
   'fastf1_2026_miami_grand_prix':     '06_miami_2026',
   'fastf1_2026_monaco_grand_prix':    '07_monaco_2026',
   'fastf1_2025_austrian_grand_prix':  '08_austria_2025',
+  'fastf1_2025_belgian_grand_prix':   '09_spa_francorchamps_2025',
+  'fastf1_2025_british_grand_prix':   '10_silverstone_2025',
+  'fastf1_2025_hungarian_grand_prix': '11_hungaroring_2025',
+  'fastf1_2025_dutch_grand_prix':     '12_zandvoort_2025',
+  'fastf1_2025_italian_grand_prix':   '13_monza_2025',
 }
 
 // Mapping from circuit ID (dataIndex) to track JSON prefix for 3-class display

@@ -226,27 +226,40 @@ const MAP_LABELS: Record<MapType, string> = {
   delta:     'Delta Graph',
 }
 
-const ALL_MAP_EVENTS = [...EVENTS, PREDICTION_EVENT] as const
+const ADDITIONAL_MAP_EVENTS = [
+  'fastf1_2025_belgian_grand_prix',
+  'fastf1_2025_british_grand_prix',
+  'fastf1_2025_hungarian_grand_prix',
+  'fastf1_2025_dutch_grand_prix',
+  'fastf1_2025_italian_grand_prix',
+] as const
+
+const ALL_MAP_EVENTS = [...EVENTS, PREDICTION_EVENT, ...ADDITIONAL_MAP_EVENTS] as const
+const TRACK_DATA_EVENTS = new Set<string>([...EVENTS, PREDICTION_EVENT])
+const DELTA_GRAPH_EVENTS = new Set<string>(EVENTS)
 
 function MapViewer() {
   const [event, setEvent] = useState<string>(EVENTS[0])
   const [mapType, setMapType] = useState<MapType>('track')
-  const [trackData, setTrackData] = useState<TrackData | null>(null)
-  const [trackError, setTrackError] = useState(false)
+  const [trackData, setTrackData] = useState<{ prefix: string; data: TrackData } | null>(null)
+  const [trackError, setTrackError] = useState<string | null>(null)
 
   const prefix = EVENT_MAP_PREFIX[event]
-  const hasGraph = event !== PREDICTION_EVENT
+  const hasGraph = DELTA_GRAPH_EVENTS.has(event)
+  const hasTrackData = TRACK_DATA_EVENTS.has(event)
   const effectiveType: MapType = (mapType === 'delta' && !hasGraph) ? 'track' : mapType
 
   useEffect(() => {
-    if (effectiveType !== 'track') return
-    setTrackData(null)
-    setTrackError(false)
+    if (effectiveType !== 'track' || !hasTrackData) return
     loadTrackData(prefix)
-      .then(setTrackData)
-      .catch(() => setTrackError(true))
-  }, [event, effectiveType, prefix])
+      .then(data => {
+        setTrackData({ prefix, data })
+        setTrackError(null)
+      })
+      .catch(() => setTrackError(prefix))
+  }, [event, effectiveType, hasTrackData, prefix])
 
+  const trackImgUrl = `/pace/three_class_maps/${prefix}_3class_map.png`
   const imgUrl = effectiveType === 'telemetry'
     ? `/pace/telemetry_maps/${prefix}_telemetry_map.png`
     : `/pace/delta_graphs/${prefix}_delta_graph.png`
@@ -304,12 +317,21 @@ function MapViewer() {
 
       <div className="pace-map-img-wrap">
         {effectiveType === 'track' ? (
-          trackError ? (
-            <div style={{ color: '#667', padding: 40, textAlign: 'center' }}>Track data unavailable</div>
-          ) : trackData ? (
-            <TrackSVG trackData={trackData} />
+          hasTrackData ? (
+            trackError === prefix ? (
+              <div style={{ color: '#667', padding: 40, textAlign: 'center' }}>Track data unavailable</div>
+            ) : trackData?.prefix === prefix ? (
+              <TrackSVG trackData={trackData.data} />
+            ) : (
+              <div style={{ color: '#667', padding: 40, textAlign: 'center' }}>Loading…</div>
+            )
           ) : (
-            <div style={{ color: '#667', padding: 40, textAlign: 'center' }}>Loading…</div>
+            <img
+              key={trackImgUrl}
+              src={trackImgUrl}
+              alt={`${EVENT_LABEL[event]} ${MAP_LABELS.track}`}
+              className="pace-map-img"
+            />
           )
         ) : (
           <img
