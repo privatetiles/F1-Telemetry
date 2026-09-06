@@ -49,11 +49,11 @@ export const EVENT_LABEL: Record<string, string> = {
   'fastf1_2026_miami_grand_prix':     'MIA',
   'fastf1_2026_monaco_grand_prix':    'MON',
   'fastf1_2025_austrian_grand_prix':  'AUT',
-  'fastf1_2025_belgian_grand_prix':   'SPA',
-  'fastf1_2025_british_grand_prix':   'SIL',
+  'fastf1_2025_belgian_grand_prix':   'BEL',
+  'fastf1_2025_british_grand_prix':   'GBR',
   'fastf1_2025_hungarian_grand_prix': 'HUN',
-  'fastf1_2025_dutch_grand_prix':     'ZAN',
-  'fastf1_2025_italian_grand_prix':   'MNZ',
+  'fastf1_2025_dutch_grand_prix':     'NED',
+  'fastf1_2025_italian_grand_prix':   'ITA',
 }
 
 export const EVENT_MAP_PREFIX: Record<string, string> = {
