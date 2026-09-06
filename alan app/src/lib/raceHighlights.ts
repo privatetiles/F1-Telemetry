@@ -162,6 +162,7 @@ export const DRIVER_HIGHLIGHTS: Record<string, DriverHighlight[]> = {
     { race: 'Bahrain GP', year: 2023, note: 'Returned to the podium at 41 with Aston Martin — the start of a stunning late-career resurgence that reminded the paddock of his enduring talent.' },
   ],
   GAS: [
+    { race: 'Italian GP', year: 2026, note: 'Took a stunning pole position at Monza for Alpine — his first career pole and the fastest qualifying lap of the 2026 Italian GP weekend, beating the top teams on the power-sensitive circuit.' },
     { race: 'Italian GP', year: 2020, note: 'One of the biggest shock results in recent memory — Gasly won at Monza for AlphaTauri after a Hamilton pit lane penalty, the team\'s first ever F1 win.' },
     { race: 'Brazilian GP', year: 2019, note: 'Scored a stunning second place for Toro Rosso at Interlagos — just months after being dropped by Red Bull — one of the most emotional results in recent F1 history.' },
   ],
