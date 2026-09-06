@@ -9,7 +9,7 @@ import type { DriverPrediction, TeamDelta2, PolePrediction, Race2 } from '../lib
 
 function Delta({ v, dim }: { v: number; dim?: boolean }) {
   if (!isFinite(v)) return <span style={{ color: '#445', fontFamily: 'monospace', fontSize: 11 }}>—</span>
-  const gap = -v
+  const gap = v
   const color = dim ? '#445'
     : gap <= 0.05 ? '#e8eaf0'
     : gap <= 1    ? '#f0c040'
@@ -75,7 +75,7 @@ function QualifyingGrid({ drivers, pole }: { drivers: DriverPrediction[]; pole: 
 // ── Team pace table ───────────────────────────────────────────────────────────
 
 function TeamPaceTable({ deltas }: { deltas: TeamDelta2[] }) {
-  const sorted = [...deltas].sort((a, b) => b.overall - a.overall)
+  const sorted = [...deltas].sort((a, b) => a.overall - b.overall)
   const maxAbs = Math.max(...sorted.map(t => Math.abs(t.overall)), 0.1)
   const first = sorted[0]
 

@@ -4,6 +4,10 @@ function parseCsv<T>(text: string): T[] {
   return Papa.parse<T>(text, { header: true, skipEmptyLines: true }).data
 }
 
+function fasterPositiveToSlowerPositive(delta: number): number {
+  return (1 / (1 + delta / 100) - 1) * 100
+}
+
 // ── Races ────────────────────────────────────────────────────────────────────
 
 export interface Race2 {
@@ -72,7 +76,7 @@ function parseDriverPredRows(text: string): DriverPrediction[] {
     gap:              parseFloat(r.gap_to_predicted_pole_seconds),
     poleTime:         r.model_pole_time,
     poleSeconds:      parseFloat(r.model_pole_seconds),
-    teamDelta:        parseFloat(r.target_team_delta_pct_vs_mercedes),
+    teamDelta:        fasterPositiveToSlowerPositive(parseFloat(r.target_team_delta_pct_vs_mercedes)),
   }))
 }
 
@@ -99,33 +103,83 @@ export interface TeamDelta2 {
   straightShare: number
 }
 
-export async function loadTeamDeltas2(): Promise<TeamDelta2[]> {
-  const res = await fetch('/pace2/predictions/delta_predictions/four_race_2026_delta_predictions_from_new_maps.csv')
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+const TARGET_MIX_CSVS = [
+  '/pace2/predictions/delta_predictions/four_race_2026_delta_predictions_from_new_maps.csv',
+  '/pace2/predictions/delta_predictions/zandvoort_2026_team_delta_predictions_recency_weighted.csv',
+  '/pace2/predictions/delta_predictions/monza_2026_team_delta_predictions_from_zandvoort_update.csv',
+]
 
-  type Raw = {
-    prediction_target_race: string
-    team: string
-    predicted_overall_delta_pct_vs_mercedes: string
-    predicted_slow_corners_delta_pct: string
-    predicted_fast_corners_delta_pct: string
-    predicted_straights_delta_pct: string
-    target_slow_corners_time_share_pct: string
-    target_fast_corners_time_share_pct: string
-    target_straights_time_share_pct: string
+const TEAM_CATEGORY_INPUT_CSV = '/pace2/predictions/delta_predictions/team_category_delta_inputs_from_2026.csv'
+
+type RawTeamDelta = {
+  prediction_target_race: string
+  team: string
+  predicted_overall_delta_pct_vs_mercedes: string
+  predicted_slow_corners_delta_pct: string
+  predicted_fast_corners_delta_pct: string
+  predicted_straights_delta_pct: string
+  target_slow_corners_time_share_pct: string
+  target_fast_corners_time_share_pct: string
+  target_straights_time_share_pct: string
+}
+
+type RawTeamCategoryInput = {
+  team: string
+  category: 'Slow corners' | 'Fast corners' | 'Straights'
+  predicted_category_delta_pct_vs_mercedes: string
+}
+
+export async function loadTeamDeltas2(): Promise<TeamDelta2[]> {
+  const [categoryInputText, targetMixTexts] = await Promise.all([
+    fetch(TEAM_CATEGORY_INPUT_CSV).then(r =>
+      r.ok ? r.text() : Promise.reject(`HTTP ${r.status} for ${TEAM_CATEGORY_INPUT_CSV}`)
+    ),
+    Promise.all(TARGET_MIX_CSVS.map(url =>
+      fetch(url).then(r => r.ok ? r.text() : Promise.reject(`HTTP ${r.status} for ${url}`))
+    )),
+  ])
+
+  const teamCategories = new Map<string, Partial<Record<RawTeamCategoryInput['category'], number>>>()
+  for (const row of parseCsv<RawTeamCategoryInput>(categoryInputText)) {
+    const value = parseFloat(row.predicted_category_delta_pct_vs_mercedes)
+    if (!isFinite(value)) continue
+    const categories = teamCategories.get(row.team) ?? {}
+    categories[row.category] = value
+    teamCategories.set(row.team, categories)
   }
 
-  return parseCsv<Raw>(await res.text()).map(r => ({
-    race:         r.prediction_target_race,
-    team:         r.team,
-    overall:      parseFloat(r.predicted_overall_delta_pct_vs_mercedes),
-    slow:         parseFloat(r.predicted_slow_corners_delta_pct),
-    fast:         parseFloat(r.predicted_fast_corners_delta_pct),
-    straight:     parseFloat(r.predicted_straights_delta_pct),
-    slowShare:    parseFloat(r.target_slow_corners_time_share_pct),
-    fastShare:    parseFloat(r.target_fast_corners_time_share_pct),
-    straightShare: parseFloat(r.target_straights_time_share_pct),
-  })).filter(r => isFinite(r.overall))
+  const targetMixes = new Map<string, RawTeamDelta>()
+  for (const row of targetMixTexts.flatMap(text => parseCsv<RawTeamDelta>(text))) {
+    if (!targetMixes.has(row.prediction_target_race)) {
+      targetMixes.set(row.prediction_target_race, row)
+    }
+  }
+
+  return [...targetMixes.values()].flatMap(mix => {
+    const slowShare = parseFloat(mix.target_slow_corners_time_share_pct)
+    const fastShare = parseFloat(mix.target_fast_corners_time_share_pct)
+    const straightShare = parseFloat(mix.target_straights_time_share_pct)
+    const totalShare = slowShare + fastShare + straightShare
+
+    return [...teamCategories.entries()].flatMap(([team, categories]) => {
+      const slow = categories['Slow corners']
+      const fast = categories['Fast corners']
+      const straight = categories.Straights
+      if (slow === undefined || fast === undefined || straight === undefined || totalShare <= 0) return []
+
+      return [{
+        race: mix.prediction_target_race,
+        team,
+        overall: (slow * slowShare + fast * fastShare + straight * straightShare) / totalShare,
+        slow,
+        fast,
+        straight,
+        slowShare,
+        fastShare,
+        straightShare,
+      }]
+    })
+  })
 }
 
 // ── Pole time predictions ────────────────────────────────────────────────────
