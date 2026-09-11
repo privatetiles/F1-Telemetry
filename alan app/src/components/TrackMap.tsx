@@ -12,6 +12,7 @@ import type { SafetyCarPeriod, PitStopInfo } from '../lib/csvLoader'
 import InputsHUD from './InputsHUD'
 import SatelliteView from './SatelliteView'
 import Icon from './Icon'
+import CustomSelect from './CustomSelect'
 
 const SVG_W = 900
 const SVG_H = 600
@@ -1153,18 +1154,14 @@ export default function TrackMap({
         <div className="playback-tools" aria-label="Playback tools">
           <label className="playback-speed">
           <span>Speed</span>
-          <span className="playback-speed-select-wrap">
-            <select
-              value={playSpeed}
-              onChange={(event) => handleSpeedSelect(Number(event.target.value))}
-              aria-label="Playback speed"
-            >
-              {(totalLaps > 0 ? [1, 5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map((speed) => (
-                <option key={speed} value={speed}>{speed}×</option>
-              ))}
-            </select>
-            <Icon name="chevron-down" size={13} />
-          </span>
+          <CustomSelect
+            className="playback-speed-select-wrap"
+            value={String(playSpeed)}
+            aria-label="Playback speed"
+            options={(totalLaps > 0 ? [1, 5, 10, 20, 30, 60] : [0.25, 0.5, 1, 3, 5, 10]).map(s => ({ value: String(s), label: `${s}×` }))}
+            onChange={value => handleSpeedSelect(Number(value))}
+            iconSize={13}
+          />
         </label>
         <button
           className={`speed-btn ${showHUD ? 'active' : ''}`}

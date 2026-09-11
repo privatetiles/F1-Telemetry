@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import type { TelemetryPoint } from '../types'
 import { driverColor } from '../lib/teamColors'
 import { computeBattleGaps } from '../lib/battleGaps'
-import Icon from './Icon'
+import CustomSelect from './CustomSelect'
 
 function formatLapTime(sec: number): string {
   const m = Math.floor(sec / 60)
@@ -64,22 +64,16 @@ export default function BattleTracker({
       <div className="battle-controls">
         <label className="battle-add-field">
           <span className="battle-control-label">Track drivers</span>
-          <span className="battle-add-select-wrap">
-            <select
-              value=""
-              onChange={(event) => {
-                if (event.target.value) toggle(event.target.value)
-              }}
-              disabled={battleDrivers.length >= MAX_BATTLE || selectableDrivers.length === 0}
-              aria-label="Add driver to battle"
-            >
-              <option value="">Add a driver…</option>
-              {selectableDrivers.map((driver) => (
-                <option key={driver} value={driver}>{driver}</option>
-              ))}
-            </select>
-            <Icon name="chevron-down" size={14} />
-          </span>
+          <CustomSelect
+            className="battle-add-select-wrap"
+            value=""
+            placeholder="Add a driver…"
+            aria-label="Add driver to battle"
+            disabled={battleDrivers.length >= MAX_BATTLE || selectableDrivers.length === 0}
+            options={selectableDrivers.map(d => ({ value: d, label: d }))}
+            onChange={toggle}
+            iconSize={14}
+          />
         </label>
 
         {battleDrivers.length > 0 && (
