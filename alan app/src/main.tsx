@@ -24,12 +24,12 @@ function Root() {
   // rewrites) get their own top-level page; everything else is the
   // landing page / visualizer toggle.
   const path = window.location.pathname.replace(/\/+$/, '')
-  const [inApp, setInApp] = useState(false)
+  const [inApp, setInApp] = useState(() => sessionStorage.getItem('inApp') === '1')
 
   const StaticPage = STATIC_PAGES[path]
   if (StaticPage) return <StaticPage />
   if (inApp) return <App />
-  return <LandingPage onEnter={() => setInApp(true)} />
+  return <LandingPage onEnter={() => { sessionStorage.setItem('inApp', '1'); setInApp(true) }} />
 }
 
 createRoot(document.getElementById('root')!).render(
