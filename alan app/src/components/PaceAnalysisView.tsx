@@ -9,21 +9,21 @@ import type { DeltaMap, PredictionEntry, Category, TrackData } from '../lib/pace
 // ── Delta % display ─────────────────────────────────────────────────────────
 
 function DeltaPct({ v, dim = false }: { v: number; dim?: boolean }) {
-  const gap = -v
+  const gap = v
   const color = gap <= 0 ? '#00e676' : gap < 1 ? '#c8d800' : gap < 2 ? '#ffab00' : '#f44336'
   const s = gap <= 0 ? `-${Math.abs(gap).toFixed(3)}%` : `+${gap.toFixed(3)}%`
   return <span style={{ color: dim ? '#445' : color, fontFamily: 'monospace', fontSize: 12, fontWeight: 700 }}>{s}</span>
 }
 
-// ── Austria Prediction Table ─────────────────────────────────────────────────
+// ── Team pace table ──────────────────────────────────────────────────────────
 
 function PredictionTable({ predictions }: { predictions: PredictionEntry[] }) {
   const maxAbs = Math.max(...predictions.map(p => Math.abs(p.overall)), 0.01)
 
   return (
     <div className="pace-section">
-      <div className="pace-section-title">Austria GP — Predicted pace vs Mercedes</div>
-      <div className="pace-section-sub">Time-weighted speed delta across 3 track categories · 7 input races</div>
+      <div className="pace-section-title">2026 overall team pace vs Mercedes</div>
+      <div className="pace-section-sub">Time-weighted speed delta across 3 track categories · latest four events use qualifying telemetry</div>
 
       <div className="pace-pred-table">
         <div className="pace-pred-head">
@@ -109,7 +109,7 @@ function CircuitHistory({ deltaMap, predictions }: { deltaMap: DeltaMap; predict
                 ? computeOverall(catMap)
                 : (catMap[cat]?.delta ?? NaN)
               const bg = isFinite(delta) ? deltaColor(delta) : '#1a2030'
-              const gap = -delta
+              const gap = delta
               const text = isFinite(delta) ? (gap > 0 ? `+${gap.toFixed(2)}` : gap.toFixed(2)) : '—'
               return (
                 <div
@@ -226,7 +226,10 @@ const MAP_LABELS: Record<MapType, string> = {
   delta:     'Delta Graph',
 }
 
-const ALL_MAP_EVENTS = [...EVENTS, PREDICTION_EVENT] as const
+const ALL_MAP_EVENTS = [
+  ...EVENTS.filter(event => EVENT_MAP_PREFIX[event]),
+  PREDICTION_EVENT,
+] as const
 
 function MapViewer() {
   const [event, setEvent] = useState<string>(EVENTS[0])
@@ -343,7 +346,7 @@ export default function PaceAnalysisView() {
   return (
     <div className="pace-view">
       <p className="page-intro">
-        F1 team pace analysis built from FastF1 telemetry data. Speed deltas are calculated as the percentage difference from Mercedes across three track categories — slow corners, fast corners, and straights — weighted by the time each team spends in each zone per lap. A positive value means slower than Mercedes; negative means faster. The circuit history grid shows how each team's pace has varied across different race venues throughout the season, letting you identify which teams are circuit-dependent and which are consistently strong.
+        F1 team pace analysis built from FastF1 telemetry data. Speed deltas are calculated as the percentage difference from Mercedes across three track categories — slow corners, fast corners, and straights — weighted by the time each team spends in each zone per lap. A positive value means slower than Mercedes; negative means faster. Hungary, the Netherlands, Italy, and Madrid use qualifying laps; earlier events use race laps. The circuit history grid shows how each team's pace has varied across different race venues throughout the season.
       </p>
       <PredictionTable predictions={predictions} />
       <CircuitHistory deltaMap={deltaMap} predictions={predictions} />
