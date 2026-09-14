@@ -22,8 +22,8 @@ function PredictionTable({ predictions }: { predictions: PredictionEntry[] }) {
 
   return (
     <div className="pace-section">
-      <div className="pace-section-title">2026 team pace vs Mercedes</div>
-      <div className="pace-section-sub">Time-weighted speed delta across 3 track categories · all available race telemetry</div>
+      <div className="pace-section-title">2026 overall team pace vs Mercedes</div>
+      <div className="pace-section-sub">Time-weighted speed delta across 3 track categories · latest four events use qualifying telemetry</div>
 
       <div className="pace-pred-table">
         <div className="pace-pred-head">
@@ -235,7 +235,7 @@ const ADDITIONAL_MAP_EVENTS = [
 ] as const
 
 const ALL_MAP_EVENTS = [...EVENTS, PREDICTION_EVENT, ...ADDITIONAL_MAP_EVENTS]
-  .filter(event => !HIDDEN_PACE_EVENTS.has(event))
+  .filter(event => !HIDDEN_PACE_EVENTS.has(event) && EVENT_MAP_PREFIX[event])
 const TRACK_DATA_EVENTS = new Set<string>([...EVENTS, PREDICTION_EVENT])
 const DELTA_GRAPH_EVENTS = new Set<string>(EVENTS)
 
@@ -366,7 +366,7 @@ export default function PaceAnalysisView() {
   return (
     <div className="pace-view">
       <p className="page-intro">
-        F1 team pace analysis built from FastF1 telemetry data. Speed deltas are calculated as the percentage difference from Mercedes across three track categories — slow corners, fast corners, and straights — weighted by the time each team spends in each zone per lap. A positive value means slower than Mercedes; negative means faster. The circuit history grid shows how each team's pace has varied across different race venues throughout the season, letting you identify which teams are circuit-dependent and which are consistently strong.
+        F1 team pace analysis built from FastF1 telemetry data. Speed deltas are calculated as the percentage difference from Mercedes across three track categories — slow corners, fast corners, and straights — weighted by the time each team spends in each zone per lap. A positive value means slower than Mercedes; negative means faster. Hungary, the Netherlands, Italy, and Madrid use qualifying laps; earlier events use race laps. The circuit history grid shows how each team's pace has varied across different race venues throughout the season.
       </p>
       <PredictionTable predictions={predictions} />
       <CircuitHistory deltaMap={deltaMap} predictions={predictions} />
