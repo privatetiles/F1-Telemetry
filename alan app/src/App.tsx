@@ -88,6 +88,7 @@ export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [activeView, setActiveView] = useState<AppView>(() => hashToView(window.location.hash))
   const [battleDrivers, setBattleDrivers] = useState<string[]>([])
+  const [mobileBattleOpen, setMobileBattleOpen] = useState(false)
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
   const [isDragging, setIsDragging] = useState(false)
   const [pendingResultRound, setPendingResultRound] = useState<number | undefined>(undefined)
@@ -1040,6 +1041,8 @@ export default function App() {
                       currentCompounds={totalLaps > 0 && Object.keys(currentCompounds).length > 0 ? currentCompounds : undefined}
                       tunedDriver={radioCallsWithProgress.length > 0 ? tunedDriver : undefined}
                       onTuneDriver={radioCallsWithProgress.length > 0 ? setTunedDriver : undefined}
+                      mobileBattleActive={mobileBattleOpen}
+                      onMobileBattleToggle={() => setMobileBattleOpen(p => !p)}
                     />
 
                     <div
@@ -1132,7 +1135,10 @@ export default function App() {
                       title="Drag to resize Battle. Double-click to reset."
                     />
 
-                    <div className="right-pane">
+                    {mobileBattleOpen && (
+                      <div className="mobile-battle-backdrop" onClick={() => setMobileBattleOpen(false)} />
+                    )}
+                    <div className={`right-pane ${mobileBattleOpen ? 'mobile-open' : ''}`}>
                       <BattleTracker
                         drivers={session.drivers.length > 0 ? session.drivers : Object.keys(mergedTelemetry)}
                         driverTelemetry={mergedTelemetry}

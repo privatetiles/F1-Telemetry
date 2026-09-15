@@ -17,6 +17,8 @@ interface Props {
   currentCompounds?: Record<string, string>
   tunedDriver?: string | null
   onTuneDriver?: (driver: string | null) => void
+  mobileBattleActive?: boolean
+  onMobileBattleToggle?: () => void
 }
 
 export default function DriverPanel({
@@ -35,6 +37,8 @@ export default function DriverPanel({
   currentCompounds,
   tunedDriver,
   onTuneDriver,
+  mobileBattleActive,
+  onMobileBattleToggle,
 }: Props) {
   const liveMode = !!currentPositions
 
@@ -69,6 +73,13 @@ export default function DriverPanel({
       </div>
 
       <div className="driver-list">
+        <button
+          className={`mobile-driver-chip mobile-solo-chip ${soloMode ? 'active' : ''}`}
+          onClick={onSoloToggle}
+          title={soloMode ? 'Show all drivers' : 'Solo mode'}
+        >
+          {soloMode ? '1' : 'ALL'}
+        </button>
         {sorted.map((driver, idx) => {
           const isDnf = dnfDrivers.has(driver)
           const t = lapTimes[driver]
@@ -132,6 +143,15 @@ export default function DriverPanel({
             </div>
           )
         })}
+        {onMobileBattleToggle !== undefined && (
+          <button
+            className={`mobile-driver-chip mobile-battle-chip ${mobileBattleActive ? 'active' : ''}`}
+            onClick={onMobileBattleToggle}
+            title="Battle tracker"
+          >
+            GAP
+          </button>
+        )}
       </div>
     </div>
   )
