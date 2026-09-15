@@ -34,6 +34,40 @@ const PAD = { top: 12, right: 8, bottom: 28, left: 40 }
 const cw = W - PAD.left - PAD.right
 const ch = H - PAD.top - PAD.bottom
 
+const ROUND_FETCH_BATCH_SIZE = 3
+const ROUND_FETCH_ATTEMPTS = 3
+const ROUND_RETRY_DELAY_MS = 250
+
+function wait(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function fetchRoundStandings(round: number): Promise<DriverStanding[] | null> {
+  for (let attempt = 0; attempt < ROUND_FETCH_ATTEMPTS; attempt++) {
+    try {
+      const standings = await fetchDriverStandingsByRound(round)
+      if (standings.length > 0) return standings
+    } catch {
+      // Retry transient API failures below.
+    }
+
+    if (attempt < ROUND_FETCH_ATTEMPTS - 1) {
+      await wait(ROUND_RETRY_DELAY_MS * (attempt + 1))
+    }
+  }
+
+  return null
+}
+
+async function fetchStandingsHistory(rounds: number[]): Promise<Array<DriverStanding[] | null>> {
+  const history: Array<DriverStanding[] | null> = []
+  for (let start = 0; start < rounds.length; start += ROUND_FETCH_BATCH_SIZE) {
+    const batch = rounds.slice(start, start + ROUND_FETCH_BATCH_SIZE)
+    history.push(...await Promise.all(batch.map(fetchRoundStandings)))
+  }
+  return history
+}
+
 export default function StandingsPage() {
   const [drivers, setDrivers]           = useState<DriverStanding[]>([])
   const [constructors, setConstructors] = useState<ConstructorStanding[]>([])
@@ -50,7 +84,6 @@ export default function StandingsPage() {
   const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
-    setLoading(true); setError(false)
     Promise.all([fetchDriverStandings(), fetchConstructorStandings()])
       .then(([d, c]) => { setDrivers(d); setConstructors(c) })
       .catch(() => setError(true))
@@ -60,21 +93,26 @@ export default function StandingsPage() {
   useEffect(() => {
     Promise.all([fetchAllResults(), fetchDriverStandings()])
       .then(async ([races, currentDrivers]) => {
-        const roundNums = races.map(r => parseInt(r.round)).sort((a, b) => a - b)
-        const perRound = await Promise.all(
-          roundNums.map(r => fetchDriverStandingsByRound(r).catch(() => []))
-        )
+        const orderedRaces = races.slice().sort((a, b) => parseInt(a.round) - parseInt(b.round))
+        const roundNums = orderedRaces.map(r => parseInt(r.round))
+        const perRound = await fetchStandingsHistory(roundNums)
+        const completedRounds = orderedRaces.flatMap((race, index) => {
+          const standings = perRound[index]
+          return standings ? [{ race, standings }] : []
+        })
+        if (completedRounds.length === 0) return
+
         const series: ChartSeries[] = currentDrivers.map(dr => {
           const teamName = CONSTRUCTOR_TEAM[dr.Constructors[0]?.constructorId] ?? ''
           const color = TEAM_COLORS[teamName] ?? '#445'
-          const pts = perRound.map(rStandings => {
-            const found = rStandings.find(s => s.Driver.code === dr.Driver.code)
+          const pts = completedRounds.map(({ standings }) => {
+            const found = standings.find(s => s.Driver.code === dr.Driver.code)
             return found ? parseFloat(found.points) : 0
           })
           return { code: dr.Driver.code, color, points: pts }
         })
         setChartSeries(series)
-        setChartRounds(races.map(r => raceAbbr(r.raceName)))
+        setChartRounds(completedRounds.map(({ race }) => raceAbbr(race.raceName)))
         setSelectedCodes(new Set(currentDrivers.slice(0, 8).map(d => d.Driver.code)))
       })
       .catch(() => {})
