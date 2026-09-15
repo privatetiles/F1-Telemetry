@@ -837,8 +837,9 @@ export default function TrackMap({
 
             return (
               <g key={driver} style={{ cursor: 'pointer' }}
-                onMouseEnter={() => onHighlight?.(driver)}
-                onMouseLeave={() => onHighlight?.(null)}>
+                onPointerEnter={() => onHighlight?.(driver)}
+                onPointerLeave={() => onHighlight?.(null)}
+                onClick={() => onHighlight?.(driver)}>
                 {/* Enlarged invisible hit target */}
                 <circle cx={pos.x} cy={pos.y} r={dotR + 8} fill="transparent" />
                 {/* Main dot */}

@@ -58,6 +58,13 @@ function storedPaneWidth(key: string, fallback: number, min: number, max: number
   return Number.isFinite(value) && value >= min && value <= max ? value : fallback
 }
 
+// Kept outside the component so the popstate handler never captures a stale reference
+const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'games', 'historicalraces', 'socials', 'changelog']
+function hashToView(hash: string): AppView {
+  const v = hash.replace(/^#\/?/, '') as AppView
+  return VALID_VIEWS.includes(v) ? v : 'telemetry'
+}
+
 export default function App() {
   const [selectedSeason, setSelectedSeason] = useState<'historical' | number>(2026)
   const [circuit, setCircuit] = useState<CircuitConfig>(() => {
@@ -79,13 +86,6 @@ export default function App() {
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  // 'about', 'privacy' and 'disclaimer' are intentionally excluded — they now
-  // live at their own paths (/about/, /privacy/, /disclaimer/), not hash views.
-  const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'games', 'historicalraces', 'socials', 'changelog']
-  const hashToView = (hash: string): AppView => {
-    const v = hash.replace(/^#\/?/, '') as AppView
-    return VALID_VIEWS.includes(v) ? v : 'telemetry'
-  }
   const [activeView, setActiveView] = useState<AppView>(() => hashToView(window.location.hash))
   const [battleDrivers, setBattleDrivers] = useState<string[]>([])
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
@@ -469,17 +469,21 @@ export default function App() {
     loadAllDriverTelemetry(urls).then(({ data, dnf }) => {
       setDriverTelemetry(data)
       setDnfDrivers(dnf)
-      const loaded = Object.keys(data)
-      if (soloMode) {
-        const fastest = loaded.reduce((best, d) => {
-          const tb = data[best]?.at(-1)?.time ?? Infinity
-          const td = data[d]?.at(-1)?.time ?? Infinity
-          return td < tb ? d : best
-        }, loaded[0] ?? '')
-        setActiveDrivers(fastest ? new Set([fastest]) : new Set())
-      } else {
-        setActiveDrivers(new Set(loaded))
-      }
+      // Use a functional update to read the latest soloMode without it being a dep
+      setSoloMode(prevSolo => {
+        const loaded = Object.keys(data)
+        if (prevSolo) {
+          const fastest = loaded.reduce((best, d) => {
+            const tb = data[best]?.at(-1)?.time ?? Infinity
+            const td = data[d]?.at(-1)?.time ?? Infinity
+            return td < tb ? d : best
+          }, loaded[0] ?? '')
+          setActiveDrivers(fastest ? new Set([fastest]) : new Set())
+        } else {
+          setActiveDrivers(new Set(loaded))
+        }
+        return prevSolo
+      })
       setLoading(false)
     })
   }, [circuit.id, circuit.year, session.type])

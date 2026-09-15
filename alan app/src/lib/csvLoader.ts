@@ -122,6 +122,10 @@ interface FullRaceJson {
     t: number[]; x: number[]; y: number[]; v: number[]
     g: number[]; th: number[]; br: number[]; lap: number[]
   }>
+  safety_cars?: Array<{ type: string; start: number; end: number }>
+  stints?: Record<string, StintInfo[]>
+  pit_stops?: Record<string, PitStopInfo[]>
+  overtakes?: OvertakeEvent[]
 }
 
 export interface SafetyCarPeriod {
@@ -194,14 +198,15 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
   // Using MIN (not max) gives the WINNER's crossing time.
   // Retired drivers have a "final lap" with t1 = session end — that's an outlier we exclude
   // by only looking at laps with a plausible duration (> 0 seconds).
-  let raceEndTime = 0
+  let raceEndTime = Infinity
   for (const entries of Object.values(json.laps)) {
     for (const e of entries) {
       if (e.lap === totalLaps && e.t0 != null && e.t1 != null && e.t1 > e.t0) {
-        if (raceEndTime === 0 || e.t1 < raceEndTime) raceEndTime = e.t1
+        raceEndTime = Math.min(raceEndTime, e.t1)
       }
     }
   }
+  if (!isFinite(raceEndTime)) raceEndTime = 0
   // 5-minute buffer after the winner crosses for lapped/backmarker drivers to finish
   const raceCutoff = raceEndTime > 0 ? raceEndTime + 300 : 0
 
@@ -284,25 +289,30 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
   const lapBoundaries = Array.from({ length: totalLaps }, (_, i) => i / totalLaps)
 
   // Safety car periods — normalize from raw session seconds to race-relative seconds
-  const safetyCars: SafetyCarPeriod[] = ((json as any).safety_cars ?? [])
-    .map((sc: { type: string; start: number; end: number }) => ({
+  const safetyCars: SafetyCarPeriod[] = (json.safety_cars ?? [])
+    .map(sc => ({
       type: sc.type as SafetyCarPeriod['type'],
       start: sc.start - raceStartTime,
       end: sc.end - raceStartTime,
     }))
-    .filter((sc: SafetyCarPeriod) => sc.end > sc.start && sc.start >= 0)
+    .filter(sc => sc.end > sc.start && sc.start >= 0)
 
-  const stints: Record<string, StintInfo[]> = (json as any).stints ?? {}
-  const pitStops: Record<string, PitStopInfo[]> = (json as any).pit_stops ?? {}
-  const overtakes: OvertakeEvent[] = (json as any).overtakes ?? []
+  const stints: Record<string, StintInfo[]> = json.stints ?? {}
+  const pitStops: Record<string, PitStopInfo[]> = json.pit_stops ?? {}
+  const overtakes: OvertakeEvent[] = json.overtakes ?? []
 
   // Detect standing-restart laps: a lap whose t0 is > 5 min after the previous lap's t1
   // means there was a red-flag period in between. These laps start from grid positions,
   // which are laterally offset from the racing line and would double the main straight SVG.
   const standingRestartLaps = new Set<number>()
-  const [timingRefDriver] = Object.entries(json.laps).reduce((best, cur) =>
-    Math.max(...cur[1].map(e => e.lap)) > Math.max(...best[1].map(e => e.lap)) ? cur : best
-  )
+  const lapEntries = Object.entries(json.laps).filter(([, laps]) => laps.length > 0)
+  const [timingRefDriver] = lapEntries.length > 0
+    ? lapEntries.reduce((best, cur) => {
+        const bestMax = best[1].reduce((m, e) => Math.max(m, e.lap), 0)
+        const curMax  = cur[1].reduce((m, e) => Math.max(m, e.lap), 0)
+        return curMax > bestMax ? cur : best
+      })
+    : [Object.keys(json.laps)[0] ?? '']
   const refLapsArr = [...(json.laps[timingRefDriver] ?? [])].sort((a, b) => a.lap - b.lap)
   for (let i = 1; i < refLapsArr.length; i++) {
     const prev = refLapsArr[i - 1]

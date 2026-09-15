@@ -89,8 +89,8 @@ export default function DriverPanel({
                 isDnf ? 'dnf' : '',
               ].join(' ')}
               onClick={() => !isDnf && onSelect(driver)}
-              onMouseEnter={() => !soloMode && !isDnf && onHighlight(driver)}
-              onMouseLeave={() => !soloMode && onHighlight(null)}
+              onPointerEnter={() => !soloMode && !isDnf && onHighlight(driver)}
+              onPointerLeave={() => !soloMode && onHighlight(null)}
             >
               <span className="driver-pos">{isDnf ? '—' : `P${pos}`}</span>
               <span className="driver-dot" style={{ background: driverColor(driver) }} />

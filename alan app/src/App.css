@@ -557,8 +557,8 @@
   backdrop-filter: blur(8px);
 }
 .track-zoom-btn {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   padding: 0;
   display: inline-flex;
   align-items: center;
@@ -1892,7 +1892,7 @@
 }
 
 .ad-slot-rectangle .ad-box {
-  width: 300px;
+  width: min(300px, 100%);
   height: 250px;
 }
 
@@ -3580,8 +3580,8 @@
   border: 1px solid #334;
   color: #778;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
@@ -5712,4 +5712,43 @@
   .progress-slider-wrap { min-width: 0; }
   .playback-speed > span:first-child { display: none; }
   .playback-speed-select-wrap { width: 62px; }
+}
+
+/* ── Mobile / touch fixes ────────────────────────────────────────────────────
+   Scope hover-only decorations to pointer:fine devices (mice/trackpads).
+   On touch screens, hover states "stick" after a tap — this prevents that.  */
+
+@media (hover: hover) and (pointer: fine) {
+  .driver-row:hover { background: var(--bg-surface); }
+  .battle-card:hover { background: var(--bg-surface); }
+  .pill:hover:not(:disabled) { opacity: 0.8; }
+  .sidebar-item:hover .sidebar-label { color: var(--text-primary); }
+  .sidebar-item:hover .sidebar-icon { color: var(--text-primary); }
+}
+
+/* Touch-only: larger tap targets for key interactive elements */
+@media (pointer: coarse) {
+  .track-zoom-btn { width: 44px; height: 44px; }
+  .tutorial-trigger { width: 44px; height: 44px; }
+  .solo-toggle { min-width: 44px; height: 32px; }
+  .pill.small { padding: 6px 10px; font-size: 12px; min-height: 36px; }
+  .driver-row { min-height: 44px; padding: 8px 10px; }
+  .custom-select-option { padding: 11px 13px; min-height: 44px; }
+  .sidebar-item { min-height: 52px; }
+  .battle-selected-driver { min-height: 36px; padding: 0 12px; }
+  .progress-slider { height: 12px; }
+
+  /* Sidebar scrolling — fade edge indicator */
+  .sidebar-mobile-nav { -webkit-overflow-scrolling: touch; }
+  .sidebar-mobile-nav::after {
+    content: '';
+    position: sticky;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    flex-shrink: 0;
+    background: linear-gradient(to right, transparent, var(--bg-base));
+    pointer-events: none;
+  }
 }

@@ -419,11 +419,14 @@
 .land-nav-btn { text-decoration: none; display: inline-block; }
 
 /* ── Responsive ── */
+@media (max-width: 768px) {
+  .land-stat { padding: 16px 24px; }
+}
 @media (max-width: 600px) {
   .land-nav { padding: 14px 18px; }
   .land-hero { padding: 60px 18px 80px; }
   .land-stats { flex-wrap: wrap; }
-  .land-stat { padding: 16px 28px; }
+  .land-stat { padding: 14px 20px; }
   .land-features { padding: 48px 18px; }
   .land-banner { flex-direction: column; gap: 18px; text-align: center; }
   .land-footer { flex-direction: column; gap: 4px; }
