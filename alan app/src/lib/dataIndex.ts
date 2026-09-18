@@ -147,6 +147,10 @@ export function fullRaceUrl(circuitId: string, year: number, sessionFolder = 'ra
   return `/data/FastF1%20Data/fastf1_${year}_${circuitFolder(circuitId)}_grand_prix/${sessionFolder}/telemetry_full_race${extension}`
 }
 
+export function pitLaneUrl(circuitId: string, year: number): string {
+  return `/data/FastF1%20Data/fastf1_${year}_${circuitFolder(circuitId)}_grand_prix/race/pit_lane.json`
+}
+
 export function teamRadioUrl(circuitId: string, year: number, sessionFolder = 'race'): string {
   return `/data/FastF1%20Data/fastf1_${year}_${circuitFolder(circuitId)}_grand_prix/${sessionFolder}/team_radio.json`
 }

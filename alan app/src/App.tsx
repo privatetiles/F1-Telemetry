@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import type { CircuitConfig, CircuitSession, TelemetryPoint, ColorMode } from './types'
-import { CIRCUITS, telemetryUrl, fullRaceUrl, teamRadioUrl, raceControlUrl } from './lib/dataIndex'
+import { CIRCUITS, telemetryUrl, fullRaceUrl, teamRadioUrl, raceControlUrl, pitLaneUrl } from './lib/dataIndex'
 import { loadAllDriverTelemetry, loadTelemetryFromFile, loadFullRaceTelemetry } from './lib/csvLoader'
 import type { SafetyCarPeriod, StintInfo, PitStopInfo, OvertakeEvent } from './lib/csvLoader'
 import { computeMiniSectors, computeMiniSectorsFromSegments } from './lib/miniSectors'
@@ -89,6 +89,7 @@ export default function App() {
   const [activeView, setActiveView] = useState<AppView>(() => hashToView(window.location.hash))
   const [battleDrivers, setBattleDrivers] = useState<string[]>([])
   const [mobileBattleOpen, setMobileBattleOpen] = useState(false)
+  const [staticPitLane, setStaticPitLane] = useState<{x: number, y: number}[] | null>(null)
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
   const [isDragging, setIsDragging] = useState(false)
   const [pendingResultRound, setPendingResultRound] = useState<number | undefined>(undefined)
@@ -234,6 +235,17 @@ export default function App() {
     if (!prefix) return
     loadTrackData(prefix).then(setTrackData).catch(() => {})
   }, [circuit.id])
+
+  useEffect(() => {
+    const year = (circuit.year ?? (selectedSeason === 'historical' ? 2026 : selectedSeason)) as number
+    fetch(pitLaneUrl(circuit.id, year))
+      .then(r => r.ok ? r.json() as Promise<{x: number[], y: number[]}> : null)
+      .then(data => {
+        if (!data) { setStaticPitLane(null); return }
+        setStaticPitLane(data.x.map((x, i) => ({ x, y: data.y[i] })))
+      })
+      .catch(() => setStaticPitLane(null))
+  }, [circuit.id, circuit.year, selectedSeason])
 
   const processFiles = useCallback(async (files: File[]) => {
     const csvFiles = files.filter((f) => f.name.toLowerCase().endsWith('.csv'))
@@ -1092,6 +1104,7 @@ export default function App() {
                         onTuneDriver={setTunedDriver}
                         onActiveRadioChange={setActiveRadioCaption}
                         raceControlMessages={raceControlMessages.length > 0 ? raceControlMessages : undefined}
+                        staticPitLane={staticPitLane ?? undefined}
                         loading={loading}
                       />
 

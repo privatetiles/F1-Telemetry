@@ -98,6 +98,7 @@ interface Props {
   onTuneDriver?: (driver: string | null) => void
   onActiveRadioChange?: (call: { driver: string; url: string; text?: string } | null) => void
   raceControlMessages?: RaceControlMessage[]
+  staticPitLane?: {x: number, y: number}[]
   loading?: boolean
 }
 
@@ -125,6 +126,7 @@ export default function TrackMap({
   onTuneDriver,
   onActiveRadioChange,
   raceControlMessages,
+  staticPitLane,
   loading = false,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -707,26 +709,30 @@ export default function TrackMap({
           onDoubleClick={() => updateTrackZoom(trackZoom + 0.5)}
         >
 
-          {/* Pit lane (full race only) — drawn below the racing line */}
-          {totalLaps > 0 && pitLaneSegments.length > 0 && pitLaneSegments.map((seg, i) => {
-            const pts = seg.map(p => transform.apply(p))
-            return (
-              <path key={`pit${i}`} d={catmullRomPath(pts, false)} fill="none"
-                stroke="#ffffff" strokeWidth={6}
-                strokeOpacity={0.08}
-                strokeLinecap="round" strokeLinejoin="round" />
-            )
-          })}
-          {totalLaps > 0 && pitLaneSegments.length > 0 && pitLaneSegments.map((seg, i) => {
-            const pts = seg.map(p => transform.apply(p))
-            return (
-              <path key={`pitl${i}`} d={catmullRomPath(pts, false)} fill="none"
-                stroke="#aaccff" strokeWidth={1.5}
-                strokeOpacity={0.35}
-                strokeLinecap="round" strokeLinejoin="round"
-                strokeDasharray="4 3" />
-            )
-          })}
+          {/* Pit lane — static pre-extracted path (all sessions) or runtime-detected (full race) */}
+          {(() => {
+            const segs: {x: number, y: number}[][] =
+              staticPitLane && staticPitLane.length > 5
+                ? [staticPitLane]
+                : (totalLaps > 0 ? pitLaneSegments : [])
+            if (segs.length === 0) return null
+            return segs.map((seg, i) => {
+              const pts = seg.map(p => transform.apply(p))
+              return (
+                <g key={`pit-lane-${i}`}>
+                  <path d={catmullRomPath(pts, false)} fill="none"
+                    stroke="#ffffff" strokeWidth={7}
+                    strokeOpacity={0.06}
+                    strokeLinecap="round" strokeLinejoin="round" />
+                  <path d={catmullRomPath(pts, false)} fill="none"
+                    stroke="#aaccff" strokeWidth={1.5}
+                    strokeOpacity={0.4}
+                    strokeLinecap="round" strokeLinejoin="round"
+                    strokeDasharray="5 4" />
+                </g>
+              )
+            })
+          })()}
 
           {/* Track with race-condition coloring (white default → yellow/red under caution) */}
           {hasData && trackData && (() => {
