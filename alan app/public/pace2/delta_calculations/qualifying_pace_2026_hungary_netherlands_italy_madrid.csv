@@ -1,7 +1,7 @@
 team,category,Hungary,Netherlands,Italy,Madrid
-Alpine,Slow corners,2.31,2.775,,1.91
-Alpine,Fast corners,2.544,3.01,,1.701
-Alpine,Straights,0.647,0.228,,0.032
+Alpine,Slow corners,2.31,2.775,1.144,1.91
+Alpine,Fast corners,2.544,3.01,0.342,1.701
+Alpine,Straights,0.647,0.228,-0.259,0.032
 Aston Martin,Slow corners,3.297,2.844,2.37,4.316
 Aston Martin,Fast corners,3.367,4.047,3.393,3.982
 Aston Martin,Straights,3.711,3.317,5.737,2.032
@@ -29,6 +29,6 @@ Racing Bulls,Straights,1.332,0.462,1.84,0.964
 Red Bull Racing,Slow corners,0.218,0.299,0.604,0.236
 Red Bull Racing,Fast corners,-0.389,0.978,0.936,0.102
 Red Bull Racing,Straights,0.586,-0.157,0.855,-0.212
-Williams,Slow corners,5.0,3.83,,4.739
-Williams,Fast corners,3.628,4.329,,3.715
-Williams,Straights,1.644,0.71,,0.725
+Williams,Slow corners,5.0,,,4.739
+Williams,Fast corners,3.628,,,3.715
+Williams,Straights,1.644,,,0.725

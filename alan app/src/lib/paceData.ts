@@ -34,6 +34,7 @@ export const HIDDEN_PACE_EVENTS = new Set<string>([
 ])
 const HIDDEN_PACE_TEAM_EVENTS = new Set<string>([
   'fastf1_2026_dutch_grand_prix|Williams',
+  'fastf1_2026_dutch_grand_prix_qualifying|Williams',
   'fastf1_2025_dutch_grand_prix|Williams',
 ])
 
