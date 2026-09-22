@@ -1,0 +1,31 @@
+.welcome-page {
+  min-height: 100svh;
+}
+
+.welcome-page .land-hero {
+  min-height: calc(100svh - 68px);
+  padding-top: 64px;
+  padding-bottom: 80px;
+}
+
+.welcome-page .land-cta {
+  text-decoration: none;
+}
+
+.welcome-about {
+  color: #9aa5b1;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.welcome-about:hover {
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .welcome-page .land-hero {
+    min-height: calc(100svh - 60px);
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+}

@@ -841,7 +841,7 @@ function Leaderboard() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function GamesPage({ authUser, onSignIn }: Props) {
-  const [tab, setTab] = useState<GameTab>('circuit')
+  const [tab, setTab] = useState<GameTab>(() => new URLSearchParams(window.location.search).get('game') === 'trivia' ? 'trivia' : 'circuit')
 
   return (
     <div className="games-page">

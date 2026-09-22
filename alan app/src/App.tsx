@@ -9,6 +9,7 @@ import type { TrackData } from './lib/paceData'
 import { buildDriverSpeedProfiles, getEffectiveLayout, type ProfileData } from './lib/lapPredictor'
 import { computeBattleGaps } from './lib/battleGaps'
 import { driverColor } from './lib/teamColors'
+import { appViewFromHash } from './lib/navigation'
 import { fetchRaceRadio } from './lib/openf1'
 import type { RadioCall } from './lib/openf1'
 import type { BattleGapEntry } from './lib/battleGaps'
@@ -58,13 +59,6 @@ function storedPaneWidth(key: string, fallback: number, min: number, max: number
   return Number.isFinite(value) && value >= min && value <= max ? value : fallback
 }
 
-// Kept outside the component so the popstate handler never captures a stale reference
-const VALID_VIEWS: AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'games', 'historicalraces', 'socials', 'changelog']
-function hashToView(hash: string): AppView {
-  const v = hash.replace(/^#\/?/, '') as AppView
-  return VALID_VIEWS.includes(v) ? v : 'telemetry'
-}
-
 export default function App() {
   const [selectedSeason, setSelectedSeason] = useState<'historical' | number>(2026)
   const [circuit, setCircuit] = useState<CircuitConfig>(() => {
@@ -86,7 +80,7 @@ export default function App() {
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [activeView, setActiveView] = useState<AppView>(() => hashToView(window.location.hash))
+  const [activeView, setActiveView] = useState<AppView>(() => appViewFromHash(window.location.hash) ?? 'telemetry')
   const [battleDrivers, setBattleDrivers] = useState<string[]>([])
   const [mobileBattleOpen, setMobileBattleOpen] = useState(false)
   const [staticPitLane, setStaticPitLane] = useState<{x: number, y: number}[] | null>(null)
@@ -191,7 +185,7 @@ export default function App() {
   }, [authUser])
 
   useEffect(() => {
-    window.location.hash = activeView === 'telemetry' ? '' : activeView
+    window.location.hash = activeView
   }, [activeView])
 
   // Keyboard shortcuts
@@ -217,9 +211,12 @@ export default function App() {
   }, [activeView, totalLaps])
 
   useEffect(() => {
-    const onPop = () => setActiveView(hashToView(window.location.hash))
-    window.addEventListener('popstate', onPop)
-    return () => window.removeEventListener('popstate', onPop)
+    const onHashChange = () => {
+      const view = appViewFromHash(window.location.hash)
+      if (view) setActiveView(view)
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
   // Driver speed profiles — built in background (backup data, not shown in UI)
@@ -890,11 +887,11 @@ export default function App() {
       )}
 
       <header className="app-header">
-        <div className="logo">
+        <a className="logo" href="#home" aria-label="F1vis home" style={{ textDecoration: 'none' }}>
           <span className="logo-f1">F1</span>
           <span className="logo-divider" />
           <span className="logo-text">Telemetry</span>
-        </div>
+        </a>
         <span className="header-context">Race data, replayed</span>
         {loading && activeView === 'telemetry' && <span className="loading-badge">Loading…</span>}
         <div className="header-actions">

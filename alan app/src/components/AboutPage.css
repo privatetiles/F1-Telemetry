@@ -1,0 +1,117 @@
+.about-page {
+  overflow-x: clip;
+}
+
+.about-page .land-legal {
+  padding: 48px 28px 64px;
+}
+
+.about-page .land-legal-body {
+  max-width: 1100px;
+  text-align: center;
+}
+
+.about-page .land-legal-title {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+}
+
+.about-profiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+  margin-top: 42px;
+}
+
+.about-profile h2 {
+  margin: 0 0 22px;
+  color: #f0f2f8;
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: -.7px;
+}
+
+.about-photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  aspect-ratio: 1;
+  margin: 0 auto 34px;
+  border: 1px solid #6d7988;
+  border-radius: 9px;
+  background: #0d1219;
+  color: #a8b4c3;
+  font-size: 13px;
+}
+
+.about-page .about-bio p {
+  margin: 0;
+  color: #b7c0cc;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.about-bio sup {
+  font-size: .65em;
+  line-height: 0;
+}
+
+.about-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 52px;
+  color: #d7dce2;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.about-home-link svg {
+  color: #e85b56;
+}
+
+.about-home-link:hover {
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .about-page .land-nav {
+    gap: 14px;
+  }
+
+  .about-page .land-logo-text {
+    font-size: 11px;
+    letter-spacing: .5px;
+  }
+
+  .about-page .land-nav-btn {
+    padding: 8px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .about-page .land-legal {
+    padding: 36px 22px 48px;
+  }
+
+  .about-profiles {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-top: 32px;
+  }
+
+  .about-profile h2 {
+    font-size: 27px;
+    margin-bottom: 20px;
+  }
+
+  .about-photo-placeholder {
+    width: 180px;
+    margin-bottom: 25px;
+  }
+
+  .about-page .about-bio p {
+    font-size: 15px;
+  }
+}

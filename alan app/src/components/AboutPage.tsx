@@ -1,57 +1,33 @@
 import LegalPage from './LegalPage'
+import Icon from './Icon'
+import './AboutPage.css'
 
 export default function AboutPage() {
   return (
-    <LegalPage
-      title="About F1 Telemetry Visualizer"
-      docTitle="About"
-      meta="A fan-made project — built for F1 fans, by an F1 fan"
-      canonicalPath="/about/"
-    >
-      <h2 className="land-legal-h2">What is this?</h2>
-      <p>
-        F1 Telemetry Visualizer (f1vis.app) is a free, open fan project that lets you explore
-        Formula 1 telemetry data from the 2026 season. You can compare qualifying and race lap
-        data, speed traces, driver inputs, mini-sector breakdowns, team pace predictions, standings,
-        results, and more — all in one place, no login required.
-      </p>
-
-      <h2 className="land-legal-h2">How is the data collected?</h2>
-      <p>
-        Telemetry data is sourced using the{' '}
-        <a className="land-legal-link" href="https://github.com/theOehrly/Fast-F1" target="_blank" rel="noopener noreferrer">
-          FastF1
-        </a>{' '}
-        open-source Python library, which provides access to official F1 timing and telemetry feeds.
-        Race results, standings, and schedule data are fetched from the{' '}
-        <a className="land-legal-link" href="https://jolpi.ca" target="_blank" rel="noopener noreferrer">
-          Jolpica F1 API
-        </a>
-        , a community-maintained open data source.
-      </p>
-      <p>
-        Pace predictions are generated using a custom delta-prediction model built on top of
-        historical telemetry data across multiple circuits.
-      </p>
-
-      <h2 className="land-legal-h2">Who made this?</h2>
-      <p>
-        This project was built independently as a passion project. It is not affiliated with,
-        endorsed by, or connected to Formula One Management, the FIA, or any F1 constructor or driver.
-      </p>
-
-      <h2 className="land-legal-h2">Is it free?</h2>
-      <p>
-        Yes — completely free, no account, no paywall. The site is supported by Google AdSense
-        advertisements. If you enjoy the site, consider disabling your ad blocker to help keep
-        it running.
-      </p>
-
-      <h2 className="land-legal-h2">Contact</h2>
-      <p>
-        Questions, feedback, or data corrections:{' '}
-        <a className="land-legal-link" href="mailto:privatetiles@gmail.com">privatetiles@gmail.com</a>
-      </p>
+    <LegalPage title="About Us" docTitle="About Us" canonicalPath="/about/" className="about-page">
+      <div className="about-profiles">
+        <article className="about-profile" aria-labelledby="about-alan">
+          <h2 id="about-alan">Alan</h2>
+          <div className="about-photo-placeholder">Picture of Alan</div>
+          <div className="about-bio">
+            <p>Alan is an 8<sup>th</sup> grader.</p>
+            <p>He mainly manages the website.</p>
+            <p>He has been watching F1 for 2 years and supports Charles Leclerc.</p>
+            <p>His other hobbies include driving cars.</p>
+          </div>
+        </article>
+        <article className="about-profile" aria-labelledby="about-keji">
+          <h2 id="about-keji">Keji</h2>
+          <div className="about-photo-placeholder">Picture of Keji</div>
+          <div className="about-bio">
+            <p>Keji is a 10<sup>th</sup> grader.</p>
+            <p>He mainly manages the predictions and socials.</p>
+            <p>He has been watching F1 for 8 years and supports Charles Leclerc.</p>
+            <p>His other hobbies include washing cars.</p>
+          </div>
+        </article>
+      </div>
+      <a className="about-home-link" href="/#home"><Icon name="arrow-left" size={16} /> Back to homepage</a>
     </LegalPage>
   )
 }

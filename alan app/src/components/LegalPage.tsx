@@ -10,6 +10,7 @@ interface Props {
   docTitle?: string
   /** Absolute path this page lives at, e.g. '/about/'. Used for canonical/og tags. */
   canonicalPath: string
+  className?: string
   children: ReactNode
 }
 
@@ -18,7 +19,7 @@ interface Props {
  * Uses the landing-page chrome (nav + footer) rather than the visualizer UI,
  * and patches the per-page SEO tags while mounted.
  */
-export default function LegalPage({ title, meta, docTitle, canonicalPath, children }: Props) {
+export default function LegalPage({ title, meta, docTitle, canonicalPath, className, children }: Props) {
   useEffect(() => {
     const url = `https://f1vis.app${canonicalPath}`
 
@@ -41,22 +42,22 @@ export default function LegalPage({ title, meta, docTitle, canonicalPath, childr
   }, [title, docTitle, canonicalPath])
 
   return (
-    <div className="landing">
+    <div className={className ? `landing ${className}` : 'landing'}>
       <nav className="land-nav">
-        <a className="land-logo" href="/">
+        <a className="land-logo" href="/#home" aria-label="F1vis home">
           <span className="land-logo-f1">F1</span>
           <span className="land-logo-text">Telemetry</span>
         </a>
-        <a className="land-nav-btn" href="/">Open Visualizer</a>
+        <a className="land-nav-btn" href="/#home">Open Visualizer</a>
       </nav>
 
-      <section className="land-legal">
+      <main className="land-legal">
         <div className="land-legal-body">
           <h1 className="land-legal-title">{title}</h1>
           {meta && <p className="land-legal-meta">{meta}</p>}
           {children}
         </div>
-      </section>
+      </main>
 
       <footer className="land-footer">
         <span>Built with FastF1 · 2026 Formula 1 Season</span>
