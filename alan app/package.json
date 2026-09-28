@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "test:navigation": "node --experimental-strip-types --test tests/navigation.test.mjs",
+    "test:pace": "node --experimental-strip-types --test tests/pace.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

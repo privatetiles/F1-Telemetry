@@ -1,0 +1,400 @@
+event,circuit,team,driver,segment_id,category,category_slug,start_distance_m,end_distance_m,weighted_speed_kph,time_seconds,session,variant
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_01,Straights,straight,0.0,250.0,260.13655524573994,3.796148760330577,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_02,Slow corners,slow_corner,250.0,370.0,134.03701882226926,3.1653349583835206,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_03,Fast corners,fast_corner,370.0,580.0,203.17889094027697,3.7539496482110906,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_04,Slow corners,slow_corner,580.0,710.0,127.66752092190256,3.57869976465431,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_05,Fast corners,fast_corner,710.0,860.0,233.97892338913329,2.2641761178724824,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_06,Straights,straight,860.0,1450.0,278.78247117039905,7.702212328001796,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_07,Slow corners,slow_corner,1450.0,1810.0,133.55731113227156,9.611914592758977,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_08,Fast corners,fast_corner,1810.0,2010.0,203.46968330915283,3.565276843774697,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_09,Slow corners,slow_corner,2010.0,2200.0,113.65831500880353,5.931548173710517,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_10,Fast corners,fast_corner,2200.0,2450.0,211.8799422925862,4.275120827557281,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_11,Slow corners,slow_corner,2450.0,2940.0,123.37838124415076,14.258108373717713,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_12,Fast corners,fast_corner,2940.0,3150.0,235.66944962450867,3.163789954809779,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_13,Straights,straight,3150.0,3560.0,273.69322393698394,5.398496126805455,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_14,Fast corners,fast_corner,3560.0,3660.0,182.000659970002,2.096447259754939,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_15,Slow corners,slow_corner,3660.0,3800.0,123.3574392389614,4.008240366799228,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_16,Fast corners,fast_corner,3800.0,4010.0,198.2971057487529,3.880339502757821,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_17,Slow corners,slow_corner,4010.0,4140.0,139.291418203986,3.203030640929228,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_18,Fast corners,fast_corner,4140.0,4310.0,237.09891774276025,2.5354635532882384,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,ALB,seg_19,Straights,straight,4310.0,5930.0,309.8501790092057,18.799911000932127,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_01,Straights,straight,0.0,250.0,273.94859986742836,3.2845650998691167,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_02,Slow corners,slow_corner,250.0,370.0,132.03224024367,3.268259278451415,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_03,Fast corners,fast_corner,370.0,580.0,207.67674149372763,3.644230847889867,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_04,Slow corners,slow_corner,580.0,710.0,122.1932184728006,3.82404142829691,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_05,Fast corners,fast_corner,710.0,860.0,216.2410383123221,2.4983301801666524,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_06,Straights,straight,860.0,1450.0,281.34571590382075,7.554963213684122,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_07,Slow corners,slow_corner,1450.0,1810.0,129.98614781911198,9.954128655468324,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_08,Fast corners,fast_corner,1810.0,2010.0,212.28275985579103,3.394695255510321,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_09,Slow corners,slow_corner,2010.0,2200.0,115.30461040703956,5.930988812329055,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_10,Fast corners,fast_corner,2200.0,2450.0,217.24031011888505,4.144462280183305,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_11,Slow corners,slow_corner,2450.0,2940.0,121.21482645843264,14.549248383420265,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_12,Fast corners,fast_corner,2940.0,3150.0,219.50929961470783,3.44460301277806,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_13,Straights,straight,3150.0,3560.0,266.339413629905,5.541975036939462,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_14,Fast corners,fast_corner,3560.0,3660.0,217.2241716101622,1.6589417935391566,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_15,Slow corners,slow_corner,3660.0,3800.0,117.55208876114992,4.2820187325536665,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_16,Fast corners,fast_corner,3800.0,4010.0,204.81142115007444,3.692999947305964,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_17,Slow corners,slow_corner,4010.0,4140.0,131.9285583290433,3.5460096626000706,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_18,Fast corners,fast_corner,4140.0,4310.0,219.2287628141299,2.791790494094329,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,ALO,seg_19,Straights,straight,4310.0,5930.0,301.0935408593819,19.369403231723425,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_01,Straights,straight,0.0,250.0,264.56722660597313,3.505609872369616,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_02,Slow corners,slow_corner,250.0,370.0,133.7883344499195,3.1884567481705486,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_03,Fast corners,fast_corner,370.0,580.0,214.8362190854918,3.521298336441191,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_04,Slow corners,slow_corner,580.0,710.0,124.41648932328212,3.6551433453426494,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_05,Fast corners,fast_corner,710.0,860.0,222.40786027357652,2.3682753774598275,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_06,Straights,straight,860.0,1450.0,292.5342825762726,7.30616247886309,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_07,Slow corners,slow_corner,1450.0,1810.0,130.20120950380337,9.931166041373244,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_08,Fast corners,fast_corner,1810.0,2010.0,208.03276781786295,3.531082430852308,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_09,Slow corners,slow_corner,2010.0,2200.0,116.05212793598676,5.827164037767588,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_10,Fast corners,fast_corner,2200.0,2450.0,220.6124615024277,4.063215134029569,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_11,Slow corners,slow_corner,2450.0,2940.0,124.97342163502884,14.176511424603092,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_12,Fast corners,fast_corner,2940.0,3150.0,225.85004508620185,3.283720455424792,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_13,Straights,straight,3150.0,3560.0,271.9864823201645,5.427002518362173,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_14,Fast corners,fast_corner,3560.0,3660.0,220.70640059262735,1.6970186284952575,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_15,Slow corners,slow_corner,3660.0,3800.0,120.4079126299238,4.153078978094044,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_16,Fast corners,fast_corner,3800.0,4010.0,204.60232767845332,3.854551312448691,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_17,Slow corners,slow_corner,4010.0,4140.0,135.73672231610473,3.4036006186493637,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_18,Fast corners,fast_corner,4140.0,4310.0,229.33352767052543,2.611537242467506,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,BEA,seg_19,Straights,straight,4310.0,5930.0,304.47423509196017,19.13222019828872,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_01,Straights,straight,0.0,250.0,272.59194329945956,3.395655669750607,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_02,Slow corners,slow_corner,250.0,370.0,130.5913785017865,3.287619908318286,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_03,Fast corners,fast_corner,370.0,580.0,207.97883197625873,3.638991811183773,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_04,Slow corners,slow_corner,580.0,710.0,122.80441420138445,3.76682648967145,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_05,Fast corners,fast_corner,710.0,860.0,223.3689283748992,2.3487890234592133,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_06,Straights,straight,860.0,1450.0,281.9992197180503,7.7196403631886525,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_07,Slow corners,slow_corner,1450.0,1810.0,129.78226782367022,9.93066299003089,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_08,Fast corners,fast_corner,1810.0,2010.0,200.5473319418423,3.693077138984549,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_09,Slow corners,slow_corner,2010.0,2200.0,115.97864262573816,5.874989710345652,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_10,Fast corners,fast_corner,2200.0,2450.0,216.34811837190128,4.174502185748736,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_11,Slow corners,slow_corner,2450.0,2940.0,123.61873981575724,14.426626021373458,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_12,Fast corners,fast_corner,2940.0,3150.0,229.5334898485957,3.247508654632803,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_13,Straights,straight,3150.0,3560.0,268.3113843502297,5.509330498676491,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_14,Fast corners,fast_corner,3560.0,3660.0,204.10650129995608,1.832148399698795,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_15,Slow corners,slow_corner,3660.0,3800.0,124.61527596430552,4.009573491721184,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_16,Fast corners,fast_corner,3800.0,4010.0,204.27853210811944,3.722161723072972,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_17,Slow corners,slow_corner,4010.0,4140.0,136.10393583314013,3.392668867931391,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_18,Fast corners,fast_corner,4140.0,4310.0,230.7261942943612,2.604451220058664,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,BOR,seg_19,Straights,straight,4310.0,5930.0,305.21099574227065,19.0946956137406,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_01,Straights,straight,0.0,250.0,260.4363751915021,3.556353023000001,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_02,Slow corners,slow_corner,250.0,370.0,124.16311986526172,3.4234939715355197,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_03,Fast corners,fast_corner,370.0,580.0,208.19470628790108,3.639067553549003,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_04,Slow corners,slow_corner,580.0,710.0,117.87985678852256,3.9634508210441535,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_05,Fast corners,fast_corner,710.0,860.0,219.9884025181157,2.4000181099926152,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_06,Straights,straight,860.0,1450.0,282.5161929251,7.575505272219179,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_07,Slow corners,slow_corner,1450.0,1810.0,126.57973338334963,10.208822436384324,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_08,Fast corners,fast_corner,1810.0,2010.0,205.27458448231704,3.5128255740699217,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_09,Slow corners,slow_corner,2010.0,2200.0,112.53160931977358,6.066364888038358,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_10,Fast corners,fast_corner,2200.0,2450.0,215.07188584647335,4.192006886752303,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_11,Slow corners,slow_corner,2450.0,2940.0,117.37730885569198,14.981102824875194,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_12,Fast corners,fast_corner,2940.0,3150.0,221.72121913570024,3.349643810953239,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_13,Straights,straight,3150.0,3560.0,266.05743559685186,5.554454030143702,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_14,Fast corners,fast_corner,3560.0,3660.0,213.620610416664,1.7427544338061691,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_15,Slow corners,slow_corner,3660.0,3800.0,117.2191985640662,4.301584168132067,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_16,Fast corners,fast_corner,3800.0,4010.0,205.75733681665764,3.672988478097963,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_17,Slow corners,slow_corner,4010.0,4140.0,132.59414306470083,3.562200455965538,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_18,Fast corners,fast_corner,4140.0,4310.0,215.32751351889576,2.7511188022435533,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,BOT,seg_19,Straights,straight,4310.0,5930.0,300.3046985576012,19.39563828874583,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_01,Straights,straight,0.0,250.0,275.00359332930594,3.3762566430814105,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_02,Slow corners,slow_corner,250.0,370.0,130.253852717068,3.275006490619075,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_03,Fast corners,fast_corner,370.0,580.0,206.39133037106092,3.7817965677920498,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_04,Slow corners,slow_corner,580.0,710.0,124.52575685466282,3.711436113691761,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_05,Fast corners,fast_corner,710.0,860.0,229.26546291438495,2.301591229247393,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_06,Straights,straight,860.0,1450.0,283.20451510840525,7.552435457663464,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_07,Slow corners,slow_corner,1450.0,1810.0,131.17515639246528,9.807030233637844,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_08,Fast corners,fast_corner,1810.0,2010.0,209.4412621047909,3.439937330492164,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_09,Slow corners,slow_corner,2010.0,2200.0,116.09549246886336,5.874371393329611,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_10,Fast corners,fast_corner,2200.0,2450.0,219.89017068776664,4.133685908559002,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_11,Slow corners,slow_corner,2450.0,2940.0,124.21897063874452,14.14626787667877,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_12,Fast corners,fast_corner,2940.0,3150.0,231.785029079856,3.2141505168525626,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_13,Straights,straight,3150.0,3560.0,271.59847701973297,5.453033095148697,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_14,Fast corners,fast_corner,3560.0,3660.0,207.01814382516477,1.7990297146347274,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_15,Slow corners,slow_corner,3660.0,3800.0,123.65572041904876,4.0552422619047945,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_16,Fast corners,fast_corner,3800.0,4010.0,204.16748097194744,3.743852425766562,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_17,Slow corners,slow_corner,4010.0,4140.0,139.148007218707,3.3242818691052207,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_18,Fast corners,fast_corner,4140.0,4310.0,231.44067969961165,2.599420407778723,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,COL,seg_19,Straights,straight,4310.0,5930.0,305.95927659802584,19.048810641641964,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_01,Straights,straight,0.0,250.0,278.66490766496486,3.29174458406511,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_02,Slow corners,slow_corner,250.0,370.0,133.99072623533203,3.1988501147302517,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_03,Fast corners,fast_corner,370.0,580.0,212.24838126188249,3.5682718816450327,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_04,Slow corners,slow_corner,580.0,710.0,127.60558099751876,3.6591113631753185,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_05,Fast corners,fast_corner,710.0,860.0,224.34738918334264,2.3585032886406463,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_06,Straights,straight,860.0,1450.0,290.6471817245182,7.344221810303615,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_07,Slow corners,slow_corner,1450.0,1810.0,131.6502921396458,9.733150258723416,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_08,Fast corners,fast_corner,1810.0,2010.0,207.3408262017707,3.487703881755081,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_09,Slow corners,slow_corner,2010.0,2200.0,116.5365058288464,5.885962533050282,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_10,Fast corners,fast_corner,2200.0,2450.0,220.4433345225119,4.074168662983155,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_11,Slow corners,slow_corner,2450.0,2940.0,124.29119533158996,14.04790275099868,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_12,Fast corners,fast_corner,2940.0,3150.0,227.183542690652,3.268937645419186,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_13,Straights,straight,3150.0,3560.0,273.03202241940556,5.425049661532185,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_14,Fast corners,fast_corner,3560.0,3660.0,215.00238575075056,1.7302323737888372,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_15,Slow corners,slow_corner,3660.0,3800.0,121.5093657380396,4.128846943199889,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_16,Fast corners,fast_corner,3800.0,4010.0,208.4397836570517,3.624160679750716,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_17,Slow corners,slow_corner,4010.0,4140.0,139.91460295449562,3.332552352755428,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_18,Fast corners,fast_corner,4140.0,4310.0,220.97103749009997,2.7101349169052185,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Alpine,GAS,seg_19,Straights,straight,4310.0,5930.0,308.3665601641905,18.8882215689502,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_01,Straights,straight,0.0,250.0,281.6762309405681,3.273508123110087,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_02,Slow corners,slow_corner,250.0,370.0,137.85711461041296,3.1006607497669796,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_03,Fast corners,fast_corner,370.0,580.0,219.05011519097448,3.4613777937895973,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_04,Slow corners,slow_corner,580.0,710.0,126.80965568156458,3.680627026436587,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_05,Fast corners,fast_corner,710.0,860.0,221.93723338644017,2.373265700836143,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_06,Straights,straight,860.0,1450.0,293.1883316842491,7.292920875279719,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_07,Slow corners,slow_corner,1450.0,1810.0,134.0452501747195,9.580633882827666,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_08,Fast corners,fast_corner,1810.0,2010.0,216.41381092921364,3.3042409366803724,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_09,Slow corners,slow_corner,2010.0,2200.0,118.44741063568256,5.831943887437468,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_10,Fast corners,fast_corner,2200.0,2450.0,223.94942440520063,4.000280649323663,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_11,Slow corners,slow_corner,2450.0,2940.0,125.73043765390749,14.061575147911393,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_12,Fast corners,fast_corner,2940.0,3150.0,223.61367121662423,3.331504692392947,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_13,Straights,straight,3150.0,3560.0,268.7985712511859,5.486772280252644,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_14,Fast corners,fast_corner,3560.0,3660.0,239.94205298638985,1.5562641822820922,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_15,Slow corners,slow_corner,3660.0,3800.0,122.77393822587932,4.143956651234191,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_16,Fast corners,fast_corner,3800.0,4010.0,212.9215342740098,3.557728784074925,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_17,Slow corners,slow_corner,4010.0,4140.0,137.57305964466448,3.380699604031122,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_18,Fast corners,fast_corner,4140.0,4310.0,223.68284020717323,2.667058167899711,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,HAD,seg_19,Straights,straight,4310.0,5930.0,305.89566050182884,19.043425494048208,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_01,Straights,straight,0.0,250.0,271.6773460735575,3.403981011109851,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_02,Slow corners,slow_corner,250.0,370.0,134.39625023815384,3.1669586196233435,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_03,Fast corners,fast_corner,370.0,580.0,216.4628215320577,3.502047450315973,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_04,Slow corners,slow_corner,580.0,710.0,129.7509281832588,3.616464487831543,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_05,Fast corners,fast_corner,710.0,860.0,224.35539850164793,2.3341139338137697,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_06,Straights,straight,860.0,1450.0,293.0823064091234,7.289340149084222,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_07,Slow corners,slow_corner,1450.0,1810.0,134.74947889370483,9.575091898574808,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_08,Fast corners,fast_corner,1810.0,2010.0,209.89801680603753,3.4452732809829953,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_09,Slow corners,slow_corner,2010.0,2200.0,117.92950118307152,5.8232996167373585,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_10,Fast corners,fast_corner,2200.0,2450.0,221.65510933591816,4.0743453455649785,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_11,Slow corners,slow_corner,2450.0,2940.0,125.3897918417701,14.085464061401645,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_12,Fast corners,fast_corner,2940.0,3150.0,227.2708045551438,3.276681296155324,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_13,Straights,straight,3150.0,3560.0,271.74574239418,5.430259522997559,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_14,Fast corners,fast_corner,3560.0,3660.0,230.32191453882552,1.621030329366576,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_15,Slow corners,slow_corner,3660.0,3800.0,123.30930954418726,4.112320457260509,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_16,Fast corners,fast_corner,3800.0,4010.0,209.2219276099781,3.600905838369087,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_17,Slow corners,slow_corner,4010.0,4140.0,141.54986545893937,3.2930699240631185,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_18,Fast corners,fast_corner,4140.0,4310.0,225.0648644188055,2.6677982871199504,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,HAM,seg_19,Straights,straight,4310.0,5930.0,303.7379906016552,19.18249748286769,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_01,Straights,straight,0.0,250.0,278.1897077888249,3.3045594935932447,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_02,Slow corners,slow_corner,250.0,370.0,130.0043534002256,3.3197629455631272,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_03,Fast corners,fast_corner,370.0,580.0,214.51162464014087,3.5286203616829086,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_04,Slow corners,slow_corner,580.0,710.0,124.23329768703114,3.754447426724576,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_05,Fast corners,fast_corner,710.0,860.0,217.05856363414017,2.425231640179872,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_06,Straights,straight,860.0,1450.0,290.1486389221862,7.363358936023076,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_07,Slow corners,slow_corner,1450.0,1810.0,131.33523786014564,9.733269828389949,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_08,Fast corners,fast_corner,1810.0,2010.0,203.56417890212,3.5119848565494607,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_09,Slow corners,slow_corner,2010.0,2200.0,114.85853999306886,5.959804284021075,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_10,Fast corners,fast_corner,2200.0,2450.0,216.80933572926153,4.139880350635778,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_11,Slow corners,slow_corner,2450.0,2940.0,124.74795879342216,14.268955296332663,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_12,Fast corners,fast_corner,2940.0,3150.0,216.76769041669928,3.4054599926555227,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_13,Straights,straight,3150.0,3560.0,266.97206560283814,5.525388524598895,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_14,Fast corners,fast_corner,3560.0,3660.0,219.22135761930053,1.6911504888605862,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_15,Slow corners,slow_corner,3660.0,3800.0,119.41180296822724,4.2628888272417385,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_16,Fast corners,fast_corner,3800.0,4010.0,205.1048941214726,3.6579907576427217,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_17,Slow corners,slow_corner,4010.0,4140.0,139.52559128153067,3.3916807945672645,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_18,Fast corners,fast_corner,4140.0,4310.0,214.13199792194033,2.7968788272142717,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Audi,HUL,seg_19,Straights,straight,4310.0,5930.0,300.35057090820646,19.391016123318323,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_01,Straights,straight,0.0,250.0,264.6671861918476,3.4954203099352505,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_02,Slow corners,slow_corner,250.0,370.0,132.95613886751642,3.1856379298077724,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_03,Fast corners,fast_corner,370.0,580.0,216.4204908346049,3.5254205244173376,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_04,Slow corners,slow_corner,580.0,710.0,124.97444212421684,3.7421548144394023,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_05,Fast corners,fast_corner,710.0,860.0,222.72936888824876,2.374842735568036,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_06,Straights,straight,860.0,1450.0,285.4564934556882,7.5095651303249795,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_07,Slow corners,slow_corner,1450.0,1810.0,133.01835372227544,9.703516450244052,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_08,Fast corners,fast_corner,1810.0,2010.0,212.7784297634091,3.392777004470304,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_09,Slow corners,slow_corner,2010.0,2200.0,115.65148592833792,5.912987529531492,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_10,Fast corners,fast_corner,2200.0,2450.0,223.5082411910969,4.039820794345793,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_11,Slow corners,slow_corner,2450.0,2940.0,123.132380962791,14.172031631802518,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_12,Fast corners,fast_corner,2940.0,3150.0,226.672400764121,3.2882794352266274,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_13,Straights,straight,3150.0,3560.0,269.63639272165267,5.4722643410651415,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_14,Fast corners,fast_corner,3560.0,3660.0,215.16928746549556,1.740434412300658,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_15,Slow corners,slow_corner,3660.0,3800.0,119.22044100320018,4.2113598722387025,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_16,Fast corners,fast_corner,3800.0,4010.0,210.87389752077033,3.58390986811834,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_17,Slow corners,slow_corner,4010.0,4140.0,133.24644969450506,3.4916786623445404,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_18,Fast corners,fast_corner,4140.0,4310.0,224.4292588179152,2.580499916391659,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LAW,seg_19,Straights,straight,4310.0,5930.0,305.06414254365944,19.099186058427705,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_01,Straights,straight,0.0,250.0,279.64306205716287,3.297750567650397,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_02,Slow corners,slow_corner,250.0,370.0,139.0243274866084,3.1020237680187415,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_03,Fast corners,fast_corner,370.0,580.0,215.5226476559786,3.5084576759633963,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_04,Slow corners,slow_corner,580.0,710.0,128.6614939219634,3.6683211798568216,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_05,Fast corners,fast_corner,710.0,860.0,226.08328056041844,2.340683037146946,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_06,Straights,straight,860.0,1450.0,294.6308059680404,7.274322904392321,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_07,Slow corners,slow_corner,1450.0,1810.0,134.41055141267842,9.658679348402632,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_08,Fast corners,fast_corner,1810.0,2010.0,211.7681807165852,3.4156043895151527,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_09,Slow corners,slow_corner,2010.0,2200.0,118.28752553210413,5.789757457578489,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_10,Fast corners,fast_corner,2200.0,2450.0,221.86642966708175,4.075561517400182,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_11,Slow corners,slow_corner,2450.0,2940.0,126.25983464430227,14.00171253089654,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_12,Fast corners,fast_corner,2940.0,3150.0,231.61186603707552,3.2131178573701717,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_13,Straights,straight,3150.0,3560.0,268.0993824560132,5.519359457767997,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_14,Fast corners,fast_corner,3560.0,3660.0,215.3830567245923,1.7566321072914377,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_15,Slow corners,slow_corner,3660.0,3800.0,121.33606278136013,4.111161696865679,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_16,Fast corners,fast_corner,3800.0,4010.0,208.29152727113615,3.6518725610133345,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_17,Slow corners,slow_corner,4010.0,4140.0,138.32737074144714,3.359426635058071,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_18,Fast corners,fast_corner,4140.0,4310.0,231.35779410909873,2.5990736207394747,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Ferrari,LEC,seg_19,Straights,straight,4310.0,5930.0,309.23570428980355,18.836960651473504,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_01,Straights,straight,0.0,250.0,254.3250143161385,3.670127428396164,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_02,Slow corners,slow_corner,250.0,370.0,133.9416577877581,3.1769401491165814,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_03,Fast corners,fast_corner,370.0,580.0,210.44033609180457,3.618164739259682,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_04,Slow corners,slow_corner,580.0,710.0,123.54499640024169,3.72253807223424,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_05,Fast corners,fast_corner,710.0,860.0,228.577638312498,2.3175477592293543,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_06,Straights,straight,860.0,1450.0,280.74546294680044,7.620407283983894,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_07,Slow corners,slow_corner,1450.0,1810.0,130.55275171385168,9.813335300341514,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_08,Fast corners,fast_corner,1810.0,2010.0,210.14302555603047,3.4304964102957314,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_09,Slow corners,slow_corner,2010.0,2200.0,114.65342453591332,5.910198411515701,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_10,Fast corners,fast_corner,2200.0,2450.0,212.8056278978785,4.351665405507482,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_11,Slow corners,slow_corner,2450.0,2940.0,124.48553943327109,14.142942123793588,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_12,Fast corners,fast_corner,2940.0,3150.0,232.619671095242,3.195320627480143,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_13,Straights,straight,3150.0,3560.0,268.8068857035273,5.4917120871776035,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_14,Fast corners,fast_corner,3560.0,3660.0,198.5779161236878,1.918165508915493,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_15,Slow corners,slow_corner,3660.0,3800.0,122.89292615844468,3.983584526086176,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_16,Fast corners,fast_corner,3800.0,4010.0,211.96892230620364,3.589227839601648,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_17,Slow corners,slow_corner,4010.0,4140.0,137.5649023479256,3.3716127848005613,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_18,Fast corners,fast_corner,4140.0,4310.0,227.90580814953944,2.62890660716701,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Racing Bulls,LIN,seg_19,Straights,straight,4310.0,5930.0,307.3564034953789,18.96235573561512,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_01,Straights,straight,0.0,250.0,281.027303238253,3.2764550531523446,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_02,Slow corners,slow_corner,250.0,370.0,133.60028666372443,3.1957273183317185,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_03,Fast corners,fast_corner,370.0,580.0,219.11898491643413,3.435050961849276,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_04,Slow corners,slow_corner,580.0,710.0,124.94270560649105,3.6280810802544767,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_05,Fast corners,fast_corner,710.0,860.0,216.57730604486815,2.3334063768081688,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_06,Straights,straight,860.0,1450.0,296.5817437848079,7.221929296668408,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_07,Slow corners,slow_corner,1450.0,1810.0,134.0446245112896,9.60187113915102,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_08,Fast corners,fast_corner,1810.0,2010.0,212.3306137291158,3.3521701524884335,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_09,Slow corners,slow_corner,2010.0,2200.0,118.1312753954302,5.820924997854,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_10,Fast corners,fast_corner,2200.0,2450.0,221.90157487151404,4.003925249063684,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_11,Slow corners,slow_corner,2450.0,2940.0,126.67794848492537,14.033078903564949,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_12,Fast corners,fast_corner,2940.0,3150.0,221.27309665613708,3.332763051781022,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_13,Straights,straight,3150.0,3560.0,271.5948711426982,5.437201834577543,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_14,Fast corners,fast_corner,3560.0,3660.0,240.54148449795292,1.5399789694077697,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_15,Slow corners,slow_corner,3660.0,3800.0,125.7104073628888,4.053718369868079,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_16,Fast corners,fast_corner,3800.0,4010.0,209.63187596870063,3.5948123206666196,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_17,Slow corners,slow_corner,4010.0,4140.0,136.73669026872616,3.4602707781709796,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_18,Fast corners,fast_corner,4140.0,4310.0,214.3084850312207,2.7948878364789635,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,NOR,seg_19,Straights,straight,4310.0,5930.0,304.8891100401346,19.110245332119348,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_01,Straights,straight,0.0,250.0,274.74999902510734,3.345080158443358,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_02,Slow corners,slow_corner,250.0,370.0,135.2204698170784,3.1966602700498585,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_03,Fast corners,fast_corner,370.0,580.0,212.1718431815713,3.645071188364665,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_04,Slow corners,slow_corner,580.0,710.0,123.650060286364,3.763419110523024,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_05,Fast corners,fast_corner,710.0,860.0,219.25276073147137,2.4040872730671836,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_06,Straights,straight,860.0,1450.0,287.83119496094554,7.436799300226955,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_07,Slow corners,slow_corner,1450.0,1810.0,132.3064098178904,9.677147144385293,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_08,Fast corners,fast_corner,1810.0,2010.0,214.23231151738332,3.3736390384970605,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_09,Slow corners,slow_corner,2010.0,2200.0,115.77230191565768,5.948354344002354,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_10,Fast corners,fast_corner,2200.0,2450.0,221.74457836044465,4.067969361078177,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_11,Slow corners,slow_corner,2450.0,2940.0,123.65053926634076,14.23414443474357,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_12,Fast corners,fast_corner,2940.0,3150.0,223.78580855509736,3.311698840322265,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_13,Straights,straight,3150.0,3560.0,272.6206541851588,5.4166080481738135,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_14,Fast corners,fast_corner,3560.0,3660.0,226.27172371075787,1.677018856543441,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_15,Slow corners,slow_corner,3660.0,3800.0,120.50411814251362,4.047750255639556,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_16,Fast corners,fast_corner,3800.0,4010.0,205.5966912635669,3.6725887408725417,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_17,Slow corners,slow_corner,4010.0,4140.0,133.71764114698604,3.5300773873991886,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_18,Fast corners,fast_corner,4140.0,4310.0,208.15219645005809,2.8655086662044624,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Haas F1 Team,OCO,seg_19,Straights,straight,4310.0,5930.0,304.46799600895406,19.134289858179443,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_01,Straights,straight,0.0,250.0,270.86757881704773,3.411762765454605,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_02,Slow corners,slow_corner,250.0,370.0,130.44332236635526,3.270050449110346,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_03,Fast corners,fast_corner,370.0,580.0,207.23986305701163,3.65508844366242,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_04,Slow corners,slow_corner,580.0,710.0,121.56513221366056,3.8233638487625807,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_05,Fast corners,fast_corner,710.0,860.0,217.57519984031143,2.394079663215628,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_06,Straights,straight,860.0,1450.0,282.56802759127027,7.58941819309884,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_07,Slow corners,slow_corner,1450.0,1810.0,128.4706346407836,10.02726081850722,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_08,Fast corners,fast_corner,1810.0,2010.0,206.9108204927687,3.4626067431337972,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_09,Slow corners,slow_corner,2010.0,2200.0,112.54464087362676,6.060456506748544,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_10,Fast corners,fast_corner,2200.0,2450.0,212.30524807667413,4.256138998855974,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_11,Slow corners,slow_corner,2450.0,2940.0,118.28610626432196,14.790147733508668,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_12,Fast corners,fast_corner,2940.0,3150.0,221.8677381052024,3.3393094911567545,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_13,Straights,straight,3150.0,3560.0,271.0601910109203,5.453309330721439,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_14,Fast corners,fast_corner,3560.0,3660.0,198.89077222585604,1.8865961613500133,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_15,Slow corners,slow_corner,3660.0,3800.0,119.3605679480157,4.158112187156931,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_16,Fast corners,fast_corner,3800.0,4010.0,207.8890205919535,3.654691858132296,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_17,Slow corners,slow_corner,4010.0,4140.0,133.85410782144672,3.473473911864488,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_18,Fast corners,fast_corner,4140.0,4310.0,219.76149962160315,2.723230970433832,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Cadillac,PER,seg_19,Straights,straight,4310.0,5930.0,306.36116449541737,19.00874496036714,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_01,Straights,straight,0.0,250.0,277.236465834358,3.3317410529646256,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_02,Slow corners,slow_corner,250.0,370.0,134.45307985751236,3.1753818838160113,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_03,Fast corners,fast_corner,370.0,580.0,216.94173500367484,3.4728053123871687,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_04,Slow corners,slow_corner,580.0,710.0,126.1455107878333,3.6701405339009785,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_05,Fast corners,fast_corner,710.0,860.0,227.35013036396631,2.3283128270297553,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_06,Straights,straight,860.0,1450.0,292.8831790146076,7.301821288452187,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_07,Slow corners,slow_corner,1450.0,1810.0,134.5372075156229,9.60198862942194,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_08,Fast corners,fast_corner,1810.0,2010.0,209.59034832799313,3.437224785000872,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_09,Slow corners,slow_corner,2010.0,2200.0,118.31897689046704,5.754529943187805,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_10,Fast corners,fast_corner,2200.0,2450.0,224.93486068740853,4.017227928122729,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_11,Slow corners,slow_corner,2450.0,2940.0,124.3566240203556,14.085841775307609,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_12,Fast corners,fast_corner,2940.0,3150.0,231.87274874745953,3.2187464301336774,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_13,Straights,straight,3150.0,3560.0,273.59846919455975,5.394148548006477,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_14,Fast corners,fast_corner,3560.0,3660.0,223.69217177679968,1.67789410460567,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_15,Slow corners,slow_corner,3660.0,3800.0,120.37355137677945,4.155699429240414,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_16,Fast corners,fast_corner,3800.0,4010.0,207.22340952694464,3.6591658358641297,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_17,Slow corners,slow_corner,4010.0,4140.0,140.2222215151389,3.306783025665794,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_18,Fast corners,fast_corner,4140.0,4310.0,229.91699272414075,2.6076815069564105,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,McLaren,PIA,seg_19,Straights,straight,4310.0,5930.0,307.58663707224883,18.94018827732539,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_01,Straights,straight,0.0,250.0,270.79592952628593,3.380212303598361,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_02,Slow corners,slow_corner,250.0,370.0,137.2259443171269,3.0346030675997615,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_03,Fast corners,fast_corner,370.0,580.0,223.47686651794868,3.360218199447371,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_04,Slow corners,slow_corner,580.0,710.0,128.40429453102652,3.669755291450107,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_05,Fast corners,fast_corner,710.0,860.0,220.06370624186908,2.3932310038581495,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_06,Straights,straight,860.0,1450.0,295.3927853012651,7.233485189146089,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_07,Slow corners,slow_corner,1450.0,1810.0,135.76466483657416,9.399404133586152,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_08,Fast corners,fast_corner,1810.0,2010.0,215.3574993890271,3.3252166036779087,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_09,Slow corners,slow_corner,2010.0,2200.0,118.15475118295186,5.818044982209905,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_10,Fast corners,fast_corner,2200.0,2450.0,226.6904869209839,3.9478490253776286,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_11,Slow corners,slow_corner,2450.0,2940.0,126.52220198487038,13.941356687435864,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_12,Fast corners,fast_corner,2940.0,3150.0,214.04000627253225,3.463227887189163,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_13,Straights,straight,3150.0,3560.0,277.6346127853259,5.314004063945298,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_14,Fast corners,fast_corner,3560.0,3660.0,236.20979512684957,1.5766672776672124,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_15,Slow corners,slow_corner,3660.0,3800.0,121.57373749382366,4.143755760897591,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_16,Fast corners,fast_corner,3800.0,4010.0,212.07463680337764,3.5714949670218203,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_17,Slow corners,slow_corner,4010.0,4140.0,142.95944598023942,3.2859706787275513,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_18,Fast corners,fast_corner,4140.0,4310.0,222.5370899454163,2.704042083221438,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Mercedes,RUS,seg_19,Straights,straight,4310.0,5930.0,312.67578494492756,18.631560320091467,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_01,Straights,straight,0.0,250.0,284.24016007969107,3.240356455637033,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_02,Slow corners,slow_corner,250.0,370.0,130.57115702452316,3.272860239109337,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_03,Fast corners,fast_corner,370.0,580.0,212.2912243619707,3.60021610311144,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_04,Slow corners,slow_corner,580.0,710.0,126.85275920588964,3.674245925080669,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_05,Fast corners,fast_corner,710.0,860.0,222.15272691005677,2.3831430480395195,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_06,Straights,straight,860.0,1450.0,291.7495850133527,7.328661672730615,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_07,Slow corners,slow_corner,1450.0,1810.0,130.5423265917697,10.034367617024955,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_08,Fast corners,fast_corner,1810.0,2010.0,208.0277803827629,3.481833086315376,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_09,Slow corners,slow_corner,2010.0,2200.0,112.01416782987748,6.112854563201971,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_10,Fast corners,fast_corner,2200.0,2450.0,220.19016647912025,4.070527814445477,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_11,Slow corners,slow_corner,2450.0,2940.0,123.29117147883564,14.30858111022438,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_12,Fast corners,fast_corner,2940.0,3150.0,227.98025129144176,3.252051613199555,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_13,Straights,straight,3150.0,3560.0,275.29646849299615,5.363528194501868,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_14,Fast corners,fast_corner,3560.0,3660.0,225.57960881800005,1.6694584844525622,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_15,Slow corners,slow_corner,3660.0,3800.0,121.41839540278268,4.112188232143396,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_16,Fast corners,fast_corner,3800.0,4010.0,207.08583878983225,3.658006118989064,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_17,Slow corners,slow_corner,4010.0,4140.0,136.76458866024566,3.4015368340922834,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_18,Fast corners,fast_corner,4140.0,4310.0,228.41694593414465,2.623647214553543,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Williams,SAI,seg_19,Straights,straight,4310.0,5930.0,309.5539919752996,18.81804567982121,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_01,Straights,straight,0.0,250.0,284.7516812432505,3.1604459844335526,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_02,Slow corners,slow_corner,250.0,370.0,128.31982062992765,3.3651446713683804,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_03,Fast corners,fast_corner,370.0,580.0,204.1550105778745,3.7067150356331138,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_04,Slow corners,slow_corner,580.0,710.0,122.42184606204027,3.817489935702559,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_05,Fast corners,fast_corner,710.0,860.0,213.88849295576225,2.5243130310920243,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_06,Straights,straight,860.0,1450.0,281.15153179041044,7.555530598648634,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_07,Slow corners,slow_corner,1450.0,1810.0,129.43505493809178,10.00844282254625,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_08,Fast corners,fast_corner,1810.0,2010.0,202.81148950155705,3.5537006473437955,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_09,Slow corners,slow_corner,2010.0,2200.0,114.67810801981553,5.96065448390415,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_10,Fast corners,fast_corner,2200.0,2450.0,212.85595006123495,4.229614357581681,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_11,Slow corners,slow_corner,2450.0,2940.0,119.9227543617554,14.706445361264834,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_12,Fast corners,fast_corner,2940.0,3150.0,220.5609916256575,3.4283697518451888,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_13,Straights,straight,3150.0,3560.0,265.0252107197228,5.569532239386078,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_14,Fast corners,fast_corner,3560.0,3660.0,219.276045776123,1.6422728702494285,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_15,Slow corners,slow_corner,3660.0,3800.0,121.0836284084907,4.161121984591901,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_16,Fast corners,fast_corner,3800.0,4010.0,203.1661060290095,3.7216314620511217,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_17,Slow corners,slow_corner,4010.0,4140.0,138.3280496953432,3.3824607752300153,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_18,Fast corners,fast_corner,4140.0,4310.0,217.6632905974993,2.8114286554988865,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Aston Martin,STR,seg_19,Straights,straight,4310.0,5930.0,294.03445357577914,19.834681685099397,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_01,Straights,straight,0.0,250.0,270.68061327011685,3.401784880285476,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_02,Slow corners,slow_corner,250.0,370.0,137.25124196521983,3.1143842656979066,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_03,Fast corners,fast_corner,370.0,580.0,214.1737011209683,3.542293061280769,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_04,Slow corners,slow_corner,580.0,710.0,129.36020455729994,3.613868720619372,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_05,Fast corners,fast_corner,710.0,860.0,223.3178736786513,2.3623935661607813,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_06,Straights,straight,860.0,1450.0,285.6073598036161,7.484021811805888,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_07,Slow corners,slow_corner,1450.0,1810.0,134.838042989066,9.590981913604288,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_08,Fast corners,fast_corner,1810.0,2010.0,210.4378285524952,3.4214828347403667,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_09,Slow corners,slow_corner,2010.0,2200.0,118.52820317725256,5.710401849030987,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_10,Fast corners,fast_corner,2200.0,2450.0,223.83717039559855,3.978142755033552,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_11,Slow corners,slow_corner,2450.0,2940.0,126.59398741559204,13.875552657495009,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_12,Fast corners,fast_corner,2940.0,3150.0,226.9650976948427,3.2842291432251827,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_13,Straights,straight,3150.0,3560.0,265.4539247475024,5.560283548571142,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_14,Fast corners,fast_corner,3560.0,3660.0,227.7356520622624,1.6315634218470052,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_15,Slow corners,slow_corner,3660.0,3800.0,123.91506806825078,4.076131487810827,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_16,Fast corners,fast_corner,3800.0,4010.0,209.34404925238164,3.6179024533088864,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_17,Slow corners,slow_corner,4010.0,4140.0,139.65147882589383,3.3251131950441675,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_18,Fast corners,fast_corner,4140.0,4310.0,225.66108564770585,2.664324681662748,qualifying,partial_interpolation
+fastf1_2026_azerbaijan_grand_prix_qualifying,Baku City Circuit,Red Bull Racing,VER,seg_19,Straights,straight,4310.0,5930.0,303.6702099830562,19.181991434894854,qualifying,partial_interpolation

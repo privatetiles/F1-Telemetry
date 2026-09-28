@@ -1,0 +1,22 @@
+session,driver,team,lap_number,lap_time_seconds,track_status,green_only,compound,tyre_life,passes_prior_quality_gate,candidate_intervals,repaired_intervals,changed_speed_rows,source_path,qualifying_phase,included_in_provisional_calibration
+qualifying,ALB,Williams,16.0,105.001,12,False,SOFT,3.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv,Q2,True
+qualifying,ALO,Aston Martin,7.0,106.593,1,True,SOFT,3.0,True,1,1,19,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv,Q1,True
+qualifying,BEA,Haas F1 Team,15.0,104.775,1,True,SOFT,5.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv,Q2,True
+qualifying,BOR,Audi,5.0,105.799,1,True,SOFT,5.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv,Q1,True
+qualifying,BOT,Cadillac,3.0,108.29,1,True,SOFT,3.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/BOT_fastest_lap_telemetry.csv,Q1,True
+qualifying,COL,Alpine,14.0,104.683,12,False,SOFT,5.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv,Q2,True
+qualifying,GAS,Alpine,18.0,104.047,12,False,SOFT,3.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv,Q3,True
+qualifying,HAD,Red Bull Racing,20.0,103.5,12,False,SOFT,5.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/HAD_fastest_lap_telemetry.csv,Q3,True
+qualifying,HAM,Ferrari,21.0,103.858,12,False,SOFT,5.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv,Q3,True
+qualifying,HUL,Audi,9.0,105.92,12,False,SOFT,3.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv,Q1,True
+qualifying,LAW,Racing Bulls,17.0,104.86,12,False,SOFT,7.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv,Q2,True
+qualifying,LEC,Ferrari,22.0,103.363,12,False,SOFT,5.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv,Q3,True
+qualifying,LIN,Racing Bulls,14.0,105.106,1,True,SOFT,5.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/LIN_fastest_lap_telemetry.csv,Q2,True
+qualifying,NOR,McLaren,18.0,103.672,1,True,SOFT,3.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv,Q3,True
+qualifying,OCO,Haas F1 Team,15.0,105.016,1,True,SOFT,5.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv,Q2,True
+qualifying,PER,Cadillac,3.0,106.658,1,True,SOFT,3.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/PER_fastest_lap_telemetry.csv,Q1,True
+qualifying,PIA,McLaren,21.0,103.364,12,False,SOFT,2.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv,Q3,True
+qualifying,RUS,Mercedes,25.0,102.526,12,False,SOFT,7.0,False,1,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv,Q3,True
+qualifying,SAI,Williams,24.0,104.566,12,False,SOFT,3.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/SAI_fastest_lap_telemetry.csv,Q3,True
+qualifying,STR,Aston Martin,8.0,107.337,1,True,SOFT,6.0,True,1,1,20,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/STR_fastest_lap_telemetry.csv,Q1,True
+qualifying,VER,Red Bull Racing,15.0,103.706,12,False,SOFT,7.0,True,0,0,0,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv,Q2,True
