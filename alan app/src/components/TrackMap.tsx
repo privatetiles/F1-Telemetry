@@ -9,6 +9,9 @@ import type { TrackData } from '../lib/paceData'
 import { detectClipZones } from '../lib/clipDetection'
 import type { BattleGapEntry } from '../lib/battleGaps'
 import type { SafetyCarPeriod, PitStopInfo } from '../lib/csvLoader'
+import { pitLaneUrl } from '../lib/dataIndex'
+import { extractPitLane, requestPitLane, validatePitLane } from '../lib/pitLane'
+import type { PitLanePoint } from '../lib/pitLane'
 import InputsHUD from './InputsHUD'
 import SatelliteView from './SatelliteView'
 import Icon from './Icon'
@@ -76,6 +79,7 @@ function catmullRomPath(pts: { x: number; y: number }[], closed = false): string
 
 interface Props {
   circuitId: string
+  circuitYear?: number
   driverTelemetry: Record<string, TelemetryPoint[]>
   activeDrivers: Set<string>
   highlightedDriver: string | null
@@ -98,12 +102,12 @@ interface Props {
   onTuneDriver?: (driver: string | null) => void
   onActiveRadioChange?: (call: { driver: string; url: string; text?: string } | null) => void
   raceControlMessages?: RaceControlMessage[]
-  staticPitLane?: {x: number, y: number}[]
   loading?: boolean
 }
 
 export default function TrackMap({
   circuitId,
+  circuitYear = 2026,
   driverTelemetry,
   activeDrivers,
   highlightedDriver,
@@ -126,7 +130,6 @@ export default function TrackMap({
   onTuneDriver,
   onActiveRadioChange,
   raceControlMessages,
-  staticPitLane,
   loading = false,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -138,6 +141,8 @@ export default function TrackMap({
   const [showSatellite,    setShowSatellite]    = useState(false)
   const [satCamDriver,     setSatCamDriver]     = useState<string | null>(null)
   const [trackData,        setTrackData]        = useState<TrackData | null>(null)
+  const [staticPitLane, setStaticPitLane] = useState<{ url: string; points: PitLanePoint[] } | null>(null)
+  const pitUrl = pitLaneUrl(circuitId, circuitYear)
   const [showClip,         setShowClip]         = useState(false)
   const [showClipTip,      setShowClipTip]      = useState(false)
   const [showSpeedWarn,    setShowSpeedWarn]    = useState(false)
@@ -341,11 +346,17 @@ export default function TrackMap({
 
   // Load 3-class track data for this circuit
   useEffect(() => {
+    let cancelled = false
     setTrackData(null)
     const prefix = CIRCUIT_TRACK_PREFIX[circuitId]
     if (!prefix) return
-    loadTrackData(prefix).then(setTrackData).catch(() => {})
+    loadTrackData(prefix).then(data => { if (!cancelled) setTrackData(data) }).catch(() => {})
+    return () => { cancelled = true }
   }, [circuitId])
+
+  useEffect(() => requestPitLane(pitUrl, points => {
+    setStaticPitLane({ url: pitUrl, points })
+  }), [pitUrl])
 
   const allPoints = useMemo(() => {
     const entries = Object.entries(driverTelemetry)
@@ -394,28 +405,15 @@ export default function TrackMap({
     return []
   }, [driverTelemetry, totalLaps, pitStops, standingRestartLaps])
 
-  // Pit lane path — hybrid detection: use pitStops timestamps as a narrow search window,
-  // then speed-filter (< 80 km/h) within that window to find the actual pit lane traversal.
-  // This avoids the safety-car false positive (SC sections are outside any pit stop window)
-  // that breaks pure speed-based detection at circuits like Monaco 2026.
+  // The saved path and runtime fallback use the same single-visit quality checks.
   const pitLaneSegments = useMemo(() => {
-    if (totalLaps === 0 || !pitStops || Object.keys(pitStops).length === 0) return [] as { x: number; y: number }[][]
-    let bestSeg: { x: number; y: number }[] = []
-    for (const [driver, stops] of Object.entries(pitStops)) {
-      const tel = driverTelemetry[driver]
-      if (!tel || tel.length === 0) continue
-      for (const stop of stops) {
-        // 5-second buffer on each side of the known pit window to include pit entry/exit
-        const inWindow = tel.filter(p =>
-          p.time >= stop.in - 5 && p.time <= stop.out + 5 &&
-          p.speed > 0 && p.speed < 80 &&
-          isFinite(p.x) && isFinite(p.y)
-        )
-        if (inWindow.length > bestSeg.length) bestSeg = inWindow.map(p => ({ x: p.x, y: p.y }))
-      }
-    }
-    return bestSeg.length > 5 ? [bestSeg] : []
-  }, [driverTelemetry, pitStops, totalLaps])
+    if (loading || staticPitLane?.url !== pitUrl) return []
+    // Key the geometry as well as aborting requests: no frame can reuse another circuit.
+    if (staticPitLane.points.length) return [staticPitLane.points]
+    if (totalLaps === 0 || !pitStops) return []
+    const points = validatePitLane(extractPitLane(driverTelemetry, pitStops))
+    return points.length ? [points] : []
+  }, [driverTelemetry, pitStops, totalLaps, staticPitLane, pitUrl, loading])
 
   // Last relDist per driver — used for retired-driver detection in full race
   const driverLastRelDist = useMemo(() => {
@@ -709,30 +707,24 @@ export default function TrackMap({
           onDoubleClick={() => updateTrackZoom(trackZoom + 0.5)}
         >
 
-          {/* Pit lane — static pre-extracted path (all sessions) or runtime-detected (full race) */}
-          {(() => {
-            const segs: {x: number, y: number}[][] =
-              staticPitLane && staticPitLane.length > 5
-                ? [staticPitLane]
-                : (totalLaps > 0 ? pitLaneSegments : [])
-            if (segs.length === 0) return null
-            return segs.map((seg, i) => {
-              const pts = seg.map(p => transform.apply(p))
-              return (
-                <g key={`pit-lane-${i}`}>
-                  <path d={catmullRomPath(pts, false)} fill="none"
-                    stroke="#ffffff" strokeWidth={7}
-                    strokeOpacity={0.06}
-                    strokeLinecap="round" strokeLinejoin="round" />
-                  <path d={catmullRomPath(pts, false)} fill="none"
-                    stroke="#aaccff" strokeWidth={1.5}
-                    strokeOpacity={0.4}
-                    strokeLinecap="round" strokeLinejoin="round"
-                    strokeDasharray="5 4" />
-                </g>
-              )
-            })
-          })()}
+          {/* Validated single pit visit; straight segments cannot overshoot the GPS path. */}
+          {pitLaneSegments.map((seg, i) => {
+            const pts = seg.map(p => transform.apply(p))
+            const d = pts.map((p, j) => `${j === 0 ? 'M' : 'L'} ${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')
+            return (
+              <g key={`pit-lane-${i}`} aria-label="Pit lane">
+                <path d={d} fill="none"
+                  stroke="#ffffff" strokeWidth={7}
+                  strokeOpacity={0.06}
+                  strokeLinecap="round" strokeLinejoin="round" />
+                <path d={d} fill="none"
+                  stroke="#aaccff" strokeWidth={1.5}
+                  strokeOpacity={0.4}
+                  strokeLinecap="round" strokeLinejoin="round"
+                  strokeDasharray="5 4" />
+              </g>
+            )
+          })}
 
           {/* Track with race-condition coloring (white default → yellow/red under caution) */}
           {hasData && trackData && (() => {
