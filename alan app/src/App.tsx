@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import type { CircuitConfig, CircuitSession, TelemetryPoint, ColorMode } from './types'
-import { CIRCUITS, telemetryUrl, fullRaceUrl, teamRadioUrl, raceControlUrl, pitLaneUrl } from './lib/dataIndex'
+import { CIRCUITS, telemetryUrl, fullRaceUrl, teamRadioUrl, raceControlUrl } from './lib/dataIndex'
 import { loadAllDriverTelemetry, loadTelemetryFromFile, loadFullRaceTelemetry } from './lib/csvLoader'
 import type { SafetyCarPeriod, StintInfo, PitStopInfo, OvertakeEvent } from './lib/csvLoader'
 import { computeMiniSectors, computeMiniSectorsFromSegments } from './lib/miniSectors'
@@ -83,7 +83,6 @@ export default function App() {
   const [activeView, setActiveView] = useState<AppView>(() => appViewFromHash(window.location.hash) ?? 'telemetry')
   const [battleDrivers, setBattleDrivers] = useState<string[]>([])
   const [mobileBattleOpen, setMobileBattleOpen] = useState(false)
-  const [staticPitLane, setStaticPitLane] = useState<{x: number, y: number}[] | null>(null)
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
   const [isDragging, setIsDragging] = useState(false)
   const [pendingResultRound, setPendingResultRound] = useState<number | undefined>(undefined)
@@ -232,17 +231,6 @@ export default function App() {
     if (!prefix) return
     loadTrackData(prefix).then(setTrackData).catch(() => {})
   }, [circuit.id])
-
-  useEffect(() => {
-    const year = (circuit.year ?? (selectedSeason === 'historical' ? 2026 : selectedSeason)) as number
-    fetch(pitLaneUrl(circuit.id, year))
-      .then(r => r.ok ? r.json() as Promise<{x: number[], y: number[]}> : null)
-      .then(data => {
-        if (!data) { setStaticPitLane(null); return }
-        setStaticPitLane(data.x.map((x, i) => ({ x, y: data.y[i] })))
-      })
-      .catch(() => setStaticPitLane(null))
-  }, [circuit.id, circuit.year, selectedSeason])
 
   const processFiles = useCallback(async (files: File[]) => {
     const csvFiles = files.filter((f) => f.name.toLowerCase().endsWith('.csv'))
@@ -420,6 +408,7 @@ export default function App() {
 
   // Load telemetry for circuits with real data
   useEffect(() => {
+    let cancelled = false
     setPlaying(false)
     setProgress(0)
     setDriverTelemetry({})
@@ -449,6 +438,7 @@ export default function App() {
     if (session.type === 'full_race' || session.type === 'full_sprint_race') {
       const folder = session.type === 'full_sprint_race' ? 'sprint_race' : 'race'
       loadFullRaceTelemetry(fullRaceUrl(circuit.id, year, folder)).then(({ data, dnf, totalLaps: tl, lapBoundaries: lb, safetyCars: sc, stints: st, pitStops: ps, overtakes: ov, standingRestartLaps: srl }) => {
+        if (cancelled) return
         setDriverTelemetry(data)
         setDnfDrivers(dnf)
         setLapBoundaries(lb)
@@ -460,15 +450,16 @@ export default function App() {
         setStandingRestartLaps(srl)
         setActiveDrivers(new Set(Object.keys(data)))
         setLoading(false)
-      }).catch(() => setLoading(false))
+      }).catch(() => { if (!cancelled) setLoading(false) })
       // Radio loads independently — prefers local cache, falls back to live OpenF1 API
-      fetchRaceRadio(year, circuit.raceDate, teamRadioUrl(circuit.id, year, folder)).then(setRadioData).catch(() => {})
+      fetchRaceRadio(year, circuit.raceDate, teamRadioUrl(circuit.id, year, folder))
+        .then(data => { if (!cancelled) setRadioData(data) }).catch(() => {})
       // Race control messages
       fetch(raceControlUrl(circuit.id, year, folder))
         .then(r => r.ok ? r.json() : [])
-        .then(setRaceControlMessages)
+        .then(data => { if (!cancelled) setRaceControlMessages(data) })
         .catch(() => {})
-      return
+      return () => { cancelled = true }
     }
 
     const urls = session.drivers.map((driver) => ({
@@ -477,6 +468,7 @@ export default function App() {
     }))
 
     loadAllDriverTelemetry(urls).then(({ data, dnf }) => {
+      if (cancelled) return
       setDriverTelemetry(data)
       setDnfDrivers(dnf)
       // Use a functional update to read the latest soloMode without it being a dep
@@ -495,7 +487,8 @@ export default function App() {
         return prevSolo
       })
       setLoading(false)
-    })
+    }).catch(() => { if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
   }, [circuit.id, circuit.year, session.type])
 
   const selectDriver = useCallback((driver: string) => {
@@ -1074,7 +1067,9 @@ export default function App() {
 
                     <div className="center-pane">
                       <TrackMap
+                        key={`${circuit.id}-${circuit.year ?? 2026}-${session.type}`}
                         circuitId={circuit.id}
+                        circuitYear={circuit.year ?? 2026}
                         driverTelemetry={mergedTelemetry}
                         activeDrivers={activeDrivers}
                         highlightedDriver={effectiveHighlight}
@@ -1101,7 +1096,6 @@ export default function App() {
                         onTuneDriver={setTunedDriver}
                         onActiveRadioChange={setActiveRadioCaption}
                         raceControlMessages={raceControlMessages.length > 0 ? raceControlMessages : undefined}
-                        staticPitLane={staticPitLane ?? undefined}
                         loading={loading}
                       />
 

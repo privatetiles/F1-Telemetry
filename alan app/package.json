@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "generate:pit-lanes": "node --experimental-strip-types scripts/generate-pit-lanes.mjs",
     "test:navigation": "node --experimental-strip-types --test tests/navigation.test.mjs",
     "test:pace": "node --experimental-strip-types --test tests/pace.test.mjs",
     "preview": "vite preview"
