@@ -57,6 +57,7 @@ const ALL_EVENTS = [
   'fastf1_2026_dutch_grand_prix_qualifying',
   'fastf1_2026_italian_grand_prix_qualifying',
   'fastf1_2026_madrid_grand_prix_qualifying',
+  'fastf1_2026_azerbaijan_grand_prix_qualifying',
 ] as const
 
 export const EVENTS = ALL_EVENTS.filter(event => !HIDDEN_PACE_EVENTS.has(event))
@@ -81,6 +82,7 @@ export const EVENT_LABEL: Record<string, string> = {
   'fastf1_2026_dutch_grand_prix_qualifying':     'NED',
   'fastf1_2026_italian_grand_prix_qualifying':   'ITA',
   'fastf1_2026_madrid_grand_prix_qualifying':    'MAD',
+  'fastf1_2026_azerbaijan_grand_prix_qualifying': 'AZE',
   'fastf1_2025_austrian_grand_prix':  'AUT',
   'fastf1_2025_belgian_grand_prix':   'BEL',
   'fastf1_2025_british_grand_prix':   'GBR',

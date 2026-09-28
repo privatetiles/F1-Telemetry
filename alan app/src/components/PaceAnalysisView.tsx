@@ -23,7 +23,7 @@ function PredictionTable({ predictions }: { predictions: PredictionEntry[] }) {
   return (
     <div className="pace-section">
       <div className="pace-section-title">2026 overall team pace vs Mercedes</div>
-      <div className="pace-section-sub">Time-weighted speed delta across 3 track categories · latest four events use qualifying telemetry</div>
+      <div className="pace-section-sub">Recency-weighted through Baku qualifying · provisional Mercedes baseline · positive = slower</div>
 
       <div className="pace-pred-table">
         <div className="pace-pred-head">
@@ -366,7 +366,7 @@ export default function PaceAnalysisView() {
   return (
     <div className="pace-view">
       <p className="page-intro">
-        F1 team pace analysis built from FastF1 telemetry data. Speed deltas are calculated as the percentage difference from Mercedes across three track categories — slow corners, fast corners, and straights — weighted by the time each team spends in each zone per lap. A positive value means slower than Mercedes; negative means faster. Hungary, the Netherlands, Italy, and Madrid use qualifying laps; earlier events use race laps. The circuit history grid shows how each team's pace has varied across different race venues throughout the season.
+        Positive means slower than Mercedes. Hungary, the Netherlands, Italy, Madrid, and Baku use qualifying inputs; earlier events use race laps. AZE uses each driver&apos;s fastest lap across Q1, Q2, and Q3, excluding Antonelli. Mercedes uses Russell&apos;s Q3 lap (1:42.526); other teams use both drivers. Provisional: Russell&apos;s Q3 speed freeze failed the repair gate and remains uncorrected; Stroll&apos;s braking jump is also unresolved.
       </p>
       <PredictionTable predictions={predictions} />
       <CircuitHistory deltaMap={deltaMap} predictions={predictions} />
