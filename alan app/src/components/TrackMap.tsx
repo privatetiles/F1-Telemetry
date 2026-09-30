@@ -805,8 +805,6 @@ export default function TrackMap({
             const col = driverColor(driver)
             const isFullRace = totalLaps > 0
 
-            const isFullRace = totalLaps > 0
-
             const lastRD = isFullRace ? (driverLastRelDist[driver] ?? 1) : 1
             const lastTelTime = telemetry.at(-1)?.time ?? Infinity
             // True if this driver retired (data ended well before race finish)
