@@ -805,19 +805,22 @@ export default function TrackMap({
             const col = driverColor(driver)
             const isFullRace = totalLaps > 0
 
-            // Retired: driver's data ended significantly before race end
-            const lastRD = isFullRace ? (driverLastRelDist[driver] ?? 1) : 1
-            const isRetired = isFullRace && progress > lastRD + 1 / totalLaps && lastRD * totalLaps < totalLaps - 3
+            const isFullRace = totalLaps > 0
 
-            // Finished: driver completed all laps and their telemetry has ended
+            const lastRD = isFullRace ? (driverLastRelDist[driver] ?? 1) : 1
             const lastTelTime = telemetry.at(-1)?.time ?? Infinity
-            const isFinished = isFullRace && !isRetired && targetTime > lastTelTime
+            // True if this driver retired (data ended well before race finish)
+            const didRetire = isFullRace && lastRD * totalLaps < totalLaps - 3
+            // Show OUT badge only after the race has fully played out
+            const isRetired = didRetire && progress >= 1
+            // Show FIN badge once a finisher's telemetry ends mid-replay
+            const isFinished = isFullRace && !didRetire && targetTime > lastTelTime
 
             // Pitting: sustained low speed over a 10-second window.
             // Corners are briefly slow (1-3s); pit lane takes 15-25s at limiter speed.
             // Requiring 75% of points in a ±5s window below 80 km/h eliminates false positives.
             let isPitting = false
-            if (isFullRace && !isRetired && !isFinished && progress > 0.015) {
+            if (isFullRace && !didRetire && !isFinished && progress > 0.015) {
               let lo = 0, hi = telemetry.length - 1
               while (lo < hi - 1) {
                 const m = (lo + hi) >> 1
