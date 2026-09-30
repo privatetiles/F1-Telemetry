@@ -809,11 +809,15 @@ export default function TrackMap({
             const lastRD = isFullRace ? (driverLastRelDist[driver] ?? 1) : 1
             const isRetired = isFullRace && progress > lastRD + 1 / totalLaps && lastRD * totalLaps < totalLaps - 3
 
+            // Finished: driver completed all laps and their telemetry has ended
+            const lastTelTime = telemetry.at(-1)?.time ?? Infinity
+            const isFinished = isFullRace && !isRetired && targetTime > lastTelTime
+
             // Pitting: sustained low speed over a 10-second window.
             // Corners are briefly slow (1-3s); pit lane takes 15-25s at limiter speed.
             // Requiring 75% of points in a ±5s window below 80 km/h eliminates false positives.
             let isPitting = false
-            if (isFullRace && !isRetired && progress > 0.015) {
+            if (isFullRace && !isRetired && !isFinished && progress > 0.015) {
               let lo = 0, hi = telemetry.length - 1
               while (lo < hi - 1) {
                 const m = (lo + hi) >> 1
@@ -846,11 +850,11 @@ export default function TrackMap({
                   fill={col}
                   stroke={isHighlighted ? '#ffffff' : isRetired ? '#444' : 'transparent'}
                   strokeWidth={isHighlighted ? 2 : 1}
-                  opacity={isRetired ? 0.3 : 1}
+                  opacity={isRetired ? 0.3 : isFinished ? 0.55 : 1}
                 />
-                {/* Status badge: PIT Xs or OUT */}
-                {(isPitting || isRetired) && !isHighlighted && (() => {
-                  let label = isRetired ? 'OUT' : 'PIT'
+                {/* Status badge: FIN / PIT Xs / OUT */}
+                {(isPitting || isRetired || isFinished) && !isHighlighted && (() => {
+                  let label = isRetired ? 'OUT' : isFinished ? 'FIN' : 'PIT'
                   if (isPitting && pitStops) {
                     const currentLap = Math.floor(progress * totalLaps) + 1
                     const stop = (pitStops[driver] ?? []).find(s => s.lap === currentLap || s.lap === currentLap - 1)
@@ -858,7 +862,7 @@ export default function TrackMap({
                   }
                   return (
                     <text x={pos.x} y={pos.y - dotR - 3}
-                      fill={isRetired ? '#666' : '#f0c040'}
+                      fill={isRetired ? '#666' : isFinished ? '#aaffaa' : '#f0c040'}
                       fontSize={8} fontFamily="monospace" fontWeight="bold" textAnchor="middle">
                       {label}
                     </text>
@@ -874,7 +878,7 @@ export default function TrackMap({
                       {driver}
                     </text>
                   </g>
-                ) : (isFullRace && !isRetired && !isPitting) ? (
+                ) : (isFullRace && !isRetired && !isPitting && !isFinished) ? (
                   <text x={pos.x} y={pos.y - dotR - 2}
                     fill={col} fontSize={8} fontFamily="monospace" fontWeight="bold"
                     textAnchor="middle" opacity={0.9}>
