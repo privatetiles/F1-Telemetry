@@ -1,0 +1,12 @@
+{
+  "app_tests_passed": 24,
+  "sepang_tests_passed": 7,
+  "production_build": "passed",
+  "changed_file_eslint": "passed",
+  "desktop_preview": "passed at 1365x900",
+  "mobile_preview": "passed at 390x844",
+  "pole_display": "predicted pole: 1:34.933",
+  "three_class_map": "single circuit panel",
+  "telemetry_map": "blue-green-yellow-red",
+  "baku_in_primary_team_model": true
+}

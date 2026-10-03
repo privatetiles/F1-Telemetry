@@ -31,9 +31,12 @@ function QualifyingGrid({ drivers, pole }: { drivers: DriverPrediction[]; pole: 
       <div className="pa2-section-title">Predicted Qualifying Order</div>
       {pole && (
         <div className="pa2-pole-info">
-          Predicted pole <span style={{ color: '#f0c040', fontFamily: 'monospace' }}>{pole.predictedTime}</span>
-          <span className="pa2-pole-range"> · range {pole.lowTime} – {pole.highTime}</span>
-          <span className="pa2-pole-anchor"> · anchored to {pole.anchorDriver} {pole.anchorPole} (2025)</span>
+          {pole.compact ? 'predicted pole: ' : 'Predicted pole '}
+          <span style={{ color: '#f0c040', fontFamily: 'monospace' }}>{pole.predictedTime}</span>
+          {!pole.compact && <>
+            <span className="pa2-pole-range"> · range {pole.lowTime} – {pole.highTime}</span>
+            <span className="pa2-pole-anchor"> · anchored to {pole.anchorDriver} {pole.anchorPole} (2025)</span>
+          </>}
         </div>
       )}
 

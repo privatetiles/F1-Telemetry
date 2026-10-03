@@ -1,0 +1,8 @@
+start_distance_m,end_distance_m,old_category,new_category,reason
+2870.0,3020.0,Straights,Fast corners,user_removed_short_straight_patch
+3760.0,3910.0,Straights,Fast corners,user_removed_short_straight_patch
+870.0,1060.0,Fast corners,Straights,slow_corner_exit_into_straight
+3270.0,3460.0,Fast corners,Slow corners,slow_corner_acceleration
+3560.0,3760.0,Fast corners,Slow corners,slow_corner_acceleration
+4300.0,4460.0,Fast corners,Straights,slow_corner_exit_into_straight
+5270.0,5543.0,Fast corners,Straights,slow_corner_exit_into_straight

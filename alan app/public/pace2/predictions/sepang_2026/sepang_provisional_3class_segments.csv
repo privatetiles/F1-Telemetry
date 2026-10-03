@@ -1,0 +1,12 @@
+segment_id,category,start_distance_m,end_distance_m,source
+seg_01,Straights,0.0,570.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_02,Slow corners,570.0,870.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_03,Straights,870.0,1510.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_04,Slow corners,1510.0,1660.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_05,Fast corners,1660.0,3020.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_06,Slow corners,3020.0,3760.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_07,Fast corners,3760.0,4120.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_08,Slow corners,4120.0,4300.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_09,Straights,4300.0,5070.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_10,Slow corners,5070.0,5270.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black
+seg_11,Straights,5270.0,5543.0,Sepang FP2 median with user map revision: two short straights removed; slow exits red/black

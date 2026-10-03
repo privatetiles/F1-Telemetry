@@ -1,0 +1,27 @@
+{
+  "session": "Practice 2",
+  "driver": "LEC",
+  "lap_time_seconds": 97.528,
+  "native_source_path": "FastF1 Data/2026/16_bahrain_grand_prix/practice_2/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+  "xy_units_per_metre": 10,
+  "distance_alignment": "uniform endpoints 0\u20135543m",
+  "speed_scale_kph": [
+    60,
+    330
+  ],
+  "speed_colors": [
+    "#2563eb",
+    "#0891b2",
+    "#22c55e",
+    "#eab308",
+    "#f97316",
+    "#dc2626"
+  ],
+  "class_colors": {
+    "Slow corners": "#dc2626",
+    "Fast corners": "#16984a",
+    "Straights": "#111827"
+  },
+  "classification": "11 revised shared segments from screened FP2 median; two short straight patches removed, short slow-corner exits red/black",
+  "three_class_map_panels": "circuit only; no speed-profile panel"
+}
