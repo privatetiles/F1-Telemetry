@@ -5713,7 +5713,7 @@
   .right-pane { display: none; }
 
   /* Track map height on mobile */
-  .track-map-container { height: 300px; min-height: 300px; }
+  .track-map-container { height: 340px; min-height: 340px; }
 
   /* Seamless pane borders — no double-border between stacked panes */
   .center-pane { border-radius: 0; }
@@ -5724,6 +5724,18 @@
 
   /* Driver panel → compact horizontal scrollable strip */
   .panel-header { display: none; }
+  .driver-panel { position: relative; }
+  .driver-panel::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    background: linear-gradient(to right, transparent, var(--bg-base));
+    pointer-events: none;
+    z-index: 1;
+  }
   .driver-list {
     flex-direction: row;
     overflow-x: auto;
@@ -5873,11 +5885,13 @@
   bottom: 0;
   left: 0;
   right: 0;
+  max-height: 90dvh;
   background: #0d1521;
   border-top: 1px solid #2a3848;
   border-radius: 16px 16px 0 0;
-  padding-bottom: env(safe-area-inset-bottom, 16px);
   animation: selector-sheet-up 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes selector-sheet-up {
@@ -5923,7 +5937,10 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 16px 20px 20px;
+  padding: 16px 20px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Mobile driver strip chips (solo + battle toggles) ───────────────────── */
@@ -5983,17 +6000,17 @@
     display: flex;
     flex-direction: column;
     position: fixed;
-    bottom: 64px; /* above mobile nav bar */
+    bottom: 56px; /* above mobile nav bar (56px) */
     left: 0;
     right: 0;
-    max-height: 60vh;
+    max-height: 60dvh;
     border-radius: 16px 16px 0 0;
     border: none;
     border-top: 1px solid #2a3848;
     z-index: 499;
     overflow-y: auto;
     animation: selector-sheet-up 0.22s cubic-bezier(0.32, 0.72, 0, 1);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-bottom: 8px;
   }
 
   /* Position chart: compact height on mobile */

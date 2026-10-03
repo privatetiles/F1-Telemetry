@@ -1044,7 +1044,7 @@ export default function App() {
                       tunedDriver={radioCallsWithProgress.length > 0 ? tunedDriver : undefined}
                       onTuneDriver={radioCallsWithProgress.length > 0 ? setTunedDriver : undefined}
                       mobileBattleActive={mobileBattleOpen}
-                      onMobileBattleToggle={() => setMobileBattleOpen(p => !p)}
+                      onMobileBattleToggle={totalLaps > 0 ? () => setMobileBattleOpen(p => !p) : undefined}
                     />
 
                     <div

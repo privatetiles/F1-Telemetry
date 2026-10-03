@@ -73,6 +73,7 @@ export default function CircuitSelector({
     if (!selected) return
     onCircuitChange(selected)
     onSessionChange(selected.sessions[0])
+    setSheetOpen(false)
   }
 
   function handleSessionChange(value: string) {
