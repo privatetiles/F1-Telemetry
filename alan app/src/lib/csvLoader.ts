@@ -185,14 +185,18 @@ export async function loadFullRaceTelemetry(url: string): Promise<FullRaceResult
   }
   // Don't fake a 1-lap race when there's genuinely no data — keep 0 so the UI shows "no data"
 
-  // Race start: min t0 of lap 1 (all drivers start together at lights-out)
+  // Race start: min t0 of lap 1 (all drivers start together at lights-out).
+  // If lap 1 is missing (e.g. red flag before first lap recorded), fall back to
+  // the min t0 of any lap — this handles races with a long pre-race suspension.
   let raceStartTime = Infinity
+  let fallbackStartTime = Infinity
   for (const entries of Object.values(json.laps)) {
     for (const e of entries) {
+      if (e.t0 != null) fallbackStartTime = Math.min(fallbackStartTime, e.t0)
       if (e.lap === 1 && e.t0 != null) raceStartTime = Math.min(raceStartTime, e.t0)
     }
   }
-  if (!isFinite(raceStartTime)) raceStartTime = 0
+  if (!isFinite(raceStartTime)) raceStartTime = isFinite(fallbackStartTime) ? fallbackStartTime : 0
 
   // Race end: min t1 of the final lap (totalLaps) among drivers who completed it.
   // Using MIN (not max) gives the WINNER's crossing time.
