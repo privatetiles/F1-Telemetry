@@ -54,7 +54,8 @@ const sprintSessionsFull = [
 
 const fullRaceOnly = [FR_SESSION]
 
-// 2026 calendar: 22 rounds (Bahrain + Saudi Arabia cancelled due to Middle East conflict).
+// 2026 calendar: 22 rounds (Bahrain + Saudi Arabia originally cancelled due to Middle East conflict).
+// Bahrain GP was reinstated and relocated to Sepang, Malaysia (circuit ID: 'sepang').
 // Emilia Romagna dropped; replaced by Barcelona-Catalunya (Jun) and Madrid (Sep).
 // Sprint weekends: China, Miami, Canada, Britain, Netherlands, Singapore.
 // 2027 calendar: dates are provisional — update when FIA publishes official calendar.
@@ -87,6 +88,7 @@ export const CIRCUITS: CircuitConfig[] = [
   { id: 'italian',            name: 'Italian GP',              flag: '🇮🇹', raceDate: '2026-09-06', hasData: true,  sessions: stdSessionsFull },
   { id: 'madrid',             name: 'Spanish GP',              flag: '🇪🇸', raceDate: '2026-09-14', hasData: true,  sessions: stdSessionsFull },
   { id: 'azerbaijan',         name: 'Azerbaijan GP',           flag: '🇦🇿', raceDate: '2026-09-26', hasData: true,  sessions: stdSessionsFull },
+  { id: 'sepang',             name: 'Bahrain GP (Sepang)',      flag: '🇲🇾', raceDate: '2026-10-04', hasData: true,  sessions: stdSessions        },
   { id: 'singapore',          name: 'Singapore GP',            flag: '🇸🇬', raceDate: '2026-10-11', hasData: false, sessions: sprintSessions },
   { id: 'united_states',      name: 'United States GP',        flag: '🇺🇸', raceDate: '2026-10-25', hasData: false, sessions: stdSessions    },
   { id: 'mexican_city',       name: 'Mexico City GP',          flag: '🇲🇽', raceDate: '2026-11-01', hasData: false, sessions: stdSessions    },
@@ -132,6 +134,7 @@ const FOLDER_OVERRIDES: Record<string, string> = {
   belgian_2022:        'belgian',
   monaco_2024:         'monaco',
   bahrain_2020:        'bahrain',
+  sepang:              'bahrain_malaysia',
 }
 
 function circuitFolder(circuitId: string): string {
