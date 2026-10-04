@@ -1,0 +1,15 @@
+{
+  "targeted_tests_passed": 18,
+  "independent_checks": [
+    "22-driver complete roster",
+    "six dry medium-to-Q3 anchor pairs",
+    "weighted median independently recomputed",
+    "each team mean matches revised projection",
+    "same-team driver offsets independently recomputed and centered",
+    "pole gaps and ordering",
+    "Baku retained in team calibration",
+    "all input hashes unchanged"
+  ],
+  "hashed_input_count": 76,
+  "full_repository_tests_run": false
+}

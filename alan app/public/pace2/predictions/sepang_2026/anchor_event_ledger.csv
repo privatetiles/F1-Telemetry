@@ -1,0 +1,16 @@
+round,event,anchor_included,anchor_exclusion_reason,driver_offsets_included
+1,01_australia_grand_prix,False,missing_two_low_tyre_age_medium_laps,True
+2,02_china_grand_prix,False,sprint_weekend_no_comparable_fp2,True
+3,03_japan_grand_prix,True,,True
+4,04_miami_grand_prix,False,sprint_weekend_no_comparable_fp2,True
+5,05_canadian_grand_prix,False,sprint_weekend_no_comparable_fp2,False
+6,06_monaco_grand_prix,False,fp2_rain_detected,True
+7,07_barcelona_grand_prix,True,,True
+8,08_austrian_grand_prix,True,,True
+9,09_british_grand_prix,False,sprint_weekend_no_comparable_fp2,True
+10,10_belgian_grand_prix,True,,True
+11,11_hungarian_grand_prix,True,,True
+12,12_dutch_grand_prix,False,sprint_weekend_no_comparable_fp2,False
+13,13_italian_grand_prix,False,missing_two_low_tyre_age_medium_laps,True
+14,14_madrid_grand_prix,True,,True
+15,15_azerbaijan_grand_prix,False,baku_mercedes_russell_only_no_paired_reference,True
