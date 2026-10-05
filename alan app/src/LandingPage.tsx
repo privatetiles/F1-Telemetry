@@ -23,7 +23,7 @@ const SECTIONS: HomeSection[] = [
   { title: 'Circuits', description: 'From tight street circuits to flat-out classics. Get to know the tracks behind the racing.', action: 'Explore the circuits', href: '#circuits', icon: 'circuits', preview: 'circuits', accent: '#38bdf8' },
   { title: 'Standings', description: 'Follow the championship picture. See how the drivers and teams stack up across the season.', action: 'View the standings', href: '#standings', icon: 'standings', preview: 'standings', accent: '#facc15' },
   { title: 'Results', description: 'Every finish has a story. Explore race results, qualifying sessions, and the weekend in numbers.', action: 'Explore race results', href: '#results', icon: 'results', preview: 'results', accent: '#ff615a' },
-  { title: 'Discord', description: 'Keep the conversation going. Share discoveries, debate the data, and meet other fans.', action: 'Join the conversation', href: 'https://discord.gg/EkM8cCJeP', icon: 'socials', preview: 'discord', accent: '#969cff' },
+  { title: 'Discord', description: 'Keep the conversation going. Share discoveries, debate the data, and meet other fans.', action: 'Join the conversation', href: 'https://discord.gg/4ka3NK5SFA', icon: 'socials', preview: 'discord', accent: '#969cff' },
   { title: 'About Us', description: 'A fan-made project with a shared obsession. Discover the story behind the data and how it all works.', action: 'Get to know F1vis', href: '/about/', icon: 'teams', preview: 'about', accent: '#ff615a' },
 ]
 

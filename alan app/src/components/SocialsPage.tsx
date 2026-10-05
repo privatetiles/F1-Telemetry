@@ -10,7 +10,7 @@ export default function SocialsPage() {
         <p>Chat about F1, share insights, report bugs, and suggest features with other fans.</p>
         <a
           className="socials-discord-btn"
-          href="https://discord.gg/EkM8cCJeP"
+          href="https://discord.gg/4ka3NK5SFA"
           target="_blank"
           rel="noopener noreferrer"
         >
