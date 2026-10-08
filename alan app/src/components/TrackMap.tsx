@@ -707,25 +707,6 @@ export default function TrackMap({
           onDoubleClick={() => updateTrackZoom(trackZoom + 0.5)}
         >
 
-          {/* Validated single pit visit; straight segments cannot overshoot the GPS path. */}
-          {pitLaneSegments.map((seg, i) => {
-            const pts = seg.map(p => transform.apply(p))
-            const d = pts.map((p, j) => `${j === 0 ? 'M' : 'L'} ${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')
-            return (
-              <g key={`pit-lane-${i}`} aria-label="Pit lane">
-                <path d={d} fill="none"
-                  stroke="#ffffff" strokeWidth={7}
-                  strokeOpacity={0.06}
-                  strokeLinecap="round" strokeLinejoin="round" />
-                <path d={d} fill="none"
-                  stroke="#aaccff" strokeWidth={1.5}
-                  strokeOpacity={0.4}
-                  strokeLinecap="round" strokeLinejoin="round"
-                  strokeDasharray="5 4" />
-              </g>
-            )
-          })}
-
           {/* Track with race-condition coloring (white default → yellow/red under caution) */}
           {hasData && trackData && (() => {
             const shadow = trackData.segments.map((run, i) => {
@@ -764,6 +745,25 @@ export default function TrackMap({
               </>
             )
           })()}
+
+          {/* Pit lane — dashed overlay drawn above track so it's not hidden by the shadow */}
+          {pitLaneSegments.map((seg, i) => {
+            const pts = seg.map(p => transform.apply(p))
+            const d = catmullRomPath(pts, false)
+            return (
+              <g key={`pit-lane-${i}`} aria-label="Pit lane">
+                <path d={d} fill="none"
+                  stroke="#4488ff" strokeWidth={8}
+                  strokeOpacity={0.18}
+                  strokeLinecap="round" strokeLinejoin="round" />
+                <path d={d} fill="none"
+                  stroke="#99ccff" strokeWidth={2.5}
+                  strokeOpacity={0.75}
+                  strokeLinecap="round" strokeLinejoin="round"
+                  strokeDasharray="8 5" />
+              </g>
+            )
+          })}
 
           {/* Race control flag badge (top-left of SVG) */}
           {hasData && raceControlMessages && (() => {
