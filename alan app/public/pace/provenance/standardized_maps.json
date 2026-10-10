@@ -1,0 +1,1571 @@
+{
+  "maps": [
+    {
+      "prefix": "01_australia_2026",
+      "year": 2026,
+      "source": "FastF1 Data/2026/01_australia_grand_prix/analysis_outputs/australia_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+      "sha256": "0dcc5add25fca0a82ae16cecc9286f35d417af8ac48d7f6ae457ab0e11cdbd1e",
+      "method": "Original speed-colored points, no data changes"
+    },
+    {
+      "prefix": "04_china_2026",
+      "year": 2026,
+      "source": "FastF1 Data/2026/02_china_grand_prix/analysis_outputs/shanghai_international_circuit_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+      "sha256": "16c1f82b018b08ba037d47aaf7c0197e7184bfe9eb6900f400aa342890d63c55",
+      "method": "Original speed-colored points, no data changes"
+    },
+    {
+      "prefix": "05_japan_2026",
+      "year": 2026,
+      "source": "FastF1 Data/2026/03_japan_grand_prix/analysis_outputs/japan_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+      "sha256": "cbe98d9ca490b77dda14924d7ff167436c83ac95290d6f5db68804731350598f",
+      "method": "Original speed-colored points, no data changes"
+    },
+    {
+      "prefix": "06_miami_2026",
+      "year": 2026,
+      "source": "FastF1 Data/2026/04_miami_grand_prix/analysis_outputs/miami_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+      "sha256": "2f1ad7d761b446a261b143e5692086bf5ab26312463a25a1611b80155ed47c46",
+      "method": "Original speed-colored points, no data changes"
+    },
+    {
+      "prefix": "03_canada_2026",
+      "year": 2026,
+      "source": "FastF1 Data/2026/05_canadian_grand_prix/analysis_outputs/canadian_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+      "sha256": "95a42313b7fd0218b28ce1390ffad6a0f1f6f1646f267447ef02062a633e4939",
+      "method": "Original speed-colored points, no data changes"
+    },
+    {
+      "prefix": "07_monaco_2026",
+      "year": 2026,
+      "source": "FastF1 Data/2026/06_monaco_grand_prix/analysis_outputs/monaco_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+      "sha256": "f313cb15fdd7b28f7954295ad188f032b39b9c6b734b048eee2493296803edc9",
+      "method": "Original speed-colored points, no data changes"
+    },
+    {
+      "prefix": "02_barcelona_2026",
+      "year": 2026,
+      "source": "FastF1 Data/2026/07_barcelona_grand_prix/analysis_outputs/barcelona_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+      "sha256": "319830f973c30743e635e670967152e83b8349d4b43535779d27be2545a8d46e",
+      "method": "Original speed-colored points, no data changes"
+    },
+    {
+      "prefix": "austria_2026",
+      "year": 2026,
+      "session": "race",
+      "geometry_driver": "ANT",
+      "geometry_lap": 59.0,
+      "segment_source": "FastF1 Data/2026/08_austrian_grand_prix/analysis_outputs/austrian_grand_prix_latest_raw_segment_categories_3class.csv",
+      "speed_profile": "Median of accepted fastest laps, including saved interpolation repairs",
+      "sources": [
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv",
+          "sha256": "7f1c0fee9ce6f1ed6465b26d71d29f83779e0c9673928d7d6718fce8f7c4c07c"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "774732c5934f769793c4e9d8bee83fcf9b963365bee25bbe4cfc0f3160629c82"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "5555d8714c21c8ad3542266fa432e13818805f4733e118905e0cd09dc3c1d680"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "f641bb03e8037c87a652d78548b582611a45706d7489e68e41f208c15aca1b14"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv",
+          "sha256": "1538cd4b3d43df5dbca82ee55d981e8e69698fda6ce43922009c5bcbf4cf7405"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv",
+          "sha256": "e6fcf36c0f3115c8490800d9b1fe39e7abe63f7d00ffea4f68d57c292875dd94"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv",
+          "sha256": "a6238709e9d3097751dd429ef485f9d0a0f15838b554351c30cb69a7c53f49b4"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/HAD_fastest_lap_telemetry.csv",
+          "sha256": "f678004372dbf7c67e4da5bb49c76c76125e675d6a83f6964e5e4a6468f63120"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "1b5e703c6cd3fed15c8058b6c96a3855723b1a365045196d2de51a6905b79c4b"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "d43f7e7d0e25984af8939c5e75f7afa25613169644065923b4cad7983e437473"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/LIN_fastest_lap_telemetry.csv",
+          "sha256": "eca57c9a7c5fe3db9ebf687ce908f4b1712ecfc8b0f451b88e0e3c709adca4bb"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "8392ea9a5f5bbec0a34915184575a7599a85639db1d0d53c778c380fda2a82fb"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "57594633d6ce8e647db3f33cfab29cfbac80e6e76b78873737a01a7a23f5d51a"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv",
+          "sha256": "59212eab28f5fd643cf3b58127a7e0101e65a99a0e3b8f52638f59836068403c"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv",
+          "sha256": "05036f01fc65dde8673c05eaa7ef130da0091fd2a616df6a485535e3b490eb08"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "a8ec509719585972e621113c5cb6bc73acdf8b07528929e930ffa2e0349143d9"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "c2e76c83b35ff6428d2d7645b9bd16c91b92ceececa1d248f809f30e33b5f4e4"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv",
+          "sha256": "f5746b93caa7d44755777e5fce49eccb4d463f54b72831f210818d2e9f91cdf3"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/SAI_fastest_lap_telemetry.csv",
+          "sha256": "8f235820841757abcea002917692ae7c51d513eaac28a4aae6349cb774126ceb"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/STR_fastest_lap_telemetry.csv",
+          "sha256": "5dfbb7dbbd3b95816c2426f567ab44fd3b528dd530925ecfbc0e7a6add791c20"
+        },
+        {
+          "path": "FastF1 Data/2026/08_austrian_grand_prix/race/telemetry_fastest_laps/PER_fastest_lap_telemetry.csv",
+          "sha256": "2494fdae1ad869de4314886a9c8d78b8f26f658af2c1dd558d24bba02ee4b041"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "start_distance_m": 0.0,
+          "end_distance_m": 325.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 325.0,
+          "end_distance_m": 525.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 525.0,
+          "end_distance_m": 1250.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 1250.0,
+          "end_distance_m": 1500.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 1500.0,
+          "end_distance_m": 2025.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 2025.0,
+          "end_distance_m": 2300.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 2300.0,
+          "end_distance_m": 2575.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 2575.0,
+          "end_distance_m": 3200.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 3200.0,
+          "end_distance_m": 3675.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 3675.0,
+          "end_distance_m": 4050.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 4050.0,
+          "end_distance_m": 4292.103982914541,
+          "category": "Straights"
+        }
+      ],
+      "speed_range_kph": [
+        67.0,
+        317.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "silverstone_2026",
+      "year": 2026,
+      "session": "race",
+      "geometry_driver": "ANT",
+      "geometry_lap": 37.0,
+      "segment_source": "FastF1 Data/2026/09_british_grand_prix/analysis_outputs/british_grand_prix_latest_raw_segment_categories_3class.csv",
+      "speed_profile": "Median of accepted fastest laps, including saved interpolation repairs",
+      "sources": [
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv",
+          "sha256": "52565f008ab321f0b73bee9b7915962d802393af108ca9268c822cae3589bd3d"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "196e169a21b448e463690fa7147944ec2a36d62ab6ee7d619790d1dc50439b01"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/HAD_fastest_lap_telemetry.csv",
+          "sha256": "9a276df0e4d0a08ef5ffe2cafcb15f9496e0b3c51d8b4cb926254c10a37d9a3f"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv",
+          "sha256": "e9ea4525959d00282a450824aaab50e96c2ffb7f3d40353314bf59d633d819a8"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv",
+          "sha256": "c69beea3f4498e7ed88a8256224cf74c70a47c3d7f131fbe7583acf98e2ff9fa"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv",
+          "sha256": "3fe651989f436ab93ce15c0ecd166586edb4eb496e0832a80a786dbae86a2257"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "3f149fd47d2e95ed4b98a205643f104c787a22cf7ad1293607897712db7dcda8"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "2ae22c89075a587289f7f855c412c110f310cc1df22242b6549af9054541b651"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "95ff253c9b87bc1120ef5f46cfaa06ca6d00ab48d1a9d8d9590ecb9235999701"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/LIN_fastest_lap_telemetry.csv",
+          "sha256": "1cfc073f51db8cf80c00704505a78f3102c2355425ccde0879a37fc8460cc76e"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "29f0404307ed0d3f57a4153fc70b14199730346f9e86837488f9ccc5223bfcc5"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv",
+          "sha256": "edb6b6b91ef3cb57b1836d614d7297a8b85c8dd561aa91f6cf9d34937c94d493"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv",
+          "sha256": "ba3ea2e67caadbb8f7ce0fc448e86ef16f9cf0cbadef6c8a578ecc1c3175b330"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "fa577cb8dd09a461d994aba7d7dbece12b7220309e1d63111fc8710b373baf0a"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "eb97cdadc99870ee89527af314d1c52398d9ee5186bee7695f0184c80d56124f"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv",
+          "sha256": "c91de125b81a780b4096df0fdc1e026106c659224cd161b7db0fd00e93dea5b1"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "621d4a1095ce5934dba4647dc36bc64cbf342f7fdf7bc2ad6d91767d973ff91d"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/SAI_fastest_lap_telemetry.csv",
+          "sha256": "d498ed6a92b3f38846714049d58e42cbfefd183480150ad25b9cdd8cfb070ee3"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/PER_fastest_lap_telemetry.csv",
+          "sha256": "4b002fff8459641f7fbc93cd39df71f64a704152b508019615633aba56b250db"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/BOT_fastest_lap_telemetry.csv",
+          "sha256": "c88a29d40380af3b3f6867c1b97c193dff05705028d64836a943fec4c68541ad"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "a38d23c91fcbe82e5cd9ac531d57806412a636b0a4dd4b19b7f494a3afcfab42"
+        },
+        {
+          "path": "FastF1 Data/2026/09_british_grand_prix/race/telemetry_fastest_laps/STR_fastest_lap_telemetry.csv",
+          "sha256": "1d24934499b3e54f656cbdb8a8ac89ea8bf13e1b6c80be819f4a2d7adf127f87"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "start_distance_m": 0.0,
+          "end_distance_m": 350.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 350.0,
+          "end_distance_m": 750.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 750.0,
+          "end_distance_m": 1325.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 1325.0,
+          "end_distance_m": 1825.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 1825.0,
+          "end_distance_m": 2325.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 2325.0,
+          "end_distance_m": 2950.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 2950.0,
+          "end_distance_m": 3175.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 3175.0,
+          "end_distance_m": 3500.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 3500.0,
+          "end_distance_m": 4125.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 4125.0,
+          "end_distance_m": 4875.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 4875.0,
+          "end_distance_m": 5150.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 5150.0,
+          "end_distance_m": 5350.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 5350.0,
+          "end_distance_m": 5821.66901824828,
+          "category": "Slow corners"
+        }
+      ],
+      "speed_range_kph": [
+        81.0,
+        302.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "spa_2026",
+      "year": 2026,
+      "session": "race",
+      "geometry_driver": "NOR",
+      "geometry_lap": 44.0,
+      "segment_source": "FastF1 Data/2026/10_belgian_grand_prix/analysis_outputs/belgian_grand_prix_latest_raw_segment_categories_3class.csv",
+      "speed_profile": "Median of accepted fastest laps, including saved interpolation repairs",
+      "sources": [
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv",
+          "sha256": "f20ac7693c3a4b02045e9da915e12cb11f30c9479dfcd0bc471ed1fcde7530b2"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv",
+          "sha256": "8e5680819e5af656befa2df84bc09330ab8b0d377ce0f84691fdd93a6e59011f"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/HAD_fastest_lap_telemetry.csv",
+          "sha256": "6d8ed4db359a4acd30ec249880cf9d06734318816b62191dfc7227fb23e89c1d"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "dba24385c3a1ad9c4a6e6b90ecdca7690bd3cd581f2fa773f0e5e7a3b836de61"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv",
+          "sha256": "13f986abbe4ef3d8a39a9b3413c36fcba862a7fa230ade2f643285ce7fe62f30"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "a9a70879c186121e8139b1d7abac9ee1f8a3409d48e3a35fbb8ea28586e8e004"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "193c6c397be527a9b1b352a21f91b2734bc829b301368b6c5e245da4d8e79b4d"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv",
+          "sha256": "3409ef8b8ba7796b3857b8298f7afa5433407a840e63aaa8a55eec58531221c9"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "89c65b52315a6fdf012e521b02fb3ca96cc3bdd62b7c14275e2b673498e2e659"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/LIN_fastest_lap_telemetry.csv",
+          "sha256": "38c097ecd1a6ece6cf19a1ae0f72832bada92e32a65d0befd3db6ebabdc191b1"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "32c23212168a74c40fb1ebb41597c681a1bcb22cea203f0516eaf0d5dc13e11d"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "919f77ed4991966a34085567ab60852b3ec115822f5882676efe73dc4bf67948"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv",
+          "sha256": "e2495fa9dcbb6f5c5a43e3a6cb25a58c937a14a60224aeaf38b3c8a3cda6d75e"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "2d934c6e50e8653c1a7572a8f6506a1319f81aff2e4a7619c978b84b66c09c6b"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/SAI_fastest_lap_telemetry.csv",
+          "sha256": "587dbaa698a92ee9be1e2317a6fa79c56469b4e52274977234b68a9e8f3bec69"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv",
+          "sha256": "82556eb0c3a7125c4cd56c665a189b6c32689e6727f157cdfa9debf11388cdb1"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "6dd459c9e9fd47299ac79fb2aab06eb5d6cb90f45ffe92701c51fe90339f12ab"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/BOT_fastest_lap_telemetry.csv",
+          "sha256": "262e21e22cc8b0f7a811814a249cb537812a2df7225bc69cf0ae3ec968ec46d3"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "11c3c7e39cfc2c6309b9b685437279b609628766d7cfdb48a179ca20ecb41de1"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/PER_fastest_lap_telemetry.csv",
+          "sha256": "3868c54170fcce77da4d34f7f6fd07715b0b31c0cecded63eded05fb947ea5f6"
+        },
+        {
+          "path": "FastF1 Data/2026/10_belgian_grand_prix/race/telemetry_fastest_laps/STR_fastest_lap_telemetry.csv",
+          "sha256": "e5a842aa15cf00f59ecd3fc60958e8aa31433d314eff82ed9b5d982ca07a8602"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "start_distance_m": 0.0,
+          "end_distance_m": 375.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 375.0,
+          "end_distance_m": 525.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 525.0,
+          "end_distance_m": 2275.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 2275.0,
+          "end_distance_m": 2725.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 2725.0,
+          "end_distance_m": 2900.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 2900.0,
+          "end_distance_m": 3400.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 3400.0,
+          "end_distance_m": 3700.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 3700.0,
+          "end_distance_m": 4100.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 4100.0,
+          "end_distance_m": 4350.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 4350.0,
+          "end_distance_m": 5250.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 5250.0,
+          "end_distance_m": 6575.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 6575.0,
+          "end_distance_m": 6825.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 6825.0,
+          "end_distance_m": 6938.321777214556,
+          "category": "Fast corners"
+        }
+      ],
+      "speed_range_kph": [
+        72.0,
+        323.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "hungaroring_2026",
+      "year": 2026,
+      "session": "qualifying",
+      "geometry_driver": "NOR",
+      "geometry_lap": 15.0,
+      "segment_source": "FastF1 Data/2026/11_hungarian_grand_prix/analysis_outputs/hungarian_grand_prix_qualifying_raw_segment_categories_3class.csv",
+      "speed_profile": "Median of accepted fastest laps, including saved interpolation repairs",
+      "sources": [
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv",
+          "sha256": "2ca19a74461a834c462a79b4eecabebb43e5f8e6df7bfb5bfad8c0a44cc596b0"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv",
+          "sha256": "f28a78c82ec9ac39728241a6a4cffbfef63a2f3265bb392b710e9a3102ad8538"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "9d4e76d102cc26d7d2db39345b973ef7f768e4c1dba451dc179c0294dac1e262"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv",
+          "sha256": "c8f43be26f08e10314a5bf4c291e3a03d4db7c7d43d6c299fdf94108de1a8994"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "e57307da9ae79d6c7d41314db3418404227980ac556e0978c7b5628a34c36950"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "c709df4ecb7dca68b3653883883538addf7e7c529dc98c5d790fd6731836011c"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv",
+          "sha256": "094ca32d3f25b6d779f725e41e6ab7009fa601db9dc8dd18ac33e72ac68f9cf1"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/HAD_fastest_lap_telemetry.csv",
+          "sha256": "ea10f02c44e132d1bc13d8e63b363d0f9bcbdc16be6d4b2ce740a244658ed63a"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/LIN_fastest_lap_telemetry.csv",
+          "sha256": "c37a157e037c36e798b0e029a4d437b54999d23439de8dbc67049063e677e74b"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "2cf95832ebb0b4160019f39ea011b8aca5c39b3c93797a85cbcaa99f5c936857"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "d82dad2a6960bd9d060c1dd59863f8d46ed60a65e2aeea673690dcd216facb79"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "e0d61a0ebac20a8e76bdfcedc8e645360927a885b9e8810f81e4546d11842732"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "0bd2a5718001f5d1d9b27356a99d52ebf71618c37301eeb6739c6440d712aea1"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv",
+          "sha256": "5a42b85f9a0af4e52f24150dde17ae34dd00873553bec77f7662e4ae0d973e3d"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "e826e08636f98656eacacd746a1b89f0a08e57f2df2c9e4c0be152e6396da2c0"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "5f6cb9067c1fd1523ce6af2ad5451f534b8f4daa6aa3b0fcea3ccc8a737ea8f5"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv",
+          "sha256": "623c30634cd491141e11857cad498832b2dd6dcc293c69c3365914ab4a3fa5fe"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/SAI_fastest_lap_telemetry.csv",
+          "sha256": "d4d5887e4268166476c4a21c9e595eed8135434a5fbc4882fec0c8c9ed8dd574"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv",
+          "sha256": "736b5717fcba6fd006414b21cc724c91b9ea65f5523723bbfa07e8d4dd5cd7b9"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/STR_fastest_lap_telemetry.csv",
+          "sha256": "bd0189525756fa5ebbb4b9f781eea3491418b02ed2ae6889d229304c5dfa348e"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/BOT_fastest_lap_telemetry.csv",
+          "sha256": "d54e182197afc959b62b774ca089430aac730378d35f580d3b0294929decdae1"
+        },
+        {
+          "path": "FastF1 Data/2026/11_hungarian_grand_prix/qualifying/telemetry_fastest_laps/PER_fastest_lap_telemetry.csv",
+          "sha256": "de19ca00be8b534482a11d0356472bddffebfc086bf608c806b17bf80f367aaa"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "start_distance_m": 0.0,
+          "end_distance_m": 525.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 525.0,
+          "end_distance_m": 725.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 725.0,
+          "end_distance_m": 1050.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 1050.0,
+          "end_distance_m": 1400.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 1400.0,
+          "end_distance_m": 1775.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 1775.0,
+          "end_distance_m": 2300.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 2300.0,
+          "end_distance_m": 2850.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 2850.0,
+          "end_distance_m": 3200.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 3200.0,
+          "end_distance_m": 3425.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 3425.0,
+          "end_distance_m": 4225.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 4225.0,
+          "end_distance_m": 4344.719949378066,
+          "category": "Straights"
+        }
+      ],
+      "speed_range_kph": [
+        90.0,
+        333.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "zandvoort_2026",
+      "year": 2026,
+      "session": "qualifying",
+      "geometry_driver": "NOR",
+      "geometry_lap": 20.0,
+      "segment_source": "FastF1 Data/2026/12_dutch_grand_prix/analysis_outputs/dutch_grand_prix_qualifying_raw_segment_categories_3class.csv",
+      "speed_profile": "Median of accepted fastest laps, including saved interpolation repairs",
+      "sources": [
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv",
+          "sha256": "d2e30e3c248ee6708515d7ad3e2d7825f2a4fc91e5a377f5e29f83baef2f58fb"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv",
+          "sha256": "0fa3b9ca7d659d565d69a007a22a22ad1bd6e85803816ba77a00b0dc2b9e26ad"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv",
+          "sha256": "0e56bc2a49cfa6032c170b8118da61a801b7a85c0ea16bcce67457c685be840c"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "e6f45800388b0d914b11b69ea3fe0927c2193e08f110c915b9712116ff00fe2c"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv",
+          "sha256": "19429290424e5aedc36d6e6ee3771348d43786ee353f0345d2f467e52f1da682"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "c46ee49c58bb3ae597683edfd31dea5350472ef19abadf385388abea1c6950ae"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "34a1d651c75743369da8c5c742657f4d2c334f30b02ef90ed20ba4b94f6afd52"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "4ea518a2e3c4039d3d653ef3aef3f776582b4ed8b6b9a96a2a714d4b914ba959"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv",
+          "sha256": "163d56b4ab0d3e951366017c3fa3a2b8614ba0429a62d211ef594c89af9c6c60"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/LIN_fastest_lap_telemetry.csv",
+          "sha256": "f6d7862a2d4983c3f0ea320863c7af93a088837f2d1a8d2ba364b41152ba9248"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "324983c336b5d3d1e830f097c3831f1709473e6753dd0b4c880e39ac17c9495a"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/TSU_fastest_lap_telemetry.csv",
+          "sha256": "407cc70162af2309c8c961ae474c124999fbaa0a40d83cf2a6cd1b243ca72681"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "0d6e7dcc5f609de312392b54949d95c50de67c371b6e0ffb5464ebe3ea10fa56"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "890e0bdc9814dd90264d4d9b0ab7802706f94cd49f19708c47cf9c666607a440"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "2051397a224dc8725c747ec9c8b46a9fc75709cc0e11fb5f01722a8f69439c44"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "5d65baf8e8bd1514e970e986b3b1d39a47a884a171b47b356a4a8e8e1097a802"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/STR_fastest_lap_telemetry.csv",
+          "sha256": "c0c0ec927532a25881dc24083ed81eecb3f24690c8f2f716a1fc16446fb28419"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv",
+          "sha256": "06bbdac6af5fb342659bcc986027baaca940549563593c302f5474c4b1f315c6"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/BOT_fastest_lap_telemetry.csv",
+          "sha256": "51820dfeb1f342f765683dcb4b6798c9c0d6ab3f911c56bd31ec7c8ea6f353a4"
+        },
+        {
+          "path": "FastF1 Data/2026/12_dutch_grand_prix/qualifying/telemetry_fastest_laps/PER_fastest_lap_telemetry.csv",
+          "sha256": "5185207c70d6925db4e04d3d3224725161c19f65b1c620f4e7fd2dfd6669d3d0"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "start_distance_m": 0.0,
+          "end_distance_m": 225.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 225.0,
+          "end_distance_m": 475.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 475.0,
+          "end_distance_m": 750.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 750.0,
+          "end_distance_m": 950.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 950.0,
+          "end_distance_m": 1550.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 1550.0,
+          "end_distance_m": 2125.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 2125.0,
+          "end_distance_m": 2625.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 2625.0,
+          "end_distance_m": 3000.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 3000.0,
+          "end_distance_m": 3250.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 3250.0,
+          "end_distance_m": 3425.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 3425.0,
+          "end_distance_m": 3875.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 3875.0,
+          "end_distance_m": 4236.2618124316505,
+          "category": "Straights"
+        }
+      ],
+      "speed_range_kph": [
+        94.0,
+        316.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "monza_2026",
+      "year": 2026,
+      "session": "qualifying",
+      "geometry_driver": "GAS",
+      "geometry_lap": 17.0,
+      "segment_source": "FastF1 Data/2026/13_italian_grand_prix/analysis_outputs/italian_grand_prix_qualifying_raw_segment_categories_3class.csv",
+      "speed_profile": "Median of accepted fastest laps, including saved interpolation repairs",
+      "sources": [
+        {
+          "path": "outputs/interpolated_pace_2026-09-27/corrected_telemetry/FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "51810df6c8a3988c44f76424fadd1ebce726c9c91badb4d1a6760e3368643f3d"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv",
+          "sha256": "462366322c75ce930fe82cad671a17ae89d49bcb6783bbe1abc2c46eec00bc96"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv",
+          "sha256": "86a412c58cc12b4a733a2f6125fe8d6b54cb39784015ef6ecb92a58202987352"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "5fb3eff9c48caec1d8628f7a54b0e96def09c96f357c5720a85f631239608aa1"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "96cf0154de8e1bc3f00c45ba3db07c5813deea2ec640bba4264e468ef3a1dde6"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv",
+          "sha256": "e0f683378f0c8d6793970c827d27d991289c33211705a12a97da2f24c46668f2"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv",
+          "sha256": "381a8eadf5150b03a464666bcad151c4833fac254715b369297082a9731fdc9f"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "21270684d886dc034b398d74178aaa4c495703aa2e5364bbb06d740f80ebbc61"
+        },
+        {
+          "path": "outputs/interpolated_pace_2026-09-27/corrected_telemetry/FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "12801a24dcfa6bd38ef54f3c07e5c381305fa0ae549945c3c7a1636dcd265426"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/LIN_fastest_lap_telemetry.csv",
+          "sha256": "d9b3fc3c3d917e87ddcc708983d9d91085a18edc28926cc6455aa5e8d2f8dae5"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv",
+          "sha256": "360d7709720ae788aa35f5940d1d7054726d29e4ad8c57f07d4b39dfc92e5262"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv",
+          "sha256": "7362909659241c31d44893dee789af43d0f463a3946542ba10d36eaec28348b4"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "3410ef7578270397c46f2df74ae4807b61d98ee35f85bcae9eefa82f2ab1b3bd"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "2cdc95690acfd8ce04c53c93dad56911044f1b70f543a3d5acd2a2089afde4e7"
+        },
+        {
+          "path": "outputs/interpolated_pace_2026-09-27/corrected_telemetry/FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/SAI_fastest_lap_telemetry.csv",
+          "sha256": "76417ba7d8a868547bb6e1fac206546c202d9a5f7c4b2c1ebfd887bc5462c8c5"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "6fb15eb59561effe973eebbc8ea7422ad331e969e7f61699fc9ab1af0d945744"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/TSU_fastest_lap_telemetry.csv",
+          "sha256": "880325ab3166b45b6a2f8a2c3a45e942e40844ae74a7b5b30c1ad73573ebd9aa"
+        },
+        {
+          "path": "outputs/interpolated_pace_2026-09-27/corrected_telemetry/FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv",
+          "sha256": "594af2035902393294bc09f16983c8657305c93c8e79096679e1eab06f8846c2"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/BOT_fastest_lap_telemetry.csv",
+          "sha256": "a328f8d0d3a39218dd052da08afc91cbb83a2c860cb5a7c05b64059dce58e0db"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/PER_fastest_lap_telemetry.csv",
+          "sha256": "0677ac8c25a95abe67d6dd3798f59b15a458c9019ed07b48c09c77198f7047a5"
+        },
+        {
+          "path": "outputs/interpolated_pace_2026-09-27/corrected_telemetry/FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "5ecc26f6d5081836631e305935c10d37668bec8b316af3e9469eaa4efc540472"
+        },
+        {
+          "path": "FastF1 Data/2026/13_italian_grand_prix/qualifying/telemetry_fastest_laps/STR_fastest_lap_telemetry.csv",
+          "sha256": "0e84f282315e42a4883664f38eccd6f7da0d1e052f30691e43301c86c2c383d3"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "start_distance_m": 0,
+          "end_distance_m": 750.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 750,
+          "end_distance_m": 1225.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 1225,
+          "end_distance_m": 1975.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 1975,
+          "end_distance_m": 2300.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 2300,
+          "end_distance_m": 3025.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 3025,
+          "end_distance_m": 3800.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 3800,
+          "end_distance_m": 4175.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 4175,
+          "end_distance_m": 4975.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 4975,
+          "end_distance_m": 5400.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 5400,
+          "end_distance_m": 5739.539555167959,
+          "category": "Straights"
+        }
+      ],
+      "speed_range_kph": [
+        72.0,
+        335.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "madrid_2026",
+      "year": 2026,
+      "session": "qualifying",
+      "geometry_driver": "NOR",
+      "geometry_lap": 18.0,
+      "segment_source": "FastF1 Data/2026/14_madrid_grand_prix/analysis_outputs/madrid_grand_prix_qualifying_raw_segment_categories_3class.csv",
+      "speed_profile": "Median of accepted fastest laps, including saved interpolation repairs",
+      "sources": [
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv",
+          "sha256": "f292b0282e7b93bcbc0cfdfd87e21fd30e0cd54104d50f284069d2b4ae766548"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv",
+          "sha256": "945bbf329d2aed7d08330a3a47ff795fa8704bab14c2196f220c7556eb261f43"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "925dc79cf6ec40b7e0455a94b2a1a121200a17868990ecf605fbed1d93077ce1"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv",
+          "sha256": "fc7a26cf9357d2a6331651aafdff41ec416a1b47f3997ad3209ec10f6dc0f807"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "060328b75ea4ded29edaafe14b247fd27713ad732bb54f36a664a8d71917a634"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv",
+          "sha256": "37a31dfb8bb0c1a6a73d74dced9a7f665d7980cfdfd592085b747f1d566a6385"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "52a08327cb0a6534fc0383bd5b2d426a4fbd05c908f138c20619859615e45e6f"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "cf29f9f75920857f2d1a5fd2bdb31bde7c24525797c2d27629f307f35a295062"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "f2dba58cce7b765eb42b549bfdbef4e790222752f4a9a5a090438991c1e7561b"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/LIN_fastest_lap_telemetry.csv",
+          "sha256": "667fdb6f356a72e13509a70343175c2e107dda566d7d671d536d080c879130a5"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "dd92b52001e5970ae94dad5d16a946eb0742c85a21cf9cdaee3facdb68c7f40a"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv",
+          "sha256": "5d7e611ac1a9e7fcb2d11f488088267ff125ef2930bd179d1418085c4729511a"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "102f585e3d2ef324a57225cfe21ebb524b262ba5c24676764bfac0335ac1e311"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "d6bb02105bab23c36c8d79562ff2cc2d56f888454b972aa0fe92821e6302c8b5"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/TSU_fastest_lap_telemetry.csv",
+          "sha256": "0b99dcb50a51feb7430c97101e6891a915428ac9e1ac40e5398d877449ae64ea"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv",
+          "sha256": "f0451b45d84b923eedaac7571649c9127f4188eade517fbacac6a4d90119404e"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/SAI_fastest_lap_telemetry.csv",
+          "sha256": "1cf51d386c863e6f40bebb3d9a840b68b635ff7ebc8f9d117907324f1e894854"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "9be97fd8911c858a5bdfdd3726623dc860536b9e8611f828c1f246b2acdb9e32"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/PER_fastest_lap_telemetry.csv",
+          "sha256": "b78c709ca46fff03661158f89479679aa9cd060eb3ebaad77f068b0efbc8dca8"
+        },
+        {
+          "path": "FastF1 Data/2026/14_madrid_grand_prix/qualifying/telemetry_fastest_laps/BOT_fastest_lap_telemetry.csv",
+          "sha256": "fd689553060a4502d1cad67775ce040fd8209840a1f62dc1607e2265d3fbe400"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "start_distance_m": 0.0,
+          "end_distance_m": 400.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 400.0,
+          "end_distance_m": 580.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 580.0,
+          "end_distance_m": 750.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 750.0,
+          "end_distance_m": 1480.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 1480.0,
+          "end_distance_m": 1630.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 1630.0,
+          "end_distance_m": 1830.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 1830.0,
+          "end_distance_m": 2030.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 2030.0,
+          "end_distance_m": 2800.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 2800.0,
+          "end_distance_m": 3220.0,
+          "category": "Straights"
+        },
+        {
+          "start_distance_m": 3220.0,
+          "end_distance_m": 3330.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 3330.0,
+          "end_distance_m": 3890.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 3890.0,
+          "end_distance_m": 4040.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 4040.0,
+          "end_distance_m": 4660.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 4660.0,
+          "end_distance_m": 4960.0,
+          "category": "Slow corners"
+        },
+        {
+          "start_distance_m": 4960.0,
+          "end_distance_m": 5120.0,
+          "category": "Fast corners"
+        },
+        {
+          "start_distance_m": 5120.0,
+          "end_distance_m": 5310.0,
+          "category": "Slow corners"
+        }
+      ],
+      "speed_range_kph": [
+        79.0,
+        328.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "baku_2026",
+      "year": 2026,
+      "session": "qualifying",
+      "speed_profile": "Existing provisional median profile",
+      "geometry_driver": "RUS",
+      "sources": [
+        {
+          "path": "FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv",
+          "sha256": "51faa13e0e25fd34eb1184e519529a0c450057a16d41e4d254b30e08b56415c9"
+        },
+        {
+          "path": "outputs/baku_pace_2026-09-27/classification_speed_profile.csv",
+          "sha256": "4cef39575c6a98723e0dcbd5ee3dceae46a547c222504a0370a7e44361b957c2"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "segment_id": "seg_01",
+          "category": "Straights",
+          "start_distance_m": 0.0,
+          "end_distance_m": 250.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_02",
+          "category": "Slow corners",
+          "start_distance_m": 250.0,
+          "end_distance_m": 370.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_03",
+          "category": "Fast corners",
+          "start_distance_m": 370.0,
+          "end_distance_m": 580.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_04",
+          "category": "Slow corners",
+          "start_distance_m": 580.0,
+          "end_distance_m": 710.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_05",
+          "category": "Fast corners",
+          "start_distance_m": 710.0,
+          "end_distance_m": 860.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_06",
+          "category": "Straights",
+          "start_distance_m": 860.0,
+          "end_distance_m": 1450.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_07",
+          "category": "Slow corners",
+          "start_distance_m": 1450.0,
+          "end_distance_m": 1810.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_08",
+          "category": "Fast corners",
+          "start_distance_m": 1810.0,
+          "end_distance_m": 2010.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_09",
+          "category": "Slow corners",
+          "start_distance_m": 2010.0,
+          "end_distance_m": 2200.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_10",
+          "category": "Fast corners",
+          "start_distance_m": 2200.0,
+          "end_distance_m": 2450.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_11",
+          "category": "Slow corners",
+          "start_distance_m": 2450.0,
+          "end_distance_m": 2940.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_12",
+          "category": "Fast corners",
+          "start_distance_m": 2940.0,
+          "end_distance_m": 3150.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_13",
+          "category": "Straights",
+          "start_distance_m": 3150.0,
+          "end_distance_m": 3560.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_14",
+          "category": "Fast corners",
+          "start_distance_m": 3560.0,
+          "end_distance_m": 3660.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_15",
+          "category": "Slow corners",
+          "start_distance_m": 3660.0,
+          "end_distance_m": 3800.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_16",
+          "category": "Fast corners",
+          "start_distance_m": 3800.0,
+          "end_distance_m": 4010.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_17",
+          "category": "Slow corners",
+          "start_distance_m": 4010.0,
+          "end_distance_m": 4140.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_18",
+          "category": "Fast corners",
+          "start_distance_m": 4140.0,
+          "end_distance_m": 4310.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        },
+        {
+          "segment_id": "seg_19",
+          "category": "Straights",
+          "start_distance_m": 4310.0,
+          "end_distance_m": 5930.0,
+          "source": "2026 Baku qualifying median; Madrid auto-classification rules; provisional"
+        }
+      ],
+      "speed_range_kph": [
+        95.0,
+        322.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "sepang_2026",
+      "year": 2026,
+      "session": "practice_2",
+      "geometry_driver": "LEC",
+      "speed_profile": "Existing FP2 reference lap",
+      "sources": [
+        {
+          "path": "FastF1 Data/2026/16_bahrain_grand_prix/practice_2/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "96a2079689c019681dc1c3f566fdd6eab6858bcc2b8d19b59c7ed0761a9b19eb"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "segment_id": "seg_01",
+          "category": "Straights",
+          "start_distance_m": 0.0,
+          "end_distance_m": 570.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_02",
+          "category": "Slow corners",
+          "start_distance_m": 570.0,
+          "end_distance_m": 870.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_03",
+          "category": "Straights",
+          "start_distance_m": 870.0,
+          "end_distance_m": 1510.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_04",
+          "category": "Slow corners",
+          "start_distance_m": 1510.0,
+          "end_distance_m": 1660.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_05",
+          "category": "Fast corners",
+          "start_distance_m": 1660.0,
+          "end_distance_m": 3020.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_06",
+          "category": "Slow corners",
+          "start_distance_m": 3020.0,
+          "end_distance_m": 3760.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_07",
+          "category": "Fast corners",
+          "start_distance_m": 3760.0,
+          "end_distance_m": 4120.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_08",
+          "category": "Slow corners",
+          "start_distance_m": 4120.0,
+          "end_distance_m": 4300.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_09",
+          "category": "Straights",
+          "start_distance_m": 4300.0,
+          "end_distance_m": 5070.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_10",
+          "category": "Slow corners",
+          "start_distance_m": 5070.0,
+          "end_distance_m": 5270.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        },
+        {
+          "segment_id": "seg_11",
+          "category": "Straights",
+          "start_distance_m": 5270.0,
+          "end_distance_m": 5543.0,
+          "source": "Sepang FP2 median with user map revision: two short straights removed; slow exits red/black"
+        }
+      ],
+      "speed_range_kph": [
+        73.0,
+        311.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "singapore_2025",
+      "year": 2025,
+      "session": "race",
+      "geometry_driver": "SAI",
+      "speed_profile": "Existing screened median; A/B/C revisions retained",
+      "sources": [
+        {
+          "path": "FastF1 Data/2025/18_singapore_grand_prix/analysis_outputs/singapore_2025_map_geometry.csv",
+          "sha256": "99b47e4566a8657efe917508d17036974ad064396670b106b157e4585cf90c55"
+        },
+        {
+          "path": "FastF1 Data/2025/18_singapore_grand_prix/analysis_outputs/singapore_2025_classification_speed_profile.csv",
+          "sha256": "a5ac5bb5fd4846f4d12a0d88d2efd62b5cbd0f6fca6ed9b6d8da22b26294ca5f"
+        }
+      ],
+      "class_boundaries": [
+        {
+          "segment_id": "seg_01",
+          "category": "Straights",
+          "start_distance_m": 0.0,
+          "end_distance_m": 390.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_02",
+          "category": "Slow corners",
+          "start_distance_m": 390.0,
+          "end_distance_m": 660.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_03",
+          "category": "Fast corners",
+          "start_distance_m": 660.0,
+          "end_distance_m": 1080.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_04",
+          "category": "Straights",
+          "start_distance_m": 1080.0,
+          "end_distance_m": 1740.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_05",
+          "category": "Slow corners",
+          "start_distance_m": 1740.0,
+          "end_distance_m": 2260.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_06",
+          "category": "Straights",
+          "start_distance_m": 2260.0,
+          "end_distance_m": 2600.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_07",
+          "category": "Slow corners",
+          "start_distance_m": 2600.0,
+          "end_distance_m": 3140.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_08",
+          "category": "Straights",
+          "start_distance_m": 3140.0,
+          "end_distance_m": 3510.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_09",
+          "category": "Slow corners",
+          "start_distance_m": 3510.0,
+          "end_distance_m": 3660.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_10",
+          "category": "Fast corners",
+          "start_distance_m": 3660.0,
+          "end_distance_m": 3900.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_11",
+          "category": "Straights",
+          "start_distance_m": 3900.0,
+          "end_distance_m": 4250.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_12",
+          "category": "Slow corners",
+          "start_distance_m": 4250.0,
+          "end_distance_m": 4420.0,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        },
+        {
+          "segment_id": "seg_13",
+          "category": "Fast corners",
+          "start_distance_m": 4420.0,
+          "end_distance_m": 4880.955246587933,
+          "source": "2025 Singapore race median; user-approved A/B/C straight revisions; D unchanged"
+        }
+      ],
+      "speed_range_kph": [
+        83.0,
+        291.0
+      ],
+      "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    }
+  ],
+  "pace_csv_unchanged": true
+}

@@ -1,0 +1,66 @@
+{
+  "target_event": "2026 Singapore Grand Prix",
+  "scenario": "dry best-lap potential, not grid positions",
+  "data_cutoff_utc": "2026-10-04T09:00:00+00:00",
+  "calibration_events": 16,
+  "weighting": "category duration times 2026 event order (1-16)",
+  "sign": "positive means slower than Mercedes",
+  "map_revisions": [
+    {
+      "section": "A",
+      "start_distance_m": 1080.0,
+      "end_distance_m": 1250.0,
+      "old_category": "Fast corners",
+      "new_category": "Straights",
+      "reason": "user_approved_geometry_review"
+    },
+    {
+      "section": "B",
+      "start_distance_m": 2260.0,
+      "end_distance_m": 2600.0,
+      "old_category": "Fast corners",
+      "new_category": "Straights",
+      "reason": "user_approved_geometry_review"
+    },
+    {
+      "section": "C",
+      "start_distance_m": 3140.0,
+      "end_distance_m": 3510.0,
+      "old_category": "Fast corners",
+      "new_category": "Straights",
+      "reason": "user_approved_geometry_review"
+    }
+  ],
+  "pole_driver": "ANT",
+  "pole_time": "1:32.526",
+  "singapore_2025_pole_seconds": 89.158,
+  "weighted_median_pole_ratio": 1.0377776893856527,
+  "anchor_events": 11,
+  "walk_forward_cases": 6,
+  "walk_forward_mae_seconds": 0.5928485524652842,
+  "walk_forward_max_abs_seconds": 1.6565612705931017,
+  "team_order_without_baku": [
+    "Ferrari",
+    "Mercedes",
+    "Red Bull Racing",
+    "McLaren",
+    "Audi",
+    "Racing Bulls",
+    "Alpine",
+    "Haas F1 Team",
+    "Williams",
+    "Aston Martin",
+    "Cadillac"
+  ],
+  "limitations": [
+    "No 2026 Singapore data or weather forecast used; dry scenario only.",
+    "Speed differentials are converted approximately to lap-time percentages with unit slope.",
+    "Baku retains its unresolved Russell baseline warning; a no-Baku sensitivity is saved.",
+    "Sepang GAS/COL/BOT fastest laps are excluded: Alpine retains earlier form, Cadillac uses PER only for round 16.",
+    "Historical sessions and category definitions differ; remaining Singapore classes are provisional.",
+    "Pole calibration uses the archived 2025 audit for rounds 1-11; their 2025 weather was not independently reverified.",
+    "Absolute-time error is estimated from walk-forward historical cases, not a confidence interval.",
+    "The latest available Sepang roster is assumed; no temporary Zandvoort driver substitutions are carried forward.",
+    "Milliseconds are output precision, not prediction accuracy; no practice anchor is yet available for Singapore."
+  ]
+}

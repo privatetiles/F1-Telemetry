@@ -22,8 +22,8 @@ function close(actual, expected, tolerance = 1e-8) {
 test('the active history has one AZE qualifying event and no Baku race or Q1 duplicate', async () => {
   const rows = await readCsv(deltasPath)
   const events = [...new Set(rows.map(row => row.event))]
-  assert.equal(rows.length, 489)
-  assert.equal(events.length, 15)
+  assert.equal(rows.length, 519)
+  assert.equal(events.length, 16)
   assert.deepEqual(events.filter(event => event.includes('azerbaijan')), [AZE])
   assert.deepEqual(EVENTS.filter(event => event.includes('azerbaijan')), [AZE])
   assert.equal(EVENT_LABEL[AZE], 'AZE')
@@ -68,10 +68,11 @@ test('all category predictions reproduce duration times event-order weighting', 
   assert.equal(predictions.length, 33)
   assert.equal(new Set(predictions.map(row => `${row.team}|${row.category}`)).size, 33)
   assert.deepEqual([...new Set(rows.map(row => Number(row.event_order)))].sort((a, b) => a - b),
-    Array.from({ length: 15 }, (_, i) => i + 1))
+    Array.from({ length: 16 }, (_, i) => i + 1))
   for (const prediction of predictions) {
     const inputs = rows.filter(row => row.team === prediction.team && row.category === prediction.category
-      && row.calibration_included === 'True')
+      && (row.calibration_included === 'True' || (row.event === 'fastf1_2026_bahrain_grand_prix_qualifying'
+        && row.quality_status === 'screened_fastest_laps_only')))
     const weight = inputs.reduce((sum, row) => sum + Number(row.time_weight_seconds) * Number(row.event_order), 0)
     const weightedDelta = inputs.reduce((sum, row) => sum + Number(row.weighted_speed_delta_vs_mercedes_pct)
       * Number(row.time_weight_seconds) * Number(row.event_order), 0)
@@ -88,9 +89,9 @@ test('production loaders display the approved positive-is-slower values and pres
   const history = await loadDeltaData()
   const predictions = await loadPredictions()
   const expected = {
-    Mercedes: 0, Ferrari: 0.136058, 'Red Bull Racing': 0.364744, McLaren: 0.436316,
-    Alpine: 1.676608, Audi: 1.733226, 'Racing Bulls': 1.754815, 'Haas F1 Team': 2.258290,
-    Williams: 2.631860, 'Aston Martin': 4.179487, Cadillac: 4.320118,
+    Mercedes: 0, Ferrari: 0.090225, 'Red Bull Racing': 0.266320, McLaren: 0.405010,
+    Alpine: 1.676608, Audi: 1.740939, 'Racing Bulls': 1.773881, 'Haas F1 Team': 2.272972,
+    Williams: 2.568482, 'Aston Martin': 3.862446, Cadillac: 4.158457,
   }
   assert.equal(predictions.length, 11)
   assert.deepEqual(predictions.map(row => row.team), Object.keys(expected))

@@ -2294,7 +2294,9 @@
 }
 
 /* Prediction table */
-.pace-pred-table { display: flex; flex-direction: column; gap: 3px; }
+.pace-pred-table { display: flex; flex-direction: column; gap: 3px; overflow-x: auto; }
+
+.pace-pred-head, .pace-pred-row { min-width: 620px; }
 
 .pace-pred-head {
   display: flex;
@@ -2455,6 +2457,31 @@
 }
 
 /* Map viewer */
+.pace-map-source {
+  color: #8894a8;
+  font-size: 12px;
+  letter-spacing: 0;
+  margin-bottom: 12px;
+}
+
+.pace-telemetry-map {
+  width: 100%;
+  max-width: 900px;
+  background: #fff;
+}
+
+.pace-speed-scale {
+  width: 240px;
+  max-width: calc(100% - 32px);
+  margin: 16px 16px 0 auto;
+  color: #52606d;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.pace-speed-gradient { height: 10px; }
+.pace-speed-labels { display: flex; justify-content: space-between; margin-top: 4px; }
+
 .pace-map-controls {
   display: flex;
   flex-direction: column;
@@ -3424,6 +3451,7 @@
     border-bottom: 1px solid var(--bg-raised);
     max-height: 300px;
   }
+  .pa2-col-right { flex: 0 0 auto; overflow-y: visible; }
   .pa2-header { flex-wrap: wrap; padding: 10px 14px; gap: 8px; }
   .pa2-race-pills { flex-wrap: wrap; }
   .pa2-col-gap   { display: none; }

@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo } from 'react'
 import {
   CATEGORIES, CAT_SHORT, CAT_COLOR, TEAM_COLORS, EVENTS, EVENT_LABEL,
-  EVENT_MAP_PREFIX, PREDICTION_EVENT, HIDDEN_PACE_EVENTS,
   loadDeltaData, loadPredictions, loadTrackData, computeOverall, deltaColor,
 } from '../lib/paceData'
 import type { DeltaMap, PredictionEntry, Category, TrackData } from '../lib/paceData'
+import { PACE_MAPS } from '../lib/paceMaps'
+import PaceTelemetryMap from './PaceTelemetryMap'
 
 // ── Delta % display ─────────────────────────────────────────────────────────
 
@@ -23,7 +24,6 @@ function PredictionTable({ predictions }: { predictions: PredictionEntry[] }) {
   return (
     <div className="pace-section">
       <div className="pace-section-title">2026 overall team pace vs Mercedes</div>
-      <div className="pace-section-sub">Recency-weighted through Baku qualifying · provisional Mercedes baseline · positive = slower</div>
 
       <div className="pace-pred-table">
         <div className="pace-pred-head">
@@ -160,7 +160,7 @@ const SVG_W = 800
 const SVG_H = 600
 const PAD   = 40
 
-function TrackSVG({ trackData }: { trackData: TrackData }) {
+export function TrackSVG({ trackData }: { trackData: TrackData }) {
   const { viewBox, transform } = useMemo(() => {
     let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity
     for (const run of trackData.segments) {
@@ -218,52 +218,33 @@ function TrackSVG({ trackData }: { trackData: TrackData }) {
 
 // ── Map Viewer ───────────────────────────────────────────────────────────────
 
-type MapType = 'track' | 'telemetry' | 'delta'
+type MapType = 'track' | 'telemetry'
 
 const MAP_LABELS: Record<MapType, string> = {
   track:     '3-Class Track',
   telemetry: 'Telemetry Map',
-  delta:     'Delta Graph',
 }
 
-const ADDITIONAL_MAP_EVENTS = [
-  'fastf1_2025_belgian_grand_prix',
-  'fastf1_2025_british_grand_prix',
-  'fastf1_2025_hungarian_grand_prix',
-  'fastf1_2025_dutch_grand_prix',
-  'fastf1_2025_italian_grand_prix',
-] as const
-
-const ALL_MAP_EVENTS = [...EVENTS, PREDICTION_EVENT, ...ADDITIONAL_MAP_EVENTS]
-  .filter(event => !HIDDEN_PACE_EVENTS.has(event) && EVENT_MAP_PREFIX[event])
-const TRACK_DATA_EVENTS = new Set<string>([...EVENTS, PREDICTION_EVENT])
-const DELTA_GRAPH_EVENTS = new Set<string>(EVENTS)
-
 function MapViewer() {
-  const [event, setEvent] = useState<string>(EVENTS[0])
+  const [event, setEvent] = useState('AUT')
   const [mapType, setMapType] = useState<MapType>('track')
-  const [trackData, setTrackData] = useState<{ prefix: string; data: TrackData } | null>(null)
-  const [trackError, setTrackError] = useState<string | null>(null)
+  const [trackData, setTrackData] = useState<TrackData | null>(null)
+  const [trackError, setTrackError] = useState(false)
 
-  const prefix = EVENT_MAP_PREFIX[event]
-  const hasGraph = DELTA_GRAPH_EVENTS.has(event)
-  const hasTrackData = TRACK_DATA_EVENTS.has(event)
-  const effectiveType: MapType = (mapType === 'delta' && !hasGraph) ? 'track' : mapType
+  const selected = PACE_MAPS.find(map => map.code === event)!
+  const prefix = selected.trackPrefix
+  const [imageError, setImageError] = useState<string | null>(null)
+  const imgUrl = selected.telemetry
 
   useEffect(() => {
-    if (effectiveType !== 'track' || !hasTrackData) return
+    let cancelled = false
+    setTrackData(null)
+    setTrackError(false)
     loadTrackData(prefix)
-      .then(data => {
-        setTrackData({ prefix, data })
-        setTrackError(null)
-      })
-      .catch(() => setTrackError(prefix))
-  }, [event, effectiveType, hasTrackData, prefix])
-
-  const trackImgUrl = `/pace/three_class_maps/${prefix}_3class_map.png`
-  const imgUrl = effectiveType === 'telemetry'
-    ? `/pace/telemetry_maps/${prefix}_telemetry_map.png`
-    : `/pace/delta_graphs/${prefix}_delta_graph.png`
+      .then(data => { if (!cancelled) setTrackData(data) })
+      .catch(() => { if (!cancelled) setTrackError(true) })
+    return () => { cancelled = true }
+  }, [prefix])
 
   return (
     <div className="pace-section">
@@ -271,13 +252,18 @@ function MapViewer() {
 
       <div className="pace-map-controls">
         <div className="pace-cat-pills">
-          {ALL_MAP_EVENTS.map(ev => (
+          {PACE_MAPS.map(map => (
             <button
-              key={ev}
-              className={`pace-cat-pill ${event === ev ? 'active' : ''}`}
-              onClick={() => setEvent(ev)}
+              key={map.code}
+              className={`pace-cat-pill ${event === map.code ? 'active' : ''}`}
+              aria-pressed={event === map.code}
+              onClick={() => {
+                if (event !== map.code) setTrackData(null)
+                setEvent(map.code)
+                setImageError(null)
+              }}
             >
-              {EVENT_LABEL[ev]}
+              {map.code}
             </button>
           ))}
         </div>
@@ -285,62 +271,28 @@ function MapViewer() {
           {(Object.keys(MAP_LABELS) as MapType[]).map(t => (
             <button
               key={t}
-              className={`pace-cat-pill ${effectiveType === t ? 'active' : ''}`}
-              onClick={() => setMapType(t)}
-              disabled={t === 'delta' && !hasGraph}
+              className={`pace-cat-pill ${mapType === t ? 'active' : ''}`}
+              aria-pressed={mapType === t}
+              onClick={() => { setMapType(t); setImageError(null) }}
             >
               {MAP_LABELS[t]}
             </button>
           ))}
         </div>
       </div>
-
-      {/* Category legend for 3-class track */}
-      {effectiveType === 'track' && (
-        <div className="pace-cat-pills" style={{ marginBottom: 8 }}>
-          {CATEGORIES.map(c => {
-            const col = TRACK_COLOR[c] ?? '#667'
-            return (
-              <span key={c} className="pace-cat-pill" style={{
-                background: col + '22',
-                borderColor: col,
-                color: col,
-                cursor: 'default',
-                fontSize: 11,
-              }}>
-                <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: col, marginRight: 4, verticalAlign: 'middle' }} />
-                {CAT_SHORT[c]}
-              </span>
-            )
-          })}
-        </div>
-      )}
+      <div className="pace-map-source">{selected.source}</div>
 
       <div className="pace-map-img-wrap">
-        {effectiveType === 'track' ? (
-          hasTrackData ? (
-            trackError === prefix ? (
-              <div style={{ color: '#667', padding: 40, textAlign: 'center' }}>Track data unavailable</div>
-            ) : trackData?.prefix === prefix ? (
-              <TrackSVG trackData={trackData.data} />
-            ) : (
-              <div style={{ color: '#667', padding: 40, textAlign: 'center' }}>Loading…</div>
-            )
-          ) : (
-            <img
-              key={trackImgUrl}
-              src={trackImgUrl}
-              alt={`${EVENT_LABEL[event]} ${MAP_LABELS.track}`}
-              className="pace-map-img"
-            />
-          )
+        {trackError ? (
+          <div role="status" style={{ color: '#667', padding: 40 }}>Map unavailable</div>
+        ) : !trackData ? (
+          <div role="status" style={{ color: '#667', padding: 40 }}>Loading…</div>
+        ) : mapType === 'track' ? (
+          <TrackSVG trackData={trackData} />
+        ) : imageError === imgUrl ? (
+          <div role="status" style={{ color: '#667', padding: 40 }}>Map unavailable</div>
         ) : (
-          <img
-            key={imgUrl}
-            src={imgUrl}
-            alt={`${EVENT_LABEL[event]} ${MAP_LABELS[effectiveType]}`}
-            className="pace-map-img"
-          />
+          <PaceTelemetryMap imageUrl={imgUrl} label={selected.source} speedScale={trackData.speedScale} onError={() => setImageError(imgUrl)} />
         )}
       </div>
     </div>
@@ -365,9 +317,6 @@ export default function PaceAnalysisView() {
 
   return (
     <div className="pace-view">
-      <p className="page-intro">
-        Positive means slower than Mercedes. Hungary, the Netherlands, Italy, Madrid, and Baku use qualifying inputs; earlier events use race laps. AZE uses each driver&apos;s fastest lap across Q1, Q2, and Q3, excluding Antonelli. Mercedes uses Russell&apos;s Q3 lap (1:42.526); other teams use both drivers. Provisional: Russell&apos;s Q3 speed freeze failed the repair gate and remains uncorrected; Stroll&apos;s braking jump is also unresolved.
-      </p>
       <PredictionTable predictions={predictions} />
       <CircuitHistory deltaMap={deltaMap} predictions={predictions} />
       <MapViewer />

@@ -1,5 +1,9 @@
 import { useState, useEffect, useMemo } from 'react'
-import { TEAM_COLORS } from '../lib/paceData'
+import { TEAM_COLORS, loadTrackData } from '../lib/paceData'
+import type { TrackData } from '../lib/paceData'
+import { PACE_MAPS } from '../lib/paceMaps'
+import PaceTelemetryMap from './PaceTelemetryMap'
+import { TrackSVG } from './PaceAnalysisView'
 import {
   RACES2, loadDriverPredictions, loadTeamDeltas2, loadPolePredictions,
 } from '../lib/paceData2'
@@ -31,12 +35,8 @@ function QualifyingGrid({ drivers, pole }: { drivers: DriverPrediction[]; pole: 
       <div className="pa2-section-title">Predicted Qualifying Order</div>
       {pole && (
         <div className="pa2-pole-info">
-          {pole.compact ? 'predicted pole: ' : 'Predicted pole '}
-          <span style={{ color: '#f0c040', fontFamily: 'monospace' }}>{pole.predictedTime}</span>
-          {!pole.compact && <>
-            <span className="pa2-pole-range"> · range {pole.lowTime} – {pole.highTime}</span>
-            <span className="pa2-pole-anchor"> · anchored to {pole.anchorDriver} {pole.anchorPole} (2025)</span>
-          </>}
+          Predicted pole <span style={{ color: '#f0c040', fontFamily: 'monospace' }}>{pole.predictedTime}</span>
+          {pole.lowTime && pole.highTime && <span className="pa2-pole-range"> · range {pole.lowTime} – {pole.highTime}</span>}
         </div>
       )}
 
@@ -80,16 +80,10 @@ function QualifyingGrid({ drivers, pole }: { drivers: DriverPrediction[]; pole: 
 function TeamPaceTable({ deltas }: { deltas: TeamDelta2[] }) {
   const sorted = [...deltas].sort((a, b) => a.overall - b.overall)
   const maxAbs = Math.max(...sorted.map(t => Math.abs(t.overall)), 0.1)
-  const first = sorted[0]
 
   return (
     <div className="pa2-section">
       <div className="pa2-section-title">Team Pace vs Mercedes</div>
-      {first && (
-        <div className="pa2-track-mix">
-          Track mix — Slow {first.slowShare.toFixed(1)}% · Fast {first.fastShare.toFixed(1)}% · Straight {first.straightShare.toFixed(1)}%
-        </div>
-      )}
 
       <div className="pa2-pace-head">
         <span style={{ width: 24 }}>P</span>
@@ -131,14 +125,18 @@ type MapMode = 'telemetry' | 'three_class'
 
 function MapsSection({ race }: { race: Race2 }) {
   const [mode, setMode] = useState<MapMode>('three_class')
+  const [failedUrl, setFailedUrl] = useState<string | null>(null)
+  const [telemetryData, setTelemetryData] = useState<{ prefix: string; data: TrackData } | null>(null)
+  const map = PACE_MAPS.find(map => map.code === race.mapCode)!
 
-  const imgUrl = mode === 'telemetry'
-    ? `/pace2/telemetry_maps/${race.imgPrefix}_telemetry_map_100m.png`
-    : `/pace2/three_class_maps/${race.imgPrefix}_3class_map.png`
-
-  const fallbackUrl = mode === 'telemetry'
-    ? `/pace2/telemetry_maps/${race.imgPrefix}_telemetry_map.png`
-    : imgUrl
+  useEffect(() => {
+    let cancelled = false
+    setFailedUrl(null)
+    loadTrackData(map.trackPrefix)
+      .then(data => { if (!cancelled) setTelemetryData({ prefix: map.trackPrefix, data }) })
+      .catch(() => { if (!cancelled) setFailedUrl(map.telemetry) })
+    return () => { cancelled = true }
+  }, [map.trackPrefix, map.telemetry])
 
   return (
     <div className="pa2-section">
@@ -154,14 +152,13 @@ function MapsSection({ race }: { race: Race2 }) {
           </button>
         ))}
       </div>
+      <div className="pace-map-source">{map.source}</div>
       <div className="pa2-map-wrap">
-        <img
-          key={imgUrl}
-          src={imgUrl}
-          onError={(e) => { (e.target as HTMLImageElement).src = fallbackUrl }}
-          alt={`${race.label} ${mode}`}
-          className="pa2-map-img"
-        />
+        {failedUrl === map.telemetry ? <div role="status">Map unavailable</div>
+          : telemetryData?.prefix !== map.trackPrefix ? <div role="status">Loading…</div>
+          : mode === 'telemetry' ? (
+            <PaceTelemetryMap imageUrl={map.telemetry} label={map.source} speedScale={telemetryData.data.speedScale} onError={() => setFailedUrl(map.telemetry)} />
+          ) : <TrackSVG trackData={telemetryData.data} />}
       </div>
     </div>
   )
@@ -200,13 +197,10 @@ export default function PaceAnalysis2View() {
 
   return (
     <div className="pa2-view">
-      <p className="page-intro">
-        Race-by-race pace predictions for the 2026 Formula 1 season, generated from FastF1 sector telemetry and time-weighted speed delta modelling. Select a race weekend to see the predicted qualifying order, estimated pole lap time, and team pace rankings broken down by slow corners, fast corners, and straights. All deltas shown are relative to Mercedes — positive means slower, negative means faster. Predictions are updated after each race weekend as new telemetry data becomes available.
-      </p>
       <div className="pa2-header">
         <div className="pa2-title">
-          <span className="pa2-title-label">Pace Analysis 2</span>
-          <span className="pa2-title-badge">2026 Season Predictions</span>
+          <span className="pa2-title-label">Predictions</span>
+          <span className="pa2-title-badge">2026 saved forecasts</span>
         </div>
         <div className="pa2-race-pills">
           {RACES2.map(r => (
