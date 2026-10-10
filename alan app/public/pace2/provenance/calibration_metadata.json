@@ -1,0 +1,66 @@
+{
+  "source": "outputs/sepang_local_pace_2026-10-04",
+  "variant": "interpolated_history_plus_screened_sepang_qualifying",
+  "weighting": "category duration multiplied by event order (1 through 16)",
+  "sign": "positive means slower than Mercedes",
+  "team_count": 11,
+  "event_count": 16,
+  "display_session_count": 16,
+  "event_category_rows": 519,
+  "prediction_rows": 33,
+  "baku_calibration": "qualifying; Russell reference; race retained in archive only",
+  "baku_qualifying_drivers": 21,
+  "baku_qualifying_baseline": "RUS Q3 lap 25, 1:42.526",
+  "baku_selection": "fastest lap across Q1/Q2/Q3 per driver",
+  "quality_status": "provisional_unresolved_baseline",
+  "baku_race_drivers": 20,
+  "baku_race_exclusions": [
+    "OCO",
+    "STR"
+  ],
+  "warnings": [
+    "Russell Q3 has an unresolved 0.800s speed freeze at 180 km/h followed by 231 km/h in 0.280s. Its repair was rejected because the lap has mixed green/yellow status. This baseline did not pass the quality gate.",
+    "Stroll braking jump remains unresolved.",
+    "Mercedes uses one driver; other qualifying teams use two. Provisional category map.",
+    "Existing session-specific repairs kept fixed; race fastest laps are not fuel-adjusted long-run pace.",
+    "Sepang GAS, COL and BOT fastest laps excluded for unresolved telemetry; no alternate laps substituted.",
+    "Alpine has no Sepang contribution and retains earlier calibration. Cadillac uses Perez only at Sepang."
+  ],
+  "source_hashes": {
+    "outputs/singapore_forecast_2026-10-04/calibration_inputs.csv": "759535f0dd58ad3c51663cd0f4169137917a1c2a86f4999cfafc4efe60a5820e",
+    "outputs/singapore_forecast_2026-10-04/sepang_selected_laps.csv": "3630331c929413204e39dd068c7fd53c069cc37b679a5aea83e9e75c15878aae",
+    "outputs/singapore_forecast_2026-10-04/sepang_driver_segments.csv": "0fcc01ad1f01422c237235f2ec2ff48606833c128ac8b84c6bc421fb897693a0"
+  },
+  "sepang_session": "qualifying",
+  "sepang_excluded_drivers": [
+    "BOT",
+    "COL",
+    "GAS"
+  ],
+  "sepang_alternate_laps_used": false,
+  "sepang_accepted_drivers": [
+    "ALB",
+    "ALO",
+    "ANT",
+    "BEA",
+    "BOR",
+    "HAD",
+    "HAM",
+    "HUL",
+    "LAW",
+    "LEC",
+    "LIN",
+    "NOR",
+    "OCO",
+    "PER",
+    "PIA",
+    "RUS",
+    "SAI",
+    "STR",
+    "VER"
+  ],
+  "sepang_teams": 10,
+  "sepang_cadillac_drivers": [
+    "PER"
+  ]
+}

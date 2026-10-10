@@ -1,5 +1,4 @@
 import Papa from 'papaparse'
-import { isHiddenPaceTeamEvent } from './paceData.ts'
 
 function parseCsv<T>(text: string): T[] {
   return Papa.parse<T>(text, { header: true, skipEmptyLines: true }).data
@@ -16,21 +15,21 @@ export interface Race2 {
   fullName: string       // "Austria GP"
   eventKey: string       // "fastf1_2025_austrian_grand_prix"
   imgPrefix: string      // "08_austria_2025"
+  mapCode: string
 }
 
-const HIDDEN_PACE_RACES = new Set<string>(['Hungary GP / Hungaroring'])
-
 const ALL_RACES2: Race2[] = [
-  { label: 'Austria',  fullName: 'Austria GP',                       eventKey: 'fastf1_2025_austrian_grand_prix',  imgPrefix: '08_austria_2025' },
-  { label: 'Britain',  fullName: 'British GP / Silverstone',         eventKey: 'fastf1_2025_british_grand_prix',   imgPrefix: '10_silverstone_2025' },
-  { label: 'Belgium',  fullName: 'Belgium GP / Spa-Francorchamps',   eventKey: 'fastf1_2025_belgian_grand_prix',   imgPrefix: '09_spa_francorchamps_2025' },
-  { label: 'Hungary',  fullName: 'Hungary GP / Hungaroring',         eventKey: 'fastf1_2025_hungarian_grand_prix', imgPrefix: '11_hungaroring_2025' },
-  { label: 'Dutch',    fullName: 'Dutch GP / Zandvoort',             eventKey: 'fastf1_2025_dutch_grand_prix',     imgPrefix: '12_zandvoort_2025' },
-  { label: 'Italian',  fullName: 'Italian GP / Monza',               eventKey: 'fastf1_2025_italian_grand_prix',   imgPrefix: '13_monza_2025' },
-  { label: 'Sepang', fullName: 'Bahrain GP / Sepang', eventKey: 'fastf1_2026_bahrain_grand_prix', imgPrefix: '16_sepang_2026' },
+  { label: 'Austria',  fullName: 'Austria GP',                       eventKey: 'fastf1_2025_austrian_grand_prix',  imgPrefix: '08_austria_2025', mapCode: 'AUT' },
+  { label: 'Britain',  fullName: 'British GP / Silverstone',         eventKey: 'fastf1_2025_british_grand_prix',   imgPrefix: '10_silverstone_2025', mapCode: 'GBR' },
+  { label: 'Belgium',  fullName: 'Belgium GP / Spa-Francorchamps',   eventKey: 'fastf1_2025_belgian_grand_prix',   imgPrefix: '09_spa_francorchamps_2025', mapCode: 'BEL' },
+  { label: 'Hungary',  fullName: 'Hungary GP / Hungaroring',         eventKey: 'fastf1_2025_hungarian_grand_prix', imgPrefix: '11_hungaroring_2025', mapCode: 'HUN' },
+  { label: 'Dutch',    fullName: 'Dutch GP / Zandvoort',             eventKey: 'fastf1_2025_dutch_grand_prix',     imgPrefix: '12_zandvoort_2025', mapCode: 'NED' },
+  { label: 'Italy',    fullName: 'Italian GP / Monza',               eventKey: 'fastf1_2025_italian_grand_prix',   imgPrefix: '13_monza_2025', mapCode: 'ITA' },
+  { label: 'Sepang', fullName: 'Sepang GP', eventKey: 'fastf1_2026_bahrain_grand_prix', imgPrefix: 'sepang_2026', mapCode: 'SEP' },
+  { label: 'Singapore', fullName: 'Singapore GP', eventKey: 'fastf1_2026_singapore_grand_prix', imgPrefix: 'singapore_2025', mapCode: 'SIN' },
 ]
 
-export const RACES2 = ALL_RACES2.filter(race => !HIDDEN_PACE_RACES.has(race.fullName))
+export const RACES2 = ALL_RACES2
 
 // ── Driver qualifying predictions ────────────────────────────────────────────
 
@@ -53,8 +52,7 @@ const DRIVER_PRED_BASE = '/pace2/predictions/qualifying_time_predictions/driver_
 const DRIVER_PRED_CSVS = [
   `${DRIVER_PRED_BASE}/four_race_2026_driver_qualifying_predictions.csv`,
   `${DRIVER_PRED_BASE}/zandvoort_2026_driver_qualifying_predictions_recency_weighted.csv`,
-  `${DRIVER_PRED_BASE}/monza_2026_driver_qualifying_predictions_recency_weighted.csv`,
-  `${DRIVER_PRED_BASE}/sepang_2026_driver_qualifying_predictions.csv`,
+  `${DRIVER_PRED_BASE}/monza_2026_driver_qualifying_predictions_from_zandvoort_update.csv`,
 ]
 
 type RawDriverPred = {
@@ -70,12 +68,10 @@ type RawDriverPred = {
   model_pole_time: string
   model_pole_seconds: string
   target_team_delta_pct_vs_mercedes: string
-  delta_sign?: string
 }
 
 function parseDriverPredRows(text: string): DriverPrediction[] {
   return parseCsv<RawDriverPred>(text)
-    .filter(r => !isHiddenPaceTeamEvent(r.prediction_target_event, r.team))
     .map(r => ({
       race:             r.prediction_target_race,
       position:         parseInt(r.predicted_position, 10),
@@ -87,10 +83,8 @@ function parseDriverPredRows(text: string): DriverPrediction[] {
       gap:              parseFloat(r.gap_to_predicted_pole_seconds),
       poleTime:         r.model_pole_time,
       poleSeconds:      parseFloat(r.model_pole_seconds),
-      teamDelta:        r.delta_sign === 'slower_positive'
-        ? parseFloat(r.target_team_delta_pct_vs_mercedes)
-        : fasterPositiveToSlowerPositive(parseFloat(r.target_team_delta_pct_vs_mercedes)),
-    })).filter(row => !HIDDEN_PACE_RACES.has(row.race))
+      teamDelta:        fasterPositiveToSlowerPositive(parseFloat(r.target_team_delta_pct_vs_mercedes)),
+    }))
 }
 
 export async function loadDriverPredictions(): Promise<DriverPrediction[]> {
@@ -99,7 +93,7 @@ export async function loadDriverPredictions(): Promise<DriverPrediction[]> {
       fetch(url).then(r => r.ok ? r.text() : Promise.reject(`HTTP ${r.status} for ${url}`))
     )
   )
-  return results.flatMap(parseDriverPredRows)
+  return [...results.flatMap(parseDriverPredRows), ...(await loadSavedForecasts()).drivers]
 }
 
 // ── Team pace deltas ─────────────────────────────────────────────────────────
@@ -120,10 +114,7 @@ const TARGET_MIX_CSVS = [
   '/pace2/predictions/delta_predictions/four_race_2026_delta_predictions_from_new_maps.csv',
   '/pace2/predictions/delta_predictions/zandvoort_2026_team_delta_predictions_recency_weighted.csv',
   '/pace2/predictions/delta_predictions/monza_2026_team_delta_predictions_from_zandvoort_update.csv',
-  '/pace2/predictions/delta_predictions/sepang_2026_team_delta_predictions.csv',
 ]
-
-const TEAM_CATEGORY_INPUT_CSV = '/pace2/predictions/delta_predictions/team_category_delta_inputs_from_2026.csv'
 
 type RawTeamDelta = {
   prediction_target_race: string
@@ -136,86 +127,25 @@ type RawTeamDelta = {
   target_slow_corners_time_share_pct: string
   target_fast_corners_time_share_pct: string
   target_straights_time_share_pct: string
-  delta_sign?: string
-}
-
-type RawTeamCategoryInput = {
-  team: string
-  category: 'Slow corners' | 'Fast corners' | 'Straights'
-  predicted_category_delta_pct_vs_mercedes: string
 }
 
 export async function loadTeamDeltas2(): Promise<TeamDelta2[]> {
-  const [categoryInputText, targetMixTexts] = await Promise.all([
-    fetch(TEAM_CATEGORY_INPUT_CSV).then(r =>
-      r.ok ? r.text() : Promise.reject(`HTTP ${r.status} for ${TEAM_CATEGORY_INPUT_CSV}`)
-    ),
-    Promise.all(TARGET_MIX_CSVS.map(url =>
-      fetch(url).then(r => r.ok ? r.text() : Promise.reject(`HTTP ${r.status} for ${url}`))
-    )),
-  ])
-
-  const teamCategories = new Map<string, Partial<Record<RawTeamCategoryInput['category'], number>>>()
-  for (const row of parseCsv<RawTeamCategoryInput>(categoryInputText)) {
-    const value = parseFloat(row.predicted_category_delta_pct_vs_mercedes)
-    if (!isFinite(value)) continue
-    const categories = teamCategories.get(row.team) ?? {}
-    categories[row.category] = value
-    teamCategories.set(row.team, categories)
-  }
-
-  const targetRows = targetMixTexts.flatMap(text => parseCsv<RawTeamDelta>(text))
-  const targetMixes = new Map<string, RawTeamDelta>()
-  for (const row of targetRows) {
-    if (HIDDEN_PACE_RACES.has(row.prediction_target_race)) continue
-    if (!targetMixes.has(row.prediction_target_race)) {
-      targetMixes.set(row.prediction_target_race, row)
-    }
-  }
-
-  return [...targetMixes.values()].flatMap(mix => {
-    const slowShare = parseFloat(mix.target_slow_corners_time_share_pct)
-    const fastShare = parseFloat(mix.target_fast_corners_time_share_pct)
-    const straightShare = parseFloat(mix.target_straights_time_share_pct)
-    const totalShare = slowShare + fastShare + straightShare
-
-    // Preserve the published pre-qualifying snapshot as later history is added.
-    const fixedRows = targetRows.filter(row => row.prediction_target_race === mix.prediction_target_race
-      && row.delta_sign === 'slower_positive')
-    if (fixedRows.length) {
-      return fixedRows.map(row => ({
-        race: row.prediction_target_race,
-        team: row.team,
-        overall: parseFloat(row.predicted_overall_delta_pct_vs_mercedes),
-        slow: parseFloat(row.predicted_slow_corners_delta_pct),
-        fast: parseFloat(row.predicted_fast_corners_delta_pct),
-        straight: parseFloat(row.predicted_straights_delta_pct),
-        slowShare,
-        fastShare,
-        straightShare,
-      }))
-    }
-
-    return [...teamCategories.entries()].flatMap(([team, categories]) => {
-      if (isHiddenPaceTeamEvent(mix.prediction_target_event, team)) return []
-      const slow = categories['Slow corners']
-      const fast = categories['Fast corners']
-      const straight = categories.Straights
-      if (slow === undefined || fast === undefined || straight === undefined || totalShare <= 0) return []
-
-      return [{
-        race: mix.prediction_target_race,
-        team,
-        overall: (slow * slowShare + fast * fastShare + straight * straightShare) / totalShare,
-        slow,
-        fast,
-        straight,
-        slowShare,
-        fastShare,
-        straightShare,
-      }]
-    })
-  })
+  const texts = await Promise.all(TARGET_MIX_CSVS.map(url =>
+    fetch(url).then(r => r.ok ? r.text() : Promise.reject(`HTTP ${r.status} for ${url}`))
+  ))
+  // Historical forecasts must not use today's calibration or observation exclusions.
+  const historical = texts.flatMap(text => parseCsv<RawTeamDelta>(text)).map(row => ({
+    race: row.prediction_target_race,
+    team: row.team,
+    overall: fasterPositiveToSlowerPositive(parseFloat(row.predicted_overall_delta_pct_vs_mercedes)),
+    slow: fasterPositiveToSlowerPositive(parseFloat(row.predicted_slow_corners_delta_pct)),
+    fast: fasterPositiveToSlowerPositive(parseFloat(row.predicted_fast_corners_delta_pct)),
+    straight: fasterPositiveToSlowerPositive(parseFloat(row.predicted_straights_delta_pct)),
+    slowShare: parseFloat(row.target_slow_corners_time_share_pct),
+    fastShare: parseFloat(row.target_fast_corners_time_share_pct),
+    straightShare: parseFloat(row.target_straights_time_share_pct),
+  }))
+  return [...historical, ...(await loadSavedForecasts()).teams]
 }
 
 // ── Pole time predictions ────────────────────────────────────────────────────
@@ -229,19 +159,11 @@ export interface PolePrediction {
   predictedTime: string
   lowTime: string
   highTime: string
-  compact?: boolean
 }
 
 export async function loadPolePredictions(): Promise<PolePrediction[]> {
-  const urls = [
-    '/pace2/predictions/qualifying_time_predictions/four_race_2026_qualifying_time_predictions.csv',
-    '/pace2/predictions/qualifying_time_predictions/sepang_2026_pole_prediction.csv',
-  ]
-  const texts = await Promise.all(urls.map(async url => {
-    const res = await fetch(url)
-    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`)
-    return res.text()
-  }))
+  const res = await fetch('/pace2/predictions/qualifying_time_predictions/four_race_2026_qualifying_time_predictions.csv')
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
   type Raw = {
     target_race: string
@@ -252,10 +174,9 @@ export async function loadPolePredictions(): Promise<PolePrediction[]> {
     predicted_2026_qualifying_time: string
     model_low_time: string
     model_high_time: string
-    compact_display?: string
   }
 
-  return texts.flatMap(text => parseCsv<Raw>(text)).map(r => ({
+  const historical = parseCsv<Raw>(await res.text()).map(r => ({
     race:          r.target_race,
     anchorEvent:   r.anchor_2025_event,
     anchorPole:    r.anchor_2025_pole,
@@ -264,6 +185,18 @@ export async function loadPolePredictions(): Promise<PolePrediction[]> {
     predictedTime: r.predicted_2026_qualifying_time,
     lowTime:       r.model_low_time,
     highTime:      r.model_high_time,
-    compact: r.compact_display === 'true',
-  })).filter(row => !HIDDEN_PACE_RACES.has(row.race))
+  }))
+  return [...historical, ...(await loadSavedForecasts()).poles]
+}
+
+interface SavedForecasts {
+  drivers: DriverPrediction[]
+  teams: TeamDelta2[]
+  poles: PolePrediction[]
+}
+
+async function loadSavedForecasts(): Promise<SavedForecasts> {
+  const res = await fetch('/pace2/predictions/saved_forecasts.json')
+  if (!res.ok) throw new Error(`HTTP ${res.status} for saved forecasts`)
+  return res.json() as Promise<SavedForecasts>
 }

@@ -1,0 +1,31 @@
+event,circuit,team,category,weighted_speed_delta_vs_mercedes_pct,time_weight_seconds,segment_count,segments,variant,event_order,calibration_included,session,baseline_drivers,quality_status
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Aston Martin,Slow corners,1.152,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Audi,Slow corners,2.013,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Cadillac,Slow corners,3.505,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Ferrari,Slow corners,-0.837,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Haas F1 Team,Slow corners,2.805,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,McLaren,Slow corners,0.63,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Mercedes,Slow corners,0.0,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Racing Bulls,Slow corners,2.42,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Red Bull Racing,Slow corners,0.063,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Williams,Slow corners,2.82,41.03852992452971,5,"seg_02, seg_04, seg_06, seg_08, seg_10",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Aston Martin,Fast corners,3.628,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Audi,Fast corners,2.702,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Cadillac,Fast corners,5.008,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Ferrari,Fast corners,0.531,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Haas F1 Team,Fast corners,3.369,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,McLaren,Fast corners,-0.486,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Mercedes,Fast corners,0.0,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Racing Bulls,Fast corners,2.82,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Red Bull Racing,Fast corners,-0.304,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Williams,Fast corners,3.757,24.850480890039684,2,"seg_05, seg_07",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Aston Martin,Straights,0.888,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Audi,Straights,0.735,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Cadillac,Straights,0.834,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Ferrari,Straights,0.001,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Haas F1 Team,Straights,0.949,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,McLaren,Straights,0.169,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Mercedes,Straights,0.0,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Racing Bulls,Straights,0.43,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Red Bull Racing,Straights,-1.12,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
+fastf1_2026_bahrain_grand_prix_qualifying,Sepang,Williams,Straights,-0.031,29.8619891854306,4,"seg_01, seg_03, seg_09, seg_11",,16,,qualifying,,screened_fastest_laps_only
