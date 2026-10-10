@@ -5310,6 +5310,11 @@
   align-items: center;
 }
 
+.playback-speed-select-wrap .custom-select-dropdown {
+  top: auto;
+  bottom: calc(100% + 5px);
+}
+
 .selector-select,
 .battle-add-select-wrap select,
 .playback-speed-select-wrap select {
