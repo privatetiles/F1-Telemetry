@@ -36,12 +36,6 @@ const stdSessionsFull = [
   FR_SESSION,
 ]
 
-const sprintSessions = [
-  { type: SQ, label: SESSION_LABELS[SQ], drivers: FULL_GRID },
-  { type: SR, label: SESSION_LABELS[SR], drivers: FULL_GRID },
-  { type: Q,  label: SESSION_LABELS[Q],  drivers: FULL_GRID },
-  { type: R,  label: SESSION_LABELS[R],  drivers: FULL_GRID },
-]
 
 const sprintSessionsFull = [
   { type: SQ, label: SESSION_LABELS[SQ], drivers: FULL_GRID },
