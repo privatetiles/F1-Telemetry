@@ -62,10 +62,30 @@ function storedPaneWidth(key: string, fallback: number, min: number, max: number
 export default function App() {
   const [selectedSeason, setSelectedSeason] = useState<'historical' | number>(2026)
   const [circuit, setCircuit] = useState<CircuitConfig>(() => {
+    const params = new URLSearchParams(window.location.search)
+    const cId = params.get('c')
+    const cYear = params.get('y') !== null ? Number(params.get('y')) : undefined
+    if (cId) {
+      const found = CIRCUITS.find(c => c.id === cId && c.year === cYear)
+        ?? CIRCUITS.find(c => c.id === cId)
+      if (found) return found
+    }
     return CIRCUITS.filter(c => !c.year && c.hasData)
       .sort((a, b) => b.raceDate.localeCompare(a.raceDate))[0] ?? CIRCUITS[0]
   })
   const [session, setSession] = useState<CircuitSession>(() => {
+    const params = new URLSearchParams(window.location.search)
+    const cId = params.get('c')
+    const cYear = params.get('y') !== null ? Number(params.get('y')) : undefined
+    const sType = params.get('s')
+    if (cId) {
+      const found = CIRCUITS.find(c => c.id === cId && c.year === cYear)
+        ?? CIRCUITS.find(c => c.id === cId)
+      if (found) {
+        const matched = sType ? found.sessions.find(s => s.type === sType) : null
+        return matched ?? found.sessions[0]
+      }
+    }
     const c = CIRCUITS.filter(c => !c.year && c.hasData)
       .sort((a, b) => b.raceDate.localeCompare(a.raceDate))[0] ?? CIRCUITS[0]
     return c.sessions.find(s => s.type === 'full_race') ?? c.sessions[0]
@@ -80,7 +100,10 @@ export default function App() {
   const [progress, setProgress] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [activeView, setActiveView] = useState<AppView>(() => appViewFromHash(window.location.hash) ?? 'telemetry')
+  const [activeView, setActiveView] = useState<AppView>(() => {
+    if (new URLSearchParams(window.location.search).get('c')) return 'telemetry'
+    return appViewFromHash(window.location.hash) ?? 'telemetry'
+  })
   const [battleDrivers, setBattleDrivers] = useState<string[]>([])
   const [mobileBattleOpen, setMobileBattleOpen] = useState(false)
   const [uploadedTelemetry, setUploadedTelemetry] = useState<Record<string, TelemetryPoint[]>>({})
@@ -129,6 +152,11 @@ export default function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [proModalOpen, setProModalOpen]   = useState(false)
   const [commentsOpen, setCommentsOpen]   = useState(false)
+  const [shareToast, setShareToast]       = useState(false)
+  const shareToastTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // Drivers specified in the URL share link — consumed once after telemetry loads
+  const _urlD = new URLSearchParams(window.location.search).get('d')
+  const urlDriversRef = useRef<string[] | null>(_urlD ? _urlD.split(',').filter(Boolean) : null)
 
   const [trackData, setTrackData] = useState<TrackData | null>(null)
 
@@ -186,6 +214,21 @@ export default function App() {
   useEffect(() => {
     window.location.hash = activeView
   }, [activeView])
+
+  // Sync telemetry state into URL query params so the page is shareable
+  useEffect(() => {
+    if (activeView !== 'telemetry') return
+    const params = new URLSearchParams()
+    params.set('c', circuit.id)
+    if (circuit.year !== undefined) params.set('y', String(circuit.year))
+    params.set('s', session.type)
+    if (!loading && activeDrivers.size > 0) {
+      const allInSession = new Set(session.drivers.length > 0 ? session.drivers : Object.keys(driverTelemetry))
+      const isAll = activeDrivers.size === allInSession.size && [...activeDrivers].every(d => allInSession.has(d))
+      if (!isAll) params.set('d', Array.from(activeDrivers).sort().join(','))
+    }
+    window.history.replaceState({}, '', `?${params}#telemetry`)
+  }, [activeView, circuit.id, circuit.year, session.type, activeDrivers, loading, driverTelemetry, session.drivers])
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -448,7 +491,15 @@ export default function App() {
         setPitStops(ps)
         setOvertakes(ov)
         setStandingRestartLaps(srl)
-        setActiveDrivers(new Set(Object.keys(data)))
+        const allLoaded = new Set(Object.keys(data))
+        const urlDrivers = urlDriversRef.current
+        if (urlDrivers) {
+          urlDriversRef.current = null
+          const valid = urlDrivers.filter((d: string) => allLoaded.has(d))
+          setActiveDrivers(valid.length > 0 ? new Set(valid) : allLoaded)
+        } else {
+          setActiveDrivers(allLoaded)
+        }
         setLoading(false)
       }).catch(() => { if (!cancelled) setLoading(false) })
       // Radio loads independently — prefers local cache, falls back to live OpenF1 API
@@ -471,9 +522,15 @@ export default function App() {
       if (cancelled) return
       setDriverTelemetry(data)
       setDnfDrivers(dnf)
-      // Use a functional update to read the latest soloMode without it being a dep
+      const loaded = Object.keys(data)
+      // Restore URL-specified driver selection (consumed once)
+      const urlDrivers = urlDriversRef.current
+      if (urlDrivers) {
+        urlDriversRef.current = null
+        const valid = urlDrivers.filter((d: string) => loaded.includes(d))
+        if (valid.length > 0) { setActiveDrivers(new Set(valid)); setLoading(false); return }
+      }
       setSoloMode(prevSolo => {
-        const loaded = Object.keys(data)
         if (prevSolo) {
           const fastest = loaded.reduce((best, d) => {
             const tb = data[best]?.at(-1)?.time ?? Infinity
@@ -843,6 +900,21 @@ export default function App() {
     }
   }
 
+  function handleShare() {
+    const url = window.location.href
+    navigator.clipboard?.writeText(url).catch(() => {
+      const el = document.createElement('input')
+      el.value = url
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    })
+    setShareToast(true)
+    if (shareToastTimer.current) clearTimeout(shareToastTimer.current)
+    shareToastTimer.current = setTimeout(() => setShareToast(false), 2000)
+  }
+
   function downloadTelemetryCSV() {
     const headers = 'driver,time,speed,gear,throttle,brake,drs,x,y,distance,relDist'
     for (const driver of Array.from(activeDrivers)) {
@@ -888,6 +960,15 @@ export default function App() {
         <span className="header-context">Race data, replayed</span>
         {loading && activeView === 'telemetry' && <span className="loading-badge">Loading…</span>}
         <div className="header-actions">
+          {activeView === 'telemetry' && (
+            <div className="share-btn-wrap">
+              <button
+                className="header-action-btn share-btn"
+                onClick={handleShare}
+                title="Copy shareable link"
+              ><Icon name="share" size={17} /><span>{shareToast ? 'Copied!' : 'Share'}</span></button>
+            </div>
+          )}
           <button
             className="header-action-btn tutorial-trigger"
             onClick={() => setTutorialOpen(true)}
