@@ -6021,3 +6021,282 @@
   /* Position chart: compact height on mobile */
   .position-chart-svg { max-height: 90px; }
 }
+
+/* ── Contracts / Driver Market page ─────────────────────────────────────── */
+.contracts-page {
+  padding: 24px 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.contracts-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contracts-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.contracts-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.contracts-filter-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.contracts-filter-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.contracts-filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.contracts-filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Silly season watch strip */
+.silly-season-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.silly-season-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.silly-season-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.silly-chip {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid currentColor;
+  opacity: 0.9;
+  letter-spacing: 0.03em;
+}
+
+/* Team grid */
+.contracts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.contract-team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+}
+
+.contract-team-accent {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.contract-team-body {
+  padding: 14px 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.contract-team-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.contract-driver-row {
+  display: grid;
+  grid-template-columns: 10px 20px 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 0 8px;
+  padding: 7px 0;
+  border-top: 1px solid var(--border);
+}
+
+.contract-driver-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.contract-driver-flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.contract-driver-name {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contract-driver-code {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  justify-self: end;
+}
+
+.contract-driver-meta {
+  grid-column: 3 / 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+.contract-year {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.contract-year.expiring {
+  color: #e8a020;
+  font-weight: 600;
+}
+
+.contract-driver-note {
+  grid-column: 2 / 5;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* Status badges */
+.contract-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 10px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.contract-badge-confirmed {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.contract-badge-expiring {
+  background: rgba(234, 160, 32, 0.15);
+  color: #e8a020;
+}
+
+.contract-badge-rumored {
+  background: rgba(147, 51, 234, 0.15);
+  color: #a855f7;
+}
+
+/* News section */
+.contracts-news {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+
+.contracts-news-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 16px;
+}
+
+.contracts-news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contracts-news-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.contracts-news-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.contracts-news-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.contracts-news-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+}
+
+.contracts-news-text {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .contracts-page { padding: 16px; }
+  .contracts-grid { grid-template-columns: 1fr; }
+  .contracts-header { flex-direction: column; }
+}

@@ -44,6 +44,7 @@ import GamesPage from './components/GamesPage'
 import SocialsPage from './components/SocialsPage'
 import BattleTracker from './components/BattleTracker'
 import HistoricalRacesPage from './components/HistoricalRacesPage'
+import ContractsPage from './components/ContractsPage'
 import PositionChart from './components/PositionChart'
 import Settings, { getStoredTheme, applyTheme } from './components/Settings'
 import Icon from './components/Icon'
@@ -1081,6 +1082,8 @@ export default function App() {
             <SocialsPage />
           ) : activeView === 'changelog' ? (
             <ChangelogPage />
+          ) : activeView === 'contracts' ? (
+            <ContractsPage />
           ) : activeView === 'pace' ? (
             <PaceAnalysisView />
           ) : activeView === 'pace2' ? (

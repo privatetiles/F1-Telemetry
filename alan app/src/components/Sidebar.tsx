@@ -1,6 +1,6 @@
 import Icon, { type IconName } from './Icon'
 
-type AppView = 'telemetry' | 'standings' | 'calendar' | 'results' | 'drivers' | 'teams' | 'circuits' | 'pace' | 'pace2' | 'insights' | 'games' | 'historicalraces' | 'socials' | 'changelog'
+type AppView = 'telemetry' | 'standings' | 'calendar' | 'results' | 'drivers' | 'teams' | 'circuits' | 'pace' | 'pace2' | 'insights' | 'games' | 'historicalraces' | 'socials' | 'changelog' | 'contracts'
 
 interface Props {
   active: AppView
@@ -20,6 +20,7 @@ const NAV: Array<{ heading: string; items: Array<{ id: AppView; icon: IconName; 
     { id: 'circuits', icon: 'circuits', label: 'Circuits', title: 'Circuits' },
     { id: 'insights', icon: 'insights', label: 'Insights', title: 'Race insights' },
     { id: 'games', icon: 'games', label: 'Games', title: 'F1 games' },
+    { id: 'contracts', icon: 'contract', label: 'Driver Market', title: '2026 driver contracts & silly season' },
   ] },
   { heading: 'Analysis', items: [
     { id: 'pace', icon: 'pace', label: 'Pace analysis', title: 'Pace analysis' },
