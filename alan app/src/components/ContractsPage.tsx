@@ -17,62 +17,64 @@ interface TeamEntry {
 
 const CURRENT_YEAR = 2026
 
-// Contract data — update as deals are confirmed
+// Contract data — last updated Oct 2026
 const TEAMS: TeamEntry[] = [
   { name: 'Red Bull Racing', drivers: [
-    { code: 'VER', contract: 2028, status: 'confirmed' },
+    { code: 'VER', contract: 2030, status: 'confirmed' },
     { code: 'HAD', contract: 2027, status: 'confirmed' },
   ]},
   { name: 'McLaren', drivers: [
-    { code: 'NOR', contract: 2027, status: 'confirmed' },
-    { code: 'PIA', contract: 2026, status: 'expiring', note: 'Extension expected' },
+    { code: 'NOR', contract: 2030, status: 'confirmed' },
+    { code: 'PIA', contract: 2028, status: 'confirmed' },
   ]},
   { name: 'Ferrari', drivers: [
-    { code: 'LEC', contract: 2029, status: 'confirmed' },
-    { code: 'HAM', contract: 2027, status: 'confirmed' },
+    { code: 'LEC', contract: 2028, status: 'confirmed' },
+    { code: 'HAM', contract: 2027, status: 'confirmed', note: 'Holds personal option to extend to 2028' },
   ]},
   { name: 'Mercedes', drivers: [
-    { code: 'RUS', contract: 2026, status: 'expiring' },
+    { code: 'RUS', contract: 2027, status: 'confirmed', note: 'Performance clause activated' },
     { code: 'ANT', contract: 2027, status: 'confirmed' },
   ]},
   { name: 'Aston Martin', drivers: [
-    { code: 'ALO', contract: 2026, status: 'expiring', note: 'Decision expected by year end' },
+    { code: 'ALO', contract: 2027, status: 'confirmed', note: 'Extended Sep 29 — Adrian Newey cited as key factor' },
     { code: 'STR', contract: 2030, status: 'confirmed' },
   ]},
   { name: 'Williams', drivers: [
-    { code: 'ALB', contract: 2027, status: 'confirmed' },
     { code: 'SAI', contract: 2027, status: 'confirmed' },
+    { code: 'ALB', contract: 2027, status: 'confirmed' },
   ]},
   { name: 'Haas F1 Team', drivers: [
     { code: 'BEA', contract: 2027, status: 'confirmed' },
-    { code: 'OCO', contract: 2027, status: 'confirmed' },
+    { code: 'OCO', contract: 2026, status: 'expiring', note: 'Confirmed departure — Camara signed for 2027' },
   ]},
   { name: 'Audi', drivers: [
-    { code: 'HUL', contract: 2026, status: 'expiring' },
+    { code: 'HUL', contract: 2027, status: 'confirmed', note: 'Confirmed at Baku GP (Sep 25)' },
     { code: 'BOR', contract: 2027, status: 'confirmed' },
   ]},
   { name: 'Racing Bulls', drivers: [
-    { code: 'LAW', contract: 2026, status: 'expiring' },
+    { code: 'LAW', contract: 2026, status: 'expiring', note: 'Expected to be retained — decision imminent' },
     { code: 'LIN', contract: 2027, status: 'confirmed' },
   ]},
   { name: 'Alpine', drivers: [
-    { code: 'GAS', contract: 2026, status: 'expiring' },
-    { code: 'COL', contract: 2026, status: 'expiring' },
+    { code: 'GAS', contract: 2028, status: 'confirmed' },
+    { code: 'COL', contract: 2027, status: 'confirmed', note: 'Extension confirmed Aug 27' },
   ]},
   { name: 'Cadillac', drivers: [
-    { code: 'BOT', contract: 2026, status: 'expiring' },
-    { code: 'PER', contract: 2026, status: 'expiring', note: 'Future in F1 uncertain' },
+    { code: 'BOT', contract: 2027, status: 'rumored', note: 'Seat at risk — Ocon & Herta linked' },
+    { code: 'PER', contract: 2027, status: 'confirmed', note: 'Multi-year deal; team reviewing lineup' },
   ]},
 ]
 
 // Manually curated news items — add new entries at the top
 const NEWS_ITEMS = [
-  { date: 'Oct 2026', text: 'Alpine confirms both GAS and COL seats are under review for 2027 — junior academy drivers being evaluated.', tag: 'Alpine' },
-  { date: 'Oct 2026', text: 'Alonso says he will make a decision on his 2027 plans "before the end of the Abu Dhabi weekend."', tag: 'Aston Martin' },
-  { date: 'Oct 2026', text: 'Russell in advanced talks with Mercedes over multi-year extension into 2027-28.', tag: 'Mercedes' },
-  { date: 'Sep 2026', text: 'Cadillac confirms both Bottas and Perez contracts expire end of 2026; team exploring options for 2027 grid.', tag: 'Cadillac' },
-  { date: 'Sep 2026', text: 'Hülkenberg linked to management change at Audi as team shifts focus toward 2027 full works entry.', tag: 'Audi' },
-  { date: 'Aug 2026', text: 'Piastri and McLaren in talks over multi-year extension — deal expected to be confirmed before end of season.', tag: 'McLaren' },
+  { date: 'Oct 2026', text: 'Cadillac considering replacing Bottas for 2027 — Esteban Ocon and Colton Herta both linked to second seat. Perez considered the more secure of the two.', tag: 'Cadillac' },
+  { date: 'Oct 2026', text: 'Liam Lawson widely expected to be retained at Racing Bulls alongside Lindblad. Ted Kravitz reports Red Bull have "already made the decision" — official announcement pending.', tag: 'Racing Bulls' },
+  { date: 'Sep 2026', text: 'Fernando Alonso signs Aston Martin extension for 2027, citing Adrian Newey\'s presence as the decisive factor. Confirmed Sep 29 alongside Lance Stroll.', tag: 'Aston Martin' },
+  { date: 'Sep 2026', text: 'Audi confirm Hülkenberg and Bortoleto for 2027 at Baku. Team boss Binotto shuts down persistent Sainz-to-Audi rumours definitively.', tag: 'Audi' },
+  { date: 'Aug 2026', text: 'Haas sign Rafael Camara (Ferrari Academy, 21) to a multi-year deal for 2027. Ocon confirmed departure — described himself as a "free agent" during Azerbaijan GP weekend.', tag: 'Haas' },
+  { date: 'Aug 2026', text: 'Alpine announce Colapinto extension (Aug 27) — unchanged 2027 lineup with Gasly (contracted through 2028) confirmed on Formula1.com.', tag: 'Alpine' },
+  { date: 'Aug 2026', text: 'Williams sign both Sainz and Albon to 2027 extensions despite difficult season. Sainz multi-year, Albon one-year. Sainz-to-Audi rumours killed off simultaneously.', tag: 'Williams' },
+  { date: 'Aug 2026', text: 'Verstappen signs Red Bull deal through 2030 (Aug 20). Piastri extends with McLaren through 2028. George Russell confirms Mercedes performance clause is activated for 2027.', tag: 'Market' },
 ]
 
 const STATUS_LABELS: Record<ContractDriver['status'], string> = {
@@ -132,11 +134,13 @@ export default function ContractsPage() {
   const [filter, setFilter] = useState<'all' | 'expiring'>('all')
 
   const expiring = TEAMS.flatMap(t => t.drivers).filter(d =>
-    typeof d.contract === 'number' && d.contract <= CURRENT_YEAR
+    (typeof d.contract === 'number' && d.contract <= CURRENT_YEAR) || d.status === 'rumored'
   )
 
   const visibleTeams = filter === 'expiring'
-    ? TEAMS.filter(t => t.drivers.some(d => typeof d.contract === 'number' && d.contract <= CURRENT_YEAR))
+    ? TEAMS.filter(t => t.drivers.some(d =>
+        (typeof d.contract === 'number' && d.contract <= CURRENT_YEAR) || d.status === 'rumored'
+      ))
     : TEAMS
 
   return (
@@ -144,7 +148,7 @@ export default function ContractsPage() {
       <div className="contracts-header">
         <div>
           <h1 className="contracts-title">Driver Market</h1>
-          <p className="contracts-subtitle">2026 grid contracts · {expiring.length} seats expiring end of season</p>
+          <p className="contracts-subtitle">2026 grid · {expiring.length} seat{expiring.length !== 1 ? 's' : ''} still open for 2027 · updated Oct 2026</p>
         </div>
         <div className="contracts-filter-btns">
           <button
