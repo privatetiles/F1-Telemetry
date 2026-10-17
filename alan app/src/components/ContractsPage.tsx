@@ -77,6 +77,70 @@ const NEWS_ITEMS = [
   { date: 'Aug 2026', text: 'Verstappen signs Red Bull deal through 2030 (Aug 20). Piastri extends with McLaren through 2028. George Russell confirms Mercedes performance clause is activated for 2027.', tag: 'Market' },
 ]
 
+const TIMELINE_START = 2026
+const TIMELINE_END   = 2031
+const TIMELINE_SPAN  = TIMELINE_END - TIMELINE_START // 5
+
+function barPct(contract: number | 'TBD'): number {
+  if (contract === 'TBD') return 10
+  return Math.min(Math.max((contract - TIMELINE_START + 1) / TIMELINE_SPAN * 100, 10), 100)
+}
+
+function ContractTimeline() {
+  const ticks = Array.from({ length: TIMELINE_SPAN + 1 }, (_, i) => TIMELINE_START + i)
+  return (
+    <div className="contract-timeline">
+      <h2 className="contracts-news-title" style={{ marginBottom: 14 }}>Contract Duration</h2>
+
+      {/* Year axis */}
+      <div className="contract-tl-axis-row">
+        <div className="contract-tl-label-col" />
+        <div className="contract-tl-track-col">
+          {ticks.map(y => (
+            <span key={y} className="contract-tl-tick"
+              style={{ left: `${(y - TIMELINE_START) / TIMELINE_SPAN * 100}%` }}>
+              {y}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Teams */}
+      {TEAMS.map(team => {
+        const teamColor = TEAM_COLORS[team.name] ?? '#445566'
+        return (
+          <div key={team.name} className="contract-tl-group">
+            <div className="contract-tl-team-name" style={{ color: teamColor }}>{team.name}</div>
+            {team.drivers.map(d => {
+              const info  = DRIVER_INFO[d.code]
+              const pct   = barPct(d.contract)
+              const color = driverColor(d.code)
+              const endLabel = d.contract === 'TBD' ? 'TBD'
+                : d.contract <= CURRENT_YEAR ? 'Exp' : String(d.contract)
+              return (
+                <div key={d.code} className="contract-tl-row">
+                  <div className="contract-tl-label-col">
+                    <span className="contract-tl-flag">{info?.flag}</span>
+                    <span className="contract-tl-code" style={{ color: teamColor }}>{d.code}</span>
+                  </div>
+                  <div className="contract-tl-track-col">
+                    <div className={`contract-tl-bar contract-tl-bar-${d.status}`}
+                      style={{ width: `${pct}%`, background: color }} />
+                    <span className="contract-tl-end-label"
+                      style={{ left: `${pct}%`, color }}>
+                      {endLabel}
+                    </span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 const STATUS_LABELS: Record<ContractDriver['status'], string> = {
   confirmed: 'Confirmed',
   expiring:  'Expiring',
@@ -179,6 +243,8 @@ export default function ContractsPage() {
           </div>
         </div>
       )}
+
+      <ContractTimeline />
 
       <div className="contracts-grid">
         {visibleTeams.map(t => <TeamCard key={t.name} team={t} />)}
