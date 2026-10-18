@@ -88,7 +88,7 @@ export default function ResultsPage({ initialRound }: Props) {
               </div>
               {(() => { const r = getReplayLink(parseInt(detail.round)); return r ? (
                 <a className="results-replay-btn" href={r.url} target="_blank" rel="noopener noreferrer">
-                  ▶ Watch Replay
+                  ▶ {r.type === 'replay' ? 'Watch Full Race' : 'Watch Highlights'}
                 </a>
               ) : null })()}
             </div>

@@ -81,7 +81,7 @@ export default function CalendarPage({ onSelectRound }: Props) {
                     {(() => { const r = getReplayLink(parseInt(race.round)); return r ? (
                       <a className="cal-replay-btn" href={r.url} target="_blank" rel="noopener noreferrer"
                         onClick={e => e.stopPropagation()}>
-                        ▶ Replay
+                        ▶ {r.type === 'replay' ? 'Full race' : 'Highlights'}
                       </a>
                     ) : null })()}
                   </div>
