@@ -9,10 +9,10 @@ export interface ReplayLink {
 
 const REPLAY_LINKS: Record<number, ReplayLink> = {
   1:  { url: 'https://www.youtube.com/watch?v=lL_d84cN1UY', type: 'highlights' },
-  // R2 Chinese: only radio rewind available on YouTube
-  // R3 Japanese: playlist only, no standalone full race
-  // R4 Miami: only post-race show found
-  // R5 Canadian: unverified
+  2:  { url: 'https://www.youtube.com/watch?v=Fjpn0s-KtKI', type: 'highlights' },
+  3:  { url: 'https://www.youtube.com/watch?v=oAtYfF0_4-I', type: 'highlights' },
+  4:  { url: 'https://www.youtube.com/watch?v=5gYys4GL7S0', type: 'highlights' },
+  5:  { url: 'https://www.youtube.com/watch?v=QrRh2vOJQbw', type: 'highlights' },
   6:  { url: 'https://www.youtube.com/watch?v=MRHE6NKn6Hk', type: 'highlights' },
   7:  { url: 'https://www.youtube.com/watch?v=sIdwR_pZ2yQ', type: 'replay'     },
   8:  { url: 'https://www.youtube.com/watch?v=E0gWSGyIAEA', type: 'replay'     },
@@ -21,7 +21,11 @@ const REPLAY_LINKS: Record<number, ReplayLink> = {
   11: { url: 'https://www.youtube.com/watch?v=mqgAvvZxD2k', type: 'replay'     },
   12: { url: 'https://www.youtube.com/watch?v=y0gv58iv10U', type: 'highlights' },
   13: { url: 'https://www.youtube.com/watch?v=xaHPCs-JQVk', type: 'replay'     },
-  // R14 Madrid, R15 Azerbaijan, R16 Sepang, R17 Singapore: unverified — add once confirmed
+  14: { url: 'https://www.youtube.com/watch?v=NK7AfP_wi8M', type: 'highlights' },
+  15: { url: 'https://www.youtube.com/watch?v=I9oahfzac0I', type: 'highlights' },
+  16: { url: 'https://www.youtube.com/watch?v=U-V7IfBwN1I', type: 'highlights' },
+  17: { url: 'https://www.youtube.com/watch?v=E0O09MzrITM', type: 'highlights' },
+  // Rounds 18–22 added after each race
 }
 
 export function getReplayLink(round: number): ReplayLink | null {
