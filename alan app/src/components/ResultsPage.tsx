@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { fetchAllResults, fetchRaceResult, CONSTRUCTOR_TEAM } from '../lib/f1Api'
 import type { Race, RaceResult } from '../lib/f1Api'
 import { TEAM_COLORS } from '../lib/paceData'
+import { getReplayLink } from '../lib/replayLinks'
 
 function statusClass(status: string) {
   if (status === 'Finished') return ''
@@ -80,8 +81,17 @@ export default function ResultsPage({ initialRound }: Props) {
           <div className="page-empty">Select a race to view results</div>
         ) : (
           <>
-            <h2 className="results-race-name">{detail.raceName}</h2>
-            <p className="results-race-meta">{detail.Circuit.circuitName} · {detail.date}</p>
+            <div className="results-race-header">
+              <div>
+                <h2 className="results-race-name">{detail.raceName}</h2>
+                <p className="results-race-meta">{detail.Circuit.circuitName} · {detail.date}</p>
+              </div>
+              {(() => { const r = getReplayLink(parseInt(detail.round)); return r ? (
+                <a className="results-replay-btn" href={r.url} target="_blank" rel="noopener noreferrer">
+                  ▶ Watch Replay
+                </a>
+              ) : null })()}
+            </div>
             <div className="results-table">
               <div className="res-head">
                 <span className="rc-pos">P</span>

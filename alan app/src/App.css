@@ -3031,6 +3031,14 @@
 .cal-done  { font-size: 10px; font-weight: 700; color: #2a4; }
 .cal-cd    { font-size: 11px; font-weight: 700; color: #667; }
 .cal-cd-next { color: var(--accent); }
+.cal-past-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.cal-replay-btn {
+  font-size: 10px; font-weight: 600; color: var(--accent);
+  border: 1px solid var(--accent); border-radius: 10px;
+  padding: 1px 8px; text-decoration: none; opacity: 0.85;
+  transition: opacity 0.15s;
+}
+.cal-replay-btn:hover { opacity: 1; }
 
 /* ══════════════════════════════════════════
    RESULTS PAGE
@@ -3059,8 +3067,17 @@
 .round-btn-name { font-size: 11px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .results-detail { flex: 1; overflow-y: auto; padding: 20px 24px; }
+.results-race-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
 .results-race-name { font-size: 17px; font-weight: 800; color: #dde; margin: 0 0 4px; }
 .results-race-meta { font-size: 11px; color: #556; margin: 0 0 16px; }
+.results-replay-btn {
+  flex-shrink: 0; margin-top: 2px;
+  font-size: 11px; font-weight: 600; color: var(--accent);
+  border: 1px solid var(--accent); border-radius: 12px;
+  padding: 4px 12px; text-decoration: none; opacity: 0.85;
+  white-space: nowrap; transition: opacity 0.15s;
+}
+.results-replay-btn:hover { opacity: 1; }
 .results-table { display: flex; flex-direction: column; gap: 1px; }
 
 .res-head {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fetchSchedule } from '../lib/f1Api'
 import type { Race } from '../lib/f1Api'
+import { getReplayLink } from '../lib/replayLinks'
 
 function raceStatus(dateStr: string): 'past' | 'upcoming' | 'next' {
   const today = new Date()
@@ -74,10 +75,19 @@ export default function CalendarPage({ onSelectRound }: Props) {
               </div>
               <div className="cal-right">
                 <span className="cal-date">{formatDate(race.date)}</span>
-                {st === 'past'
-                  ? <span className="cal-done">Finished</span>
-                  : <span className={`cal-cd ${isNext ? 'cal-cd-next' : ''}`}>{cd}</span>
-                }
+                {st === 'past' ? (
+                  <div className="cal-past-actions">
+                    <span className="cal-done">Finished</span>
+                    {(() => { const r = getReplayLink(parseInt(race.round)); return r ? (
+                      <a className="cal-replay-btn" href={r.url} target="_blank" rel="noopener noreferrer"
+                        onClick={e => e.stopPropagation()}>
+                        ▶ Replay
+                      </a>
+                    ) : null })()}
+                  </div>
+                ) : (
+                  <span className={`cal-cd ${isNext ? 'cal-cd-next' : ''}`}>{cd}</span>
+                )}
               </div>
             </div>
           )
