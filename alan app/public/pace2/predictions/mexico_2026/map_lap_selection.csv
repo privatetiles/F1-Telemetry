@@ -1,0 +1,21 @@
+driver,lap_number,lap_time_seconds,accepted,exclusion_reasons,native_distance_span_m,source_path
+ALB,45.0,80.48,False,sparse_car_samples,4219.079504045468,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv
+ALO,22.0,81.708,False,sparse_car_samples,4245.551720726206,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv
+ANT,58.0,80.826,False,sparse_car_samples,4236.891486219448,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv
+BEA,51.0,80.705,False,sparse_car_samples,4245.509431998577,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv
+BOR,39.0,81.121,True,,4252.503245863889,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv
+COL,50.0,81.342,False,sparse_car_samples,4230.1866074029,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv
+GAS,43.0,82.271,True,,4237.495250231927,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv
+HAD,44.0,81.714,True,,4226.235599631813,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/HAD_fastest_lap_telemetry.csv
+HAM,50.0,80.601,True,,4244.105383006992,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv
+HUL,14.0,83.091,False,sparse_car_samples,4246.112752844035,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv
+LAW,4.0,85.124,False,sparse_car_samples,4245.558366940486,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv
+LEC,45.0,81.588,False,sparse_car_samples,4232.394407081407,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv
+NOR,45.0,80.764,True,,4230.779617383894,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv
+OCO,65.0,81.869,False,sparse_car_samples,4223.094295803303,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv
+PIA,53.0,80.422,False,sparse_car_samples,4225.976014451933,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv
+RUS,50.0,80.052,True,,4239.312176976318,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv
+SAI,48.0,80.098,False,sparse_car_samples,4267.9701534332735,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/SAI_fastest_lap_telemetry.csv
+STR,45.0,80.593,False,sparse_car_samples,4237.086621020419,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/STR_fastest_lap_telemetry.csv
+TSU,44.0,81.486,True,,4234.235234195423,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/TSU_fastest_lap_telemetry.csv
+VER,50.0,81.108,False,sparse_car_samples,4236.771359133234,FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv

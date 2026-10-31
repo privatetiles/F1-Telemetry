@@ -1,0 +1,10 @@
+segment_id,category,start_distance_m,end_distance_m,source
+seg_01,Straights,0.0,1140.0,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands
+seg_02,Slow corners,1140.0,1410.0,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands
+seg_03,Fast corners,1410.0,1610.0,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands
+seg_04,Straights,1610.0,1910.0,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands
+seg_05,Slow corners,1910.0,2340.0,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands
+seg_06,Fast corners,2340.0,3210.0,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands
+seg_07,Straights,3210.0,3490.0,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands
+seg_08,Slow corners,3490.0,4050.0,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands
+seg_09,Fast corners,4050.0,4237.495250231927,2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands

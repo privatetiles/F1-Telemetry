@@ -131,9 +131,13 @@ function MapsSection({ race }: { race: Race2 }) {
 
   useEffect(() => {
     let cancelled = false
-    setFailedUrl(null)
     loadTrackData(map.trackPrefix)
-      .then(data => { if (!cancelled) setTelemetryData({ prefix: map.trackPrefix, data }) })
+      .then(data => {
+        if (!cancelled) {
+          setFailedUrl(null)
+          setTelemetryData({ prefix: map.trackPrefix, data })
+        }
+      })
       .catch(() => { if (!cancelled) setFailedUrl(map.telemetry) })
     return () => { cancelled = true }
   }, [map.trackPrefix, map.telemetry])
@@ -217,6 +221,7 @@ export default function PaceAnalysis2View() {
 
       <div className="pa2-body">
         <div className="pa2-col-left">
+          {selectedRace.statusNote && <p className="pace-map-source">{selectedRace.statusNote}</p>}
           <QualifyingGrid drivers={raceDrivers} pole={racePole} />
         </div>
         <div className="pa2-col-right">

@@ -1,0 +1,52 @@
+{
+  "target_event": "2026 Mexico City Grand Prix",
+  "status": "provisional_review",
+  "data_cutoff_utc": "2026-10-30T00:00:00Z",
+  "target_2026_data_used": false,
+  "category_calibration_through": "Sepang 2026 qualifying",
+  "category_calibration_events": 16,
+  "qualifying_timing_through": "Austin 2026 qualifying",
+  "timing_events_added": [
+    {
+      "event": "singapore",
+      "event_date": "2026-10-11",
+      "qualifying_exports": 21,
+      "qualifying_results": 22,
+      "timed_drivers": 21,
+      "paired_offset_samples_added": 20,
+      "category_laps_added": 0,
+      "results_source": "https://api.jolpi.ca/ergast/f1/2026/17/qualifying.json",
+      "dry_conditions_source": "https://www.formula1.com/en/latest/article/didnt-feel-the-same-russell-trying-to-understand-lack-of-pace-in-singapore-gp-qualifying.1sLY17kQLqTBgyoTRUQOHo"
+    },
+    {
+      "event": "united_states",
+      "event_date": "2026-10-25",
+      "qualifying_exports": 22,
+      "qualifying_results": 22,
+      "timed_drivers": 22,
+      "paired_offset_samples_added": 22,
+      "category_laps_added": 0,
+      "results_source": "https://api.jolpi.ca/ergast/f1/2026/18/qualifying.json",
+      "dry_conditions_source": "https://press.pirelli.com/antonelli-chases-title-from-soft-shod-pole-position/"
+    }
+  ],
+  "pole_driver": "ANT",
+  "predicted_pole_time": "1:17.925",
+  "predicted_pole_seconds": 77.92453334223528,
+  "weighted_median_pole_ratio": 1.0309387101081586,
+  "anchor_walk_forward_cases": 8,
+  "anchor_walk_forward_mae_seconds": 0.7853590258097594,
+  "anchor_walk_forward_max_abs_seconds": 1.6565612705931017,
+  "map_year": 2025,
+  "map_status": "provisional speed bands; same screened map as initial Mexico forecast",
+  "sign": "positive means slower than Mercedes",
+  "push_performed": false,
+  "limitations": [
+    "Singapore and Austin telemetry exports fail existing calibration acceptance checks; corner deltas remain through Sepang.",
+    "Recent qualifying results update only the pole anchor and teammate offsets, not team/category form.",
+    "Low sample density and absent lap-quality metadata cannot be repaired by local interpolation.",
+    "CSV endpoint truncation is recorded separately and is not treated as official lap timing or proven speed corruption.",
+    "Dry best-lap potential; no weather, altitude-specific, grid-penalty or qualifying-elimination simulation.",
+    "Pole-anchor backtest is a timing-only diagnostic, not a calibrated confidence interval."
+  ]
+}

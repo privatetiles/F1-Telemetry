@@ -8,7 +8,7 @@ import { PACE_MAPS } from '../src/lib/paceMaps.ts'
 const csv = async path => Papa.parse(await readFile(new URL(path, import.meta.url), 'utf8'), { header: true, skipEmptyLines: true }).data
 const slowerPositive = value => (1 / (1 + Number(value) / 100) - 1) * 100
 
-test('eight saved forecasts retain complete grids, team snapshots and pole summaries without latest calibration', async () => {
+test('nine saved forecasts retain complete grids, team snapshots and pole summaries without latest calibration', async () => {
   const originalFetch = globalThis.fetch
   const requested = []
   globalThis.fetch = async path => {
@@ -19,15 +19,15 @@ test('eight saved forecasts retain complete grids, team snapshots and pole summa
     const drivers = await loadDriverPredictions()
     const teams = await loadTeamDeltas2()
     const poles = await loadPolePredictions()
-    assert.deepEqual(RACES2.map(r => r.label), ['Austria', 'Britain', 'Belgium', 'Hungary', 'Dutch', 'Italy', 'Sepang', 'Singapore'])
-    assert.equal(drivers.length, 176)
-    assert.equal(teams.length, 88)
-    assert.equal(poles.length, 8)
+    assert.deepEqual(RACES2.map(r => r.label), ['Austria', 'Britain', 'Belgium', 'Hungary', 'Dutch', 'Italy', 'Sepang', 'Singapore', 'Mexico'])
+    assert.equal(drivers.length, 198)
+    assert.equal(teams.length, 99)
+    assert.equal(poles.length, 9)
     assert.ok(requested.every(path => !path.includes('team_category_delta_inputs_from_2026')))
     for (const race of RACES2) {
       const map = PACE_MAPS.find(m => m.code === race.mapCode)
       assert.ok(map)
-      assert.equal(map.year, race.label === 'Singapore' ? 2025 : 2026)
+      assert.equal(map.year, ['Singapore', 'Mexico'].includes(race.label) ? 2025 : 2026)
       assert.match(await readFile(new URL(`../public${map.telemetry}`, import.meta.url), 'utf8'), /<svg/)
       const track = JSON.parse(await readFile(new URL(`../public/pace/track_data/${map.trackPrefix}_track.json`, import.meta.url), 'utf8'))
       assert.ok(track.speedScale.min < track.speedScale.max)
@@ -64,6 +64,7 @@ test('eight saved forecasts retain complete grids, team snapshots and pole summa
     for (const [race, file] of [
       ['Sepang GP', 'sepang_2026/qualifying_time_predictions.csv'],
       ['Singapore GP', 'singapore_2026/driver_qualifying_predictions.csv'],
+      ['Mexico City GP', 'mexico_2026/driver_qualifying_predictions.csv'],
     ]) {
       for (const row of await csv(`../public/pace2/predictions/${file}`)) {
         const actual = drivers.find(d => d.race === race && d.driver === row.driver)
@@ -78,6 +79,18 @@ test('eight saved forecasts retain complete grids, team snapshots and pole summa
     assert.equal(poles.find(p => p.race === 'Singapore GP').predictedTime, '1:32.526')
     assert.equal(poles.find(p => p.race === 'Sepang GP').anchorDriver, '')
     assert.equal(poles.find(p => p.race === 'Singapore GP').lowTime, '')
+    const mexico = drivers.filter(d => d.race === 'Mexico City GP')
+    assert.equal(mexico[0].driver, 'ANT')
+    assert.equal(mexico[0].predictedTime, '1:17.925')
+    assert.equal(mexico[0].gap, 0)
+    assert.match(RACES2.find(r => r.label === 'Mexico').statusNote, /corner data through Sepang/)
+    const summary = JSON.parse(await readFile(new URL('../public/pace2/predictions/mexico_2026/summary.json', import.meta.url), 'utf8'))
+    assert.equal(summary.target_2026_data_used, false)
+    assert.equal(summary.qualifying_timing_through, 'Austin 2026 qualifying')
+    assert.equal(summary.category_calibration_through, 'Sepang 2026 qualifying')
+    const audit = await csv('../public/pace2/predictions/mexico_2026/telemetry_quality_audit.csv')
+    assert.equal(audit.length, 43)
+    assert.ok(audit.every(row => row.accepted_for_category_calibration === 'False'))
   } finally {
     globalThis.fetch = originalFetch
   }

@@ -6,10 +6,10 @@ import { PACE_MAPS } from '../src/lib/paceMaps.ts'
 const publicFile = path => new URL(`../public${path}`, import.meta.url)
 
 test('all circuits have uniform track data and concise year-labelled telemetry maps', async () => {
-  assert.deepEqual(PACE_MAPS.slice(7).map(m => m.code), ['AUT', 'GBR', 'BEL', 'HUN', 'NED', 'ITA', 'MAD', 'AZE', 'SEP', 'SIN'])
+  assert.deepEqual(PACE_MAPS.slice(7).map(m => m.code), ['AUT', 'GBR', 'BEL', 'HUN', 'NED', 'ITA', 'MAD', 'AZE', 'SEP', 'SIN', 'MEX'])
   assert.equal(new Set(PACE_MAPS.map(m => m.code)).size, PACE_MAPS.length)
   for (const map of PACE_MAPS) {
-    assert.equal(map.year, map.code === 'SIN' ? 2025 : 2026)
+    assert.equal(map.year, ['SIN', 'MEX'].includes(map.code) ? 2025 : 2026)
     assert.match(map.source, /^\w+ Grand Prix \| 202[56]$/)
     const svg = await readFile(publicFile(map.telemetry), 'utf8')
     assert.match(svg, /viewBox="0 0 1400 1000"/)

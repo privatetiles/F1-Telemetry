@@ -1565,6 +1565,95 @@
         291.0
       ],
       "method": "Saved class boundaries retained; lap endpoints aligned for display only"
+    },
+    {
+      "prefix": "mexico_2025",
+      "year": 2025,
+      "status": "provisional_forecast_reference",
+      "class_boundaries": [
+        {
+          "segment_id": "seg_01",
+          "category": "Straights",
+          "start_distance_m": 0.0,
+          "end_distance_m": 1140.0,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        },
+        {
+          "segment_id": "seg_02",
+          "category": "Slow corners",
+          "start_distance_m": 1140.0,
+          "end_distance_m": 1410.0,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        },
+        {
+          "segment_id": "seg_03",
+          "category": "Fast corners",
+          "start_distance_m": 1410.0,
+          "end_distance_m": 1610.0,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        },
+        {
+          "segment_id": "seg_04",
+          "category": "Straights",
+          "start_distance_m": 1610.0,
+          "end_distance_m": 1910.0,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        },
+        {
+          "segment_id": "seg_05",
+          "category": "Slow corners",
+          "start_distance_m": 1910.0,
+          "end_distance_m": 2340.0,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        },
+        {
+          "segment_id": "seg_06",
+          "category": "Fast corners",
+          "start_distance_m": 2340.0,
+          "end_distance_m": 3210.0,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        },
+        {
+          "segment_id": "seg_07",
+          "category": "Straights",
+          "start_distance_m": 3210.0,
+          "end_distance_m": 3490.0,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        },
+        {
+          "segment_id": "seg_08",
+          "category": "Slow corners",
+          "start_distance_m": 3490.0,
+          "end_distance_m": 4050.0,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        },
+        {
+          "segment_id": "seg_09",
+          "category": "Fast corners",
+          "start_distance_m": 4050.0,
+          "end_distance_m": 4237.495250231927,
+          "source": "2025 Mexico City Grand Prix; screened race fastest laps; provisional speed bands"
+        }
+      ],
+      "speed_range_kph": [
+        81.0,
+        328.0
+      ],
+      "sources": [
+        {
+          "path": "FastF1 Data/2025/20_mexico_city_grand_prix/race/telemetry_fastest_laps/RUS_fastest_lap_telemetry.csv",
+          "sha256": "d90c1c81176c33533390b649735f2840fa03e80883c291c923ccb5d7338cb80f"
+        },
+        {
+          "path": "outputs/austin_mexico_forecasts_2026-10-31/mexico/segment_definitions.csv",
+          "sha256": "60548bc4909325cc4ffa2cb5657db1671a5b4b3a7206bb6571e5faeb2fe4296d"
+        },
+        {
+          "path": "outputs/austin_mexico_forecasts_2026-10-31/mexico/map_speed_profile.csv",
+          "sha256": "d79626c51c8c2fe21d88c83996cd63967c4946ef4c9d6c609db13851c3642f31"
+        }
+      ],
+      "method": "Screened 2025 race median speed bands; unchanged initial Mexico forecast map. Australia display palette."
     }
   ],
   "pace_csv_unchanged": true

@@ -571,6 +571,292 @@
       "poleTime": "1:32.526",
       "poleSeconds": 92.52618323024603,
       "teamDelta": 4.185991345313348
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 1,
+      "driver": "ANT",
+      "driverNumber": 12,
+      "team": "Mercedes",
+      "predictedTime": "1:17.925",
+      "predictedSeconds": 77.92453334223528,
+      "gap": 0.0,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 0.0
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 2,
+      "driver": "LEC",
+      "driverNumber": 16,
+      "team": "Ferrari",
+      "predictedTime": "1:18.024",
+      "predictedSeconds": 78.0244306271637,
+      "gap": 0.09989728492841721,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 0.0281728401276346
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 3,
+      "driver": "HAM",
+      "driverNumber": 44,
+      "team": "Ferrari",
+      "predictedTime": "1:18.070",
+      "predictedSeconds": 78.06978777002084,
+      "gap": 0.14525442778555941,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 0.0281728401276346
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 4,
+      "driver": "RUS",
+      "driverNumber": 63,
+      "team": "Mercedes",
+      "predictedTime": "1:18.126",
+      "predictedSeconds": 78.12577794655182,
+      "gap": 0.20124460431654256,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 0.0
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 5,
+      "driver": "VER",
+      "driverNumber": 3,
+      "team": "Red Bull Racing",
+      "predictedTime": "1:18.186",
+      "predictedSeconds": 78.18600208957949,
+      "gap": 0.26146874734421033,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 0.2641254484054312
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 6,
+      "driver": "HAD",
+      "driverNumber": 6,
+      "team": "Red Bull Racing",
+      "predictedTime": "1:18.276",
+      "predictedSeconds": 78.27594624542365,
+      "gap": 0.3514129031883755,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 0.2641254484054312
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 7,
+      "driver": "NOR",
+      "driverNumber": 1,
+      "team": "McLaren",
+      "predictedTime": "1:18.329",
+      "predictedSeconds": 78.32881630741065,
+      "gap": 0.4042829651753692,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 0.4114557187314062
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 8,
+      "driver": "PIA",
+      "driverNumber": 81,
+      "team": "McLaren",
+      "predictedTime": "1:18.363",
+      "predictedSeconds": 78.36274487883921,
+      "gap": 0.4382115366039301,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 0.4114557187314062
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 9,
+      "driver": "GAS",
+      "driverNumber": 10,
+      "team": "Alpine",
+      "predictedTime": "1:19.225",
+      "predictedSeconds": 79.22488079674804,
+      "gap": 1.3003474545127602,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 1.80874028323226
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 10,
+      "driver": "HUL",
+      "driverNumber": 27,
+      "team": "Audi",
+      "predictedTime": "1:19.349",
+      "predictedSeconds": 79.34945259975818,
+      "gap": 1.4249192575229017,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 1.7885497333242375
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 11,
+      "driver": "LAW",
+      "driverNumber": 30,
+      "team": "Racing Bulls",
+      "predictedTime": "1:19.469",
+      "predictedSeconds": 79.46853571528193,
+      "gap": 1.544002373046652,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 1.8616915278420367
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 12,
+      "driver": "LIN",
+      "driverNumber": 41,
+      "team": "Racing Bulls",
+      "predictedTime": "1:19.483",
+      "predictedSeconds": 79.48320444419082,
+      "gap": 1.5586711019555395,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 1.8616915278420367
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 13,
+      "driver": "BOR",
+      "driverNumber": 5,
+      "team": "Audi",
+      "predictedTime": "1:19.488",
+      "predictedSeconds": 79.48829675560233,
+      "gap": 1.563763413367056,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 1.7885497333242375
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 14,
+      "driver": "COL",
+      "driverNumber": 43,
+      "team": "Alpine",
+      "predictedTime": "1:19.644",
+      "predictedSeconds": 79.6443353422026,
+      "gap": 1.7198019999673164,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 1.80874028323226
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 15,
+      "driver": "BEA",
+      "driverNumber": 87,
+      "team": "Haas F1 Team",
+      "predictedTime": "1:19.744",
+      "predictedSeconds": 79.744418516018,
+      "gap": 1.8198851737827226,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 2.3992150830442416
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 16,
+      "driver": "SAI",
+      "driverNumber": 55,
+      "team": "Williams",
+      "predictedTime": "1:19.948",
+      "predictedSeconds": 79.94823807189168,
+      "gap": 2.0237047296564015,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 2.713121159643341
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 17,
+      "driver": "OCO",
+      "driverNumber": 31,
+      "team": "Haas F1 Team",
+      "predictedTime": "1:20.045",
+      "predictedSeconds": 80.04504708744658,
+      "gap": 2.120513745211298,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 2.3992150830442416
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 18,
+      "driver": "ALB",
+      "driverNumber": 23,
+      "team": "Williams",
+      "predictedTime": "1:20.330",
+      "predictedSeconds": 80.33044722221848,
+      "gap": 2.4059138799832027,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 2.713121159643341
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 19,
+      "driver": "ALO",
+      "driverNumber": 14,
+      "team": "Aston Martin",
+      "predictedTime": "1:20.836",
+      "predictedSeconds": 80.83599321187344,
+      "gap": 2.911459869638165,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 3.8557312571471503
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 20,
+      "driver": "STR",
+      "driverNumber": 18,
+      "team": "Aston Martin",
+      "predictedTime": "1:21.223",
+      "predictedSeconds": 81.2234392550389,
+      "gap": 3.298905912803619,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 3.8557312571471503
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 21,
+      "driver": "PER",
+      "driverNumber": 11,
+      "team": "Cadillac",
+      "predictedTime": "1:21.262",
+      "predictedSeconds": 81.26215176576807,
+      "gap": 3.3376184235327884,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 4.386344303346801
+    },
+    {
+      "race": "Mexico City GP",
+      "position": 22,
+      "driver": "BOT",
+      "driverNumber": 77,
+      "team": "Cadillac",
+      "predictedTime": "1:21.624",
+      "predictedSeconds": 81.62423618135249,
+      "gap": 3.699702839117208,
+      "poleTime": "1:17.925",
+      "poleSeconds": 77.92453334223528,
+      "teamDelta": 4.386344303346801
     }
   ],
   "teams": [
@@ -815,6 +1101,127 @@
       "slowShare": 48.05756013360758,
       "fastShare": 19.834438125407488,
       "straightShare": 32.10800174098493
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Mercedes",
+      "overall": 0.0,
+      "slow": 0.0,
+      "fast": 0.0,
+      "straight": 0.0,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Ferrari",
+      "overall": 0.0281728401276346,
+      "slow": -0.2920426797564785,
+      "fast": 0.2552022159817484,
+      "straight": 0.3903147011878325,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Red Bull Racing",
+      "overall": 0.2641254484054312,
+      "slow": 0.2336113642782754,
+      "fast": 0.3345809018949685,
+      "straight": 0.2490479041266124,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "McLaren",
+      "overall": 0.4114557187314062,
+      "slow": 0.4861912912297951,
+      "fast": 0.2524365256605742,
+      "straight": 0.4346301196689164,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Audi",
+      "overall": 1.7885497333242375,
+      "slow": 1.8217645067362715,
+      "fast": 2.305633978741777,
+      "straight": 1.2018749735410252,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Alpine",
+      "overall": 1.80874028323226,
+      "slow": 2.2830879836438287,
+      "fast": 1.9058648071045048,
+      "straight": 0.8320566193030564,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Racing Bulls",
+      "overall": 1.8616915278420367,
+      "slow": 2.1795734637511908,
+      "fast": 1.9804656833998409,
+      "straight": 1.152642960246031,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Haas F1 Team",
+      "overall": 2.3992150830442416,
+      "slow": 2.8154586794223686,
+      "fast": 2.7026154581655955,
+      "straight": 1.3205738068385269,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Williams",
+      "overall": 2.713121159643341,
+      "slow": 3.058691674574715,
+      "fast": 3.4374364713838523,
+      "straight": 1.3377829825709349,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Aston Martin",
+      "overall": 3.8557312571471503,
+      "slow": 3.599616310778088,
+      "fast": 4.6008135970048025,
+      "straight": 3.573043629253735,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
+    },
+    {
+      "race": "Mexico City GP",
+      "team": "Cadillac",
+      "overall": 4.386344303346801,
+      "slow": 4.98900941511389,
+      "fast": 5.417850033889145,
+      "straight": 2.2231063727749736,
+      "slowShare": 47.871030955632406,
+      "fastShare": 26.267260161909956,
+      "straightShare": 25.86170888245763
     }
   ],
   "poles": [
@@ -855,6 +1262,16 @@
       "anchorPole": "1:18.792",
       "anchorDriver": "VER",
       "anchorTeam": "Red Bull Racing",
+      "lowTime": "",
+      "highTime": ""
+    },
+    {
+      "race": "Mexico City GP",
+      "predictedTime": "1:17.925",
+      "anchorEvent": "",
+      "anchorPole": "",
+      "anchorDriver": "",
+      "anchorTeam": "",
       "lowTime": "",
       "highTime": ""
     }
@@ -899,6 +1316,86 @@
     {
       "path": "FastF1 Data/pace_analysis/predictions/monza_from_zandvoort_update/monza_2026_driver_qualifying_predictions_from_zandvoort_update.csv",
       "sha256": "50f1fd59f66bc2936a1504458be91faeb8317fc0b7b9c777433284c6ce811c1e"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/calibration_inputs.csv",
+      "sha256": "9f89dba0d2acf86f0f08ab983d1de44dcf9971e028963691063bc0af77766d2a"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/category_time_mix.csv",
+      "sha256": "1ad7ecdc5a524453ef354e70e8339fb9cc773eb600523b13cad206c6f1c8e546"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/coverage.csv",
+      "sha256": "64bd70a6b8ee1d759a42c82ccfc97b7e4a3156e0a5a2d7974ec80b072b927988"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/driver_offset_samples.csv",
+      "sha256": "8edc99e0f65a7974b321d7c8c1d8eec615e947c76021b0fef582ae784657cb43"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/driver_qualifying_predictions.csv",
+      "sha256": "9a88267c3559608d99cfc9f30cce7a739acc74766ef4558f37636c206dbbc22e"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/map_lap_selection.csv",
+      "sha256": "f9cabdefdfa0a92bf2fe4ee9e9d6a44c168a518a4f597b50e285cd40a95f71a6"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/map_speed_profile.csv",
+      "sha256": "d79626c51c8c2fe21d88c83996cd63967c4946ef4c9d6c609db13851c3642f31"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/pole_anchor_ledger.csv",
+      "sha256": "90a015a7fc6ed243a60405689747e126751edefd8b1b9ce3b892fac8dcc4ddba"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/pole_anchor_walk_forward.csv",
+      "sha256": "471db359c9ea760c01f4aa562b3ddd67560762a88b71a0d9cd9722da10d14c43"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/raw/2026_17_qualifying.json",
+      "sha256": "46f9e8f704f6563c5af99ce24e0db4eab1ee5397a7234ffa47867ee402d18b58"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/raw/2026_18_qualifying.json",
+      "sha256": "f0ddced228aee73132e9b35b8a1f4614c502e956dc20d52afba675a91d86555a"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/segment_definitions.csv",
+      "sha256": "60548bc4909325cc4ffa2cb5657db1671a5b4b3a7206bb6571e5faeb2fe4296d"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/singapore_qualifying_results.csv",
+      "sha256": "1cfef675accffc0143efbf96a4a7b0060e4970c3d3d9581a8daa1f3b4e55559f"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/source_event_ledger.csv",
+      "sha256": "953eb88dbe2eabada060ddfb02eb8e263b012b8f5a99ec055e9ea17223fe8bd7"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/source_hashes.json",
+      "sha256": "eb7e9a8bf56ab9dcdbed81d719b703d7ada5962fabe1cc2d1774b430de6360bf"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/summary.json",
+      "sha256": "34d44655e29e6098e2e55993b8f8d8f60b84a5d85c26fd1bfcc9b87ce734cf3c"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/team_category_predictions.csv",
+      "sha256": "78eecd2ce248284a9acab3226fc90ff41bf1462b10ee34cec2c13f0d1b76bc23"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/team_pace_predictions.csv",
+      "sha256": "fe823b3b8e350dd9a2beaf666d7db75a08812beceb38cacea4479c0e51593791"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/telemetry_quality_audit.csv",
+      "sha256": "05a49b4b0da24559dfc325fcf9563ac588ee11b705000c31f2380e33f9d2ee70"
+    },
+    {
+      "path": "alan app/public/pace2/predictions/mexico_2026/united_states_qualifying_results.csv",
+      "sha256": "a9100432c0cdf3ab62aef5d5a8916419992ba6c0a0ed5f83fc799dc5f7719a00"
     }
   ]
 }

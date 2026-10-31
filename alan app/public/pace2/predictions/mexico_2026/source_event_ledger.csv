@@ -1,0 +1,17 @@
+event,event_date_utc,session,metadata_path
+fastf1_2026_australia_grand_prix,2026-03-08T00:00:00+00:00,race,FastF1 Data/2026/01_australia_grand_prix/race/session_metadata.json
+fastf1_2026_china_grand_prix,2026-03-15T00:00:00+00:00,race,FastF1 Data/2026/02_china_grand_prix/race/session_metadata.json
+fastf1_2026_japan_grand_prix,2026-03-29T00:00:00+00:00,race,FastF1 Data/2026/03_japan_grand_prix/race/session_metadata.json
+fastf1_2026_miami_grand_prix,2026-05-03T00:00:00+00:00,race,FastF1 Data/2026/04_miami_grand_prix/race/session_metadata.json
+fastf1_2026_canadian_grand_prix,2026-05-24T00:00:00+00:00,race,FastF1 Data/2026/05_canadian_grand_prix/race/session_metadata.json
+fastf1_2026_monaco_grand_prix,2026-06-07T00:00:00+00:00,race,FastF1 Data/2026/06_monaco_grand_prix/race/session_metadata.json
+fastf1_2026_barcelona_grand_prix,2026-06-14T00:00:00+00:00,race,FastF1 Data/2026/07_barcelona_grand_prix/race/session_metadata.json
+fastf1_2026_austrian_grand_prix,2026-06-28T00:00:00+00:00,race,FastF1 Data/2026/08_austrian_grand_prix/race/session_metadata.json
+fastf1_2026_british_grand_prix,2026-07-05T00:00:00+00:00,race,FastF1 Data/2026/09_british_grand_prix/race/session_metadata.json
+fastf1_2026_belgian_grand_prix,2026-07-19T00:00:00+00:00,race,FastF1 Data/2026/10_belgian_grand_prix/race/session_metadata.json
+fastf1_2026_hungarian_grand_prix_qualifying,2026-07-26T00:00:00+00:00,qualifying,FastF1 Data/2026/11_hungarian_grand_prix/qualifying/session_metadata.json
+fastf1_2026_dutch_grand_prix_qualifying,2026-08-23T00:00:00+00:00,qualifying,FastF1 Data/2026/12_dutch_grand_prix/qualifying/session_metadata.json
+fastf1_2026_italian_grand_prix_qualifying,2026-09-06T00:00:00+00:00,qualifying,FastF1 Data/2026/13_italian_grand_prix/qualifying/session_metadata.json
+fastf1_2026_madrid_grand_prix_qualifying,2026-09-13T00:00:00+00:00,qualifying,FastF1 Data/2026/14_madrid_grand_prix/qualifying/session_metadata.json
+fastf1_2026_azerbaijan_grand_prix_qualifying,2026-09-26T00:00:00+00:00,qualifying,FastF1 Data/2026/15_azerbaijan_grand_prix/qualifying/session_metadata.json
+fastf1_2026_bahrain_grand_prix_qualifying,2026-10-04T00:00:00+00:00,qualifying,outputs/sepang_data_cleanup_2026-10-04/raw/FastF1 Data/2026/16_bahrain_grand_prix/qualifying/session_metadata.json
