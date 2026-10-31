@@ -45,7 +45,7 @@ const TEAMS: TeamEntry[] = [
   ]},
   { name: 'Haas F1 Team', drivers: [
     { code: 'BEA', contract: 2027, status: 'confirmed' },
-    { code: 'OCO', contract: 2026, status: 'expiring', note: 'Confirmed departure — Camara signed for 2027' },
+    { code: 'HIR', contract: 'TBD', status: 'rumored', note: 'Ryō Hirakawa — replaced Ocon from Mexico mid-season, race-by-race basis' },
   ]},
   { name: 'Audi', drivers: [
     { code: 'HUL', contract: 2027, status: 'confirmed', note: 'Confirmed at Baku GP (Sep 25)' },
@@ -67,6 +67,7 @@ const TEAMS: TeamEntry[] = [
 
 // Manually curated news items — add new entries at the top
 const NEWS_ITEMS = [
+  { date: 'Nov 2026', text: 'Ryō Hirakawa replaces Esteban Ocon at Haas from the Mexico City GP. No reason given — not illness. 2022 Le Mans winner and Toyota WEC ace, Haas reserve driver since April 2025. Status beyond Mexico unconfirmed.', tag: 'Haas' },
   { date: 'Oct 2026', text: 'Cadillac considering replacing Bottas for 2027 — Esteban Ocon and Colton Herta both linked to second seat. Perez considered the more secure of the two.', tag: 'Cadillac' },
   { date: 'Oct 2026', text: 'Liam Lawson widely expected to be retained at Racing Bulls alongside Lindblad. Ted Kravitz reports Red Bull have "already made the decision" — official announcement pending.', tag: 'Racing Bulls' },
   { date: 'Sep 2026', text: 'Fernando Alonso signs Aston Martin extension for 2027, citing Adrian Newey\'s presence as the decisive factor. Confirmed Sep 29 alongside Lance Stroll.', tag: 'Aston Martin' },

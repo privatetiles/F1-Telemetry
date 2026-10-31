@@ -5,6 +5,12 @@ export const FULL_GRID = [
   'ALO','STR','LIN','OCO','GAS','BOR','ALB','COL','BOT','HUL','HAD','PER',
 ]
 
+// Ryō Hirakawa (HIR) replaced Ocon at Haas from Mexico City GP onward
+const FULL_GRID_HIR = [
+  'VER','LAW','NOR','PIA','LEC','SAI','HAM','RUS','ANT','BEA',
+  'ALO','STR','LIN','HIR','GAS','BOR','ALB','COL','BOT','HUL','HAD','PER',
+]
+
 const Q  = 'qualifying'        as SessionType
 const R  = 'race'              as SessionType
 const SQ = 'sprint_qualifying' as SessionType
@@ -28,6 +34,11 @@ const FSR_SESSION = { type: FSR, label: SESSION_LABELS[FSR], drivers: [] }
 const stdSessions = [
   { type: Q,  label: SESSION_LABELS[Q],  drivers: FULL_GRID },
   { type: R,  label: SESSION_LABELS[R],  drivers: FULL_GRID },
+]
+
+const stdSessionsHIR = [
+  { type: Q,  label: SESSION_LABELS[Q],  drivers: FULL_GRID_HIR },
+  { type: R,  label: SESSION_LABELS[R],  drivers: FULL_GRID_HIR },
 ]
 
 const stdSessionsFull = [
@@ -85,7 +96,7 @@ export const CIRCUITS: CircuitConfig[] = [
   { id: 'sepang',             name: 'Bahrain GP (Sepang)',      flag: '🇲🇾', raceDate: '2026-10-04', hasData: true,  sessions: stdSessionsFull    },
   { id: 'singapore',          name: 'Singapore GP',            flag: '🇸🇬', raceDate: '2026-10-11', hasData: true,  sessions: sprintSessionsFull },
   { id: 'united_states',      name: 'United States GP',        flag: '🇺🇸', raceDate: '2026-10-25', hasData: true,  sessions: stdSessionsFull },
-  { id: 'mexican_city',       name: 'Mexico City GP',          flag: '🇲🇽', raceDate: '2026-11-01', hasData: false, sessions: stdSessions    },
+  { id: 'mexican_city',       name: 'Mexico City GP',          flag: '🇲🇽', raceDate: '2026-11-01', hasData: false, sessions: stdSessionsHIR },
   { id: 'sao_paulo',          name: 'São Paulo GP',            flag: '🇧🇷', raceDate: '2026-11-08', hasData: false, sessions: stdSessions    },
   { id: 'las_vegas',          name: 'Las Vegas GP',            flag: '🇺🇸', raceDate: '2026-11-21', hasData: false, sessions: stdSessions    },
   { id: 'qatar',              name: 'Qatar GP',                flag: '🇶🇦', raceDate: '2026-11-29', hasData: false, sessions: stdSessions    },
