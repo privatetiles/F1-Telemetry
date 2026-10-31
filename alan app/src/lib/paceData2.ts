@@ -16,7 +16,6 @@ export interface Race2 {
   eventKey: string       // "fastf1_2025_austrian_grand_prix"
   imgPrefix: string      // "08_austria_2025"
   mapCode: string
-  statusNote?: string
 }
 
 const ALL_RACES2: Race2[] = [
@@ -28,7 +27,7 @@ const ALL_RACES2: Race2[] = [
   { label: 'Italy',    fullName: 'Italian GP / Monza',               eventKey: 'fastf1_2025_italian_grand_prix',   imgPrefix: '13_monza_2025', mapCode: 'ITA' },
   { label: 'Sepang', fullName: 'Sepang GP', eventKey: 'fastf1_2026_bahrain_grand_prix', imgPrefix: 'sepang_2026', mapCode: 'SEP' },
   { label: 'Singapore', fullName: 'Singapore GP', eventKey: 'fastf1_2026_singapore_grand_prix', imgPrefix: 'singapore_2025', mapCode: 'SIN' },
-  { label: 'Mexico', fullName: 'Mexico City GP', eventKey: 'fastf1_2026_mexico_city_grand_prix', imgPrefix: 'mexico_2025', mapCode: 'MEX', statusNote: 'Provisional · timing through Austin; corner data through Sepang; provisional 2025 map.' },
+  { label: 'Mexico', fullName: 'Mexico City GP', eventKey: 'fastf1_2026_mexico_city_grand_prix', imgPrefix: 'mexico_2025', mapCode: 'MEX' },
 ]
 
 export const RACES2 = ALL_RACES2

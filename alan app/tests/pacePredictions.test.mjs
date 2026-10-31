@@ -83,7 +83,6 @@ test('nine saved forecasts retain complete grids, team snapshots and pole summar
     assert.equal(mexico[0].driver, 'ANT')
     assert.equal(mexico[0].predictedTime, '1:17.925')
     assert.equal(mexico[0].gap, 0)
-    assert.match(RACES2.find(r => r.label === 'Mexico').statusNote, /corner data through Sepang/)
     const summary = JSON.parse(await readFile(new URL('../public/pace2/predictions/mexico_2026/summary.json', import.meta.url), 'utf8'))
     assert.equal(summary.target_2026_data_used, false)
     assert.equal(summary.qualifying_timing_through, 'Austin 2026 qualifying')

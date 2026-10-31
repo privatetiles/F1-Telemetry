@@ -221,7 +221,6 @@ export default function PaceAnalysis2View() {
 
       <div className="pa2-body">
         <div className="pa2-col-left">
-          {selectedRace.statusNote && <p className="pace-map-source">{selectedRace.statusNote}</p>}
           <QualifyingGrid drivers={raceDrivers} pole={racePole} />
         </div>
         <div className="pa2-col-right">
