@@ -112,11 +112,8 @@ export default function PredictionPanel({ circuit, circuitLayout: propLayout, dr
         </div>
         {driverProfiles?.derivedLayouts?.[circuit.id] && (
           <span className="pred-fp-notes" style={{ color: '#e10600' }}>
-            Actual 2026 pole: {fmtTime(driverProfiles.derivedLayouts[circuit.id].poleTime)} (from qualifying telemetry)
+            2026 pole: {fmtTime(driverProfiles.derivedLayouts[circuit.id].poleTime)}
           </span>
-        )}
-        {!driverProfiles?.derivedLayouts?.[circuit.id] && (
-          <span className="pred-fp-notes">{circuitLayout.notes}</span>
         )}
       </div>
 

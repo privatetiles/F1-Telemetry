@@ -1,0 +1,19 @@
+round,event,pole_2025_seconds,pole_2026_seconds,included,reason,prior_year_source,ratio,conditions_source_2026,conditions_evidence
+1,Australia,75.096,78.518,True,,archived pole audit; 2025 weather not reverified,1.0455683391925,,
+2,China,90.641,92.064,True,,archived pole audit; 2025 weather not reverified,1.0156992972275238,,
+3,Japan,86.983,88.778,True,,archived pole audit; 2025 weather not reverified,1.0206362162721452,,
+4,Miami,86.204,87.798,True,,archived pole audit; 2025 weather not reverified,1.0184910212983158,,
+5,Canada,70.899,72.578,False,2026_qualifying_rain_detected,archived pole audit; 2025 weather not reverified,1.0236815751985218,,
+6,Monaco,69.954,72.051,True,,archived pole audit; 2025 weather not reverified,1.0299768419246935,,
+7,Barcelona,71.546,74.679,True,,archived pole audit; 2025 weather not reverified,1.0437900092248342,,
+8,Austria,63.971,66.113,True,,archived pole audit; 2025 weather not reverified,1.0334839224023389,,
+9,British GP,84.892,88.111,True,,archived pole audit; 2025 weather not reverified,1.037918767375018,,
+10,Belgium,100.562,104.361,True,,archived pole audit; 2025 weather not reverified,1.0377776893856527,,
+11,Hungary,74.89,77.207,True,,archived pole audit; 2025 weather not reverified,1.0309387101081586,,
+12,Netherlands,,,False,2026_qualifying_rain_detected,,,,
+13,Italy,78.792,81.786,True,,local 2025 qualifying results and weather,1.0379987816021932,,
+14,Madrid,,,False,no_same_circuit_2025_anchor,,,,
+15,Azerbaijan,101.117,102.526,False,qualifying_rain_detected_in_either_year,local 2025 qualifying results and weather,1.0139343532739302,,
+16,Sepang,,,False,no_same_circuit_2025_anchor,,,,
+17,Singapore Grand Prix,89.158,91.373,True,,local qualifying results and weather,1.0248435361941721,https://www.formula1.com/en/latest/article/didnt-feel-the-same-russell-trying-to-understand-lack-of-pace-in-singapore-gp-qualifying.1sLY17kQLqTBgyoTRUQOHo,Published dry/slick qualifying report; no downloaded weather time series
+18,United States Grand Prix,92.51,94.035,True,,local qualifying results and weather,1.0164847043562857,https://press.pirelli.com/antonelli-chases-title-from-soft-shod-pole-position/,Published dry/slick qualifying report; no downloaded weather time series

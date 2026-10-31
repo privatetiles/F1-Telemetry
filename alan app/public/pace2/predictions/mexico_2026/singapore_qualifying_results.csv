@@ -1,0 +1,23 @@
+Abbreviation,DriverNumber,FullName,TeamName,Q1_seconds,Q2_seconds,Q3_seconds
+VER,3,Max Verstappen,Red Bull Racing,93.241,91.639,91.373
+LEC,16,Charles Leclerc,Ferrari,92.774,91.953,91.42699999999999
+HAM,44,Lewis Hamilton,Ferrari,92.429,91.529,91.496
+ANT,12,Andrea Kimi Antonelli,Mercedes,93.601,92.07900000000001,91.562
+NOR,1,Lando Norris,McLaren,92.775,91.895,91.712
+RUS,63,George Russell,Mercedes,93.61699999999999,92.212,91.747
+PIA,81,Oscar Piastri,McLaren,93.076,92.245,91.86
+GAS,10,Pierre Gasly,Alpine,93.182,92.602,92.225
+LAW,30,Liam Lawson,Racing Bulls,92.88499999999999,92.319,92.369
+LIN,41,Arvid Lindblad,Racing Bulls,93.288,92.49799999999999,92.781
+HUL,27,Nico Hülkenberg,Audi,93.14699999999999,92.78399999999999,
+BEA,87,Oliver Bearman,Haas F1 Team,93.356,92.908,
+OCO,31,Esteban Ocon,Haas F1 Team,93.803,93.32300000000001,
+SAI,55,Carlos Sainz,Williams,93.774,93.52600000000001,
+BOR,5,Gabriel Bortoleto,Audi,94.169,93.658,
+COL,43,Franco Colapinto,Alpine,93.261,93.787,
+ALO,14,Fernando Alonso,Aston Martin,94.223,,
+ALB,23,Alexander Albon,Williams,94.289,,
+STR,18,Lance Stroll,Aston Martin,94.946,,
+PER,11,Sergio Pérez,Cadillac,95.12299999999999,,
+BOT,77,Valtteri Bottas,Cadillac,95.98400000000001,,
+HAD,6,Isack Hadjar,Red Bull Racing,,,

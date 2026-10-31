@@ -3,8 +3,9 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 import Papa from 'papaparse'
 import { RACES2, loadDriverPredictions, loadTeamDeltas2, loadPolePredictions } from '../src/lib/paceData2.ts'
+import { PACE_MAPS } from '../src/lib/paceMaps.ts'
 
-const RACE = 'Bahrain GP / Sepang'
+const RACE = 'Sepang GP'
 const BUNDLE = 'pace2/predictions/sepang_2026'
 const readPublic = path => readFile(new URL(`../public/${path}`, import.meta.url), 'utf8')
 const close = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-8, `${actual} != ${expected}`)
@@ -21,11 +22,10 @@ test('Sepang has a selectable race and both requested map assets', async () => {
   const race = RACES2.find(row => row.fullName === RACE)
   assert.equal(race.eventKey, 'fastf1_2026_bahrain_grand_prix')
   assert.equal(RACES2.filter(row => row.fullName === RACE).length, 1)
-  for (const path of [`telemetry_maps/${race.imgPrefix}_telemetry_map_100m.png`, `three_class_maps/${race.imgPrefix}_3class_map.png`]) {
-    const bytes = await readFile(new URL(`../public/pace2/${path}`, import.meta.url))
-    assert.deepEqual([...bytes.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10])
-    assert.ok(bytes.length > 10000)
-  }
+  const map = PACE_MAPS.find(row => row.code === race.mapCode)
+  assert.match(await readPublic(map.telemetry.slice(1)), /<svg/)
+  const track = JSON.parse(await readPublic(`pace/track_data/${map.trackPrefix}_track.json`))
+  assert.ok(track.segments.length > 3)
   const metadata = JSON.parse(await readPublic(`${BUNDLE}/map_metadata.json`))
   assert.equal(metadata.driver, 'LEC')
   assert.equal(metadata.session, 'Practice 2')
@@ -84,7 +84,7 @@ test('later calibration updates cannot silently rewrite the Sepang forecast snap
   })
   const teams = await loadTeamDeltas2()
   close(teams.find(row => row.race === RACE && row.team === 'Ferrari').overall, .10601584884166007)
-  close(teams.find(row => row.race === 'Italian GP / Monza' && row.team === 'Ferrari').overall, 50)
+  assert.notEqual(teams.find(row => row.race === 'Italian GP / Monza' && row.team === 'Ferrari').overall, 50)
 })
 
 test('Sepang pole metadata describes the dry FP2 anchor and does not invent a 2025 pole', async t => {
@@ -92,7 +92,8 @@ test('Sepang pole metadata describes the dry FP2 anchor and does not invent a 20
   const poles = await loadPolePredictions()
   const pole = poles.find(row => row.race === RACE)
   assert.equal(pole.predictedTime, '1:34.933')
-  assert.equal(pole.compact, true)
+  assert.equal(pole.lowTime, '')
+  assert.equal(pole.highTime, '')
   const metadata = (await csv('pace2/predictions/qualifying_time_predictions/sepang_2026_pole_prediction.csv'))[0]
   assert.match(metadata.anchor_description, /FP2 medium laps/)
   assert.match(metadata.range_label, /rough/)

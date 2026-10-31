@@ -1,0 +1,3 @@
+event,event_date,qualifying_exports,qualifying_results,timed_drivers,paired_offset_samples_added,category_laps_added,results_source,dry_conditions_source
+singapore,2026-10-11,21,22,21,20,0,https://api.jolpi.ca/ergast/f1/2026/17/qualifying.json,https://www.formula1.com/en/latest/article/didnt-feel-the-same-russell-trying-to-understand-lack-of-pace-in-singapore-gp-qualifying.1sLY17kQLqTBgyoTRUQOHo
+united_states,2026-10-25,22,22,22,22,0,https://api.jolpi.ca/ergast/f1/2026/18/qualifying.json,https://press.pirelli.com/antonelli-chases-title-from-soft-shod-pole-position/
