@@ -54,7 +54,6 @@ function PredictionTable({ predictions }: { predictions: PredictionEntry[] }) {
               <span style={{ width: 90, textAlign: 'right' }}><DeltaPct v={p.straight} dim /></span>
               <div className="pace-pred-bar-wrap">
                 <div className="pace-pred-bar" style={{ width: `${barW}%`, background: col, opacity: 0.75 }} />
-                {p.note && <span className="pace-pred-note">{p.note}</span>}
               </div>
             </div>
           )

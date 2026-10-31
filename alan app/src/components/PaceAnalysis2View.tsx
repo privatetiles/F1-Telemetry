@@ -204,7 +204,7 @@ export default function PaceAnalysis2View() {
       <div className="pa2-header">
         <div className="pa2-title">
           <span className="pa2-title-label">Predictions</span>
-          <span className="pa2-title-badge">2026 saved forecasts</span>
+          <span className="pa2-title-badge">2026</span>
         </div>
         <div className="pa2-race-pills">
           {RACES2.map(r => (
