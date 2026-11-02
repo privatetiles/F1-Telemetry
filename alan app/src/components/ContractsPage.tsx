@@ -33,7 +33,7 @@ const TEAMS: TeamEntry[] = [
   ]},
   { name: 'Mercedes', drivers: [
     { code: 'RUS', contract: 2027, status: 'confirmed', note: 'Performance clause activated' },
-    { code: 'ANT', contract: 2027, status: 'confirmed' },
+    { code: 'ANT', contract: 2027, status: 'confirmed', note: '2026 World Champion 🏆 — clinched Mexico City GP' },
   ]},
   { name: 'Aston Martin', drivers: [
     { code: 'ALO', contract: 2027, status: 'confirmed', note: 'Extended Sep 29 — Adrian Newey cited as key factor' },
@@ -67,6 +67,7 @@ const TEAMS: TeamEntry[] = [
 
 // Manually curated news items — add new entries at the top
 const NEWS_ITEMS = [
+  { date: 'Nov 2026', text: 'Kimi Antonelli clinches the 2026 Formula 1 World Drivers\' Championship at Mexico City, becoming the youngest world champion in F1 history at 20 years old. Leads George Russell by 123 points with four races remaining.', tag: 'Mercedes' },
   { date: 'Nov 2026', text: 'Ryō Hirakawa replaces Esteban Ocon at Haas from the Mexico City GP. No reason given — not illness. 2022 Le Mans winner and Toyota WEC ace, Haas reserve driver since April 2025. Status beyond Mexico unconfirmed.', tag: 'Haas' },
   { date: 'Oct 2026', text: 'Cadillac considering replacing Bottas for 2027 — Esteban Ocon and Colton Herta both linked to second seat. Perez considered the more secure of the two.', tag: 'Cadillac' },
   { date: 'Oct 2026', text: 'Liam Lawson widely expected to be retained at Racing Bulls alongside Lindblad. Ted Kravitz reports Red Bull have "already made the decision" — official announcement pending.', tag: 'Racing Bulls' },
