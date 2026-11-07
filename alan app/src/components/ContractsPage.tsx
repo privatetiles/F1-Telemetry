@@ -17,7 +17,7 @@ interface TeamEntry {
 
 const CURRENT_YEAR = 2026
 
-// Contract data — last updated Oct 2026
+// Contract data — last updated Nov 2026
 const TEAMS: TeamEntry[] = [
   { name: 'Red Bull Racing', drivers: [
     { code: 'VER', contract: 2030, status: 'confirmed' },
@@ -45,14 +45,14 @@ const TEAMS: TeamEntry[] = [
   ]},
   { name: 'Haas F1 Team', drivers: [
     { code: 'BEA', contract: 2027, status: 'confirmed' },
-    { code: 'HIR', contract: 'TBD', status: 'rumored', note: 'Ryō Hirakawa — replaced Ocon from Mexico mid-season, race-by-race basis' },
+    { code: 'HIR', contract: 'TBD', status: 'rumored', note: 'Ryō Hirakawa (Mexico) / Rafael Camara (from São Paulo) — Ocon confirmed out Nov 4' },
   ]},
   { name: 'Audi', drivers: [
     { code: 'HUL', contract: 2027, status: 'confirmed', note: 'Confirmed at Baku GP (Sep 25)' },
     { code: 'BOR', contract: 2027, status: 'confirmed' },
   ]},
   { name: 'Racing Bulls', drivers: [
-    { code: 'LAW', contract: 2026, status: 'expiring', note: 'Expected to be retained — decision imminent' },
+    { code: 'LAW', contract: 2026, status: 'expiring', note: 'Seat at risk — Tsolov competing for drive; management in talks with Cadillac' },
     { code: 'LIN', contract: 2027, status: 'confirmed' },
   ]},
   { name: 'Alpine', drivers: [
@@ -60,15 +60,17 @@ const TEAMS: TeamEntry[] = [
     { code: 'COL', contract: 2027, status: 'confirmed', note: 'Extension confirmed Aug 27' },
   ]},
   { name: 'Cadillac', drivers: [
-    { code: 'BOT', contract: 2027, status: 'rumored', note: 'Seat at risk — Ocon & Herta linked' },
-    { code: 'PER', contract: 2027, status: 'confirmed', note: 'Multi-year deal; team reviewing lineup' },
+    { code: 'BOT', contract: 2027, status: 'rumored', note: 'Seat at risk — Herta (1 superlicence point away) is main candidate; Lawson\'s management also in talks' },
+    { code: 'PER', contract: 2029, status: 'confirmed', note: 'Extended to 2029 (confirmed Nov 2026)' },
   ]},
 ]
 
 // Manually curated news items — add new entries at the top
 const NEWS_ITEMS = [
-  { date: 'Nov 2026', text: 'Kimi Antonelli clinches the 2026 Formula 1 World Drivers\' Championship at Mexico City, becoming the youngest world champion in F1 history at 20 years old. Leads George Russell by 123 points with four races remaining.', tag: 'Mercedes' },
-  { date: 'Nov 2026', text: 'Ryō Hirakawa replaces Esteban Ocon at Haas from the Mexico City GP. No reason given — not illness. 2022 Le Mans winner and Toyota WEC ace, Haas reserve driver since April 2025. Status beyond Mexico unconfirmed.', tag: 'Haas' },
+  { date: 'Nov 2026', text: 'Kimi Antonelli clinches the 2026 Formula 1 World Drivers\' Championship at Mexico City — youngest world champion in F1 history at 20 years old.', tag: 'Mercedes' },
+  { date: 'Nov 2026', text: 'Sergio Perez extends Cadillac contract to 2029, removing any doubt about his seat. Colton Herta (one superlicence point away) and Liam Lawson\'s management both in talks for Bottas\'s seat.', tag: 'Cadillac' },
+  { date: 'Nov 2026', text: 'Liam Lawson admits he has "no assurance" of keeping his Racing Bulls seat for 2027. Red Bull junior Nikita Tsolov is competing for the drive alongside him.', tag: 'Racing Bulls' },
+  { date: 'Nov 2026', text: 'Haas confirm Ocon will not return this season (Nov 4). Ryō Hirakawa drove Mexico — WEC commitments may limit further appearances. Rafael Camara expected to debut at São Paulo or later.', tag: 'Haas' },
   { date: 'Oct 2026', text: 'Cadillac considering replacing Bottas for 2027 — Esteban Ocon and Colton Herta both linked to second seat. Perez considered the more secure of the two.', tag: 'Cadillac' },
   { date: 'Oct 2026', text: 'Liam Lawson widely expected to be retained at Racing Bulls alongside Lindblad. Ted Kravitz reports Red Bull have "already made the decision" — official announcement pending.', tag: 'Racing Bulls' },
   { date: 'Sep 2026', text: 'Fernando Alonso signs Aston Martin extension for 2027, citing Adrian Newey\'s presence as the decisive factor. Confirmed Sep 29 alongside Lance Stroll.', tag: 'Aston Martin' },
