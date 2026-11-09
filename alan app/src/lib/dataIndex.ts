@@ -5,10 +5,16 @@ export const FULL_GRID = [
   'ALO','STR','LIN','OCO','GAS','BOR','ALB','COL','BOT','HUL','HAD','PER',
 ]
 
-// Ryō Hirakawa (HIR) replaced Ocon at Haas from Mexico City GP onward
+// Ryō Hirakawa (HIR) replaced Ocon at Haas for Mexico City GP
 const FULL_GRID_HIR = [
   'VER','LAW','NOR','PIA','LEC','SAI','HAM','RUS','ANT','BEA',
   'ALO','STR','LIN','HIR','GAS','BOR','ALB','COL','BOT','HUL','HAD','PER',
+]
+
+// Rafael Camara (CAM, #51) debuted at São Paulo GP onward
+const FULL_GRID_CAM = [
+  'VER','LAW','NOR','PIA','LEC','SAI','HAM','RUS','ANT','BEA',
+  'ALO','STR','LIN','CAM','GAS','BOR','ALB','COL','BOT','HUL','HAD','PER',
 ]
 
 const Q  = 'qualifying'        as SessionType
@@ -39,6 +45,11 @@ const stdSessions = [
 const stdSessionsHIR = [
   { type: Q,  label: SESSION_LABELS[Q],  drivers: FULL_GRID_HIR },
   { type: R,  label: SESSION_LABELS[R],  drivers: FULL_GRID_HIR },
+]
+
+const stdSessionsCAM = [
+  { type: Q,  label: SESSION_LABELS[Q],  drivers: FULL_GRID_CAM },
+  { type: R,  label: SESSION_LABELS[R],  drivers: FULL_GRID_CAM },
 ]
 
 const stdSessionsFull = [
@@ -97,7 +108,7 @@ export const CIRCUITS: CircuitConfig[] = [
   { id: 'singapore',          name: 'Singapore GP',            flag: '🇸🇬', raceDate: '2026-10-11', hasData: true,  sessions: sprintSessionsFull },
   { id: 'united_states',      name: 'United States GP',        flag: '🇺🇸', raceDate: '2026-10-25', hasData: true,  sessions: stdSessionsFull },
   { id: 'mexican_city',       name: 'Mexico City GP',          flag: '🇲🇽', raceDate: '2026-11-01', hasData: true,  sessions: stdSessionsHIR },
-  { id: 'sao_paulo',          name: 'São Paulo GP',            flag: '🇧🇷', raceDate: '2026-11-08', hasData: false, sessions: stdSessions    },
+  { id: 'sao_paulo',          name: 'São Paulo GP',            flag: '🇧🇷', raceDate: '2026-11-08', hasData: true,  sessions: stdSessionsCAM },
   { id: 'las_vegas',          name: 'Las Vegas GP',            flag: '🇺🇸', raceDate: '2026-11-21', hasData: false, sessions: stdSessions    },
   { id: 'qatar',              name: 'Qatar GP',                flag: '🇶🇦', raceDate: '2026-11-29', hasData: false, sessions: stdSessions    },
   { id: 'abu_dhabi',          name: 'Abu Dhabi GP',            flag: '🇦🇪', raceDate: '2026-12-06', hasData: false, sessions: stdSessions    },

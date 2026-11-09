@@ -23,6 +23,7 @@ export const DRIVER_INFO: Record<string, DriverInfo> = {
   LIN: { firstName: 'Arvid',     lastName: 'Lindblad',   number: 41, team: 'Racing Bulls',   flag: '🇬🇧' },
   OCO: { firstName: 'Esteban',   lastName: 'Ocon',       number: 31, team: 'Haas F1 Team',   flag: '🇫🇷' },
   HIR: { firstName: 'Ryō',      lastName: 'Hirakawa',   number: 8,  team: 'Haas F1 Team',   flag: '🇯🇵' },
+  CAM: { firstName: 'Rafael',   lastName: 'Camara',     number: 51, team: 'Haas F1 Team',   flag: '🇧🇷' },
   GAS: { firstName: 'Pierre',    lastName: 'Gasly',      number: 10, team: 'Alpine',          flag: '🇫🇷' },
   COL: { firstName: 'Franco',    lastName: 'Colapinto',  number: 43, team: 'Alpine',          flag: '🇦🇷' },
   BOR: { firstName: 'Gabriel',   lastName: 'Bortoleto',  number: 5,  team: 'Audi',            flag: '🇧🇷' },

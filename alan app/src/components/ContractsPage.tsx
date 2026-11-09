@@ -45,7 +45,7 @@ const TEAMS: TeamEntry[] = [
   ]},
   { name: 'Haas F1 Team', drivers: [
     { code: 'BEA', contract: 2027, status: 'confirmed' },
-    { code: 'HIR', contract: 'TBD', status: 'rumored', note: 'Ryō Hirakawa (Mexico) / Rafael Camara (from São Paulo) — Ocon confirmed out Nov 4' },
+    { code: 'CAM', contract: 2027, status: 'confirmed', note: 'Rafael Camara — debuted São Paulo GP; signed multi-year deal from 2027' },
   ]},
   { name: 'Audi', drivers: [
     { code: 'HUL', contract: 2027, status: 'confirmed', note: 'Confirmed at Baku GP (Sep 25)' },
