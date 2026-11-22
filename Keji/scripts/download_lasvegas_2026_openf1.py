@@ -123,7 +123,10 @@ def download_fastest_laps(sess_key, out_dir):
     print(f"  → {count} new files written")
 
 
-print(f"[1/1] Las Vegas GP 2026 — Qualifying (session {QUALI_KEY})...")
+print(f"[1/2] Las Vegas GP 2026 — Qualifying (session {QUALI_KEY})...")
 download_fastest_laps(QUALI_KEY, f"{BASE}/qualifying/telemetry_fastest_laps")
 
-print("\nDone! Race is tomorrow (session 11420) — run again after the race.")
+print(f"\n[2/2] Las Vegas GP 2026 — Race (session {RACE_KEY})...")
+download_fastest_laps(RACE_KEY, f"{BASE}/race/telemetry_fastest_laps")
+
+print("\nDone!")
