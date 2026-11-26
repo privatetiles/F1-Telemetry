@@ -34,4 +34,6 @@ export const PACE_MAPS: PaceMap[] = [
   map('SEP', 'sepang_2026', 'Sepang'),
   map('SIN', 'singapore_2025', 'Singapore', 2025),
   map('MEX', 'mexico_2025', 'Mexico', 2025),
+  map('BRA', 'sao_paulo_2025', 'São Paulo', 2025),
+  map('LAS', 'las_vegas_2025', 'Las Vegas', 2025),
 ]

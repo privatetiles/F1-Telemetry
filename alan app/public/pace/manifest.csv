@@ -17,3 +17,7 @@ telemetry_map,Austria GP,/Users/sim/Documents/Keji/FastF1 Data/fastf1_2025_austr
 three_class_map,Austria GP,/Users/sim/Documents/Keji/FastF1 Data/fastf1_2025_austrian_grand_prix/analysis_outputs/austria_2025_segment_categories_3class.png,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/three_class_maps/08_austria_2025_3class_map.png
 delta_calculations_csv,First 7 circuits,/Users/sim/Documents/Keji/FastF1 Data/analysis_outputs/all_circuits_category_time_weighted_speed_delta_vs_mercedes_3class.csv,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/delta_calculations/first_7_circuits_3class_delta_calculations.csv
 austria_predictions_csv,Austria GP,/Users/sim/Documents/Keji/FastF1 Data/analysis_outputs/all_circuits_category_time_weighted_speed_delta_vs_mercedes_3class.csv,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/austria_predictions_from_first_7_circuits_3class.csv
+telemetry_map,São Paulo GP,outputs/latest_two_races_2026-11-26/maps/sao_paulo_2025/sao_paulo_2025_telemetry_map.svg,/pace/telemetry_maps/sao_paulo_2025_telemetry_map.svg
+track_data,São Paulo GP,outputs/latest_two_races_2026-11-26/maps/sao_paulo_2025/sao_paulo_2025_track.json,/pace/track_data/sao_paulo_2025_track.json
+telemetry_map,Las Vegas GP,outputs/latest_two_races_2026-11-26/maps/las_vegas_2025/las_vegas_2025_telemetry_map.svg,/pace/telemetry_maps/las_vegas_2025_telemetry_map.svg
+track_data,Las Vegas GP,outputs/latest_two_races_2026-11-26/maps/las_vegas_2025/las_vegas_2025_track.json,/pace/track_data/las_vegas_2025_track.json

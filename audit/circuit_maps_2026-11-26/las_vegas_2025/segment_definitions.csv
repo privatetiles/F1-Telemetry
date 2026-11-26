@@ -1,0 +1,20 @@
+segment_id,category,start_distance_m,end_distance_m,source
+seg_01,Straights,0.0,250.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_02,Slow corners,250.0,410.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_03,Fast corners,410.0,760.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_04,Straights,760.0,1490.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_05,Slow corners,1490.0,1630.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_06,Straights,1630.0,1730.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_07,Fast corners,1730.0,1980.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_08,Slow corners,1980.0,2300.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_09,Straights,2300.0,2600.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_10,Fast corners,2600.0,3140.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_11,Slow corners,3140.0,3280.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_12,Straights,3280.0,3500.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_13,Fast corners,3500.0,4020.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_14,Straights,4020.0,5080.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_15,Slow corners,5080.0,5240.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_16,Fast corners,5240.0,5300.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_17,Straights,5300.0,5820.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_18,Fast corners,5820.0,6050.0,2025 Las Vegas dry race screened driver median; FIA geometry review
+seg_19,Straights,6050.0,6136.216431359959,2025 Las Vegas dry race screened driver median; FIA geometry review

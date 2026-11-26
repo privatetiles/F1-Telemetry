@@ -1,0 +1,42 @@
+{
+  "target_event_year": 2026,
+  "source_year": 2025,
+  "source_session": "race",
+  "accepted_drivers": [
+    "GAS",
+    "LAW",
+    "OCO",
+    "PIA"
+  ],
+  "geometry_driver": "GAS",
+  "lap_span_m": 6136.216431359959,
+  "source_directory": "FastF1 Data/2025/22_las_vegas_grand_prix/race",
+  "weather": "All 141 weather observations dry; no intermediate or wet tyre laps in source session",
+  "fallback_reason": "2026 distance/lap quality unresolved; 2025 qualifying wet and excluded; labelled dry 2025 race map",
+  "layout_evidence": "https://www.fia.com/system/files/decision-document/2026_las_vegas_grand_prix_-_race_directors_competition_notes.pdf",
+  "layout_assessment": "2025 source geometry; compare against the saved official 2026 circuit diagram. Prior-year speeds remain explicitly 2025.",
+  "palette_source": "FastF1 Data/2026/01_australia_grand_prix/analysis_outputs/australia_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+  "profile_method": "10m bins, equal-driver median, circular nine-bin smoothing",
+  "geometry_review": "Reviewed against FIA 2026 circuit diagram: matching turn sequence; seven geometry-based class revisions recorded separately; no replacement coordinates.",
+  "geometry_review_source": "https://www.fia.com/system/files/decision-document/2026_las_vegas_grand_prix_-_competition_notes_-_circuit_map_pit_lane_drawing_emergency_exits_map_and_red_zone.pdf",
+  "pace_calibration_changed": false,
+  "input_hashes": {
+    "FastF1 Data/2025/22_las_vegas_grand_prix/race/fastf1_2025_las_vegas_grand_prix_race_laps.csv": "5b98ea862a4d1eb96676c76b009bc220819a1e6f2ca9005b4c60413b4a2e5a51",
+    "FastF1 Data/2025/22_las_vegas_grand_prix/race/fastf1_2025_las_vegas_grand_prix_race_results.csv": "4379d5f29a4ded11f7abe7a1688339194dcf9f2d46958d5e0b38f60c9bd55f32",
+    "FastF1 Data/2025/22_las_vegas_grand_prix/race/fastf1_2025_las_vegas_grand_prix_race_race_control_messages.csv": "21f0f3e01a4b13e0965acd898ff53553f4ffcf79fbd382f8a87997cee6553677",
+    "FastF1 Data/2025/22_las_vegas_grand_prix/race/fastf1_2025_las_vegas_grand_prix_race_weather.csv": "beef7abc99050eda4536170f6e6242f1ea5b78b2f836593b42d9c677ab2dc432",
+    "FastF1 Data/2025/22_las_vegas_grand_prix/race/session_metadata.json": "e257ee36f6d3a711c44352f74e852643c65346d3162ddce7cad3cd1b7e164cd9",
+    "FastF1 Data/2026/01_australia_grand_prix/analysis_outputs/australia_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg": "0dcc5add25fca0a82ae16cecc9286f35d417af8ac48d7f6ae457ab0e11cdbd1e"
+  },
+  "fallback_authorization": "User requested validated 2025 data in this follow-up",
+  "visual_review": "Passed: equal-scale geometry, source-year labels, speed legend, and class boundaries reviewed against FIA diagram; PNG/SVG orientation consistent",
+  "graphics": {
+    "telemetry_renderer": "scripts/standardize_local_pace_maps.py::telemetry_svg",
+    "three_class_renderer": "outputs/github-pr-mexico-2026-10-31/alan app/src/components/PaceAnalysisView.tsx::TrackSVG",
+    "three_class_component_sha256": "c8e5189d6bb6095b977b9447649fc4e10c5d4fac7e226ac6b6e63cf7ce313800",
+    "labels_and_speed_legend": "Rendered by existing website components, not embedded in map assets",
+    "three_class_png_background": "#080c10",
+    "track_json_y_axis": "Native orientation expected by TrackSVG; its renderer flips Y",
+    "input_data_changed": false
+  }
+}

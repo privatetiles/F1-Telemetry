@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 import Papa from 'papaparse'
-import { RACES2, loadDriverPredictions, loadTeamDeltas2, loadPolePredictions } from '../src/lib/paceData2.ts'
+import { RACES2, loadDriverPredictions, loadTeamDeltas2, loadPolePredictions, loadCircuitPaceProjections } from '../src/lib/paceData2.ts'
 import { PACE_MAPS } from '../src/lib/paceMaps.ts'
 
 const csv = async path => Papa.parse(await readFile(new URL(path, import.meta.url), 'utf8'), { header: true, skipEmptyLines: true }).data
@@ -19,19 +19,38 @@ test('nine saved forecasts retain complete grids, team snapshots and pole summar
     const drivers = await loadDriverPredictions()
     const teams = await loadTeamDeltas2()
     const poles = await loadPolePredictions()
-    assert.deepEqual(RACES2.map(r => r.label), ['Austria', 'Britain', 'Belgium', 'Hungary', 'Dutch', 'Italy', 'Sepang', 'Singapore', 'Mexico'])
+    assert.deepEqual(RACES2.map(r => r.label), ['Austria', 'Britain', 'Belgium', 'Hungary', 'Dutch', 'Italy', 'Sepang', 'Singapore', 'Mexico', 'Brazil', 'Las Vegas'])
     assert.equal(drivers.length, 198)
     assert.equal(teams.length, 99)
     assert.equal(poles.length, 9)
     assert.ok(requested.every(path => !path.includes('team_category_delta_inputs_from_2026')))
+    const circuitPace = await loadCircuitPaceProjections()
+    assert.equal(circuitPace.length, 22)
     for (const race of RACES2) {
       const map = PACE_MAPS.find(m => m.code === race.mapCode)
       assert.ok(map)
-      assert.equal(map.year, ['Singapore', 'Mexico'].includes(race.label) ? 2025 : 2026)
+      assert.equal(map.year, ['Singapore', 'Mexico', 'Brazil', 'Las Vegas'].includes(race.label) ? 2025 : 2026)
       assert.match(await readFile(new URL(`../public${map.telemetry}`, import.meta.url), 'utf8'), /<svg/)
       const track = JSON.parse(await readFile(new URL(`../public/pace/track_data/${map.trackPrefix}_track.json`, import.meta.url), 'utf8'))
       assert.ok(track.speedScale.min < track.speedScale.max)
       const grid = drivers.filter(d => d.race === race.fullName)
+      if (race.forecastUnavailable) {
+        assert.ok(['BRA', 'LAS'].includes(race.mapCode))
+        assert.equal(grid.length, 0)
+        assert.equal(teams.filter(t => t.race === race.fullName).length, 0)
+        assert.equal(poles.filter(p => p.race === race.fullName).length, 0)
+        const projected = circuitPace.filter(t => t.race === race.fullName)
+        assert.equal(projected.length, 11)
+        assert.equal(new Set(projected.map(t => t.team)).size, 11)
+        assert.equal(projected.find(t => t.team === 'Mercedes').overall, 0)
+        for (const team of projected) {
+          assert.ok([team.slowShare, team.fastShare, team.straightShare].every(s => s > 0))
+          assert.ok(Math.abs(team.slowShare + team.fastShare + team.straightShare - 100) < 1e-8)
+          const expected = (team.slow * team.slowShare + team.fast * team.fastShare + team.straight * team.straightShare) / 100
+          assert.ok(Math.abs(team.overall - expected) < 1e-10)
+        }
+        continue
+      }
       assert.equal(grid.length, 22)
       assert.equal(new Set(grid.map(d => d.driver)).size, 22)
       assert.deepEqual(grid.map(d => d.position).sort((a, b) => a - b), Array.from({ length: 22 }, (_, i) => i + 1))
@@ -39,6 +58,8 @@ test('nine saved forecasts retain complete grids, team snapshots and pole summar
       assert.equal(poles.filter(p => p.race === race.fullName).length, 1)
       assert.ok(grid.every(d => Number.isFinite(d.teamDelta) && Number.isFinite(d.predictedSeconds)))
     }
+    assert.notEqual(circuitPace.find(t => t.race === 'São Paulo GP' && t.team === 'Williams').overall,
+      circuitPace.find(t => t.race === 'Las Vegas GP' && t.team === 'Williams').overall)
     const dutch = drivers.filter(d => d.race === 'Dutch GP / Zandvoort')
     assert.equal(dutch.filter(d => d.team === 'Williams').length, 2)
     assert.equal(dutch.find(d => d.driver === 'LAW').team, 'Red Bull Racing')

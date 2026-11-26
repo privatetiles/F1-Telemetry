@@ -1,0 +1,8 @@
+start_distance_m,end_distance_m,old_category,new_category,reason
+1630.0,1730.0,Fast corners,Straights,short straight after T5 before T6
+2300.0,2480.0,Fast corners,Straights,straight after T9 before T10
+2600.0,3140.0,Straights,Fast corners,T10 and T11 bends above the speed threshold
+3280.0,3460.0,Fast corners,Straights,acceleration straight after T12
+3500.0,4020.0,Straights,Fast corners,long T13 bend
+5300.0,5420.0,Fast corners,Straights,straight after the T14-T16 chicane
+5820.0,6050.0,Straights,Fast corners,T17 bend before start-finish

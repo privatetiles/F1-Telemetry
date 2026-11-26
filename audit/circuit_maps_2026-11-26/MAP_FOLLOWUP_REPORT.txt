@@ -1,0 +1,12 @@
+2026-11-26 map validation follow-up
+
+São Paulo 2026 qualifying and race were wet or mixed; their data was excluded from pace analysis. The existing 2025 qualifying maps were revalidated against original native samples: 11 accepted drivers, 14 segments.
+
+Las Vegas 2026 full telemetry eligibility remains unresolved. Public FastF1 Index returned HTTP 401 again. Five of 22 qualifying traces pass the available native checks; zero are admitted for corner calibration because full lap-quality and distance evidence are missing.
+
+Las Vegas 2025 qualifying was wet and excluded. The separate dry 2025 race supports the new maps: GAS, LAW, OCO and PIA selected fastest valid race laps pass merged/native/deeper checks and distance-span screening. No slower substitutes or donor laps were used. Seven geometry class revisions distinguish slower straights and fast bends. The maps are explicitly labelled 2025 and supply no 2026 team pace.
+
+Both telemetry and three-class maps are available as SVG/PNG, with track JSON, geometry, profiles, segment definitions, selection/audit ledgers and provenance. The FIA 2026 diagram was used for layout review:
+https://www.fia.com/system/files/decision-document/2026_las_vegas_grand_prix_-_competition_notes_-_circuit_map_pit_lane_drawing_emergency_exits_map_and_red_zone.pdf
+
+Validation: 15 audit tests and 7 interpolation tests passed; source hashes, native traces, SVG/JSON, geometry/segment checks passed. All 63 protected pace CSV hashes unchanged. No forecast recalculation, website change, GitHub push or deployment.

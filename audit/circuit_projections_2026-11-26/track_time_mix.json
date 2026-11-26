@@ -1,0 +1,34 @@
+[
+  {
+    "race": "S\u00e3o Paulo GP",
+    "source_year": 2025,
+    "source_session": "qualifying",
+    "reference_driver": "VER",
+    "seconds": {
+      "Slow corners": 20.464077640800127,
+      "Fast corners": 25.549752726697626,
+      "Straights": 24.389169632502252
+    },
+    "shares": {
+      "Slow corners": 0.2906705345056336,
+      "Fast corners": 0.36290715916505867,
+      "Straights": 0.3464223063293077
+    }
+  },
+  {
+    "race": "Las Vegas GP",
+    "source_year": 2025,
+    "source_session": "race",
+    "reference_driver": "GAS",
+    "seconds": {
+      "Slow corners": 27.481542595344184,
+      "Fast corners": 26.362096081131785,
+      "Straights": 41.83036132352404
+    },
+    "shares": {
+      "Slow corners": 0.287241492937937,
+      "Fast corners": 0.2755408583432467,
+      "Straights": 0.43721764871881635
+    }
+  }
+]

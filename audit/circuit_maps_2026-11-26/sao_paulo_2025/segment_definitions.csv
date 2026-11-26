@@ -1,0 +1,15 @@
+segment_id,category,start_distance_m,end_distance_m,source
+seg_01,Straights,0.0,310.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_02,Slow corners,310.0,470.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_03,Fast corners,470.0,710.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_04,Straights,710.0,1330.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_05,Fast corners,1330.0,1660.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_06,Straights,1660.0,2000.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_07,Fast corners,2000.0,2260.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_08,Slow corners,2260.0,2530.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_09,Fast corners,2530.0,2660.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_10,Slow corners,2660.0,2820.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_11,Fast corners,2820.0,3170.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_12,Slow corners,3170.0,3280.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_13,Fast corners,3280.0,3510.0,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance
+seg_14,Straights,3510.0,4239.031350856668,2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance

@@ -1,0 +1,46 @@
+{
+  "target_event_year": 2026,
+  "source_year": 2025,
+  "source_session": "qualifying",
+  "accepted_drivers": [
+    "ALO",
+    "BEA",
+    "COL",
+    "GAS",
+    "HAM",
+    "HUL",
+    "LAW",
+    "LEC",
+    "NOR",
+    "PIA",
+    "VER"
+  ],
+  "geometry_driver": "VER",
+  "lap_span_m": 4239.031350856668,
+  "source_directory": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying",
+  "weather": "All 82 weather observations dry; no intermediate or wet tyre laps in source session",
+  "fallback_reason": "2026 qualifying and race wet/mixed and excluded",
+  "layout_evidence": "https://www.fia.com/system/files/decision-document/2026_sao_paulo_grand_prix_-_race_directors_competition_notes.pdf",
+  "layout_assessment": "FIA changes list surface, kerb, boundary and safety work; no course rerouting listed. Prior-year speeds remain explicitly 2025.",
+  "palette_source": "FastF1 Data/2026/01_australia_grand_prix/analysis_outputs/australia_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg",
+  "profile_method": "10m bins, equal-driver median, circular nine-bin smoothing",
+  "geometry_review": "Compared against FIA 2026 circuit diagram; matching turn sequence and major straights. Source geometry retained; no inferred replacement coordinates.",
+  "geometry_review_source": "https://www.fia.com/system/files/decision-document/2026_sao_paulo_grand_prix_-_competition_notes_-_circuit_map_pit_lane_drawing_emergency_exits_map_and_red_zone.pdf",
+  "pace_calibration_changed": false,
+  "input_hashes": {
+    "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/fastf1_2025_sao_paulo_grand_prix_qualifying_weather.csv": "e27909d4a22c06767b253656e67448c3e1e762a4b0600d6283b1da4968e86137",
+    "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/fastf1_2025_sao_paulo_grand_prix_qualifying_laps.csv": "ae810f9d1015f4d2e2c8bbab5bd53ba9edad1ead2ebce08f76bc5dbc6329051e",
+    "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/fastf1_2025_sao_paulo_grand_prix_qualifying_results.csv": "255a7e21714d5206fa8de9b7b5d8eca0fe8f327cc447ae72ff66ba1c7140ad85",
+    "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/session_metadata.json": "8c0b4c5b344bb4d723988b424b207da72a19e6a04ddec3de68f159aa63d87b4c",
+    "FastF1 Data/2026/01_australia_grand_prix/analysis_outputs/australia_grand_prix_nonrepeating_telemetry_points_race_top3_accurate_laps.svg": "0dcc5add25fca0a82ae16cecc9286f35d417af8ac48d7f6ae457ab0e11cdbd1e"
+  },
+  "graphics": {
+    "telemetry_renderer": "scripts/standardize_local_pace_maps.py::telemetry_svg",
+    "three_class_renderer": "outputs/github-pr-mexico-2026-10-31/alan app/src/components/PaceAnalysisView.tsx::TrackSVG",
+    "three_class_component_sha256": "c8e5189d6bb6095b977b9447649fc4e10c5d4fac7e226ac6b6e63cf7ce313800",
+    "labels_and_speed_legend": "Rendered by existing website components, not embedded in map assets",
+    "three_class_png_background": "#080c10",
+    "track_json_y_axis": "Native orientation expected by TrackSVG; its renderer flips Y",
+    "input_data_changed": false
+  }
+}

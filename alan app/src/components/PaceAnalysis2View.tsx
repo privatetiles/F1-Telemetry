@@ -5,7 +5,7 @@ import { PACE_MAPS } from '../lib/paceMaps'
 import PaceTelemetryMap from './PaceTelemetryMap'
 import { TrackSVG } from './PaceAnalysisView'
 import {
-  RACES2, loadDriverPredictions, loadTeamDeltas2, loadPolePredictions,
+  RACES2, loadDriverPredictions, loadTeamDeltas2, loadPolePredictions, loadCircuitPaceProjections,
 } from '../lib/paceData2'
 import type { DriverPrediction, TeamDelta2, PolePrediction, Race2 } from '../lib/paceData2'
 
@@ -77,13 +77,13 @@ function QualifyingGrid({ drivers, pole }: { drivers: DriverPrediction[]; pole: 
 
 // ── Team pace table ───────────────────────────────────────────────────────────
 
-function TeamPaceTable({ deltas }: { deltas: TeamDelta2[] }) {
+function TeamPaceTable({ deltas, projected = false }: { deltas: TeamDelta2[]; projected?: boolean }) {
   const sorted = [...deltas].sort((a, b) => a.overall - b.overall)
   const maxAbs = Math.max(...sorted.map(t => Math.abs(t.overall)), 0.1)
 
   return (
     <div className="pa2-section">
-      <div className="pa2-section-title">Team Pace vs Mercedes</div>
+      <div className="pa2-section-title">{projected ? 'Projected Team Pace vs Mercedes (%)' : 'Team Pace vs Mercedes'}</div>
 
       <div className="pa2-pace-head">
         <span style={{ width: 24 }}>P</span>
@@ -175,11 +175,12 @@ export default function PaceAnalysis2View() {
   const [drivers,  setDrivers]  = useState<DriverPrediction[] | null>(null)
   const [deltas,   setDeltas]   = useState<TeamDelta2[] | null>(null)
   const [poles,    setPoles]    = useState<PolePrediction[] | null>(null)
+  const [circuitPace, setCircuitPace] = useState<TeamDelta2[]>([])
   const [error,    setError]    = useState<string | null>(null)
 
   useEffect(() => {
-    Promise.all([loadDriverPredictions(), loadTeamDeltas2(), loadPolePredictions()])
-      .then(([d, t, p]) => { setDrivers(d); setDeltas(t); setPoles(p) })
+    Promise.all([loadDriverPredictions(), loadTeamDeltas2(), loadPolePredictions(), loadCircuitPaceProjections()])
+      .then(([d, t, p, c]) => { setDrivers(d); setDeltas(t); setPoles(p); setCircuitPace(c) })
       .catch(e => setError(String(e)))
   }, [])
 
@@ -188,8 +189,8 @@ export default function PaceAnalysis2View() {
     [drivers, selectedRace]
   )
   const raceDeltas = useMemo(
-    () => (deltas ?? []).filter(d => d.race === selectedRace.fullName),
-    [deltas, selectedRace]
+    () => (selectedRace.forecastUnavailable ? circuitPace : deltas ?? []).filter(d => d.race === selectedRace.fullName),
+    [deltas, circuitPace, selectedRace]
   )
   const racePole = useMemo(
     () => (poles ?? []).find(p => p.race === selectedRace.fullName) ?? null,
@@ -221,10 +222,16 @@ export default function PaceAnalysis2View() {
 
       <div className="pa2-body">
         <div className="pa2-col-left">
-          <QualifyingGrid drivers={raceDrivers} pole={racePole} />
+          {selectedRace.forecastUnavailable ? (
+            <div className="pa2-availability-note" role="status">
+              <h2>No prediction available</h2>
+              <p>The race was wet.</p>
+              <p>{selectedRace.label} Grand Prix · 2026</p>
+            </div>
+          ) : <QualifyingGrid drivers={raceDrivers} pole={racePole} />}
         </div>
         <div className="pa2-col-right">
-          <TeamPaceTable deltas={raceDeltas} />
+          <TeamPaceTable deltas={raceDeltas} projected={selectedRace.forecastUnavailable} />
           <MapsSection race={selectedRace} />
         </div>
       </div>

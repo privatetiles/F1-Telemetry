@@ -1654,6 +1654,350 @@
         }
       ],
       "method": "Screened 2025 race median speed bands; unchanged initial Mexico forecast map. Australia display palette."
+    },
+    {
+      "prefix": "sao_paulo_2025",
+      "year": 2025,
+      "session": "qualifying",
+      "geometry_driver": "VER",
+      "accepted_drivers": [
+        "ALO",
+        "BEA",
+        "COL",
+        "GAS",
+        "HAM",
+        "HUL",
+        "LAW",
+        "LEC",
+        "NOR",
+        "PIA",
+        "VER"
+      ],
+      "class_boundaries": [
+        {
+          "segment_id": "seg_01",
+          "category": "Straights",
+          "start_distance_m": 0.0,
+          "end_distance_m": 310.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_02",
+          "category": "Slow corners",
+          "start_distance_m": 310.0,
+          "end_distance_m": 470.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_03",
+          "category": "Fast corners",
+          "start_distance_m": 470.0,
+          "end_distance_m": 710.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_04",
+          "category": "Straights",
+          "start_distance_m": 710.0,
+          "end_distance_m": 1330.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_05",
+          "category": "Fast corners",
+          "start_distance_m": 1330.0,
+          "end_distance_m": 1660.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_06",
+          "category": "Straights",
+          "start_distance_m": 1660.0,
+          "end_distance_m": 2000.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_07",
+          "category": "Fast corners",
+          "start_distance_m": 2000.0,
+          "end_distance_m": 2260.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_08",
+          "category": "Slow corners",
+          "start_distance_m": 2260.0,
+          "end_distance_m": 2530.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_09",
+          "category": "Fast corners",
+          "start_distance_m": 2530.0,
+          "end_distance_m": 2660.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_10",
+          "category": "Slow corners",
+          "start_distance_m": 2660.0,
+          "end_distance_m": 2820.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_11",
+          "category": "Fast corners",
+          "start_distance_m": 2820.0,
+          "end_distance_m": 3170.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_12",
+          "category": "Slow corners",
+          "start_distance_m": 3170.0,
+          "end_distance_m": 3280.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_13",
+          "category": "Fast corners",
+          "start_distance_m": 3280.0,
+          "end_distance_m": 3510.0,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        },
+        {
+          "segment_id": "seg_14",
+          "category": "Straights",
+          "start_distance_m": 3510.0,
+          "end_distance_m": 4239.031350856668,
+          "source": "2025 Sao Paulo dry qualifying screened driver median; geometry review recorded in map provenance"
+        }
+      ],
+      "speed_range_kph": [
+        100.0,
+        334.0
+      ],
+      "sources": [
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "e9b718ea92b0141122be3f911f4ec3c8abf3e6b93083172bbbd6bbdb20dfa58b"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv",
+          "sha256": "f85c5313d7d9edd796a74daf8af48bb94996334128b8c8431e7a592324ba233f"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "2201eeb9e684a7314367525cf2d265fae771443cd5310e8a7c2f8722ab69568e"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "03ea49ee2eb2f1a00af636ffbee60025d06782409fcec9cd3fb5142a341d7f71"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/HAM_fastest_lap_telemetry.csv",
+          "sha256": "571d74731754a98568cce2b424adbccd1be8e542ed3602bc0f08bea5d864d15d"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "756d884abf137501573b17e9702577e0de2f6f47fb979c6307821043cf4d9baf"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "b782f3c67a8935c2a8485415ee935606147988140296bc3e4449bfdf8c0fe73d"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "53c1abeeae8585eb7af468a1c75d8cad059e4be93a666b0f34695464e6fa24d3"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/NOR_fastest_lap_telemetry.csv",
+          "sha256": "39d6eb37e624d31289f905e56fe0830b2c4a386bb105537991269bd7962d7bb5"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "d1f391c92f8f23a99813bdbf3afd73c297f65d7160bd28703cb9378363d69504"
+        },
+        {
+          "path": "FastF1 Data/2025/21_sao_paulo_grand_prix/qualifying/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "3d51eba3e548f45b88b472deb1de1c904c75c4dbd25ef4d57e6fd69d0534543d"
+        }
+      ],
+      "method": "Validated dry 2025 telemetry; existing website rendering components and Australian speed palette. Map only; no current-year pace contribution.",
+      "fallback_reason": "2026 qualifying and race wet/mixed and excluded",
+      "audit_path": "audit/circuit_maps_2026-11-26/sao_paulo_2025"
+    },
+    {
+      "prefix": "las_vegas_2025",
+      "year": 2025,
+      "session": "race",
+      "geometry_driver": "GAS",
+      "accepted_drivers": [
+        "GAS",
+        "LAW",
+        "OCO",
+        "PIA"
+      ],
+      "class_boundaries": [
+        {
+          "segment_id": "seg_01",
+          "category": "Straights",
+          "start_distance_m": 0.0,
+          "end_distance_m": 250.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_02",
+          "category": "Slow corners",
+          "start_distance_m": 250.0,
+          "end_distance_m": 410.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_03",
+          "category": "Fast corners",
+          "start_distance_m": 410.0,
+          "end_distance_m": 760.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_04",
+          "category": "Straights",
+          "start_distance_m": 760.0,
+          "end_distance_m": 1490.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_05",
+          "category": "Slow corners",
+          "start_distance_m": 1490.0,
+          "end_distance_m": 1630.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_06",
+          "category": "Straights",
+          "start_distance_m": 1630.0,
+          "end_distance_m": 1730.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_07",
+          "category": "Fast corners",
+          "start_distance_m": 1730.0,
+          "end_distance_m": 1980.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_08",
+          "category": "Slow corners",
+          "start_distance_m": 1980.0,
+          "end_distance_m": 2300.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_09",
+          "category": "Straights",
+          "start_distance_m": 2300.0,
+          "end_distance_m": 2600.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_10",
+          "category": "Fast corners",
+          "start_distance_m": 2600.0,
+          "end_distance_m": 3140.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_11",
+          "category": "Slow corners",
+          "start_distance_m": 3140.0,
+          "end_distance_m": 3280.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_12",
+          "category": "Straights",
+          "start_distance_m": 3280.0,
+          "end_distance_m": 3500.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_13",
+          "category": "Fast corners",
+          "start_distance_m": 3500.0,
+          "end_distance_m": 4020.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_14",
+          "category": "Straights",
+          "start_distance_m": 4020.0,
+          "end_distance_m": 5080.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_15",
+          "category": "Slow corners",
+          "start_distance_m": 5080.0,
+          "end_distance_m": 5240.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_16",
+          "category": "Fast corners",
+          "start_distance_m": 5240.0,
+          "end_distance_m": 5300.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_17",
+          "category": "Straights",
+          "start_distance_m": 5300.0,
+          "end_distance_m": 5820.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_18",
+          "category": "Fast corners",
+          "start_distance_m": 5820.0,
+          "end_distance_m": 6050.0,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        },
+        {
+          "segment_id": "seg_19",
+          "category": "Straights",
+          "start_distance_m": 6050.0,
+          "end_distance_m": 6136.216431359959,
+          "source": "2025 Las Vegas dry race screened driver median; FIA geometry review"
+        }
+      ],
+      "speed_range_kph": [
+        101.0,
+        341.0
+      ],
+      "sources": [
+        {
+          "path": "FastF1 Data/2025/22_las_vegas_grand_prix/race/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "10aa87b876c548d296d4786348e97a3edc2392d18d00edc90eb2d4f4947dc550"
+        },
+        {
+          "path": "FastF1 Data/2025/22_las_vegas_grand_prix/race/telemetry_fastest_laps/LAW_fastest_lap_telemetry.csv",
+          "sha256": "7783c49e00476cacca37464081f81c0e105c6d34038ef728fcf4199719c944eb"
+        },
+        {
+          "path": "FastF1 Data/2025/22_las_vegas_grand_prix/race/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "35785dfce01dc30a4ddec5651f4e1c49d547df9fd471b98d83bea0279ef82ee5"
+        },
+        {
+          "path": "FastF1 Data/2025/22_las_vegas_grand_prix/race/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "5213f55e103554419e5cf8c5c0895f55f81a628f0e19c5ac8642f1eddc2a9656"
+        }
+      ],
+      "method": "Validated dry 2025 telemetry; existing website rendering components and Australian speed palette. Map only; no current-year pace contribution.",
+      "fallback_reason": "2026 distance/lap quality unresolved; 2025 qualifying wet and excluded; labelled dry 2025 race map",
+      "audit_path": "audit/circuit_maps_2026-11-26/las_vegas_2025"
     }
   ],
   "pace_csv_unchanged": true

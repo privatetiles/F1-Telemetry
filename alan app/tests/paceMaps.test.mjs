@@ -6,11 +6,11 @@ import { PACE_MAPS } from '../src/lib/paceMaps.ts'
 const publicFile = path => new URL(`../public${path}`, import.meta.url)
 
 test('all circuits have uniform track data and concise year-labelled telemetry maps', async () => {
-  assert.deepEqual(PACE_MAPS.slice(7).map(m => m.code), ['AUT', 'GBR', 'BEL', 'HUN', 'NED', 'ITA', 'MAD', 'AZE', 'SEP', 'SIN', 'MEX'])
+  assert.deepEqual(PACE_MAPS.slice(7).map(m => m.code), ['AUT', 'GBR', 'BEL', 'HUN', 'NED', 'ITA', 'MAD', 'AZE', 'SEP', 'SIN', 'MEX', 'BRA', 'LAS'])
   assert.equal(new Set(PACE_MAPS.map(m => m.code)).size, PACE_MAPS.length)
   for (const map of PACE_MAPS) {
-    assert.equal(map.year, ['SIN', 'MEX'].includes(map.code) ? 2025 : 2026)
-    assert.match(map.source, /^\w+ Grand Prix \| 202[56]$/)
+    assert.equal(map.year, ['SIN', 'MEX', 'BRA', 'LAS'].includes(map.code) ? 2025 : 2026)
+    assert.match(map.source, /^[\p{L} ]+ Grand Prix \| 202[56]$/u)
     const svg = await readFile(publicFile(map.telemetry), 'utf8')
     assert.match(svg, /viewBox="0 0 1400 1000"/)
     const labels = [...svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)].map(m => m[1])
@@ -54,4 +54,27 @@ test('replacement maps retain telemetry source years, hashes and approved bounda
   const sepang = report.maps.find(m => m.prefix === 'sepang_2026')
   const track = JSON.parse(await readFile(publicFile('/pace/track_data/sepang_2026_track.json'), 'utf8'))
   assert.deepEqual(track.segments.map(s => s.category), sepang.class_boundaries.map(s => s.category))
+})
+
+test('São Paulo and Las Vegas maps retain audited 2025 source data', async () => {
+  const report = JSON.parse(await readFile(publicFile('/pace/provenance/standardized_maps.json'), 'utf8'))
+  for (const [code, prefix, session, drivers] of [
+    ['BRA', 'sao_paulo_2025', 'qualifying', 11],
+    ['LAS', 'las_vegas_2025', 'race', 4],
+  ]) {
+    const map = PACE_MAPS.find(map => map.code === code)
+    assert.equal(map.trackPrefix, prefix)
+    assert.equal(map.year, 2025)
+    const provenance = report.maps.find(map => map.prefix === prefix)
+    assert.equal(provenance.session, session)
+    assert.equal(provenance.accepted_drivers.length, drivers)
+    assert.equal(provenance.sources.length, drivers)
+    assert.ok(provenance.sources.every(source => source.path.startsWith('FastF1 Data/2025/') && /^[a-f0-9]{64}$/.test(source.sha256)))
+    const track = JSON.parse(await readFile(publicFile(`/pace/track_data/${prefix}_track.json`), 'utf8'))
+    assert.equal(track.source_year, 2025)
+    assert.deepEqual(track.segments.map(run => run.category), provenance.class_boundaries.map(segment => segment.category))
+    const svg = await readFile(publicFile(map.telemetry), 'utf8')
+    assert.equal([...svg.matchAll(/<rect\b/g)].length, 1)
+    assert.doesNotMatch(svg, /<text\b/)
+  }
 })
