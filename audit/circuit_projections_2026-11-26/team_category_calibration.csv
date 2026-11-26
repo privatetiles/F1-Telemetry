@@ -1,0 +1,34 @@
+team,category,delta,events
+Alpine,Fast corners,1.8806738087613237,11
+Alpine,Slow corners,2.224311837598327,11
+Alpine,Straights,0.8393614966654139,11
+Aston Martin,Fast corners,4.872524289144868,12
+Aston Martin,Slow corners,3.266223423960661,12
+Aston Martin,Straights,3.5088497800494665,12
+Audi,Fast corners,2.2025482470883766,12
+Audi,Slow corners,1.7046685254171219,12
+Audi,Straights,0.8286403526199665,12
+Cadillac,Fast corners,5.6623279757954075,12
+Cadillac,Slow corners,4.581112546271813,12
+Cadillac,Straights,2.116403193664311,12
+Ferrari,Fast corners,0.2009422998011525,12
+Ferrari,Slow corners,-0.46973338232248824,12
+Ferrari,Straights,0.14312109436043777,12
+Haas F1 Team,Fast corners,2.784400557422046,12
+Haas F1 Team,Slow corners,2.791245620074783,12
+Haas F1 Team,Straights,1.1890971003724369,12
+McLaren,Fast corners,0.3207781322450525,11
+McLaren,Slow corners,0.3338177580830285,11
+McLaren,Straights,0.3529091262641544,11
+Mercedes,Fast corners,0.0,12
+Mercedes,Slow corners,0.0,12
+Mercedes,Straights,0.0,12
+Racing Bulls,Fast corners,2.0413805867656114,12
+Racing Bulls,Slow corners,2.113352462980295,12
+Racing Bulls,Straights,0.862864940555581,12
+Red Bull Racing,Fast corners,0.32242421829563717,12
+Red Bull Racing,Slow corners,0.1433359512191761,12
+Red Bull Racing,Straights,-0.03498921203439168,12
+Williams,Fast corners,3.7070020626020876,12
+Williams,Slow corners,3.14528099580543,12
+Williams,Straights,1.3653113147046705,12

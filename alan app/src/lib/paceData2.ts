@@ -16,6 +16,7 @@ export interface Race2 {
   eventKey: string       // "fastf1_2025_austrian_grand_prix"
   imgPrefix: string      // "08_austria_2025"
   mapCode: string
+  forecastUnavailable?: boolean
 }
 
 const ALL_RACES2: Race2[] = [
@@ -28,6 +29,8 @@ const ALL_RACES2: Race2[] = [
   { label: 'Sepang', fullName: 'Sepang GP', eventKey: 'fastf1_2026_bahrain_grand_prix', imgPrefix: 'sepang_2026', mapCode: 'SEP' },
   { label: 'Singapore', fullName: 'Singapore GP', eventKey: 'fastf1_2026_singapore_grand_prix', imgPrefix: 'singapore_2025', mapCode: 'SIN' },
   { label: 'Mexico', fullName: 'Mexico City GP', eventKey: 'fastf1_2026_mexico_city_grand_prix', imgPrefix: 'mexico_2025', mapCode: 'MEX' },
+  { label: 'Brazil', fullName: 'São Paulo GP', eventKey: 'fastf1_2026_sao_paulo_grand_prix', imgPrefix: 'sao_paulo_2025', mapCode: 'BRA', forecastUnavailable: true },
+  { label: 'Las Vegas', fullName: 'Las Vegas GP', eventKey: 'fastf1_2026_las_vegas_grand_prix', imgPrefix: 'las_vegas_2025', mapCode: 'LAS', forecastUnavailable: true },
 ]
 
 export const RACES2 = ALL_RACES2
@@ -109,6 +112,13 @@ export interface TeamDelta2 {
   slowShare: number
   fastShare: number
   straightShare: number
+}
+
+export async function loadCircuitPaceProjections(): Promise<TeamDelta2[]> {
+  const res = await fetch('/pace2/predictions/circuit_pace_projections.json')
+  if (!res.ok) throw new Error(`HTTP ${res.status} for circuit pace projections`)
+  const data = await res.json() as { teams: TeamDelta2[] }
+  return data.teams
 }
 
 const TARGET_MIX_CSVS = [
