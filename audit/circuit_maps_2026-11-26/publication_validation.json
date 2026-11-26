@@ -1,0 +1,10 @@
+{
+  "protected_pace_csv_count": 70,
+  "protected_pace_csvs_unchanged": true,
+  "copied_assets_byte_identical": true,
+  "pace_tests": "10 passed",
+  "targeted_lint": "passed",
+  "production_build": "passed; existing chunk-size warning",
+  "browser": "Both circuits checked in three-class and telemetry modes; actual 2025 labels and speed scales; no browser console errors",
+  "live_deployed": false
+}

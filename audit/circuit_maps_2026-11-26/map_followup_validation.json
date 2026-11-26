@@ -1,0 +1,26 @@
+{
+  "maps": {
+    "sao_paulo_2025": {
+      "accepted_laps": 11,
+      "segments": 14,
+      "distance_span_m": 4239.031350856668,
+      "native_and_merged_checks": "passed",
+      "svg_json_geometry_profile_checks": "passed"
+    },
+    "las_vegas_2025": {
+      "accepted_laps": 4,
+      "segments": 19,
+      "distance_span_m": 6136.216431359959,
+      "native_and_merged_checks": "passed",
+      "svg_json_geometry_profile_checks": "passed"
+    }
+  },
+  "pace_csv_hashes_unchanged": 63,
+  "raw_hashes_verified": true,
+  "audit_tests_passed": 15,
+  "interpolation_tests_passed": 7,
+  "las_vegas_2026_full_validation": "blocked: public FastF1 HTTP 401; distance and full lap quality unresolved",
+  "las_vegas_2025_qualifying": "wet and excluded; separate dry race used for map only",
+  "pace_changed": false,
+  "website_changed": false
+}

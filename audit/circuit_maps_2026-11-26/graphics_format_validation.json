@@ -1,0 +1,20 @@
+{
+  "checks": [
+    {
+      "map": "sao_paulo_2025",
+      "telemetry_matches_existing_svg_contract": true,
+      "three_class_uses_existing_react_component": true,
+      "png_dimensions_verified": true,
+      "geometry_profile_classification_csvs_unchanged": true
+    },
+    {
+      "map": "las_vegas_2025",
+      "telemetry_matches_existing_svg_contract": true,
+      "three_class_uses_existing_react_component": true,
+      "png_dimensions_verified": true,
+      "geometry_profile_classification_csvs_unchanged": true
+    }
+  ],
+  "visual_review": "Both class maps and telemetry maps reviewed; no clipping or added labels",
+  "pace_or_website_changed": false
+}
