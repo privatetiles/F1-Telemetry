@@ -1,6 +1,6 @@
 import type { AppView } from '../components/Sidebar'
 
-const APP_VIEWS: readonly AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'insights', 'games', 'historicalraces', 'socials', 'changelog', 'contracts']
+const APP_VIEWS: readonly AppView[] = ['telemetry', 'standings', 'calendar', 'results', 'drivers', 'teams', 'circuits', 'pace', 'pace2', 'championship', 'insights', 'games', 'historicalraces', 'socials', 'changelog', 'contracts']
 
 export type PageView = AppView | 'welcome' | 'home'
 

@@ -25,3 +25,8 @@ test('the entry flow and back-navigation routes stay distinct', () => {
   const history = ['', '#home', '#calendar', '#home', '']
   assert.deepEqual(history.map(pageFromHash), ['welcome', 'home', 'calendar', 'home', 'welcome'])
 })
+
+test('the championship forecast has a dedicated workspace deep link', () => {
+  assert.equal(appViewFromHash('#championship'), 'championship')
+  assert.equal(pageFromHash('#/championship'), 'championship')
+})

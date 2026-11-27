@@ -208,6 +208,7 @@ export default function PaceAnalysis2View() {
           <span className="pa2-title-badge">2026</span>
         </div>
         <div className="pa2-race-pills">
+          <a className="pa2-race-pill championship-link" href="#championship">Championship forecast</a>
           {RACES2.map(r => (
             <button
               key={r.label}
