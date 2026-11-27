@@ -1,0 +1,17 @@
+event,session,event_order,included,reason
+fastf1_2026_australia_grand_prix,race,1,True,
+fastf1_2026_austrian_grand_prix,race,8,True,
+fastf1_2026_azerbaijan_grand_prix_qualifying,qualifying,15,False,unresolved_mercedes_reference
+fastf1_2026_bahrain_grand_prix_qualifying,qualifying,16,True,
+fastf1_2026_barcelona_grand_prix,race,7,True,
+fastf1_2026_belgian_grand_prix,race,10,True,
+fastf1_2026_british_grand_prix,race,9,True,
+fastf1_2026_canadian_grand_prix,race,5,False,wet_tyre_laps
+fastf1_2026_china_grand_prix,race,2,True,
+fastf1_2026_dutch_grand_prix_qualifying,qualifying,12,False,rain_in_session_weather_export
+fastf1_2026_hungarian_grand_prix_qualifying,qualifying,11,True,
+fastf1_2026_italian_grand_prix_qualifying,qualifying,13,True,
+fastf1_2026_japan_grand_prix,race,3,True,
+fastf1_2026_madrid_grand_prix_qualifying,qualifying,14,True,
+fastf1_2026_miami_grand_prix,race,4,False,rain_in_session_weather_export
+fastf1_2026_monaco_grand_prix,race,6,True,

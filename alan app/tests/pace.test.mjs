@@ -19,13 +19,13 @@ function close(actual, expected, tolerance = 1e-8) {
   assert.ok(Math.abs(actual - expected) < tolerance, `${actual} != ${expected}`)
 }
 
-test('the active history has one AZE qualifying event and no Baku race or Q1 duplicate', async () => {
+test('the archived history retains the original AZE qualifying snapshot', async () => {
   const rows = await readCsv(deltasPath)
   const events = [...new Set(rows.map(row => row.event))]
   assert.equal(rows.length, 519)
   assert.equal(events.length, 16)
   assert.deepEqual(events.filter(event => event.includes('azerbaijan')), [AZE])
-  assert.deepEqual(EVENTS.filter(event => event.includes('azerbaijan')), [AZE])
+  assert.deepEqual(EVENTS.filter(event => event.includes('azerbaijan')), [])
   assert.equal(EVENT_LABEL[AZE], 'AZE')
   const baku = rows.filter(row => row.event === AZE)
   assert.equal(baku.length, 33)
@@ -62,7 +62,7 @@ test('Baku provenance uses 21 drivers across all qualifying phases, with Russell
   }
 })
 
-test('all category predictions reproduce duration times event-order weighting', async () => {
+test('archived category predictions reproduce their original inputs', async () => {
   const rows = await readCsv(deltasPath)
   const predictions = await readCsv(predictionsPath)
   assert.equal(predictions.length, 33)
@@ -88,18 +88,41 @@ test('production loaders display the approved positive-is-slower values and pres
   t.mock.method(globalThis, 'fetch', async path => new Response(await readPublic(path.replace(/^\//, ''))))
   const history = await loadDeltaData()
   const predictions = await loadPredictions()
-  const expected = {
-    Mercedes: 0, Ferrari: 0.090225, 'Red Bull Racing': 0.266320, McLaren: 0.405010,
-    Alpine: 1.676608, Audi: 1.740939, 'Racing Bulls': 1.773881, 'Haas F1 Team': 2.272972,
-    Williams: 2.568482, 'Aston Martin': 3.862446, Cadillac: 4.158457,
-  }
+  const expected = Object.fromEntries((await readCsv('pace2/delta_calculations/current_team_pace.csv'))
+    .map(row => [row.team, Number(row.overall_pct)]))
   assert.equal(predictions.length, 11)
   assert.deepEqual(predictions.map(row => row.team), Object.keys(expected))
   for (const prediction of predictions) close(prediction.overall, expected[prediction.team], 1e-6)
   assert.ok(!history.fastf1_2026_hungarian_grand_prix)
   assert.ok(!history.fastf1_2026_dutch_grand_prix_qualifying?.Williams)
-  assert.ok(history[AZE].Williams)
-  for (const category of CATEGORIES) assert.equal(history[AZE].Mercedes[category].delta, 0)
-  close(computeOverall(history[AZE].Ferrari), 0.761177, 1e-6)
-  close(computeOverall(history[AZE].Cadillac), 4.747224, 1e-6)
+  assert.equal(history[AZE], undefined)
+  assert.equal(Object.keys(history).length, 12)
+  for (const event of Object.values(history)) {
+    for (const category of CATEGORIES) assert.equal(event.Mercedes[category].delta, 0)
+    assert.equal(computeOverall(event.Mercedes), 0)
+  }
+  assert.ok(predictions.find(row => row.team === 'Williams').overall > 0)
+  assert.ok(predictions.find(row => row.team === 'Ferrari').overall < 0)
+})
+
+test('current calibration excludes ineligible sessions without renumbering recency weights', async () => {
+  const rows = await readCsv('pace2/delta_calculations/active_2026_3class_deltas.csv')
+  const calibration = await readCsv('pace2/delta_calculations/current_team_category_deltas.csv')
+  assert.equal(rows.length, 390)
+  assert.equal(new Set(rows.map(row => `${row.event}|${row.team}|${row.category}`)).size, rows.length)
+  assert.deepEqual([...new Set(rows.map(row => Number(row.event_order)))].sort((a, b) => a - b),
+    [1, 2, 3, 6, 7, 8, 9, 10, 11, 13, 14, 16])
+  assert.deepEqual([...new Set(rows.map(row => row.event))].sort(), [...EVENTS].sort())
+  assert.ok(rows.every(row => row.calibration_included === 'True'))
+  assert.equal(calibration.length, 33)
+  for (const category of calibration) {
+    const inputs = rows.filter(row => row.team === category.team && row.category === category.category)
+    const weight = inputs.reduce((sum, row) => sum + Number(row.time_weight_seconds) * Number(row.event_order), 0)
+    const total = inputs.reduce((sum, row) => sum + Number(row.weighted_speed_delta_vs_mercedes_pct)
+      * Number(row.time_weight_seconds) * Number(row.event_order), 0)
+    close(Number(category.predicted_category_delta_pct_vs_mercedes), total / weight)
+    close(Number(category.input_time_weight_seconds), weight)
+    assert.equal(Number(category.input_events_used), inputs.length)
+    assert.deepEqual(category.input_event_list.split(',').sort(), inputs.map(row => row.event).sort())
+  }
 })

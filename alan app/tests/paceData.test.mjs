@@ -19,7 +19,7 @@ test('Sepang exclusions and recency calibration are represented without removing
     const predictions = await loadPredictions()
     assert.equal(predictions.length, 11)
     assert.ok(predictions.some(p => p.team === 'Alpine'))
-    const raw = await readFile(new URL('../public/pace2/delta_calculations/all_available_2026_3class_delta_calculations.csv', import.meta.url), 'utf8')
+    const raw = await readFile(new URL('../public/pace2/delta_calculations/active_2026_3class_deltas.csv', import.meta.url), 'utf8')
     const rows = Papa.parse(raw, { header: true, skipEmptyLines: true }).data
     for (const prediction of predictions) {
       const inputs = rows.filter(r => r.team === prediction.team)
