@@ -31,6 +31,8 @@ const ALL_RACES2: Race2[] = [
   { label: 'Mexico', fullName: 'Mexico City GP', eventKey: 'fastf1_2026_mexico_city_grand_prix', imgPrefix: 'mexico_2025', mapCode: 'MEX' },
   { label: 'Brazil', fullName: 'São Paulo GP', eventKey: 'fastf1_2026_sao_paulo_grand_prix', imgPrefix: 'sao_paulo_2025', mapCode: 'BRA', forecastUnavailable: true },
   { label: 'Las Vegas', fullName: 'Las Vegas GP', eventKey: 'fastf1_2026_las_vegas_grand_prix', imgPrefix: 'las_vegas_2025', mapCode: 'LAS', forecastUnavailable: true },
+  { label: 'Qatar', fullName: 'Qatar GP', eventKey: 'fastf1_2026_qatar_grand_prix', imgPrefix: 'qatar_2025', mapCode: 'QAT' },
+  { label: 'Abu Dhabi', fullName: 'Abu Dhabi GP', eventKey: 'fastf1_2026_abu_dhabi_grand_prix', imgPrefix: 'abu_dhabi_2025', mapCode: 'UAE' },
 ]
 
 export const RACES2 = ALL_RACES2

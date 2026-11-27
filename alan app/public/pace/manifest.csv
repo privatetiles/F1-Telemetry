@@ -21,3 +21,7 @@ telemetry_map,São Paulo GP,outputs/latest_two_races_2026-11-26/maps/sao_paulo_2
 track_data,São Paulo GP,outputs/latest_two_races_2026-11-26/maps/sao_paulo_2025/sao_paulo_2025_track.json,/pace/track_data/sao_paulo_2025_track.json
 telemetry_map,Las Vegas GP,outputs/latest_two_races_2026-11-26/maps/las_vegas_2025/las_vegas_2025_telemetry_map.svg,/pace/telemetry_maps/las_vegas_2025_telemetry_map.svg
 track_data,Las Vegas GP,outputs/latest_two_races_2026-11-26/maps/las_vegas_2025/las_vegas_2025_track.json,/pace/track_data/las_vegas_2025_track.json
+telemetry_map,Qatar GP,outputs/qatar_abu_dhabi_maps_2026-11-26/maps/qatar_2025/qatar_2025_telemetry_map.svg,/pace/telemetry_maps/qatar_2025_telemetry_map.svg
+track_data,Qatar GP,outputs/qatar_abu_dhabi_maps_2026-11-26/maps/qatar_2025/qatar_2025_track.json,/pace/track_data/qatar_2025_track.json
+telemetry_map,Abu Dhabi GP,outputs/qatar_abu_dhabi_maps_2026-11-26/maps/abu_dhabi_2025/abu_dhabi_2025_telemetry_map.svg,/pace/telemetry_maps/abu_dhabi_2025_telemetry_map.svg
+track_data,Abu Dhabi GP,outputs/qatar_abu_dhabi_maps_2026-11-26/maps/abu_dhabi_2025/abu_dhabi_2025_track.json,/pace/track_data/abu_dhabi_2025_track.json
