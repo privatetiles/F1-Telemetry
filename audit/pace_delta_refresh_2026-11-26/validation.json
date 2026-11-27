@@ -1,0 +1,16 @@
+{
+  "pace_and_saved_prediction_tests": 18,
+  "targeted_lint": "passed",
+  "typescript_vite_build": "passed; existing bundle-size advisory",
+  "skill_validation": "passed using system python3 with PyYAML",
+  "helper_checks": [
+    "slower-positive",
+    "duplicate rejection",
+    "missing baseline rejection",
+    "nonpositive weight rejection",
+    "nonfinite value rejection"
+  ],
+  "protected_historical_csv_hashes_unchanged": 70,
+  "desktop_preview": "verified 11 teams and 12 history columns; original graphics",
+  "scope": "local only"
+}

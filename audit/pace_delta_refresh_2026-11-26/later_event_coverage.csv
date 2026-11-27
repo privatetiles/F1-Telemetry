@@ -1,0 +1,6 @@
+round,event,date,status,missing_components,map_source_year
+17,Singapore Grand Prix,2026-10-11,partial_or_unvalidated,validated_lap_quality_and_distance,2025.0
+18,United States Grand Prix,2026-10-25,partial_or_unvalidated,validated_lap_quality_and_distance,
+19,Mexico City Grand Prix,2026-11-01,missing_session_data,lap_metadata;session_results;weather;native_car;native_position;validated_lap_quality_and_distance,2025.0
+20,São Paulo Grand Prix,2026-11-08,wet_session_excluded,native_car;native_position;validated_lap_quality_and_distance,2025.0
+21,Las Vegas Grand Prix,2026-11-21,partial_or_unvalidated,validated_lap_quality_and_distance,2025.0

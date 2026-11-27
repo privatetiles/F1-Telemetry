@@ -61,7 +61,14 @@ const ALL_EVENTS = [
   'fastf1_2026_bahrain_grand_prix_qualifying',
 ] as const
 
-export const EVENTS = ALL_EVENTS.filter(event => !HIDDEN_PACE_EVENTS.has(event))
+// Current-form exclusions; archived event CSVs and saved forecasts are retained.
+export const EXCLUDED_CURRENT_PACE_EVENTS = new Set<string>([
+  'fastf1_2026_miami_grand_prix',
+  'fastf1_2026_canadian_grand_prix',
+  'fastf1_2026_dutch_grand_prix_qualifying',
+  'fastf1_2026_azerbaijan_grand_prix_qualifying',
+])
+export const EVENTS = ALL_EVENTS.filter(event => !HIDDEN_PACE_EVENTS.has(event) && !EXCLUDED_CURRENT_PACE_EVENTS.has(event))
 
 export type EventKey = typeof ALL_EVENTS[number]
 export const PREDICTION_EVENT = 'fastf1_2025_austrian_grand_prix'
@@ -170,7 +177,7 @@ function parseCsv<T>(text: string): T[] {
 }
 
 export async function loadDeltaData(): Promise<DeltaMap> {
-  const res = await fetch('/pace2/delta_calculations/all_available_2026_3class_delta_calculations.csv')
+  const res = await fetch('/pace2/delta_calculations/active_2026_3class_deltas.csv')
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
   type Raw = { event: string; team: string; category: string; weighted_speed_delta_vs_mercedes_pct: string; time_weight_seconds: string }
@@ -178,7 +185,7 @@ export async function loadDeltaData(): Promise<DeltaMap> {
 
   const map: DeltaMap = {}
   for (const row of rows) {
-    if (HIDDEN_PACE_EVENTS.has(row.event) || isHiddenPaceTeamEvent(row.event, row.team)) continue
+    if (HIDDEN_PACE_EVENTS.has(row.event) || EXCLUDED_CURRENT_PACE_EVENTS.has(row.event) || isHiddenPaceTeamEvent(row.event, row.team)) continue
     const delta = parseFloat(row.weighted_speed_delta_vs_mercedes_pct)
     const tw    = parseFloat(row.time_weight_seconds)
     if (!isFinite(delta) || !isFinite(tw)) continue
@@ -190,7 +197,7 @@ export async function loadDeltaData(): Promise<DeltaMap> {
 }
 
 export async function loadPredictions(): Promise<PredictionEntry[]> {
-  const res = await fetch('/pace2/predictions/delta_predictions/team_category_delta_inputs_from_2026.csv')
+  const res = await fetch('/pace2/delta_calculations/current_team_category_deltas.csv')
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
   type Raw = {

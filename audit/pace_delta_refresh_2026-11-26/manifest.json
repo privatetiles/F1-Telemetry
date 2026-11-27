@@ -1,0 +1,57 @@
+{
+  "source_hashes": {
+    "outputs/github-pr-circuit-maps-2026-11-26/alan app/public/pace2/delta_calculations/all_available_2026_3class_delta_calculations.csv": "9f89dba0d2acf86f0f08ab983d1de44dcf9971e028963691063bc0af77766d2a",
+    "outputs/github-pr-circuit-maps-2026-11-26/alan app/public/pace2/predictions/delta_predictions/team_category_delta_inputs_from_2026.csv": "78eecd2ce248284a9acab3226fc90ff41bf1462b10ee34cec2c13f0d1b76bc23",
+    "outputs/brazil_las_vegas_projections_2026-11-26/event_admission.csv": "e72a2c9971d0a00860353d86f6e1b98b1c1d54302f7e616327c2ed15da03b466",
+    "outputs/brazil_las_vegas_projections_2026-11-26/audit.json": "d473bef582e75df929f7eb74bd84b394460c76eb12dcb93f4b314fed26c5cedc",
+    "/Users/sim/Documents/Keji/skills/update-f1-pace-analysis/scripts/refresh_current_deltas.py": "1287ddfc5ecabc7dfa69db955a66737705d0a143177641c1998d3824f786e3d3"
+  },
+  "method": "category duration times original event order; overall uses summed category weights",
+  "sign": "positive is slower than Mercedes",
+  "input_events": 12,
+  "contribution_rows": 390,
+  "teams": 11,
+  "new_event_measurements": 0,
+  "excluded_events": [
+    {
+      "event": "fastf1_2026_azerbaijan_grand_prix_qualifying",
+      "session": "qualifying",
+      "event_order": 15,
+      "included": false,
+      "reason": "unresolved_mercedes_reference"
+    },
+    {
+      "event": "fastf1_2026_canadian_grand_prix",
+      "session": "race",
+      "event_order": 5,
+      "included": false,
+      "reason": "wet_tyre_laps"
+    },
+    {
+      "event": "fastf1_2026_dutch_grand_prix_qualifying",
+      "session": "qualifying",
+      "event_order": 12,
+      "included": false,
+      "reason": "rain_in_session_weather_export"
+    },
+    {
+      "event": "fastf1_2026_miami_grand_prix",
+      "session": "race",
+      "event_order": 4,
+      "included": false,
+      "reason": "rain_in_session_weather_export"
+    }
+  ],
+  "limitations": [
+    "Existing repaired historical segment values reused; this run screens session weather and known reference failure, not a new raw telemetry re-audit.",
+    "Any rain anywhere in a session weather export excludes the session conservatively."
+  ],
+  "scope": "Current form only; frozen forecasts and source archives unchanged; no website deployment",
+  "code_base_commit": "e3e6d8eb1fa431190726ccd13c8e151d15aa5cc0",
+  "local_branch": "codex/refresh-pace-deltas-2026-11-26",
+  "preview_url": "http://127.0.0.1:5174/#pace",
+  "pushed": false,
+  "deployed": false,
+  "later_event_coverage_source": "outputs/latest_two_races_2026-11-26/season_coverage.csv",
+  "later_event_coverage_sha256": "14385328e87638bfd1251ea204aa8ffc5a2e92c18bef74b4704875532fb7671a"
+}
