@@ -6,10 +6,10 @@ import { PACE_MAPS } from '../src/lib/paceMaps.ts'
 const publicFile = path => new URL(`../public${path}`, import.meta.url)
 
 test('all circuits have uniform track data and concise year-labelled telemetry maps', async () => {
-  assert.deepEqual(PACE_MAPS.slice(7).map(m => m.code), ['AUT', 'GBR', 'BEL', 'HUN', 'NED', 'ITA', 'MAD', 'AZE', 'SEP', 'SIN', 'MEX', 'BRA', 'LAS'])
+  assert.deepEqual(PACE_MAPS.slice(7).map(m => m.code), ['AUT', 'GBR', 'BEL', 'HUN', 'NED', 'ITA', 'MAD', 'AZE', 'SEP', 'SIN', 'MEX', 'BRA', 'LAS', 'QAT', 'UAE'])
   assert.equal(new Set(PACE_MAPS.map(m => m.code)).size, PACE_MAPS.length)
   for (const map of PACE_MAPS) {
-    assert.equal(map.year, ['SIN', 'MEX', 'BRA', 'LAS'].includes(map.code) ? 2025 : 2026)
+    assert.equal(map.year, ['SIN', 'MEX', 'BRA', 'LAS', 'QAT', 'UAE'].includes(map.code) ? 2025 : 2026)
     assert.match(map.source, /^[\p{L} ]+ Grand Prix \| 202[56]$/u)
     const svg = await readFile(publicFile(map.telemetry), 'utf8')
     assert.match(svg, /viewBox="0 0 1400 1000"/)
@@ -56,11 +56,13 @@ test('replacement maps retain telemetry source years, hashes and approved bounda
   assert.deepEqual(track.segments.map(s => s.category), sepang.class_boundaries.map(s => s.category))
 })
 
-test('São Paulo and Las Vegas maps retain audited 2025 source data', async () => {
+test('late-season maps retain audited 2025 source data', async () => {
   const report = JSON.parse(await readFile(publicFile('/pace/provenance/standardized_maps.json'), 'utf8'))
   for (const [code, prefix, session, drivers] of [
     ['BRA', 'sao_paulo_2025', 'qualifying', 11],
     ['LAS', 'las_vegas_2025', 'race', 4],
+    ['QAT', 'qatar_2025', 'qualifying', 7],
+    ['UAE', 'abu_dhabi_2025', 'qualifying', 7],
   ]) {
     const map = PACE_MAPS.find(map => map.code === code)
     assert.equal(map.trackPrefix, prefix)

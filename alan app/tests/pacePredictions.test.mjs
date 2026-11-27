@@ -8,7 +8,7 @@ import { PACE_MAPS } from '../src/lib/paceMaps.ts'
 const csv = async path => Papa.parse(await readFile(new URL(path, import.meta.url), 'utf8'), { header: true, skipEmptyLines: true }).data
 const slowerPositive = value => (1 / (1 + Number(value) / 100) - 1) * 100
 
-test('nine saved forecasts retain complete grids, team snapshots and pole summaries without latest calibration', async () => {
+test('saved forecasts retain complete grids, team snapshots and pole summaries without latest calibration', async () => {
   const originalFetch = globalThis.fetch
   const requested = []
   globalThis.fetch = async path => {
@@ -19,17 +19,17 @@ test('nine saved forecasts retain complete grids, team snapshots and pole summar
     const drivers = await loadDriverPredictions()
     const teams = await loadTeamDeltas2()
     const poles = await loadPolePredictions()
-    assert.deepEqual(RACES2.map(r => r.label), ['Austria', 'Britain', 'Belgium', 'Hungary', 'Dutch', 'Italy', 'Sepang', 'Singapore', 'Mexico', 'Brazil', 'Las Vegas'])
-    assert.equal(drivers.length, 198)
-    assert.equal(teams.length, 99)
-    assert.equal(poles.length, 9)
+    assert.deepEqual(RACES2.map(r => r.label), ['Austria', 'Britain', 'Belgium', 'Hungary', 'Dutch', 'Italy', 'Sepang', 'Singapore', 'Mexico', 'Brazil', 'Las Vegas', 'Qatar', 'Abu Dhabi'])
+    assert.equal(drivers.length, 242)
+    assert.equal(teams.length, 121)
+    assert.equal(poles.length, 11)
     assert.ok(requested.every(path => !path.includes('team_category_delta_inputs_from_2026')))
     const circuitPace = await loadCircuitPaceProjections()
     assert.equal(circuitPace.length, 22)
     for (const race of RACES2) {
       const map = PACE_MAPS.find(m => m.code === race.mapCode)
       assert.ok(map)
-      assert.equal(map.year, ['Singapore', 'Mexico', 'Brazil', 'Las Vegas'].includes(race.label) ? 2025 : 2026)
+      assert.equal(map.year, ['Singapore', 'Mexico', 'Brazil', 'Las Vegas', 'Qatar', 'Abu Dhabi'].includes(race.label) ? 2025 : 2026)
       assert.match(await readFile(new URL(`../public${map.telemetry}`, import.meta.url), 'utf8'), /<svg/)
       const track = JSON.parse(await readFile(new URL(`../public/pace/track_data/${map.trackPrefix}_track.json`, import.meta.url), 'utf8'))
       assert.ok(track.speedScale.min < track.speedScale.max)
@@ -86,6 +86,8 @@ test('nine saved forecasts retain complete grids, team snapshots and pole summar
       ['Sepang GP', 'sepang_2026/qualifying_time_predictions.csv'],
       ['Singapore GP', 'singapore_2026/driver_qualifying_predictions.csv'],
       ['Mexico City GP', 'mexico_2026/driver_qualifying_predictions.csv'],
+      ['Qatar GP', 'qatar_2026/driver_qualifying_predictions.csv'],
+      ['Abu Dhabi GP', 'abu_dhabi_2026/driver_qualifying_predictions.csv'],
     ]) {
       for (const row of await csv(`../public/pace2/predictions/${file}`)) {
         const actual = drivers.find(d => d.race === race && d.driver === row.driver)
@@ -104,6 +106,18 @@ test('nine saved forecasts retain complete grids, team snapshots and pole summar
     assert.equal(mexico[0].driver, 'ANT')
     assert.equal(mexico[0].predictedTime, '1:17.925')
     assert.equal(mexico[0].gap, 0)
+    for (const [race, poleTime] of [['Qatar GP', '1:21.359'], ['Abu Dhabi GP', '1:24.249']]) {
+      const grid = drivers.filter(d => d.race === race)
+      assert.deepEqual(grid.filter(d => d.team === 'Haas F1 Team').map(d => d.driver), ['BEA', 'CAM'])
+      assert.equal(grid[0].driver, 'ANT')
+      assert.equal(grid[0].predictedTime, poleTime)
+      assert.equal(poles.find(p => p.race === race).predictedTime, poleTime)
+      for (const team of teams.filter(t => t.race === race)) {
+        assert.ok(Math.abs(team.slowShare + team.fastShare + team.straightShare - 100) < 1e-8)
+        const expected = (team.slow * team.slowShare + team.fast * team.fastShare + team.straight * team.straightShare) / 100
+        assert.ok(Math.abs(team.overall - expected) < 1e-10)
+      }
+    }
     const summary = JSON.parse(await readFile(new URL('../public/pace2/predictions/mexico_2026/summary.json', import.meta.url), 'utf8'))
     assert.equal(summary.target_2026_data_used, false)
     assert.equal(summary.qualifying_timing_through, 'Austin 2026 qualifying')

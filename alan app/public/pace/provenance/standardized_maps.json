@@ -1998,6 +1998,299 @@
       "method": "Validated dry 2025 telemetry; existing website rendering components and Australian speed palette. Map only; no current-year pace contribution.",
       "fallback_reason": "2026 distance/lap quality unresolved; 2025 qualifying wet and excluded; labelled dry 2025 race map",
       "audit_path": "audit/circuit_maps_2026-11-26/las_vegas_2025"
+    },
+    {
+      "prefix": "qatar_2025",
+      "year": 2025,
+      "session": "qualifying",
+      "geometry_driver": "TSU",
+      "accepted_drivers": [
+        "PIA",
+        "VER",
+        "ANT",
+        "HUL",
+        "BEA",
+        "BOR",
+        "TSU"
+      ],
+      "class_boundaries": [
+        {
+          "segment_id": "seg_01",
+          "category": "Straights",
+          "start_distance_m": 0.0,
+          "end_distance_m": 690.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_02",
+          "category": "Fast corners",
+          "start_distance_m": 690.0,
+          "end_distance_m": 1340.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_03",
+          "category": "Straights",
+          "start_distance_m": 1340.0,
+          "end_distance_m": 1670.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_04",
+          "category": "Fast corners",
+          "start_distance_m": 1670.0,
+          "end_distance_m": 2130.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_05",
+          "category": "Slow corners",
+          "start_distance_m": 2130.0,
+          "end_distance_m": 2270.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_06",
+          "category": "Straights",
+          "start_distance_m": 2270.0,
+          "end_distance_m": 2480.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_07",
+          "category": "Fast corners",
+          "start_distance_m": 2480.0,
+          "end_distance_m": 2990.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_08",
+          "category": "Straights",
+          "start_distance_m": 2990.0,
+          "end_distance_m": 3030.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_09",
+          "category": "Fast corners",
+          "start_distance_m": 3030.0,
+          "end_distance_m": 3410.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_10",
+          "category": "Straights",
+          "start_distance_m": 3410.0,
+          "end_distance_m": 3680.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_11",
+          "category": "Fast corners",
+          "start_distance_m": 3680.0,
+          "end_distance_m": 4560.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_12",
+          "category": "Straights",
+          "start_distance_m": 4560.0,
+          "end_distance_m": 4860.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_13",
+          "category": "Fast corners",
+          "start_distance_m": 4860.0,
+          "end_distance_m": 5100.0,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_14",
+          "category": "Straights",
+          "start_distance_m": 5100.0,
+          "end_distance_m": 5383.204070283733,
+          "source": "qatar 2025 dry qualifying median with recorded geometry review"
+        }
+      ],
+      "speed_range_kph": [
+        113.0,
+        327.0
+      ],
+      "sources": [
+        {
+          "path": "FastF1 Data/2025/23_qatar_grand_prix/qualifying/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "af66e54ae1a57c0f5b9cd565c1726aa9443015a6b0842345febf1152720f7812"
+        },
+        {
+          "path": "FastF1 Data/2025/23_qatar_grand_prix/qualifying/telemetry_fastest_laps/VER_fastest_lap_telemetry.csv",
+          "sha256": "eb6b6e5f7f0ec143f1ad0ab449bcbc493d6163f4255e9cd46eae09c8c184e74b"
+        },
+        {
+          "path": "FastF1 Data/2025/23_qatar_grand_prix/qualifying/telemetry_fastest_laps/ANT_fastest_lap_telemetry.csv",
+          "sha256": "34aafccb58dc1f448bc4c36e7fdd5a4a3cc4aa24c1ece423990f58c8002e8bd7"
+        },
+        {
+          "path": "FastF1 Data/2025/23_qatar_grand_prix/qualifying/telemetry_fastest_laps/HUL_fastest_lap_telemetry.csv",
+          "sha256": "507580ed5e71feeae4992a9e9f3b460a1bcf54000a5be19c5bf86384067d1896"
+        },
+        {
+          "path": "FastF1 Data/2025/23_qatar_grand_prix/qualifying/telemetry_fastest_laps/BEA_fastest_lap_telemetry.csv",
+          "sha256": "4252087d5ec7a7300eb40230a984dc62a4f72b0a8b1100180c45ea945e7b9667"
+        },
+        {
+          "path": "FastF1 Data/2025/23_qatar_grand_prix/qualifying/telemetry_fastest_laps/BOR_fastest_lap_telemetry.csv",
+          "sha256": "d500447b04f3639db8153a5ed8432c0b686fa90aef1ce0c4f3f99ab536f043ed"
+        },
+        {
+          "path": "FastF1 Data/2025/23_qatar_grand_prix/qualifying/telemetry_fastest_laps/TSU_fastest_lap_telemetry.csv",
+          "sha256": "e550d5c19f15f8a1c569d8b17ea81c18cfa77e4921f9e5b1c0c8c31e582d3a84"
+        }
+      ],
+      "method": "Screened dry 2025 qualifying laps, reviewed three-class boundaries and existing site map graphics."
+    },
+    {
+      "prefix": "abu_dhabi_2025",
+      "year": 2025,
+      "session": "qualifying",
+      "geometry_driver": "ALO",
+      "accepted_drivers": [
+        "PIA",
+        "LEC",
+        "ALO",
+        "OCO",
+        "ALB",
+        "GAS",
+        "COL"
+      ],
+      "class_boundaries": [
+        {
+          "segment_id": "seg_01",
+          "category": "Straights",
+          "start_distance_m": 0.0,
+          "end_distance_m": 310.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_02",
+          "category": "Fast corners",
+          "start_distance_m": 310.0,
+          "end_distance_m": 880.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_03",
+          "category": "Straights",
+          "start_distance_m": 880.0,
+          "end_distance_m": 1380.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_04",
+          "category": "Slow corners",
+          "start_distance_m": 1380.0,
+          "end_distance_m": 1510.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_05",
+          "category": "Straights",
+          "start_distance_m": 1510.0,
+          "end_distance_m": 2580.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_06",
+          "category": "Slow corners",
+          "start_distance_m": 2580.0,
+          "end_distance_m": 2760.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_07",
+          "category": "Fast corners",
+          "start_distance_m": 2760.0,
+          "end_distance_m": 2950.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_08",
+          "category": "Straights",
+          "start_distance_m": 2950.0,
+          "end_distance_m": 3590.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_09",
+          "category": "Fast corners",
+          "start_distance_m": 3590.0,
+          "end_distance_m": 4230.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_10",
+          "category": "Slow corners",
+          "start_distance_m": 4230.0,
+          "end_distance_m": 4580.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_11",
+          "category": "Fast corners",
+          "start_distance_m": 4580.0,
+          "end_distance_m": 5030.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_12",
+          "category": "Slow corners",
+          "start_distance_m": 5030.0,
+          "end_distance_m": 5130.0,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        },
+        {
+          "segment_id": "seg_13",
+          "category": "Straights",
+          "start_distance_m": 5130.0,
+          "end_distance_m": 5234.5970588360415,
+          "source": "abu_dhabi 2025 dry qualifying median with recorded geometry review"
+        }
+      ],
+      "speed_range_kph": [
+        89.0,
+        328.0
+      ],
+      "sources": [
+        {
+          "path": "FastF1 Data/2025/24_abu_dhabi_grand_prix/qualifying/telemetry_fastest_laps/PIA_fastest_lap_telemetry.csv",
+          "sha256": "b6ab63850fbc1ce7e76c34f723ffe86dc82502781ac4df46dd9653aaab3f477c"
+        },
+        {
+          "path": "FastF1 Data/2025/24_abu_dhabi_grand_prix/qualifying/telemetry_fastest_laps/LEC_fastest_lap_telemetry.csv",
+          "sha256": "c1799b9b13565d9cdd168b9011bed810433f7d08581c9c7d9d51c11a2be56771"
+        },
+        {
+          "path": "FastF1 Data/2025/24_abu_dhabi_grand_prix/qualifying/telemetry_fastest_laps/ALO_fastest_lap_telemetry.csv",
+          "sha256": "fc4acf37c587d9827d48aafdefdb3190687c50f2299f3a361fb0e2651f8a9e9c"
+        },
+        {
+          "path": "FastF1 Data/2025/24_abu_dhabi_grand_prix/qualifying/telemetry_fastest_laps/OCO_fastest_lap_telemetry.csv",
+          "sha256": "eac97390e205fb0b2825aaa5ccb3dab569c48622ee5e67b380a3c0028d6c48b8"
+        },
+        {
+          "path": "FastF1 Data/2025/24_abu_dhabi_grand_prix/qualifying/telemetry_fastest_laps/ALB_fastest_lap_telemetry.csv",
+          "sha256": "56fc0b6f7a80c067efc1730aec4db067a5a69aad56e9fca1907fb2486b85e8e0"
+        },
+        {
+          "path": "FastF1 Data/2025/24_abu_dhabi_grand_prix/qualifying/telemetry_fastest_laps/GAS_fastest_lap_telemetry.csv",
+          "sha256": "a219649fecf44465d960cb57c8ef16b8dfb393dd023ac229242100b2c0a1c715"
+        },
+        {
+          "path": "FastF1 Data/2025/24_abu_dhabi_grand_prix/qualifying/telemetry_fastest_laps/COL_fastest_lap_telemetry.csv",
+          "sha256": "e60e385bd6970e12dc2d04ab528dc75c4f999d18d17fb3f3d729ffd836d78458"
+        }
+      ],
+      "method": "Screened dry 2025 qualifying laps, reviewed three-class boundaries and existing site map graphics."
     }
   ],
   "pace_csv_unchanged": true

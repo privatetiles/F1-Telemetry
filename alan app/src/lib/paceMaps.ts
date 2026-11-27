@@ -36,4 +36,6 @@ export const PACE_MAPS: PaceMap[] = [
   map('MEX', 'mexico_2025', 'Mexico', 2025),
   map('BRA', 'sao_paulo_2025', 'São Paulo', 2025),
   map('LAS', 'las_vegas_2025', 'Las Vegas', 2025),
+  map('QAT', 'qatar_2025', 'Qatar', 2025),
+  map('UAE', 'abu_dhabi_2025', 'Abu Dhabi', 2025),
 ]

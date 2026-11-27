@@ -17,3 +17,13 @@ segment_definitions_csv,All four target races,/Users/sim/Documents/Keji/FastF1 D
 driver_qualifying_predictions_csv,All four target races,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/driver_qualifying_predictions/four_race_2026_driver_qualifying_predictions.csv
 driver_qualifying_inputs_csv,Existing 2026 qualifying,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/driver_qualifying_predictions/driver_qualifying_model_inputs.csv
 driver_qualifying_source_laps_csv,Existing 2026 qualifying,/Users/sim/Documents/Keji/FastF1 Data/pace_analysis/predictions/qualifying_time_predictions/driver_qualifying_predictions/driver_qualifying_best_laps_2026_sources.csv
+telemetry_map,Qatar GP,/pace/telemetry_maps/qatar_2025_telemetry_map.svg
+track_data,Qatar GP,/pace/track_data/qatar_2025_track.json
+driver_qualifying_predictions_csv,Qatar GP,/pace2/predictions/qatar_2026/driver_qualifying_predictions.csv
+delta_predictions_csv,Qatar GP,/pace2/predictions/qatar_2026/team_pace_predictions.csv
+delta_prediction_target_weights_csv,Qatar GP,/pace2/predictions/qatar_2026/category_time_mix.csv
+telemetry_map,Abu Dhabi GP,/pace/telemetry_maps/abu_dhabi_2025_telemetry_map.svg
+track_data,Abu Dhabi GP,/pace/track_data/abu_dhabi_2025_track.json
+driver_qualifying_predictions_csv,Abu Dhabi GP,/pace2/predictions/abu_dhabi_2026/driver_qualifying_predictions.csv
+delta_predictions_csv,Abu Dhabi GP,/pace2/predictions/abu_dhabi_2026/team_pace_predictions.csv
+delta_prediction_target_weights_csv,Abu Dhabi GP,/pace2/predictions/abu_dhabi_2026/category_time_mix.csv
