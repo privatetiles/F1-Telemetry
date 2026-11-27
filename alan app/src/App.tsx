@@ -30,6 +30,7 @@ import MiniSectorTimeline from './components/MiniSectorTimeline'
 import StaticTrackMap from './components/StaticTrackMap'
 import PaceAnalysisView from './components/PaceAnalysisView'
 import PaceAnalysis2View from './components/PaceAnalysis2View'
+import ChampionshipForecastView from './components/ChampionshipForecastView'
 import Sidebar from './components/Sidebar'
 import type { AppView } from './components/Sidebar'
 import StandingsPage from './components/StandingsPage'
@@ -1088,6 +1089,8 @@ export default function App() {
             <PaceAnalysisView />
           ) : activeView === 'pace2' ? (
             <PaceAnalysis2View />
+          ) : activeView === 'championship' ? (
+            <ChampionshipForecastView />
           ) : (
             <>
               <CircuitSelector
