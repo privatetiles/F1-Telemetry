@@ -4743,13 +4743,19 @@
 .lb-empty { text-align: center; color: #445; font-size: 13px; padding: 32px 0; }
 
 /* ── Socials ── */
+.socials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 48px;
+}
 .socials-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  max-width: 360px;
-  margin: 48px auto 0;
+  width: 280px;
   background: #13151a;
   border: 1px solid #222;
   border-radius: 16px;
@@ -4757,8 +4763,28 @@
   text-align: center;
 }
 .socials-discord-icon { font-size: 48px; line-height: 1; }
+.socials-platform-icon { font-size: 48px; line-height: 1; }
 .socials-card h2 { font-size: 20px; font-weight: 700; color: #fff; margin: 0; }
-.socials-card p  { font-size: 14px; color: #778; margin: 0; line-height: 1.5; }
+.socials-card p  { font-size: 14px; color: #778; margin: 0; line-height: 1.5; flex: 1; }
+.socials-platform-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 28px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.socials-btn-discord   { background: #5865F2; }
+.socials-btn-discord:hover { background: #4752c4; }
+.socials-btn-instagram { background: #c13584; }
+.socials-btn-instagram:hover { background: #a02c6e; }
+.socials-btn-reddit    { background: #ff4500; }
+.socials-btn-reddit:hover { background: #d93b00; }
+/* keep old class working */
 .socials-discord-btn {
   display: inline-block;
   margin-top: 8px;
